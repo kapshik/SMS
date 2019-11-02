@@ -41,7 +41,7 @@ public class MainSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	        .formLogin()
 	            .loginPage("/login")
 	            .loginProcessingUrl("/authenticate")
-	            .defaultSuccessUrl("/mainmenu")
+	            .defaultSuccessUrl("/home")
 	            .failureUrl("/login")
 	            .usernameParameter("username")
 	            .passwordParameter("password")

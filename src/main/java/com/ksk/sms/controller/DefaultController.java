@@ -19,6 +19,11 @@ public class DefaultController {
 		return "cmn/mainmenu";
 	}
   
+	@RequestMapping("home")	
+	public String homeForm(Model model) {
+		return "cmn/home";
+	}
+  
 	@RequestMapping("footer")	
 	public String footerForm(Model model) {
 		return "cmn/footer";
