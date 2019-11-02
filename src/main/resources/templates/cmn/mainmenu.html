@@ -161,6 +161,7 @@ Left Side Menu-->
 								<div class="card-body">
 								collapseOne <span data-bind="text: dataModel.orderList().length"></span>
 <!-- ko if:dataModel.orderList().length > 0 -->
+<div class="table-responsive">
 <table id="id_oder" class="table table-striped table-bordered">
 	<thead>
 		<tr>
@@ -198,7 +199,8 @@ Left Side Menu-->
 			</td>
 		</tr>
 	</tbody>
-</table>              
+</table>
+</div>
 <!-- /ko -->
 								</div>
 							</div>
@@ -277,8 +279,8 @@ sms.common.log.info("failed");
 			});
 //		});
 		$('#id_oder').DataTable({
-			"scrollX": true,
-        	"autoWidth": false
+//			"scrollX": true,
+//        	"autoWidth": false
 		});
 sms.common.log.info("show");
 	})
