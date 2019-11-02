@@ -11,11 +11,32 @@ public class DefaultController {
 	// ルート画面
     @RequestMapping({"", "index", "login", "invalidSession"})	
     public String defaultForm(Model model) {
-        return "login";
+        return "cmn/login";
     }
+	
+	@RequestMapping("mainmenu")	
+	public String mainMenuForm(Model model) {
+		return "cmn/mainmenu";
+	}
+  
+	@RequestMapping("footer")	
+	public String footerForm(Model model) {
+		return "cmn/footer";
+	}
+	
+	@RequestMapping("fixed_navbar_layout")	
+	public String navbarLayoutForm(Model model) {
+		return "cmn/fixed_navbar_layout";
+	}
 
-    @RequestMapping("main_menu")	
-    public String mainMenuForm(Model model) {
-        return "main_menu";
-    }
+	@RequestMapping("sms_home")	
+	public String smsHomeForm(Model model) {
+		return "sales/sms_home";
+	}
+
+	@RequestMapping("sms_order")	
+	public String smsOrderForm(Model model) {
+		return "sales/sms_order";
+	}
+  
 }

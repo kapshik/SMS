@@ -8,31 +8,31 @@ const DEBUG_MODE = false;
  * Event Listener for Window
  ***********************************************************/
 $(window).on('load', function( event ){
-	//history.back()æ‚ğ”’ƒy[ƒW‚É‚·‚éB
+	//history.back()å…ˆã‚’ç™½ãƒšãƒ¼ã‚¸ã«ã™ã‚‹ã€‚
 	history.pushState(null, null, null);
 	
-	//scroll position‚ğ©“®•œŒ³‚µ‚È‚¢B
+	//scroll positionã‚’è‡ªå‹•å¾©å…ƒã—ãªã„ã€‚
 	history.scrollRestoration = "manual";
 });
 
 $(window).on('unload', function( event ){
 	//TODO
-	//‰½‚©‚ ‚ê‚ÎBBB
+	//ä½•ã‹ã‚ã‚Œã°ã€‚ã€‚ã€‚
 });
 
 $(window).on('hashchange', function( event ){
-	//history.back()æ‚ğ”’ƒy[ƒW‚É‚·‚éB
+	//history.back()å…ˆã‚’ç™½ãƒšãƒ¼ã‚¸ã«ã™ã‚‹ã€‚
 	history.pushState(null, null, null);
 	
-	//link“ü—Í—“‚ğƒNƒŠƒAB
+	//linkå…¥åŠ›æ¬„ã‚’ã‚¯ãƒªã‚¢ã€‚
 	history.replaceState(null, null, location.pathname);
 });
 
 $(window).on('popstate', function( event ){
-	//history.back()æ‚ğ”’ƒy[ƒW‚É‚·‚éB
+	//history.back()å…ˆã‚’ç™½ãƒšãƒ¼ã‚¸ã«ã™ã‚‹ã€‚
 	history.pushState(null, null, null);
 	
-	//link“ü—Í—“‚ğƒNƒŠƒAB
+	//linkå…¥åŠ›æ¬„ã‚’ã‚¯ãƒªã‚¢ã€‚
 	history.replaceState(null, null, location.pathname);
 
 	event.preventDefault();
@@ -77,22 +77,20 @@ sms.common.ajaxSetup = function() {
 
 sms.common.loadHtml = function( inLoadList, inCallback ) {
 
-  var cnt = 0;
-  $.each( inLoadList, function( i, row ){
-    if (!row.url) {
-      return;
-    }
-    
-    $(row.id).load(row.url, null, localCallback);
-  });
+	var cnt = 0;
+	$.each( inLoadList, function( i, row ){
+		if (!row.url) {
+			return;
+		}
 
-  function localCallback() {
-    if ( ++cnt === inLoadList.length ) {
-      //sms.common.initTopButton();
-      //sms.common.initNavBarButton();
-      inCallback();
-    }
-  }
+		$(row.id).load(row.url, null, localCallback);
+	});
+
+	function localCallback() {
+		if ( ++cnt === inLoadList.length ) {
+			inCallback();
+		}
+	}
 
 }
 
@@ -106,21 +104,21 @@ sms.common.log.info = function( inMessage ) {
 	console.log( inMessage );
 }
 
-// JSON‚ÉKOƒIƒuƒWƒFƒNƒg‚ğ•ÏŠ·
+// JSONã«KOã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¤‰æ›
 function toJSON( data ) {
   var d = ko.toJS(data);
   return ko.toJSON(d);
 }
 
-// ”’l‚ğƒJƒ“ƒ}‹æØ‚è‚É‚·‚é
+// æ•°å€¤ã‚’ã‚«ãƒ³ãƒåŒºåˆ‡ã‚Šã«ã™ã‚‹
 sms.common.formatNumber = function( num ) {
   return String( num ).replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,' );
-
+}
 
 /**
- * ƒIƒuƒWƒFƒNƒg‚ğƒRƒs[
- * @param src		ƒRƒs[Œ³ƒIƒuƒWƒFƒNƒg
- * @param trg		ƒRƒs[æƒIƒuƒWƒFƒNƒg
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚³ãƒ”ãƒ¼
+ * @param src		ã‚³ãƒ”ãƒ¼å…ƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param trg		ã‚³ãƒ”ãƒ¼å…ˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 sms.common.copyObject = function(src, trg){
 	for(var key in src) {
