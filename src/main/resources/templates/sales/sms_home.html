@@ -20,13 +20,13 @@
 </head>
 
 <body>
-	<header id="id_sms_home_header" class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+	<header id="id_sms_home_header" class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar" th:include="sales/frag/sms_home_header">
 	</header>
 
-	  <main id="id_sms_home_main" role="main" class="border">
+	  <main id="id_sms_home_main" role="main" class="border" th:include="sales/frag/sms_home_main">
 	  </main>
 
-	<footer id="id_footer" class="bd-footer text-muted">
+	<footer id="id_footer" class="bd-footer text-muted" th:include="cmn/frag/footer">
 	</footer>
 
 <script th:src="@{/js/lib/jquery-3.4.1.js}"></script>
@@ -39,18 +39,6 @@
 <script th:src="@{/js/cmn/namespace.js}"></script>
 <script th:src="@{/js/cmn/common.js}"></script>
 <script th:src="@{/js/cmn/validation.js}"></script>
-
-<script type="text/javascript">
-  $(function(){
-    var loadObj = [
-      { id:"#id_sms_home_header", url:"sms_home_header"},
-      { id:"#id_sms_home_main", url:"sms_home_main"},
-      { id:"#id_footer", url:"footer"}
-    ];
-		sms.common.loadHtml( loadObj, function() {
-    });
-  })
-</script>
 
 </body>
 </html>
