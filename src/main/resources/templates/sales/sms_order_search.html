@@ -9,7 +9,8 @@
 	
 	<link rel="canonical" href="http://ksk-inc.com/salse/">
  	<link href="/css/lib/bootstrap.css" th:href="@{/css/lib/bootstrap.css}" rel="stylesheet"></link>
- 	<link href="/css/cmn/common.css" th:href="@{/css/cmn/common.css}" rel="stylesheet"></link>
+ 	<link href="/css/lib/docs.min.css" th:href="@{/css/lib/docs.min.css}" rel="stylesheet"></link>
+ 	<link href="/css/cmn/sms_common.css" th:href="@{/css/cmn/sms_common.css}" rel="stylesheet"></link>
 
 	<title>Sales Management System</title>
 	
@@ -18,16 +19,19 @@
 	</noscript>
 </head>
 
-<body class="text-center" style="background: url(/img/cover_img_3.jpg) no-repeat;">
+<body>
+	<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar" th:include="sales/frag/sms_home_header">
+	</header>
 
-	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-	  <header id="id_cover_header" class="masthead mb-auto" th:include="cmn/frag/cover_header">
-	  </header>
-	  <main id="id_cover_main" role="main" class="inner cover border" th:include="cmn/frag/cover_main">
+	  <main role="main">
+			<div class="card card-primary" th:include="sales/frag/sms_order_criteria">
+			</div>
+			<div class="card card-primary" th:include="sales/frag/sms_order_result">
+			</div>
 	  </main>
-	  <footer id="id_footer" class="mastfoot mt-auto" th:include="cmn/frag/footer">
-	  </footer>
-	</div>
+
+	<footer class="bd-footer text-muted" th:include="cmn/frag/footer">
+	</footer>
 
 <script th:src="@{/js/lib/jquery-3.4.1.js}"></script>
 <script th:src="@{/js/lib/json2.js}"></script>
@@ -39,6 +43,24 @@
 <script th:src="@{/js/cmn/namespace.js}"></script>
 <script th:src="@{/js/cmn/common.js}"></script>
 <script th:src="@{/js/cmn/validation.js}"></script>
+<script th:src="@{/js/sales/mainmenu.js}"></script>
+
+<script type="text/javascript">
+	$(function(){
+		var viewModel = new sms.vm.mainmenu();
+		viewModel.doInit({
+			success : function() {
+				viewModel.bind();
+			},
+			failed : function() {
+				viewModel.bind();
+			}
+		});
+
+		$('#id_oder').DataTable({
+		});
+	})
+</script>
 
 </body>
 </html>

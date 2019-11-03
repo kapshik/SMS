@@ -19,6 +19,11 @@ public class DefaultController {
 		return "cmn/footer";
 	}
 	
+//	@RequestMapping("error")	
+//	public String errorForm(Model model) {
+//		return "cmn/error";
+//	}
+
 	// ルート画面
 	@RequestMapping({"", "index", "cover"})	
 	public String coverForm(Model model) {
@@ -44,6 +49,11 @@ public class DefaultController {
 	@RequestMapping("sms_order")	
 	public String smsOrderForm(Model model) {
 		return "sales/sms_order";
+	}
+  
+	@RequestMapping("sms_order_search")	
+	public String smsOrderSearchForm(Model model) {
+		return "sales/sms_order_search";
 	}
   
 }
