@@ -9,7 +9,7 @@
 	
 	<link rel="canonical" href="http://ksk-inc.com/salse/">
  	<link href="/css/lib/bootstrap.css" th:href="@{/css/lib/bootstrap.css}" rel="stylesheet"></link>
- 	<link href="/css/cmn/sms_common.css" th:href="@{/css/cmn/sms_common.css}" rel="stylesheet"></link>
+ 	<link href="/css/cmn/common.css" th:href="@{/css/cmn/common.css}" rel="stylesheet"></link>
 
 	<title>Sales Management System</title>
 	
@@ -21,17 +21,18 @@
 <body class="text-center">
 
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-	  <header class="masthead mb-auto">
+	  <header id="id_login_header" class="masthead mb-auto">
 	    <div class="inner">
 	      <h3 class="masthead-brand">Sales Management System</h3>
 	      <nav class="nav nav-masthead justify-content-center">
-	        <a class="nav-link active" href="#" th:href="@{features}">Features</a>
+	        <a class="nav-link active" href="#">Login</a>
+	        <a class="nav-link" href="#" th:href="@{features}">Features</a>
 	        <a class="nav-link" href="#" th:href="@{contact}">Contact</a>
 	      </nav>
 	    </div>
 	  </header>
 
-	  <main role="main" class="cover">
+	  <main id="id_login_main" role="main" class="cover">
 			<form class="form-signin" pb-autologin="true" autocomplete="off" action="/login" method="post" th:action="@{authenticate}">
 				<br>
 				<label for="username" class="sr-only">User Account</label>
@@ -46,12 +47,11 @@
 			</form>
 	  </main>
 
-	  <footer class="mastfoot mt-auto">
+	  <footer id="id_footer" class="mastfoot mt-auto">
 	    <div class="inner">
-	      <p>Copyright (C) since 2019 <a href="http://www.ksk-inc.com/">KSK Co., Ltd.</a> All rights reserved.</p>
+	      <p>Copyright (C) since 2019 <a href="https://www.c-mss.com/">CMS Co., Ltd.</a> All rights reserved.</p>
 	    </div>
 	  </footer>
 	</div>
-
 </body>
 </html>
