@@ -7,6 +7,7 @@ const DEBUG_MODE = false;
 /***********************************************************
  * Event Listener for Window
  ***********************************************************/
+/*
 $(window).on('load', function( event ){
 	//history.back()先を白ページにする。
 	history.pushState(null, null, null);
@@ -31,12 +32,13 @@ $(window).on('hashchange', function( event ){
 $(window).on('popstate', function( event ){
 	//history.back()先を白ページにする。
 	history.pushState(null, null, null);
-	
+
 	//link入力欄をクリア。
 	history.replaceState(null, null, location.pathname);
 
 	event.preventDefault();
 });
+*/
 
 /***********************************************************
  * Event Listener for Document

@@ -19,6 +19,11 @@ public class DefaultController {
 		return "cmn/mainmenu";
 	}
   
+	@RequestMapping("cover")	
+	public String coverForm(Model model) {
+		return "cmn/cover";
+	}
+  
 	@RequestMapping("home")	
 	public String homeForm(Model model) {
 		return "cmn/home";
