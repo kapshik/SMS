@@ -16,10 +16,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAdvice {
 
-    private final Logger logger;
+    private Logger logger;
     
     public LoggingAdvice() {
-        this.logger = LogManager.getLogger(getClass());
+//        this.logger = LogManager.getLogger(getClass());
     }
 	
     @Before("execution(* com.ksk.sms..*.*(..))")
@@ -29,7 +29,8 @@ public class LoggingAdvice {
 
     @Around("execution(* com.ksk.sms..*.*(..))")
     public Object  aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable {
-        outputLog(joinPoint);
+    	this.logger = LogManager.getLogger(joinPoint.getTarget().getClass());
+    	outputLog(joinPoint);
         try {
             return joinPoint.proceed();
         } catch (Throwable e) {
