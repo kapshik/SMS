@@ -2,9 +2,7 @@ package com.ksk.sms.controller.base;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
@@ -14,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ksk.sms.model.base.OrderDataModel;
 import com.ksk.sms.model.report.TestReportDataFactory;
 
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -43,6 +40,7 @@ public class DefaultController {
 	@RequestMapping({"", "index", "cover"})	
 	public String coverForm(Model model) {
 		createPDF();
+		createPDFWithBean();
 		return "base/cover";
 	}
   
@@ -76,11 +74,13 @@ public class DefaultController {
 		Logger logger = LogManager.getLogger(this.getClass());
 
 		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("REPORT_TITLE", "請求書試験");
+		
 		try {
-			InputStream is = new ClassPathResource("FirstTest.csv").getInputStream();
+			InputStream is = new ClassPathResource("report/FirstTest.csv").getInputStream();
 			JRCsvDataSource dataSource = new JRCsvDataSource(is);
 			dataSource.setUseFirstRowAsHeader(true);
-			try (InputStream template = new ClassPathResource("FirstTestCoffee.jrxml").getInputStream()) {
+			try (InputStream template = new ClassPathResource("report/FirstTestCoffee.jrxml").getInputStream()) {
 				logger.info("Start JR");
 				JasperReport report = JasperCompileManager.compileReport(template);
 				JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, dataSource);
@@ -100,16 +100,15 @@ public class DefaultController {
 		Logger logger = LogManager.getLogger(this.getClass());
 
 		Map<String, Object> parameters = new HashMap<>();
-		List<OrderDataModel> orderList = new ArrayList<OrderDataModel>();
+		parameters.put("REPORT_TITLE", "請求書本番");
 		
 		TestReportDataFactory tdf = new TestReportDataFactory();
-		orderList = tdf.makeList();
-		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(orderList);
-		try (InputStream template = new ClassPathResource("FirstTest_A4_Table.jrxml").getInputStream()) {
+		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(tdf.makeList());
+		try (InputStream template = new ClassPathResource("report/FirstTest_A4_Table.jrxml").getInputStream()) {
 			logger.info("Start JR");
 			JasperReport report = JasperCompileManager.compileReport(template);
 			JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, dataSource);
-			JasperExportManager.exportReportToPdfFile(jasperPrint, "D:\\dev\\JasperReports\\MyReports\\example.pdf");
+			JasperExportManager.exportReportToPdfFile(jasperPrint, "D:\\dev\\JasperReports\\MyReports\\example2.pdf");
 			logger.info("End JR");
 		} catch(Exception e){
 			logger.info(e);

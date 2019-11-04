@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<beanDataAdapter class="net.sf.jasperreports.data.bean.BeanDataAdapterImpl">
-<name>FirstTestDataAdapter</name>
-<factoryClass>com.ksk.sms.model.report.TestReportDataFactory</factoryClass>
-<methodName>makeList</methodName>
-<useFieldDescription>false</useFieldDescription>
-</beanDataAdapter>
