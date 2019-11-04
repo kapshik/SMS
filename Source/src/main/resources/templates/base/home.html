@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="keywords"content="Sales Management System, 販売管理">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Sales Management System Standard Version">
+	<meta name="author" content="KSK Co., Ltd.">
+	
+	<link rel="canonical" href="http://ksk-inc.com/salse/">
+ 	<link href="/css/lib/bootstrap.css" th:href="@{/css/lib/bootstrap.css}" rel="stylesheet"></link>
+ 	<link href="/css/base/common.css" th:href="@{/css/base/common.css}" rel="stylesheet"></link>
+
+	<title>Sales Management System</title>
+	
+	<noscript>
+		BrowserのJavascriptを有効にしてください。
+	</noscript>
+</head>
+
+<body class="text-center" style="background: url(/img/cover_img_2.jpg) no-repeat;">
+
+	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+	  <header id="id_home_header" class="masthead mb-auto" th:include="base/frag/home_header">
+	  </header>
+
+	  <main id="id_home_main" role="main" class="inner cover border" th:include="base/frag/home_main">
+	  </main>
+
+	  <footer id="id_footer" class="mastfoot mt-auto" th:include="base/frag/footer">
+	  </footer>
+	</div>
+
+</body>
+</html>
