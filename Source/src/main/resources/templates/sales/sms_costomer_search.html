@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="keywords"content="Sales Management System, 販売管理">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Sales Management System Standard Version">
+	<meta name="author" content="KSK Co., Ltd.">
+	
+	<link rel="canonical" href="http://ksk-inc.com/salse/">
+ 	<link href="/css/lib/bootstrap.css" th:href="@{/css/lib/bootstrap.css}" rel="stylesheet"></link>
+ 	<link href="/css/lib/docs.min.css" th:href="@{/css/lib/docs.min.css}" rel="stylesheet"></link>
+ 	<link href="/css/base/sms_common.css" th:href="@{/css/base/sms_common.css}" rel="stylesheet"></link>
+
+	<title>Sales Management System</title>
+	
+	<noscript>
+		BrowserのJavascriptを有効にしてください。
+	</noscript>
+</head>
+
+<body>
+	<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar" th:include="sales/frag/sms_costomer_header">
+	</header>
+
+	  <main role="main">
+			<div class="card card-primary" th:include="sales/frag/sms_costomer_criteria">
+			</div>
+			<div class="card card-primary" th:include="sales/frag/sms_costomer_result">
+			</div>
+	  </main>
+
+	<footer class="bd-footer text-muted" th:include="base/frag/footer">
+	</footer>
+
+<script th:src="@{/js/lib/jquery-3.4.1.js}"></script>
+<script th:src="@{/js/lib/json2.js}"></script>
+<script th:src="@{/js/lib/popper.min.js}"></script>
+<script th:src="@{/js/lib/bootstrap.js}"></script>
+<script th:src="@{/js/lib/knockout-3.5.0.js}"></script>
+<script th:src="@{/js/lib/knockout.mapping-latest.js}"></script>
+<script th:src="@{/js/lib/docs.min.js}"></script>
+<script th:src="@{/js/base/namespace.js}"></script>
+<script th:src="@{/js/base/common.js}"></script>
+<script th:src="@{/js/base/validation.js}"></script>
+<script th:src="@{/js/sales/mainmenu.js}"></script>
+
+<script type="text/javascript">
+	$(function(){
+		var viewModel = new sms.vm.mainmenu();
+		viewModel.doInit({
+			success : function() {
+				viewModel.bind();
+			},
+			failed : function() {
+				viewModel.bind();
+			}
+		});
+
+		$('#id_oder').DataTable({
+		});
+	})
+</script>
+
+</body>
+</html>

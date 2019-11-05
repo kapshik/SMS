@@ -70,6 +70,26 @@ public class DefaultController {
 		return "sales/sms_order_search";
 	}
   
+	@RequestMapping("sms_costomer_search")	
+	public String smsCostomerSearchForm(Model model) {
+		return "sales/sms_costomer_search";
+	}
+
+		@RequestMapping("sms_product_search")	
+	public String smsProductSearchForm(Model model) {
+		return "sales/sms_product_search";
+	}
+
+	@RequestMapping("sms_stock_search")	
+	public String smsStockSearchForm(Model model) {
+		return "sales/sms_stock_search";
+	}
+
+	@RequestMapping("sms_print_report")	
+	public String smsReportSearchForm(Model model) {
+		return "sales/sms_print_report";
+	}
+
 	public void createPDF() {
 		Logger logger = LogManager.getLogger(this.getClass());
 

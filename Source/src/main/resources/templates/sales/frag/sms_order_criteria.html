@@ -1,34 +1,67 @@
-	<div class="card-header bg-info">
-		<h5>Search Criteria</h5>
+	<div class="card-header bg-secondary text-white">
+		<h5>注文検索</h5>
 	</div>
 	<div class="card-body bg-light">
-   <form method="post" name="frmSearch" autocomplete="off">
-     <table>
-       <tr style="hight: 125px">
-         <td colspan="10" style="font-size:16px;height: 32px">注文検索</td>
-         <td><a th:href="@{/addOrder}" target="_blank" class="button-2">&nbsp;&nbsp;検索&nbsp;&nbsp;</a></td>
-       </tr>
-       <tr>            
-         <td>発注No.</td><td><input type="text" id="orderNo" name="orderNo" style="width:100px"/></td>
-         <td><span style="margin-right: 25px"></span></td>
-         <td>顧客名</td><td><input type="text" id="customerName" name="customer" style="width:150px"/></td>
-         <td><span style="margin-right: 25px"></span></td>
-         <td>支店名</td><td><input type="text" id="branchName" name="branch" style="width:150px"/></td>
-         <td><span style="margin-right: 25px"></span></td>
-         <td>納品先</td><td><input type="text" id="nohinsaki" name="nohinSaki" style="width:150px"/></td>
-       </tr>
-       <tr>
-         <td colspan="11" style="height: 6px; background-color:#fff"></td>
-       </tr>
-       <tr>
-         <td>発注日</td><td><input type="text" name="orderDate" style="width: 100px" id="orderDate"/></td>
-         <td><span style="margin-right: 25px"></span></td>
-         <td>納品日</td><td><input type="text" name="nohinDate" style="width: 100px" id="nohinDate"/></td>             
-         <td><span style="margin-right: 25px"></span></td>
-         <td>出荷日</td><td><input type="text" name="shipDate" style="width: 100px" id="deliveryDate"/></td>              
-         <td><span style="margin-right: 25px"></span></td>
-         <td>作成日</td><td><input type="text" name="sakuseiDate" style="width: 100px" id="sakuseiDate"/></td>
-       </tr>
-     </table>
-   </form>
+		<div class="row">
+			<div class="col-md-3 mb-3">
+			<button type="button" class="btn btn-primary btn-block">登録</button >
+			</div>
+			<div class="col-md-3 mb-3">
+			<button type="button" class="btn btn-primary btn-block">検索</button >
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 mb-3">
+			  <label for="cc-expiration">発注No.</label>
+			  <input type="text" class="form-control" id="orderNo" placeholder="orderNo" required>
+			  <div class="invalid-feedback">
+			    orderNo required
+			  </div>
+			</div>
+			<div class="col-md-3 mb-3">
+			  <label for="cc-cvv">顧客名</label>
+			  <input type="text" class="form-control" id="customer" placeholder="customer" required>
+			  <div class="invalid-feedback">
+			    customer required
+			  </div>
+			</div>
+			<div class="col-md-3 mb-3">
+			  <label for="cc-cvv">支店名</label>
+			  <input type="text" class="form-control" id="branch" placeholder="branch">
+			</div>
+			<div class="col-md-3 mb-3">
+			  <label for="cc-cvv">納品先</label>
+			  <input type="text" class="form-control" id="nohinsaki" placeholder="nohinsaki" required>
+			  <div class="invalid-feedback">
+			    nohinsaki required
+			  </div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 mb-3">
+			  <label for="cc-expiration">発注日No.</label>
+			  <input type="text" class="form-control" id="orderDate" placeholder="orderDate" required>
+			  <div class="invalid-feedback">
+			    orderDate required
+			  </div>
+			</div>
+			<div class="col-md-3 mb-3">
+			  <label for="cc-cvv">納品日</label>
+			  <input type="text" class="form-control" id="nohinDate" placeholder="nohinDate" required>
+			  <div class="invalid-feedback">
+			    nohinDate required
+			  </div>
+			</div>
+			<div class="col-md-3 mb-3">
+			  <label for="cc-cvv">出荷日</label>
+			  <input type="text" class="form-control" id="shipDate" placeholder="shipDate">
+			</div>
+			<div class="col-md-3 mb-3">
+			  <label for="cc-cvv">作成日</label>
+			  <input type="text" class="form-control" id="sakuseiDate" placeholder="20191105" required>
+			  <div class="invalid-feedback">
+			    sakuseiDate required
+			  </div>
+			</div>
+		</div>
    </div>
