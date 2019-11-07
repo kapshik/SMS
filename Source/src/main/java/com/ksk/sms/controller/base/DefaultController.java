@@ -94,7 +94,7 @@ public class DefaultController {
 		Logger logger = LogManager.getLogger(this.getClass());
 
 		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("REPORT_TITLE", "請求書試験");
+		parameters.put("ReportTitle", "請求書試験");
 		
 		try {
 			InputStream is = new ClassPathResource("report/FirstTest.csv").getInputStream();
@@ -120,7 +120,7 @@ public class DefaultController {
 		Logger logger = LogManager.getLogger(this.getClass());
 
 		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("REPORT_TITLE", "請求書本番");
+		parameters.put("ReportTitle", "請求書本番");
 		
 		TestReportDataFactory tdf = new TestReportDataFactory();
 		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(tdf.makeList());
