@@ -8,18 +8,6 @@ a:hover {
   color: #ffffff;
 }
 
-/* Custom default button */
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #fff;
-  border: .05rem solid #fff;
-}
-
-
-
 /*
  * Base structure
  */
@@ -27,7 +15,9 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #3c5377;
+  background-image: url(/img/cover_img_3.jpg);
+  background-color: #0066ff;
+/*  background-color: #3c5377;*/
 }
 
 body {
@@ -39,7 +29,6 @@ body {
 }
 
 .cover-container {
-  max-width: 42em;
 }
 
 

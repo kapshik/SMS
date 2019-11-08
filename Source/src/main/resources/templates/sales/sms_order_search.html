@@ -9,7 +9,9 @@
 	
 	<link rel="canonical" href="http://ksk-inc.com/salse/">
  	<link href="/css/lib/bootstrap.css" th:href="@{/css/lib/bootstrap.css}" rel="stylesheet"></link>
+ 	<link href="/css/lib/bootstrap-datepicker.css" th:href="@{/css/lib/bootstrap-datepicker.css}" rel="stylesheet"></link>
  	<link href="/css/lib/docs.min.css" th:href="@{/css/lib/docs.min.css}" rel="stylesheet"></link>
+ 	<link href="/css/lib/fontawesome_all.css" th:href="@{/css/lib/fontawesome_all.css}" rel="stylesheet"></link>
  	<link href="/css/base/sms_common.css" th:href="@{/css/base/sms_common.css}" rel="stylesheet"></link>
 
 	<title>Sales Management System</title>
@@ -37,9 +39,13 @@
 <script th:src="@{/js/lib/json2.js}"></script>
 <script th:src="@{/js/lib/popper.min.js}"></script>
 <script th:src="@{/js/lib/bootstrap.js}"></script>
+<script th:src="@{/js/lib/bootstrap-datepicker.js}"></script>
+<script th:src="@{/js/lib/bootstrap-datepicker.ja.min.js}"></script>
+<script th:src="@{/js/lib/datatables.min.js}"></script>
 <script th:src="@{/js/lib/knockout-3.5.0.js}"></script>
 <script th:src="@{/js/lib/knockout.mapping-latest.js}"></script>
 <script th:src="@{/js/lib/docs.min.js}"></script>
+<script th:src="@{/js/lib/fontawesome_all.js}"></script>
 <script th:src="@{/js/base/namespace.js}"></script>
 <script th:src="@{/js/base/common.js}"></script>
 <script th:src="@{/js/base/validation.js}"></script>
@@ -59,6 +65,11 @@
 
 		$('#id_oder').DataTable({
 		});
+
+		sms.common.datepicker('id_order_date');
+		sms.common.datepicker('id_nohin_date');
+		sms.common.datepicker('id_ship_date');
+		sms.common.datepicker('id_sakusei_date');
 	})
 </script>
 

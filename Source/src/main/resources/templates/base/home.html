@@ -9,7 +9,7 @@
 	
 	<link rel="canonical" href="http://ksk-inc.com/salse/">
  	<link href="/css/lib/bootstrap.css" th:href="@{/css/lib/bootstrap.css}" rel="stylesheet"></link>
- 	<link href="/css/base/common.css" th:href="@{/css/base/common.css}" rel="stylesheet"></link>
+ 	<link href="/css/base/cover.css" th:href="@{/css/base/cover.css}" rel="stylesheet"></link>
 
 	<title>Sales Management System</title>
 	
@@ -20,14 +20,14 @@
 
 <body class="text-center">
 
-	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-	  <header id="id_home_header" class="masthead mb-auto" th:include="base/frag/home_header">
+	<div class="container p-3 mx-5 border">
+	  <header id="id_home_header" class="masthead p-1 align-middle" th:include="base/frag/home_header">
 	  </header>
 
-	  <main id="id_home_main" role="main" class="inner cover" th:include="base/frag/home_main">
+	  <main id="id_home_main" role="main" class="p-4 align-middle" th:include="base/frag/home_main">
 	  </main>
 
-	  <footer id="id_footer" class="mastfoot mt-auto" th:include="base/frag/footer">
+	  <footer id="id_footer" class="bd-footer p-1 border" th:include="base/frag/footer">
 	  </footer>
 	</div>
 

@@ -135,3 +135,13 @@ sms.common.copyObject = function(src, trg){
 		}
 	}
 };
+
+sms.common.datepicker = function(inId){
+
+		$('#'+ inId).datepicker({
+			language:'ja',
+			autoclose: true,
+			todayHighlight: true,
+			toggleActive: true
+		});
+};
