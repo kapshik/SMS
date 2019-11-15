@@ -43,7 +43,7 @@ public class SmsSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	            .loginPage("/login")
 	            .loginProcessingUrl("/authenticate")
 	            .defaultSuccessUrl("/sms-home.html")
-	            .failureUrl("/login.html")
+	            .failureUrl("/error.html")
 	            .usernameParameter("username")
 	            .passwordParameter("password")
 	            .and()
@@ -55,6 +55,7 @@ public class SmsSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	            .permitAll()
 	            .and()
 	        .sessionManagement()
-	            .invalidSessionUrl("/invalidSession");
+	            .invalidSessionUrl("/error.html")
+	        	.maximumSessions(1);
     }
 }

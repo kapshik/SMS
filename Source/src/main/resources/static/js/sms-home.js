@@ -102,6 +102,17 @@ $(document).ready(function () {
         }
     });
 
+
+    var viewModel = new sms.vm.home();
+    viewModel.doInit({
+        success : function() {
+        viewModel.bind();
+    },
+    failed : function() {
+        viewModel.bind();
+        }
+    });
+
 });
 
 $(function () {
@@ -118,3 +129,30 @@ $(function () {
         type: 'success'
     });
 });
+
+sms.vm.home = function() {
+	var self = this;
+
+	self.messages = ko.observableArray();
+	self.handler = new sms.vm.ErrorViewModel();
+
+	self.doInit = function( param ) {
+		var u = '/home/init';
+		$.ajax({
+			type: 'get',
+			url: u,
+		}).done(function(response) {
+			self.dataModel = ko.mapping.fromJS(ko.toJS(response));
+			param.success();
+		}).fail(function(xhr, exception){
+			self.messages.removeAll();
+			self.handler.handle(xhr, exception);
+			param.failed();
+		});
+	};
+
+	self.bind = function() {
+		ko.applyBindings(this);
+	};
+};
+
