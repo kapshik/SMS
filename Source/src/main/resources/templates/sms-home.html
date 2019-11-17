@@ -39,7 +39,7 @@
       <!-- navbar-->
       <header class="header" th:include="include/inc-header">
       </header>
-      <div class="container-fluid" th:include="include/inc-main-home">
+      <div id="id_main" class="container-fluid" th:include="include/inc-main-home">
       </div>
       <footer class="main-footer" th:include="include/inc-footer">
       </footer>
@@ -56,14 +56,20 @@
     <!-- Notifications-->
     <script src="vendor/messenger-hubspot/build/js/messenger.min.js"></script>
     <script src="vendor/messenger-hubspot/build/js/messenger-theme-flat.js"></script>
+    <!-- Bootstrap DatePicker-->
+    <script src="vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <!-- Bootstrap Touchspin-->
+    <script src="vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
     <!-- Knockout-->
     <script src="vendor/knockout/knockout-3.5.1.js"></script>
     <script src="vendor/knockout/knockout.mapping-latest.js"></script>
-    <!-- Main File-->
+    <!-- Forms init-->
     <script src="js/base/namespace.js"></script>
     <script src="js/base/common.js"></script>
     <script src="js/base/validation.js"></script>
     <script src="js/sms-home.js"> </script>
+    <!-- Main File-->
     <script src="js/sms-front.js"></script>
+
   </body>
 </html>

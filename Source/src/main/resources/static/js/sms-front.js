@@ -3,15 +3,14 @@ $(document).ready(function () {
     // ------------------------------------------------------- //
     // Custom Scrollbar
     // ------------------------------------------------------ //
-
     if ($(window).outerWidth() > 992) {
         $("nav.side-navbar").mCustomScrollbar({
             scrollInertia: 200
         });
     }
 
-    // Main Template Color
-    var brandPrimary = '#33b35a';
+    // Main Template Color (style.sea.premium.css)
+    var brandPrimary = '#379392';
 
     // ------------------------------------------------------- //
     // Side Navbar Functionality
@@ -32,13 +31,11 @@ $(document).ready(function () {
     // ------------------------------------------------------- //
     // Tooltips init
     // ------------------------------------------------------ //    
-
     $('[data-toggle="tooltip"]').tooltip()
 
     // ------------------------------------------------------- //
     // Universal Form Validation
     // ------------------------------------------------------ //
-
     $('.form-validate').each(function() {  
         $(this).validate({
             errorElement: "div",
@@ -58,10 +55,10 @@ $(document).ready(function () {
             }
         });
     });
+
     // ------------------------------------------------------- //
     // Material Inputs
     // ------------------------------------------------------ //
-
     var materialInputs = $('input.input-material');
 
     // activate labels for prefilled values
@@ -98,41 +95,60 @@ $(document).ready(function () {
     // ------------------------------------------------------- //
     // External links to new window
     // ------------------------------------------------------ //
-
     $('.external').on('click', function (e) {
-
         e.preventDefault();
         window.open($(this).attr("href"));
     });
 
+    // ------------------------------------------------------- //
+    // TouchSpin Functionality
     // ------------------------------------------------------ //
-    // For demo purposes, can be deleted
-    // ------------------------------------------------------ //
-/*
-    var stylesheet = $('link#theme-stylesheet');
-    $("<link id='new-stylesheet' rel='stylesheet'>").insertAfter(stylesheet);
-    var alternateColour = $('link#new-stylesheet');
-
-    if ($.cookie("theme_csspath")) {
-        alternateColour.attr("href", $.cookie("theme_csspath"));
-    }
-
-    $("#colour").change(function () {
-
-        if ($(this).val() !== '') {
-
-            var theme_csspath = 'css/style.' + $(this).val() + '.css';
-
-            alternateColour.attr("href", theme_csspath);
-
-            $.cookie("theme_csspath", theme_csspath, {
-                expires: 365,
-                path: document.URL.substr(0, document.URL.lastIndexOf('/'))
-            });
-
-        }
-
-        return false;
+    $("input[name='touchspin-num']").TouchSpin({
+        initval: 0,
+        min: 0,
+        max: 100,
+        maxboostedstep: 10,
+        postfix: '個',
     });
-*/
+
+    $("input[name='touchspin-yen']").TouchSpin({
+        initval: 0,
+        min: 0,
+        max: 10000,
+        maxboostedstep: 10,
+        postfix: '円',
+    });
+
+    // ------------------------------------------------------- //
+    // Datepicker Functionality
+    // ------------------------------------------------------ //
+    $('.input-datepicker-autoclose').datepicker({
+        autoclose: true,
+        format: 'yyyy/mm/dd'
+    });
+
+    // ------------------------------------------------------- //
+    // Ajax Functionality
+    // ------------------------------------------------------ //
+	$.ajaxSetup({
+		cache: false,
+		global: true,
+		timeout: 60000,
+		scriptCharset: "UTF-8",
+		contentType: "application/json; charset=UTF-8",
+		accepts: {
+			json: "application/json",
+			text: "text/plain"
+		}
+	});
+
 });
+
+// ------------------------------------------------------- //
+// Javascript Object To JSOM
+// ------------------------------------------------------ //
+function toJSON( data ) {
+  var d = ko.toJS(data);
+  return ko.toJSON(d);
+}
+

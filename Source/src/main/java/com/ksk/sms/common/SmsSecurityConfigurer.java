@@ -31,8 +31,14 @@ public class SmsSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+    	
     	http.cors().and().csrf().disable();
-        http
+
+//        http.requiresChannel()
+//        .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
+//        .requiresSecure();
+        
+    	http
 	        .authorizeRequests()
 	            .antMatchers("/", "/login", "/error").permitAll()
 //	            .antMatchers("/salse/**").hasRole("ROLE_USER")
