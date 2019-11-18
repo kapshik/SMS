@@ -29,4 +29,11 @@ public class OrderRestController {
 		return outModel;
 	}
 	
+	@PostMapping("order/customerChange")
+	public OrderDataModel customerChange(@RequestBody OrderDataModel inModel) {
+		OrderDataModel outModel = orderService.search(inModel);
+		
+		return outModel;
+	}
+	
 }

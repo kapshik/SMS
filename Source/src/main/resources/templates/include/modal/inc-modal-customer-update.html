@@ -1,23 +1,23 @@
                   <!-- Modal-->
-                  <div id="id_modal_customer_add" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                  <div id="id_modal_customer_update" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                     <div role="document" class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 id="exampleModalLabel" class="modal-title">顧客登録</h5>
+                          <h5 id="exampleModalLabel" class="modal-title">顧客変更</h5>
                           <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                         </div>
-                        <div class="modal-body" data-bind="with: dataModel">
+                        <div class="modal-body" data-bind="with: dataModel.customerData">
                           <div class="row">
                             <div class="col-lg-6">
                               <div class="form-group">
                                 <label>顧客名</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="顧客名" data-bind="value: customerData.customerName">
+                                <input type="text" class="form-control form-control-sm" placeholder="顧客名" data-bind="value: customerName">
                               </div>
                             </div>
                             <div class="col-lg-6">
                               <div class="form-group">       
                                 <label>開始日</label>
-                                <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: customerData.startDate">
+                                <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: startDate">
                               </div>
                             </div>
                           </div>
@@ -25,13 +25,13 @@
                             <div class="col-lg-6">
                               <div class="form-group">
                                 <label>郵便番号</label>
-                                <input type="text" class="form-control form-control-sm" data-bind="value: customerData.zipcode" placeholder="101-0061">
+                                <input type="text" class="form-control form-control-sm" data-bind="value: zipcode" placeholder="101-0061">
                               </div>
                             </div>
                             <div class="col-lg-6">
                               <div class="form-group">       
                                 <label>住所１</label>
-                                <input type="text" class="form-control form-control-sm" data-bind="value: customerData.address" placeholder="住所１">
+                                <input type="text" class="form-control form-control-sm" data-bind="value: address" placeholder="住所１">
                               </div>
                             </div>
                           </div>
@@ -39,13 +39,13 @@
                             <div class="col-lg-6">
                               <div class="form-group">
                                 <label>住所２</label>
-                                <input type="text" class="form-control form-control-sm" data-bind="value: customerData.addressDetail" placeholder="住所２">
+                                <input type="text" class="form-control form-control-sm" data-bind="value: addressDetail" placeholder="住所２">
                               </div>
                             </div>
                             <div class="col-lg-6">
                               <div class="form-group">
                                 <label>電話番号</label>
-                                <input type="text" class="form-control form-control-sm" data-bind="value: customerData.telNo" placeholder="090-1324-5678">
+                                <input type="text" class="form-control form-control-sm" data-bind="value: telNo" placeholder="090-1324-5678">
                               </div>
                             </div>
                           </div>
@@ -53,15 +53,15 @@
                             <div class="col-lg-6">
                               <div class="form-group">       
                                 <label>ファックス</label>
-                                <input type="text" class="form-control form-control-sm" data-bind="value: customerData.faxNo" placeholder="03-1324-5678">
+                                <input type="text" class="form-control form-control-sm" data-bind="value: faxNo" placeholder="03-1324-5678">
                               </div>
                             </div>
                             <div class="col-lg-6">
                               <div class="form-group">
                                 <label class="form-control-label">支払条件</label>
                                 <select class="form-control form-control-sm" 
-                                  data-bind="options: paymentTermsList,
-                                    optionsValue: 'key', optionsText: 'value', value:customerData.paymentTerms,
+                                  data-bind="options: $parent.paymentTermsList,
+                                    optionsValue: 'key', optionsText: 'value', value:paymentTerms,
                                     optionsCaption:'選択してください'">
                                 </select>
                               </div>
@@ -69,7 +69,7 @@
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-primary btn-block btn-sm">登録</button>
+                          <button type="button" class="btn btn-primary btn-block btn-sm">更新</button>
                           <button type="button" class="btn btn-secondary btn-block btn-sm" data-dismiss="modal">キャンセル</button>
                         </div>
                       </div>

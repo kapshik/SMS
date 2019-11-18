@@ -1,33 +1,30 @@
 package com.ksk.sms.service.view.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
 import com.ksk.sms.datamodel.BranchData;
+import com.ksk.sms.datamodel.BranchDataModel;
 import com.ksk.sms.datamodel.CustomerData;
 import com.ksk.sms.datamodel.DeliveryDestData;
-import com.ksk.sms.datamodel.OrderData;
-import com.ksk.sms.datamodel.OrderDataModel;
 import com.ksk.sms.datamodel.ProductData;
-import com.ksk.sms.service.view.OrderService;
+import com.ksk.sms.service.view.BranchService;
 
 @Service
-public class OrderServiceImpl implements  OrderService {
+public class BranchServiceImpl  implements  BranchService {
 
-	private static final Logger log = LogManager.getLogger(OrderServiceImpl.class);
+	private static final Logger log = LogManager.getLogger(BranchServiceImpl.class);
 
 	@Override
-    public OrderDataModel init() {
+    public BranchDataModel init() {
 
-        OrderDataModel outModel = new OrderDataModel();
+        BranchDataModel outModel = new BranchDataModel();
 
 		outModel.setUserName("user kapshik");
     	
@@ -37,35 +34,33 @@ public class OrderServiceImpl implements  OrderService {
 		outModel.setProductMasterList(makeProductMasterList());
 		outModel.setPaymentTermsList(makePaymentTermsList());
 
-		outModel.setOrderCriteria(new OrderData());
-		outModel.setOrderDetail(new OrderData());
+		outModel.setBranchCriteria(new BranchData());
+		outModel.setBranchDetail(new BranchData());
 		outModel.setBranchData(new BranchData());
-		outModel.setCustomerData(new CustomerData());
 		outModel.setDeliveryDestData(new DeliveryDestData());
 		outModel.setProductData(new ProductData());
     	
-		outModel.setOrderDataList(new ArrayList<OrderData>());
+		outModel.setBranchDataList(new ArrayList<BranchData>());
 		outModel.setProductDataList(new ArrayList<ProductData>());
 log.info("init");
     	return outModel;
     }
 
 	@Override
-    public OrderDataModel search(OrderDataModel inModel) {
+    public BranchDataModel search(BranchDataModel inModel) {
 
-        OrderDataModel outModel = Objects.requireNonNull(inModel);
+        BranchDataModel outModel = Objects.requireNonNull(inModel);
 
 log.info("inModel.getUserName = " + inModel.getUserName());
-log.info("inModel.getOrderNo = " + inModel.getOrderCriteria().getOrderNo());
+log.info("inModel.getBranchNo = " + inModel.getBranchCriteria().getBranchNo());
 
-		outModel.setOrderDetail(makeOrderData("XX"));
-		outModel.setBranchData(makeBranchData());
-		outModel.setCustomerData(makeCustomerData());
+		outModel.setBranchDetail(makeBranchData("XX"));
+		outModel.setBranchData(makeBranchData("AA"));
 		outModel.setDeliveryDestData(makeDeliveryDestData());
 		outModel.setProductData(makeProductData("XX"));
     	
 		outModel.setProductDataList(makeProductDataList());
-		outModel.setOrderDataList(makeOrderDataList());
+		outModel.setBranchDataList(makeBranchDataList());
 
     	log.info("search");
 log.info("outModel.getUserName = " + outModel.getUserName());
@@ -74,9 +69,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public OrderDataModel customerChange(OrderDataModel inModel) {
+    public BranchDataModel customerChange(BranchDataModel inModel) {
 
-        OrderDataModel outModel = Objects.requireNonNull(inModel);
+        BranchDataModel outModel = Objects.requireNonNull(inModel);
 
     	outModel.setBranchList(makeBranchList());
 
@@ -84,16 +79,10 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public OrderDataModel branchChange(OrderDataModel inModel) {
+    public BranchDataModel branchChange(BranchDataModel inModel) {
     	
-        OrderDataModel outModel = Objects.requireNonNull(inModel);
+        BranchDataModel outModel = Objects.requireNonNull(inModel);
     	
-        try {
-			BeanUtils.copyProperties(inModel, outModel);
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
 		outModel.setDeliveryDestList(makeDeliveryDestList());
 
     	return outModel;
@@ -101,9 +90,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public OrderDataModel close(OrderDataModel inModel) {
+    public BranchDataModel close(BranchDataModel inModel) {
     	
-        OrderDataModel outModel = Objects.requireNonNull(inModel);
+        BranchDataModel outModel = Objects.requireNonNull(inModel);
 
     	return outModel;
 
@@ -175,23 +164,20 @@ log.info("outModel.getUserName = " + outModel.getUserName());
 
 	private List<KeyValue> makePaymentTermsList() {
         List<KeyValue> paymentTermsList = new ArrayList<KeyValue>();
-
 		KeyValue paymentTerms = new KeyValue();
+
 		paymentTerms.setKey("0001");
 		paymentTerms.setValue("月末締め翌月末支払い");
 		paymentTermsList.add(paymentTerms);
 		
-		paymentTerms = new KeyValue();
 		paymentTerms.setKey("0002");
 		paymentTerms.setValue("月末締め翌月25日手形支払い");
 		paymentTermsList.add(paymentTerms);
 		
-		paymentTerms = new KeyValue();
 		paymentTerms.setKey("0003");
 		paymentTerms.setValue("25日締め翌月末支払い");
 		paymentTermsList.add(paymentTerms);
 		
-		paymentTerms = new KeyValue();
 		paymentTerms.setKey("0004");
 		paymentTerms.setValue("月末締め翌々月10日支払い");
 		paymentTermsList.add(paymentTerms);
@@ -199,51 +185,29 @@ log.info("outModel.getUserName = " + outModel.getUserName());
         return paymentTermsList;
     }
 	
-	private List<OrderData> makeOrderDataList() {
-		List<OrderData> orderList = new ArrayList<OrderData>();
+	private List<BranchData> makeBranchDataList() {
+		List<BranchData> customerList = new ArrayList<BranchData>();
 		
 		for(int i=1; i<10; i++) {
 			String strNo = Integer.toString(i);
-			OrderData orderData = makeOrderData(strNo);
-			orderList.add(orderData);
+			BranchData customerData = makeBranchData(strNo);
+			customerList.add(customerData);
 		}
 
-log.info("makeOrderDataList " + orderList.size());
-		return orderList;
+log.info("makeBranchDataList " + customerList.size());
+		return customerList;
 		
 	}
 	
-	private OrderData makeOrderData(String strNo) {
-
-		OrderData orderData = new OrderData();
-
-		orderData.setCustomerNo("001");
-		orderData.setBranchNo("001");
-		orderData.setDeliveryDestNo("001");
-		orderData.setOrderNo(strNo);
-		orderData.setShippingLabelNo("ShippingLabel"+strNo);
-		orderData.setOrderDate("11/11/2019");
-		orderData.setShippingDate("11/22/2019");
-		orderData.setDeliveryDate("11/30/2019");
-		orderData.setRegistrationDate("11/01/2019");
-		orderData.setQuantity("Quantity"+strNo);
-		orderData.setUnitPrice("UnitPrice"+strNo);
-		orderData.setDiscountUnitPrice("DiscountUnitPrice"+strNo);
-		orderData.setMemo("Memo"+strNo);
-
-		return orderData;
-		
-	}
-
-	private CustomerData makeCustomerData() {
+	private CustomerData makeCustomerData(String strNo) {
 
 		CustomerData customerData = new CustomerData();
 
-		customerData.setCustomerNo("C001");
-		customerData.setCustomerName("顧客名");
+		customerData.setCustomerNo("C00" + strNo);
+		customerData.setCustomerName("顧客名" + strNo);
 		customerData.setZipcode("101-0015");
 		customerData.setAddress("東京都千代田区水道橋");
-		customerData.setAddressDetail("尾道ラーメン3階");
+		customerData.setAddressDetail("尾道ラーメン3階" + strNo);
 		customerData.setTelNo("03-1234-5678");
 		customerData.setFaxNo("03-9876-5432");
 		customerData.setStartDate("2019/11/22");
@@ -253,16 +217,16 @@ log.info("makeOrderDataList " + orderList.size());
 		
 	}
 
-	private BranchData makeBranchData() {
+	private BranchData makeBranchData(String strNo) {
 
 		BranchData branchData = new BranchData();
 
 		branchData.setCustomerNo("C002");
-		branchData.setBranchNo("B002");
-		branchData.setBranchName("支店名");
+		branchData.setBranchNo("B00" + strNo);
+		branchData.setBranchName("支店名" + strNo);
 		branchData.setZipcode("101-0015");
 		branchData.setAddress("東京都千代田区水道橋");
-		branchData.setAddressDetail("尾道ラーメン3階");
+		branchData.setAddressDetail("尾道ラーメン3階" + strNo);
 		branchData.setTelNo("03-1234-5678");
 		branchData.setFaxNo("03-9876-5432");
 

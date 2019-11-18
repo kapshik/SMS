@@ -22,6 +22,7 @@ public class OrderDataModel implements Serializable{
 	private BranchData branchData;
 	private CustomerData customerData;
 	private DeliveryDestData deliveryDestData;
+	private ProductData productData;
 	
 	private List<OrderData> orderDataList;
 	private List<ProductData> productDataList;
@@ -30,6 +31,7 @@ public class OrderDataModel implements Serializable{
 	private List<KeyValue> customerList;
 	private List<KeyValue> deliveryDestList;
 	private List<KeyValue> productMasterList;
+	private List<KeyValue> paymentTermsList;
 
 }
 

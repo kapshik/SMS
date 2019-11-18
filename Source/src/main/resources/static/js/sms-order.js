@@ -45,7 +45,7 @@ console.log("after init" + self.dataModel.userName);
             data: toJSON(self.dataModel)
           }).done(function(response) {
             //TODO 時間がかかる場合は個別に実施
-			self.dataModel = ko.mapping.fromJS(ko.toJS(response));
+            ko.mapping.fromJS(response, self.dataModel);
           }).fail(function(xhr, exception){
             self.messages.removeAll();
             self.handler.handle(xhr, exception);
@@ -79,11 +79,5 @@ console.log("after search" + response.userName);
 	self.bind = function() {
 		ko.applyBindings(this);
 	};
-};
-
-function doCheckedTableRow() {
-    var r = $('input[name="table_radio"]:checked').val();
-    $('.with-table-row').prop("disabled", false);
-console.log(r);
 };
 

@@ -27,6 +27,8 @@ public class ProductData implements Serializable{
 	private String unitType;
 	private String remarks;
 
+	private List<KeyValue> productTypeList;
+	private List<KeyValue> unitTypeList;
 	private List<KeyValue> productMasterList;
 }
 

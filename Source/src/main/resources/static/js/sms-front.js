@@ -152,3 +152,11 @@ function toJSON( data ) {
   return ko.toJSON(d);
 }
 
+// ------------------------------------------------------- //
+// Enable Buttons(Detail, Update, Delete)
+// ------------------------------------------------------ //
+function doCheckedTableRow() {
+    var r = $('input[name="table_radio"]:checked').val();
+    $('.with-table-row').prop("disabled", false);
+};
+

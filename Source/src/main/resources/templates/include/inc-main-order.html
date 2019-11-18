@@ -51,22 +51,22 @@
             <div class="card-header">
               <h4>検索条件</h4><span data-bind="text: dataModel.userName"></span>
             </div>
-            <div class="card-body">
+            <div class="card-body" data-bind="with: dataModel">
               <div class="row">
                 <div class="col-sm-3">
                   <div class="form-group">
                     <label>注文No</label>
-                    <input type="text" placeholder="" class="form-control" data-bind="value: dataModel.orderCriteria.orderNo">
+                    <input type="text" placeholder="注文No" class="form-control form-control-sm" data-bind="value: orderCriteria.orderNo">
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="form-group">
                     <label class="form-control-label">顧客</label>
                     <select class="form-control form-control-sm" 
-                      data-bind="options: dataModel.customerList,
-                        optionsValue: 'key', optionsText: 'value', value:dataModel.orderCriteria.customerNo,
+                      data-bind="options: customerList,
+                        optionsValue: 'key', optionsText: 'value', value:orderCriteria.customerNo,
                         optionsCaption:'選択してください',
-                        event: {change: doCustomerChange}">
+                        event: {change: $root.doCustomerChange}">
                     </select>
                   </div>
                 </div>
@@ -74,8 +74,8 @@
                   <div class="form-group">
                     <label class="form-control-label">支店</label>
                     <select class="form-control form-control-sm"
-                      data-bind="options: dataModel.branchList,
-                        optionsValue: 'key', optionsText: 'value', value:dataModel.orderCriteria.branchNo,
+                      data-bind="options: branchList,
+                        optionsValue: 'key', optionsText: 'value', value:orderCriteria.branchNo,
                         optionsCaption:'選択してください'">
                     </select>
                   </div>
@@ -84,8 +84,8 @@
                   <div class="form-group">
                     <label class="form-control-label">納品先</label>
                     <select class="form-control form-control-sm"
-                      data-bind="options: dataModel.deliveryDestList,
-                        optionsValue: 'key', optionsText: 'value', value:dataModel.orderCriteria.deliveryDestNo,
+                      data-bind="options: deliveryDestList,
+                        optionsValue: 'key', optionsText: 'value', value:orderCriteria.deliveryDestNo,
                         optionsCaption:'選択してください'">
                     </select>
                   </div>
@@ -95,25 +95,25 @@
                 <div class="col-sm-3">
                   <div class="form-group">
                     <label class="form-control-label">発注日</label>
-                    <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: dataModel.orderCriteria.orderDate">
+                    <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: orderCriteria.orderDate">
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="form-group">
                     <label class="form-control-label">納品日</label>
-                    <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: dataModel.orderCriteria.deliveryDate">
+                    <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: orderCriteria.deliveryDate">
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="form-group">
                     <label class="form-control-label">出荷日</label>
-                    <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: dataModel.orderCriteria.shippingDate">
+                    <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: orderCriteria.shippingDate">
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="form-group">
                     <label class="form-control-label">登録日</label>
-                    <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: dataModel.orderCriteria.registrationDate">
+                    <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: orderCriteria.registrationDate">
                   </div>
                 </div>
               </div>
