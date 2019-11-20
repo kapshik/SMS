@@ -1,0 +1,64 @@
+<!-- Modal-->
+<div id="id_modal_product_detail" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+  <div role="document" class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="exampleModalLabel" class="modal-title">商品詳細</h5>
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="modal-body" data-bind="with: dataModel.productModel">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>商品名</label>
+              <select class="form-control form-control-sm" data-bind="options: productMasterList,
+                optionsValue: 'key', optionsText: 'value', value: productName, optionsCaption:'選択してください'">
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">       
+              <label>商品コード</label>
+              <input type="text" disabled="" class="form-control form-control-sm"  data-bind="value: productCode">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>入り数</label>
+              <input type="text" class="form-control input-sm" data-bind="value: quantity">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">       
+              <label>金額</label>
+              <input type="text" class="form-control input-sm" data-bind="value: amount">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>商品区分</label>
+              <select class="form-control form-control-sm" data-bind="options: productTypeList,
+                optionsValue: 'key', optionsText: 'value', value: productType, optionsCaption:'選択してください'">
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">       
+              <label>単位</label>
+              <select class="form-control form-control-sm" data-bind="options: unitTypeList,
+                optionsValue: 'key', optionsText: 'value', value: unitType, optionsCaption:'選択してください'">
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-block btn-sm" data-dismiss="modal">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</div>

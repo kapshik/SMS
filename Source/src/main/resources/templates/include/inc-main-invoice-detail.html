@@ -96,7 +96,7 @@
                   <h4>支店一覧</h4>
                 </div>
                 <div class="card-body">
-                  <div>
+                  <div class="table-responsive">
                     <table id="id_branch_list" class="table table-striped table-hover table-responsive-lg table-sm">
                       <thead>
                         <tr>
@@ -152,7 +152,7 @@
                   <h4>商品一覧</h4>
                 </div>
                 <div class="card-body">
-                  <div>
+                  <div class="table-responsive">
                     <table id="id_product_list" class="table table-striped table-hover table-responsive-lg table-sm" style="width: 100%;">
                       <thead>
                         <tr>
@@ -289,12 +289,12 @@
         </div>
       </section>
       <!-- Modal-->
-      <div th:include="include/inc-modal-order-add">
+      <div th:include="modal/modal-order-add">
       </div>
-      <div th:include="include/inc-modal-customer-add">
+      <div th:include="modal/modal-customer-add">
       </div>
-      <div th:include="include/inc-modal-branch-add">
+      <div th:include="modal/modal-branch-add">
       </div>
-      <div th:include="include/inc-modal-product-add">
+      <div th:include="modal/modal-product-add">
       </div>
       <!-- Modal-->

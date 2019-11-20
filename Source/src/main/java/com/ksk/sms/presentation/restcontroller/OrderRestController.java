@@ -6,32 +6,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ksk.sms.datamodel.OrderDataModel;
+import com.ksk.sms.model.OrderViewModel;
 import com.ksk.sms.service.view.OrderService;
 
 @RestController
 public class OrderRestController {
 
 	@Autowired
-	private OrderService orderService;
+	private OrderService service;
 	
 	@GetMapping("order/init")
-	public OrderDataModel init() {
-		OrderDataModel outModel = orderService.init();
+	public OrderViewModel init() {
+		OrderViewModel outModel = service.init();
 		
 		return outModel;
 	}
 	
 	@PostMapping("order/search")
-	public OrderDataModel search(@RequestBody OrderDataModel inModel) {
-		OrderDataModel outModel = orderService.search(inModel);
+	public OrderViewModel search(@RequestBody OrderViewModel inModel) {
+		OrderViewModel outModel = service.search(inModel);
+		
+		return outModel;
+	}
+	
+	@PostMapping("order/delete")
+	public OrderViewModel delete(@RequestBody OrderViewModel inModel) {
+		OrderViewModel outModel = service.search(inModel);
 		
 		return outModel;
 	}
 	
 	@PostMapping("order/customerChange")
-	public OrderDataModel customerChange(@RequestBody OrderDataModel inModel) {
-		OrderDataModel outModel = orderService.search(inModel);
+	public OrderViewModel customerChange(@RequestBody OrderViewModel inModel) {
+		OrderViewModel outModel = service.search(inModel);
 		
 		return outModel;
 	}

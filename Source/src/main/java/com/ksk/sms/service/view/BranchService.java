@@ -1,16 +1,22 @@
 package com.ksk.sms.service.view;
 
-import com.ksk.sms.datamodel.BranchDataModel;
+import com.ksk.sms.model.BranchViewModel;
 
 public interface BranchService {
 
-    BranchDataModel init();
+    public BranchViewModel init();
 
-    BranchDataModel search(BranchDataModel inModel);
+    public BranchViewModel search(BranchViewModel inModel);
 
-	BranchDataModel customerChange(BranchDataModel inModel);
+    public BranchViewModel create(BranchViewModel inModel);
 
-    BranchDataModel branchChange(BranchDataModel inModel);
+    public BranchViewModel update(BranchViewModel inModel);
 
-    BranchDataModel close(BranchDataModel inModel);
+    public BranchViewModel delete(BranchViewModel inModel);
+
+    public BranchViewModel customerChange(BranchViewModel inModel);
+
+    public BranchViewModel branchChange(BranchViewModel inModel);
+
+    public BranchViewModel close(BranchViewModel inModel);
 }

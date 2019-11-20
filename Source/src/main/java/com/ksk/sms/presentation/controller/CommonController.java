@@ -42,7 +42,7 @@ public class CommonController {
 	}
 
 	private void makePdf(){
-		String outFile = "D:/dev/JasperReports/ReportOut/first.pdf";
+		String outFile = "./first.pdf";
 		InputStream is = CommonController.class.getResourceAsStream("/report/FirstTest_A4_Table.jrxml");
 
 		TestReportDataFactory testReportDataFactory = new TestReportDataFactory();

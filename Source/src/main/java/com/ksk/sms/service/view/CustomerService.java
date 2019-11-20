@@ -1,16 +1,24 @@
 package com.ksk.sms.service.view;
 
-import com.ksk.sms.datamodel.CustomerDataModel;
+import com.ksk.sms.model.CustomerViewModel;
 
 public interface CustomerService {
+	
+    public CustomerViewModel init();
 
-    CustomerDataModel init();
+    public CustomerViewModel search(CustomerViewModel inModel);
 
-    CustomerDataModel search(CustomerDataModel inModel);
+    public CustomerViewModel create(CustomerViewModel inModel);
 
-	CustomerDataModel customerChange(CustomerDataModel inModel);
+    public CustomerViewModel update(CustomerViewModel inModel);
 
-    CustomerDataModel branchChange(CustomerDataModel inModel);
+    public CustomerViewModel delete(CustomerViewModel inModel);
 
-    CustomerDataModel close(CustomerDataModel inModel);
+	public CustomerViewModel customerChange(CustomerViewModel inModel);
+
+    public CustomerViewModel branchChange(CustomerViewModel inModel);
+
+    public CustomerViewModel close(CustomerViewModel inModel);
+    
+
 }

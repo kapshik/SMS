@@ -9,12 +9,11 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
-import com.ksk.sms.datamodel.BranchData;
-import com.ksk.sms.datamodel.CustomerCriteria;
-import com.ksk.sms.datamodel.CustomerData;
-import com.ksk.sms.datamodel.CustomerDataModel;
-import com.ksk.sms.datamodel.DeliveryDestData;
-import com.ksk.sms.datamodel.ProductData;
+import com.ksk.sms.model.BranchModel;
+import com.ksk.sms.model.CustomerModel;
+import com.ksk.sms.model.CustomerViewModel;
+import com.ksk.sms.model.DeliveryDestModel;
+import com.ksk.sms.model.ProductModel;
 import com.ksk.sms.service.view.CustomerService;
 
 @Service
@@ -23,11 +22,12 @@ public class CustomerServiceImpl implements  CustomerService {
 	private static final Logger log = LogManager.getLogger(CustomerServiceImpl.class);
 
 	@Override
-    public CustomerDataModel init() {
+    public CustomerViewModel init() {
 
-        CustomerDataModel outModel = new CustomerDataModel();
+        CustomerViewModel outModel = new CustomerViewModel();
 
-		outModel.setUserName("user kapshik");
+		outModel.setUserName("user guest");
+		outModel.setTitle("顧客管理");
     	
 		outModel.setCustomerList(makeCustomerList());
 		outModel.setBranchList(makeBranchList());
@@ -35,33 +35,35 @@ public class CustomerServiceImpl implements  CustomerService {
 		outModel.setProductMasterList(makeProductMasterList());
 		outModel.setPaymentTermsList(makePaymentTermsList());
 
-		outModel.setCustomerCriteria(new CustomerCriteria());
-		outModel.setCustomerDetail(new CustomerData());
-		outModel.setBranchData(new BranchData());
-		outModel.setDeliveryDestData(new DeliveryDestData());
-		outModel.setProductData(new ProductData());
+		outModel.setCriteria(new CustomerModel());
+		outModel.setDetail(new CustomerModel());
+		outModel.setCustomerModel(new CustomerModel());
+		outModel.setBranchModel(new BranchModel());
+		outModel.setDeliveryDestModel(new DeliveryDestModel());
+		outModel.setProductModel(new ProductModel());
     	
-		outModel.setCustomerDataList(new ArrayList<CustomerData>());
-		outModel.setProductDataList(new ArrayList<ProductData>());
+		outModel.setCustomerModelList(new ArrayList<CustomerModel>());
+		outModel.setBranchModelList(new ArrayList<BranchModel>());
+		outModel.setProductModelList(new ArrayList<ProductModel>());
 log.info("init");
     	return outModel;
     }
 
 	@Override
-    public CustomerDataModel search(CustomerDataModel inModel) {
+    public CustomerViewModel search(CustomerViewModel inModel) {
 
-        CustomerDataModel outModel = Objects.requireNonNull(inModel);
+        CustomerViewModel outModel = Objects.requireNonNull(inModel);
 
 log.info("inModel.getUserName = " + inModel.getUserName());
-log.info("inModel.getCustomerNo = " + inModel.getCustomerCriteria().getCustomerNo());
+log.info("inModel.getCustomerNo = " + inModel.getCriteria().getCustomerNo());
 
-		outModel.setCustomerDetail(makeCustomerData("XX"));
-		outModel.setBranchData(makeBranchData());
-		outModel.setDeliveryDestData(makeDeliveryDestData());
-		outModel.setProductData(makeProductData("XX"));
+		outModel.setDetail(makeCustomerModel("XX"));
+		outModel.setBranchModel(makeBranchModel());
+		outModel.setDeliveryDestModel(makeDeliveryDestModel());
+		outModel.setProductModel(makeProductModel("XX"));
     	
-		outModel.setProductDataList(makeProductDataList());
-		outModel.setCustomerDataList(makeCustomerDataList());
+		outModel.setProductModelList(makeProductModelList());
+		outModel.setCustomerModelList(makeCustomerModelList());
 
     	log.info("search");
 log.info("outModel.getUserName = " + outModel.getUserName());
@@ -70,9 +72,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public CustomerDataModel customerChange(CustomerDataModel inModel) {
+    public CustomerViewModel customerChange(CustomerViewModel inModel) {
 
-        CustomerDataModel outModel = Objects.requireNonNull(inModel);
+        CustomerViewModel outModel = Objects.requireNonNull(inModel);
 
     	outModel.setBranchList(makeBranchList());
 
@@ -80,9 +82,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public CustomerDataModel branchChange(CustomerDataModel inModel) {
+    public CustomerViewModel branchChange(CustomerViewModel inModel) {
     	
-        CustomerDataModel outModel = Objects.requireNonNull(inModel);
+        CustomerViewModel outModel = Objects.requireNonNull(inModel);
     	
 		outModel.setDeliveryDestList(makeDeliveryDestList());
 
@@ -91,9 +93,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public CustomerDataModel close(CustomerDataModel inModel) {
+    public CustomerViewModel close(CustomerViewModel inModel) {
     	
-        CustomerDataModel outModel = Objects.requireNonNull(inModel);
+        CustomerViewModel outModel = Objects.requireNonNull(inModel);
 
     	return outModel;
 
@@ -186,23 +188,23 @@ log.info("outModel.getUserName = " + outModel.getUserName());
         return paymentTermsList;
     }
 	
-	private List<CustomerData> makeCustomerDataList() {
-		List<CustomerData> customerList = new ArrayList<CustomerData>();
+	private List<CustomerModel> makeCustomerModelList() {
+		List<CustomerModel> customerList = new ArrayList<CustomerModel>();
 		
 		for(int i=1; i<10; i++) {
 			String strNo = Integer.toString(i);
-			CustomerData customerData = makeCustomerData(strNo);
+			CustomerModel customerData = makeCustomerModel(strNo);
 			customerList.add(customerData);
 		}
 
-log.info("makeCustomerDataList " + customerList.size());
+log.info("makeCustomerModelList " + customerList.size());
 		return customerList;
 		
 	}
 	
-	private CustomerData makeCustomerData(String strNo) {
+	private CustomerModel makeCustomerModel(String strNo) {
 
-		CustomerData customerData = new CustomerData();
+		CustomerModel customerData = new CustomerModel();
 
 		customerData.setCustomerNo("C00" + strNo);
 		customerData.setCustomerName("顧客名" + strNo);
@@ -218,9 +220,9 @@ log.info("makeCustomerDataList " + customerList.size());
 		
 	}
 
-	private BranchData makeBranchData() {
+	private BranchModel makeBranchModel() {
 
-		BranchData branchData = new BranchData();
+		BranchModel branchData = new BranchModel();
 
 		branchData.setCustomerNo("C002");
 		branchData.setBranchNo("B002");
@@ -235,9 +237,9 @@ log.info("makeCustomerDataList " + customerList.size());
 		
 	}
 
-	private DeliveryDestData makeDeliveryDestData() {
+	private DeliveryDestModel makeDeliveryDestModel() {
 
-		DeliveryDestData deliveryDestData = new DeliveryDestData();
+		DeliveryDestModel deliveryDestData = new DeliveryDestModel();
 
 		deliveryDestData.setCustomerNo("C003");
 		deliveryDestData.setBranchNo("B003");
@@ -253,16 +255,16 @@ log.info("makeCustomerDataList " + customerList.size());
 		
 	}
 
-	private List<ProductData> makeProductDataList() {
-		List<ProductData> productList = new ArrayList<ProductData>();
+	private List<ProductModel> makeProductModelList() {
+		List<ProductModel> productList = new ArrayList<ProductModel>();
 		
 		for(int i=1; i<10; i++) {
 			String strNo = Integer.toString(i);
-			ProductData productData = makeProductData(strNo);
+			ProductModel productData = makeProductModel(strNo);
 			productList.add(productData);
 		}
 
-log.info("makeProductDataList " + productList.size());
+log.info("makeProductModelList " + productList.size());
 		return productList;
 		
 	}
@@ -314,9 +316,9 @@ log.info("makeProductDataList " + productList.size());
         return unitTypeList;
     }
 
-	private ProductData makeProductData(String strNo) {
+	private ProductModel makeProductModel(String strNo) {
 
-		ProductData productData = new ProductData();
+		ProductModel productData = new ProductModel();
 
 		productData.setCustomerNo("setCustomerNo"+strNo);
 		productData.setProductCode("setProductCode"+strNo);
@@ -336,5 +338,23 @@ log.info("makeProductDataList " + productList.size());
 
 		return productData;
 		
+	}
+
+	@Override
+	public CustomerViewModel create(CustomerViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public CustomerViewModel update(CustomerViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public CustomerViewModel delete(CustomerViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 }

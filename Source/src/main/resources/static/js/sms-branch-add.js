@@ -1,115 +1,94 @@
 $(function () {
-    var basicNoUISlider = $('#basicNoUISlider');
-    if (basicNoUISlider.length > 0) {
-        noUiSlider.create(basicNoUISlider[0], { // we need to pass only the element, not jQuery object
-            start: [20, 80],
-            range: {
-                'min': [0],
-                'max': [100]
-            }
-        });
-
-    }
-
-    var stepNoUISlider = $('#stepNoUISlider');
-    if (stepNoUISlider.length > 0) {
-        noUiSlider.create(stepNoUISlider[0], { // we need to pass only the element, not jQuery object
-            start: [200, 1000],
-            range: {
-                'min': [0],
-                'max': [1800]
-            },
-            step: 100,
-            tooltips: true,
-            connect: true
-        });
-    }    
-
-    $('.input-datepicker').datepicker({
-        format: 'mm/dd/yyyy'
+    // ------------------------------------------------------- //
+    // Initialize Page By Server Data
+    // ------------------------------------------------------ //
+    var viewModel = new sms.vm.branch();
+    viewModel.doInit({
+        success : function() {
+        viewModel.bind();
+    },
+    failed : function() {
+        viewModel.bind();
+        }
     });
-
-    $('.input-datepicker-autoclose').datepicker({
-        autoclose: true,
-        format: 'mm/dd/yyyy'
-    });
-
-    $('.input-datepicker-multiple').datepicker({
-        multidate: true,
-        format: 'mm/dd/yyyy'
-    });
-
-    $('.input-datepicker-range').datepicker({
-        format: 'mm/dd/yyyy'
-    });
-
-    $("input[name='touchspin0']").TouchSpin({
-        buttondown_class: 'btn btn-secondary',
-        buttonup_class: 'btn btn-secondary'
-    });
-    $("input[name='touchspin1']").TouchSpin({
-        min: 0,
-        max: 100,
-        step: 0.1,
-        decimals: 2,
-        boostat: 5,
-        maxboostedstep: 10,
-        postfix: '%',
-        buttondown_class: 'btn btn-secondary',
-        buttonup_class: 'btn btn-secondary'
-    });
-
-    $("input[name='touchspin2']").TouchSpin({
-        min: -1000000000,
-        max: 1000000000,
-        step: 50,
-        maxboostedstep: 10000000,
-        prefix: '$',
-        buttondown_class: 'btn btn-secondary',
-        buttonup_class: 'btn btn-secondary'
-    });
-
-    $('.selectpicker-primary').selectpicker({
-        style: 'btn-primary',
-        size: 4
-    });
-
-    $('.selectpicker-secondary').selectpicker({
-        style: 'btn-secondary',
-        size: 4
-    });
-
-    $('.selectpicker-light').selectpicker({
-        style: 'btn-outline-light',
-        size: 4
-    });
-
-    $('#multiselect1').multiSelect();
-
-    var dataTable = $('#id_order_add_list').DataTable({
-        searching: false,
-        paging: false,
-        ordering:  false,
-        info:  false,
-        responsive: {
-            details: false
-        },
-        "columns": [
-            { "width": "20%" },
-            { "width": "10%" },
-            null,
-            null,
-            { "width": "10%" },
-            { "width": "10%" },
-            { "width": "10%" },
-            { "width": "20%" }
-        ]
-    });
-
-    $(document).on('sidebarChanged', function () {
-        dataTable.columns.adjust();
-        dataTable.responsive.recalc();
-        dataTable.responsive.rebuild();
-    });
-
+	$('#id_branch_menu').collapse('show');
+	$('#id_branch_menu_2').addClass('active');
 });
+
+// ------------------------------------------------------- //
+// ViewModel
+// ------------------------------------------------------ //
+sms.vm.branch = function() {
+	var self = this;
+
+	self.messages = ko.observableArray();
+	self.handler = new sms.vm.ErrorViewModel();
+
+	self.doInit = function( param ) {
+		var u = '/branch/init';
+		$.ajax({
+			type: 'get',
+			url: u,
+		}).done(function(response) {
+			self.dataModel = ko.mapping.fromJS(ko.toJS(response));
+			param.success();
+		}).fail(function(xhr, exception){
+			self.messages.removeAll();
+			self.handler.handle(xhr, exception);
+			param.failed();
+		});
+	};
+
+    self.doCustomerChange = function() {
+        var u = '/branch/branchChange';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            //TODO 時間がかかる場合は個別に実施
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doSearch = function() {
+        var u = '/branch/search';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doAddItem = function() {
+        var deliveryDestModel = { 
+                "customerNo":"C003",
+                "branchNo":"B003",
+                "deliveryDestNo":"D003",
+                "deliveryDestName":"納品先",
+                "zipcode":"101-0015",
+                "address":"東京都千代田区水道橋",
+                "addressDetail":"尾道ラーメン3階",
+                "telNo":"03-1234-5678",
+                "faxNo":"03-9876-5432"
+        };
+        self.dataModel.deliveryDestModelList.push(deliveryDestModel);
+    };
+
+    self.doDeleteItem = function() {
+        self.dataModel.deliveryDestModelList.pop();
+    };
+
+	self.bind = function() {
+		ko.applyBindings(this);
+	};
+};
+

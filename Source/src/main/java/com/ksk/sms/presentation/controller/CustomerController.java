@@ -27,20 +27,26 @@ public class CustomerController {
 
 //	顧客検索画面
 	@RequestMapping("/sms-customer.html")	
-	public String customerForm(Model model) {
+	public String searchForm(Model model) {
 		return "sms-customer";
+	}
+
+//	顧客登録画面
+	@RequestMapping("/sms-customer-add.html")	
+	public String addForm(Model model) {
+		return "sms-customer-add";
 	}
 
 //	顧客詳細画面
 	@RequestMapping("/sms-customer-detail.html")	
-	public String customerDetailForm(Model model) {
+	public String detailForm(Model model) {
 		return "sms-customer-detail";
 	}
 	
-//	顧客登録画面
-	@RequestMapping("/sms-customer-add.html")	
-	public String customerAddForm(Model model) {
-		return "sms-customer-add";
+//	顧客変更画面
+	@RequestMapping("/sms-customer-update.html")	
+	public String updateForm(Model model) {
+		return "sms-customer-update";
 	}
-
+	
 }

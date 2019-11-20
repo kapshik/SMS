@@ -3,7 +3,6 @@ $(function () {
     // Initialize Page By Server Data
     // ------------------------------------------------------ //
     var viewModel = new sms.vm.customer();
-    $("#id_main").hide();
     viewModel.doInit({
         success : function() {
         viewModel.bind();
@@ -12,11 +11,13 @@ $(function () {
         viewModel.bind();
         }
     });
-    $("#id_main").show();
+	self.dataModel.title = "顧客検索";
+	$('#id_customer_menu').collapse('show');
+	$('#id_customer_menu_1').addClass('active');
 });
 
 // ------------------------------------------------------- //
-// ViewModel for Customer
+// ViewModel
 // ------------------------------------------------------ //
 sms.vm.customer = function() {
 	var self = this;
@@ -30,7 +31,7 @@ sms.vm.customer = function() {
 			type: 'get',
 			url: u,
 		}).done(function(response) {
-			self.dataModel = ko.mapping.fromJS(ko.toJS(response));
+			self.dataModel = ko.mapping.fromJS(response);
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -56,6 +57,20 @@ sms.vm.customer = function() {
 
     self.doSearch = function() {
         var u = '/customer/search';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doDelete = function() {
+        var u = '/customer/delete';
         $.ajax({
             type: 'post',
             url: u,

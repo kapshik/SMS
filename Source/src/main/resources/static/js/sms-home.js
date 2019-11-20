@@ -112,7 +112,7 @@ $(document).ready(function () {
         viewModel.bind();
         }
     });
-
+	$('#id_home_menu').addClass('active');
 });
 
 $(function () {
@@ -142,7 +142,7 @@ sms.vm.home = function() {
 			type: 'get',
 			url: u,
 		}).done(function(response) {
-			self.dataModel = ko.mapping.fromJS(ko.toJS(response));
+			self.dataModel = ko.mapping.fromJS(response);
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();

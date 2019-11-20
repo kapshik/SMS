@@ -6,28 +6,27 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ksk.sms.datamodel.HomeDataModel;
-import com.ksk.sms.datamodel.OrderData;
+import com.ksk.sms.model.HomeViewModel;
+import com.ksk.sms.model.OrderModel;
 
 @RestController
 public class HomeRestController {
 
 	@GetMapping("home/init")	
-	public HomeDataModel mainMenuInit() {
-		HomeDataModel homeDataModel = new HomeDataModel();
-		homeDataModel.setUserName("user kapshik");
-		homeDataModel.setPassword("教えない！！");
-		homeDataModel.setOrderDataList(makeList());
+	public HomeViewModel init() {
+		HomeViewModel model = new HomeViewModel();
+		model.setUserName("user kapshik");
+		model.setOrderModelList(makeList());
 		
-		return homeDataModel;
+		return model;
 	}
 	
-	private List<OrderData> makeList() {
-		List<OrderData> orderList = new ArrayList<OrderData>();
+	private List<OrderModel> makeList() {
+		List<OrderModel> orderList = new ArrayList<OrderModel>();
 		
 		for(int i=0; i<10; i++) {
 			String strNo = Integer.toString(i);
-			OrderData orderData = new OrderData();
+			OrderModel orderData = new OrderModel();
 
 			orderData.setCustomerNo("Customer"+strNo);
 			orderData.setBranchNo("Branch"+strNo);

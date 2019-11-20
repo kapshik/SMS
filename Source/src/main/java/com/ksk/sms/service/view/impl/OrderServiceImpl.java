@@ -11,12 +11,12 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
-import com.ksk.sms.datamodel.BranchData;
-import com.ksk.sms.datamodel.CustomerData;
-import com.ksk.sms.datamodel.DeliveryDestData;
-import com.ksk.sms.datamodel.OrderData;
-import com.ksk.sms.datamodel.OrderDataModel;
-import com.ksk.sms.datamodel.ProductData;
+import com.ksk.sms.model.BranchModel;
+import com.ksk.sms.model.CustomerModel;
+import com.ksk.sms.model.DeliveryDestModel;
+import com.ksk.sms.model.OrderModel;
+import com.ksk.sms.model.OrderViewModel;
+import com.ksk.sms.model.ProductModel;
 import com.ksk.sms.service.view.OrderService;
 
 @Service
@@ -25,11 +25,12 @@ public class OrderServiceImpl implements  OrderService {
 	private static final Logger log = LogManager.getLogger(OrderServiceImpl.class);
 
 	@Override
-    public OrderDataModel init() {
+    public OrderViewModel init() {
 
-        OrderDataModel outModel = new OrderDataModel();
+        OrderViewModel outModel = new OrderViewModel();
 
-		outModel.setUserName("user kapshik");
+		outModel.setUserName("user guest");
+//		outModel.setTitle("注文管理");
     	
 		outModel.setCustomerList(makeCustomerList());
 		outModel.setBranchList(makeBranchList());
@@ -37,35 +38,35 @@ public class OrderServiceImpl implements  OrderService {
 		outModel.setProductMasterList(makeProductMasterList());
 		outModel.setPaymentTermsList(makePaymentTermsList());
 
-		outModel.setOrderCriteria(new OrderData());
-		outModel.setOrderDetail(new OrderData());
-		outModel.setBranchData(new BranchData());
-		outModel.setCustomerData(new CustomerData());
-		outModel.setDeliveryDestData(new DeliveryDestData());
-		outModel.setProductData(new ProductData());
+		outModel.setCriteria(new OrderModel());
+		outModel.setDetail(new OrderModel());
+		outModel.setBranchModel(new BranchModel());
+		outModel.setCustomerModel(new CustomerModel());
+		outModel.setDeliveryDestModel(new DeliveryDestModel());
+		outModel.setProductModel(new ProductModel());
     	
-		outModel.setOrderDataList(new ArrayList<OrderData>());
-		outModel.setProductDataList(new ArrayList<ProductData>());
+		outModel.setOrderModelList(new ArrayList<OrderModel>());
+		outModel.setProductModelList(new ArrayList<ProductModel>());
 log.info("init");
     	return outModel;
     }
 
 	@Override
-    public OrderDataModel search(OrderDataModel inModel) {
+    public OrderViewModel search(OrderViewModel inModel) {
 
-        OrderDataModel outModel = Objects.requireNonNull(inModel);
+        OrderViewModel outModel = Objects.requireNonNull(inModel);
 
 log.info("inModel.getUserName = " + inModel.getUserName());
-log.info("inModel.getOrderNo = " + inModel.getOrderCriteria().getOrderNo());
+log.info("inModel.getOrderNo = " + inModel.getCriteria().getOrderNo());
 
-		outModel.setOrderDetail(makeOrderData("XX"));
-		outModel.setBranchData(makeBranchData());
-		outModel.setCustomerData(makeCustomerData());
-		outModel.setDeliveryDestData(makeDeliveryDestData());
-		outModel.setProductData(makeProductData("XX"));
+		outModel.setDetail(makeOrderModel("XX"));
+		outModel.setBranchModel(makeBranchModel());
+		outModel.setCustomerModel(makeCustomerModel());
+		outModel.setDeliveryDestModel(makeDeliveryDestModel());
+		outModel.setProductModel(makeProductModel("XX"));
     	
-		outModel.setProductDataList(makeProductDataList());
-		outModel.setOrderDataList(makeOrderDataList());
+		outModel.setProductModelList(makeProductModelList());
+		outModel.setOrderModelList(makeOrderModelList());
 
     	log.info("search");
 log.info("outModel.getUserName = " + outModel.getUserName());
@@ -74,9 +75,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public OrderDataModel customerChange(OrderDataModel inModel) {
+    public OrderViewModel customerChange(OrderViewModel inModel) {
 
-        OrderDataModel outModel = Objects.requireNonNull(inModel);
+        OrderViewModel outModel = Objects.requireNonNull(inModel);
 
     	outModel.setBranchList(makeBranchList());
 
@@ -84,9 +85,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public OrderDataModel branchChange(OrderDataModel inModel) {
+    public OrderViewModel branchChange(OrderViewModel inModel) {
     	
-        OrderDataModel outModel = Objects.requireNonNull(inModel);
+        OrderViewModel outModel = Objects.requireNonNull(inModel);
     	
         try {
 			BeanUtils.copyProperties(inModel, outModel);
@@ -101,9 +102,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public OrderDataModel close(OrderDataModel inModel) {
+    public OrderViewModel close(OrderViewModel inModel) {
     	
-        OrderDataModel outModel = Objects.requireNonNull(inModel);
+        OrderViewModel outModel = Objects.requireNonNull(inModel);
 
     	return outModel;
 
@@ -199,23 +200,23 @@ log.info("outModel.getUserName = " + outModel.getUserName());
         return paymentTermsList;
     }
 	
-	private List<OrderData> makeOrderDataList() {
-		List<OrderData> orderList = new ArrayList<OrderData>();
+	private List<OrderModel> makeOrderModelList() {
+		List<OrderModel> orderList = new ArrayList<OrderModel>();
 		
 		for(int i=1; i<10; i++) {
 			String strNo = Integer.toString(i);
-			OrderData orderData = makeOrderData(strNo);
+			OrderModel orderData = makeOrderModel(strNo);
 			orderList.add(orderData);
 		}
 
-log.info("makeOrderDataList " + orderList.size());
+log.info("makeOrderModelList " + orderList.size());
 		return orderList;
 		
 	}
 	
-	private OrderData makeOrderData(String strNo) {
+	private OrderModel makeOrderModel(String strNo) {
 
-		OrderData orderData = new OrderData();
+		OrderModel orderData = new OrderModel();
 
 		orderData.setCustomerNo("001");
 		orderData.setBranchNo("001");
@@ -235,9 +236,9 @@ log.info("makeOrderDataList " + orderList.size());
 		
 	}
 
-	private CustomerData makeCustomerData() {
+	private CustomerModel makeCustomerModel() {
 
-		CustomerData customerData = new CustomerData();
+		CustomerModel customerData = new CustomerModel();
 
 		customerData.setCustomerNo("C001");
 		customerData.setCustomerName("顧客名");
@@ -253,9 +254,9 @@ log.info("makeOrderDataList " + orderList.size());
 		
 	}
 
-	private BranchData makeBranchData() {
+	private BranchModel makeBranchModel() {
 
-		BranchData branchData = new BranchData();
+		BranchModel branchData = new BranchModel();
 
 		branchData.setCustomerNo("C002");
 		branchData.setBranchNo("B002");
@@ -270,9 +271,9 @@ log.info("makeOrderDataList " + orderList.size());
 		
 	}
 
-	private DeliveryDestData makeDeliveryDestData() {
+	private DeliveryDestModel makeDeliveryDestModel() {
 
-		DeliveryDestData deliveryDestData = new DeliveryDestData();
+		DeliveryDestModel deliveryDestData = new DeliveryDestModel();
 
 		deliveryDestData.setCustomerNo("C003");
 		deliveryDestData.setBranchNo("B003");
@@ -288,16 +289,16 @@ log.info("makeOrderDataList " + orderList.size());
 		
 	}
 
-	private List<ProductData> makeProductDataList() {
-		List<ProductData> productList = new ArrayList<ProductData>();
+	private List<ProductModel> makeProductModelList() {
+		List<ProductModel> productList = new ArrayList<ProductModel>();
 		
 		for(int i=1; i<10; i++) {
 			String strNo = Integer.toString(i);
-			ProductData productData = makeProductData(strNo);
+			ProductModel productData = makeProductModel(strNo);
 			productList.add(productData);
 		}
 
-log.info("makeProductDataList " + productList.size());
+log.info("makeProductModelList " + productList.size());
 		return productList;
 		
 	}
@@ -349,9 +350,9 @@ log.info("makeProductDataList " + productList.size());
         return unitTypeList;
     }
 
-	private ProductData makeProductData(String strNo) {
+	private ProductModel makeProductModel(String strNo) {
 
-		ProductData productData = new ProductData();
+		ProductModel productData = new ProductModel();
 
 		productData.setCustomerNo("setCustomerNo"+strNo);
 		productData.setProductCode("setProductCode"+strNo);
@@ -371,5 +372,23 @@ log.info("makeProductDataList " + productList.size());
 
 		return productData;
 		
+	}
+
+	@Override
+	public OrderViewModel create(OrderViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public OrderViewModel update(OrderViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public OrderViewModel delete(OrderViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 }

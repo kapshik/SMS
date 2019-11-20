@@ -3,7 +3,6 @@ $(function () {
     // Initialize Page By Server Data
     // ------------------------------------------------------ //
     var viewModel = new sms.vm.branch();
-    $("#id_main").hide();
     viewModel.doInit({
         success : function() {
         viewModel.bind();
@@ -12,11 +11,12 @@ $(function () {
         viewModel.bind();
         }
     });
-    $("#id_main").show();
+	$('#id_branch_menu').collapse('show');
+	$('#id_branch_menu_1').addClass('active');
 });
 
 // ------------------------------------------------------- //
-// ViewModel for Branch
+// ViewModel
 // ------------------------------------------------------ //
 sms.vm.branch = function() {
 	var self = this;
@@ -30,7 +30,8 @@ sms.vm.branch = function() {
 			type: 'get',
 			url: u,
 		}).done(function(response) {
-			self.dataModel = ko.mapping.fromJS(ko.toJS(response));
+			self.dataModel = ko.mapping.fromJS(response);
+			self.dataModel.title("支店検索");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -46,7 +47,6 @@ sms.vm.branch = function() {
             url: u,
             data: toJSON(self.dataModel)
           }).done(function(response) {
-            //TODO 時間がかかる場合は個別に実施
             ko.mapping.fromJS(response, self.dataModel);
           }).fail(function(xhr, exception){
             self.messages.removeAll();
@@ -56,6 +56,20 @@ sms.vm.branch = function() {
 
     self.doSearch = function() {
         var u = '/branch/search';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doDelete = function() {
+        var u = '/branch/detete';
         $.ajax({
             type: 'post',
             url: u,

@@ -1,111 +1,126 @@
 $(function () {
-    var basicNoUISlider = $('#basicNoUISlider');
-    if (basicNoUISlider.length > 0) {
-        noUiSlider.create(basicNoUISlider[0], { // we need to pass only the element, not jQuery object
-            start: [20, 80],
-            range: {
-                'min': [0],
-                'max': [100]
-            }
-        });
-
-    }
-
-    var stepNoUISlider = $('#stepNoUISlider');
-    if (stepNoUISlider.length > 0) {
-        noUiSlider.create(stepNoUISlider[0], { // we need to pass only the element, not jQuery object
-            start: [200, 1000],
-            range: {
-                'min': [0],
-                'max': [1800]
-            },
-            step: 100,
-            tooltips: true,
-            connect: true
-        });
-    }    
-
-    $('.input-datepicker').datepicker({
-        format: 'mm/dd/yyyy'
+    // ------------------------------------------------------- //
+    // Initialize Page By Server Data
+    // ------------------------------------------------------ //
+    var viewModel = new sms.vm.order();
+    viewModel.doInit({
+        success : function() {
+        viewModel.bind();
+    },
+    failed : function() {
+        viewModel.bind();
+        }
     });
-
-    $('.input-datepicker-autoclose').datepicker({
-        autoclose: true,
-        format: 'mm/dd/yyyy'
-    });
-
-    $('.input-datepicker-multiple').datepicker({
-        multidate: true,
-        format: 'mm/dd/yyyy'
-    });
-
-    $('.input-datepicker-range').datepicker({
-        format: 'mm/dd/yyyy'
-    });
-
-    $("input[name='touchspin0']").TouchSpin({
-        buttondown_class: 'btn btn-secondary',
-        buttonup_class: 'btn btn-secondary'
-    });
-    $("input[name='touchspin1']").TouchSpin({
-        min: 0,
-        max: 100,
-        step: 0.1,
-        decimals: 2,
-        boostat: 5,
-        maxboostedstep: 10,
-        postfix: '%',
-        buttondown_class: 'btn btn-secondary',
-        buttonup_class: 'btn btn-secondary'
-    });
-
-    $("input[name='touchspin2']").TouchSpin({
-        min: -1000000000,
-        max: 1000000000,
-        step: 50,
-        maxboostedstep: 10000000,
-        prefix: '$',
-        buttondown_class: 'btn btn-secondary',
-        buttonup_class: 'btn btn-secondary'
-    });
-
-    $('.selectpicker-primary').selectpicker({
-        style: 'btn-primary',
-        size: 4
-    });
-
-    $('.selectpicker-secondary').selectpicker({
-        style: 'btn-secondary',
-        size: 4
-    });
-
-    $('.selectpicker-light').selectpicker({
-        style: 'btn-outline-light',
-        size: 4
-    });
-
-    $('#multiselect1').multiSelect();
-
-    var dataTable = $('#id_branch_list').DataTable({
-        autoWidth: false,
-        scrollX: true,
-        paging: false,
-        info: false,
-        searching: false
-    });
-    var dataTable = $('#id_product_list').DataTable({
-        autoWidth: false,
-        scrollX: true,
-        paging: false,
-        info: false,
-        searching: false
-    });
-
-
-    $(document).on('sidebarChanged', function () {
-        dataTable.columns.adjust();
-        dataTable.responsive.recalc();
-        dataTable.responsive.rebuild();
-    });
-
+	$('#id_order_menu').collapse('show');
+	$('#id_order_menu_3').addClass('active');
 });
+
+sms.vm.order = function() {
+	var self = this;
+
+	self.messages = ko.observableArray();
+	self.handler = new sms.vm.ErrorViewModel();
+
+	self.doInit = function( param ) {
+		var u = '/order/init';
+		$.ajax({
+			type: 'get',
+			url: u,
+		}).done(function(response) {
+			self.dataModel = ko.mapping.fromJS(response);
+			param.success();
+		}).fail(function(xhr, exception){
+			self.messages.removeAll();
+			self.handler.handle(xhr, exception);
+			param.failed();
+		});
+	};
+
+    self.doCustomerChange = function() {
+        var u = '/order/customerChange';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            //TODO 時間がかかる場合は個別に実施
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doSearch = function() {
+        var u = '/order/search';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doAddOrder = function() {
+        var u = '/order/customerChange';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            //TODO 時間がかかる場合は個別に実施
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doAddItem = function() {
+        var product = {"customerNo":"setCustomerNo1",
+                        "productCode":"setProductCode1",
+                        "productName":"setProductName1",
+                        "quantity":"1",
+                        "quantityPerBox":"setQuantityPerBox1",
+                        "quantityOfBox":"setQuantityOfBox1",
+                        "unitPrice":"setUnitPrice1",
+                        "discountPrice":"setDiscountPrice1",
+                        "amount":"setAmount1",
+                        "productType":"setProductType1",
+                        "unitType":"setUnitType1",
+                        "remarks":"setRemarks1",
+                        "productTypeList":[
+                            {"key":"0001","value":"送料別"},
+                            {"key":"0002","value":"送料込"},
+                            {"key":"0003","value":"その他"}
+                        ],
+                        "unitTypeList":[
+                            {"key":"0001","value":"本"},
+                            {"key":"0002","value":"丁"},
+                            {"key":"0003","value":"個"},
+                            {"key":"0004","value":"BOX"}
+                        ],
+                        "productMasterList":[
+                            {"key":"0000","value":"product 0"},
+                            {"key":"0001","value":"product 1"},
+                            {"key":"0002","value":"product 2"},
+                            {"key":"0003","value":"product 3"},
+                            {"key":"0004","value":"product 4"}
+                        ]
+        };
+        self.dataModel.productModelList.push(product);
+    };
+
+    self.doDeleteItem = function() {
+        self.dataModel.productModelList.pop();
+    };
+
+	self.bind = function() {
+		ko.applyBindings(this);
+	};
+};
+

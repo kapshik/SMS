@@ -6,32 +6,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ksk.sms.datamodel.BranchDataModel;
+import com.ksk.sms.model.BranchViewModel;
 import com.ksk.sms.service.view.BranchService;
 
 @RestController
 public class BranchRestController {
 
 	@Autowired
-	private BranchService branchService;
+	private BranchService service;
 	
 	@GetMapping("branch/init")
-	public BranchDataModel init() {
-		BranchDataModel outModel = branchService.init();
+	public BranchViewModel init() {
+		BranchViewModel outModel = service.init();
 		
 		return outModel;
 	}
 	
 	@PostMapping("branch/search")
-	public BranchDataModel search(@RequestBody BranchDataModel inModel) {
-		BranchDataModel outModel = branchService.search(inModel);
+	public BranchViewModel search(@RequestBody BranchViewModel inModel) {
+		BranchViewModel outModel = service.search(inModel);
+		
+		return outModel;
+	}
+	
+	@PostMapping("branch/delete")
+	public BranchViewModel delete(@RequestBody BranchViewModel inModel) {
+		BranchViewModel outModel = service.search(inModel);
 		
 		return outModel;
 	}
 	
 	@PostMapping("branch/branchChange")
-	public BranchDataModel BranchChange(@RequestBody BranchDataModel inModel) {
-		BranchDataModel outModel = branchService.search(inModel);
+	public BranchViewModel BranchChange(@RequestBody BranchViewModel inModel) {
+		BranchViewModel outModel = service.search(inModel);
 		
 		return outModel;
 	}

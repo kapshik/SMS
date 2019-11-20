@@ -27,20 +27,26 @@ public class ProductController {
 
 //	商品検索画面
 	@RequestMapping("/sms-product.html")	
-	public String productForm(Model model) {
+	public String searchForm(Model model) {
 		return "sms-product";
+	}
+
+//	商品登録画面
+	@RequestMapping("/sms-product-add.html")	
+	public String addForm(Model model) {
+		return "sms-product-add";
 	}
 
 //	商品詳細画面
 	@RequestMapping("/sms-product-detail.html")	
-	public String productDetailForm(Model model) {
+	public String detailForm(Model model) {
 		return "sms-product-detail";
 	}
 	
-//	商品登録画面
-	@RequestMapping("/sms-product-add.html")	
-	public String productAddForm(Model model) {
-		return "sms-product-add";
+//	商品変更画面
+	@RequestMapping("/sms-product-update.html")	
+	public String updateForm(Model model) {
+		return "sms-product-update";
 	}
-
+	
 }

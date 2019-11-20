@@ -9,11 +9,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
-import com.ksk.sms.datamodel.BranchData;
-import com.ksk.sms.datamodel.BranchDataModel;
-import com.ksk.sms.datamodel.CustomerData;
-import com.ksk.sms.datamodel.DeliveryDestData;
-import com.ksk.sms.datamodel.ProductData;
+import com.ksk.sms.model.BranchModel;
+import com.ksk.sms.model.BranchViewModel;
+import com.ksk.sms.model.DeliveryDestModel;
+import com.ksk.sms.model.ProductModel;
 import com.ksk.sms.service.view.BranchService;
 
 @Service
@@ -22,9 +21,9 @@ public class BranchServiceImpl  implements  BranchService {
 	private static final Logger log = LogManager.getLogger(BranchServiceImpl.class);
 
 	@Override
-    public BranchDataModel init() {
+    public BranchViewModel init() {
 
-        BranchDataModel outModel = new BranchDataModel();
+        BranchViewModel outModel = new BranchViewModel();
 
 		outModel.setUserName("user kapshik");
     	
@@ -34,33 +33,34 @@ public class BranchServiceImpl  implements  BranchService {
 		outModel.setProductMasterList(makeProductMasterList());
 		outModel.setPaymentTermsList(makePaymentTermsList());
 
-		outModel.setBranchCriteria(new BranchData());
-		outModel.setBranchDetail(new BranchData());
-		outModel.setBranchData(new BranchData());
-		outModel.setDeliveryDestData(new DeliveryDestData());
-		outModel.setProductData(new ProductData());
+		outModel.setCriteria(new BranchModel());
+		outModel.setDetail(new BranchModel());
+		outModel.setBranchModel(new BranchModel());
+		outModel.setDeliveryDestModel(new DeliveryDestModel());
+		outModel.setProductModel(new ProductModel());
     	
-		outModel.setBranchDataList(new ArrayList<BranchData>());
-		outModel.setProductDataList(new ArrayList<ProductData>());
+		outModel.setBranchModelList(new ArrayList<BranchModel>());
+		outModel.setDeliveryDestModelList(new ArrayList<DeliveryDestModel>());
+		outModel.setProductModelList(new ArrayList<ProductModel>());
 log.info("init");
     	return outModel;
     }
 
 	@Override
-    public BranchDataModel search(BranchDataModel inModel) {
+    public BranchViewModel search(BranchViewModel inModel) {
 
-        BranchDataModel outModel = Objects.requireNonNull(inModel);
+        BranchViewModel outModel = Objects.requireNonNull(inModel);
 
 log.info("inModel.getUserName = " + inModel.getUserName());
-log.info("inModel.getBranchNo = " + inModel.getBranchCriteria().getBranchNo());
+log.info("inModel.getBranchNo = " + inModel.getCriteria().getBranchNo());
 
-		outModel.setBranchDetail(makeBranchData("XX"));
-		outModel.setBranchData(makeBranchData("AA"));
-		outModel.setDeliveryDestData(makeDeliveryDestData());
-		outModel.setProductData(makeProductData("XX"));
+		outModel.setDetail(makeBranchModel("XX"));
+		outModel.setBranchModel(makeBranchModel("AA"));
+		outModel.setDeliveryDestModel(makeDeliveryDestModel());
+		outModel.setProductModel(makeProductModel("XX"));
     	
-		outModel.setProductDataList(makeProductDataList());
-		outModel.setBranchDataList(makeBranchDataList());
+		outModel.setProductModelList(makeProductModelList());
+		outModel.setBranchModelList(makeBranchModelList());
 
     	log.info("search");
 log.info("outModel.getUserName = " + outModel.getUserName());
@@ -69,9 +69,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public BranchDataModel customerChange(BranchDataModel inModel) {
+    public BranchViewModel customerChange(BranchViewModel inModel) {
 
-        BranchDataModel outModel = Objects.requireNonNull(inModel);
+        BranchViewModel outModel = Objects.requireNonNull(inModel);
 
     	outModel.setBranchList(makeBranchList());
 
@@ -79,9 +79,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public BranchDataModel branchChange(BranchDataModel inModel) {
+    public BranchViewModel branchChange(BranchViewModel inModel) {
     	
-        BranchDataModel outModel = Objects.requireNonNull(inModel);
+        BranchViewModel outModel = Objects.requireNonNull(inModel);
     	
 		outModel.setDeliveryDestList(makeDeliveryDestList());
 
@@ -90,9 +90,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public BranchDataModel close(BranchDataModel inModel) {
+    public BranchViewModel close(BranchViewModel inModel) {
     	
-        BranchDataModel outModel = Objects.requireNonNull(inModel);
+        BranchViewModel outModel = Objects.requireNonNull(inModel);
 
     	return outModel;
 
@@ -185,41 +185,23 @@ log.info("outModel.getUserName = " + outModel.getUserName());
         return paymentTermsList;
     }
 	
-	private List<BranchData> makeBranchDataList() {
-		List<BranchData> customerList = new ArrayList<BranchData>();
+	private List<BranchModel> makeBranchModelList() {
+		List<BranchModel> customerList = new ArrayList<BranchModel>();
 		
 		for(int i=1; i<10; i++) {
 			String strNo = Integer.toString(i);
-			BranchData customerData = makeBranchData(strNo);
+			BranchModel customerData = makeBranchModel(strNo);
 			customerList.add(customerData);
 		}
 
-log.info("makeBranchDataList " + customerList.size());
+log.info("makeBranchModelList " + customerList.size());
 		return customerList;
 		
 	}
 	
-	private CustomerData makeCustomerData(String strNo) {
+	private BranchModel makeBranchModel(String strNo) {
 
-		CustomerData customerData = new CustomerData();
-
-		customerData.setCustomerNo("C00" + strNo);
-		customerData.setCustomerName("顧客名" + strNo);
-		customerData.setZipcode("101-0015");
-		customerData.setAddress("東京都千代田区水道橋");
-		customerData.setAddressDetail("尾道ラーメン3階" + strNo);
-		customerData.setTelNo("03-1234-5678");
-		customerData.setFaxNo("03-9876-5432");
-		customerData.setStartDate("2019/11/22");
-		customerData.setPaymentTerms("月末締め翌月末払い");
-
-		return customerData;
-		
-	}
-
-	private BranchData makeBranchData(String strNo) {
-
-		BranchData branchData = new BranchData();
+		BranchModel branchData = new BranchModel();
 
 		branchData.setCustomerNo("C002");
 		branchData.setBranchNo("B00" + strNo);
@@ -234,9 +216,9 @@ log.info("makeBranchDataList " + customerList.size());
 		
 	}
 
-	private DeliveryDestData makeDeliveryDestData() {
+	private DeliveryDestModel makeDeliveryDestModel() {
 
-		DeliveryDestData deliveryDestData = new DeliveryDestData();
+		DeliveryDestModel deliveryDestData = new DeliveryDestModel();
 
 		deliveryDestData.setCustomerNo("C003");
 		deliveryDestData.setBranchNo("B003");
@@ -252,16 +234,16 @@ log.info("makeBranchDataList " + customerList.size());
 		
 	}
 
-	private List<ProductData> makeProductDataList() {
-		List<ProductData> productList = new ArrayList<ProductData>();
+	private List<ProductModel> makeProductModelList() {
+		List<ProductModel> productList = new ArrayList<ProductModel>();
 		
 		for(int i=1; i<10; i++) {
 			String strNo = Integer.toString(i);
-			ProductData productData = makeProductData(strNo);
+			ProductModel productData = makeProductModel(strNo);
 			productList.add(productData);
 		}
 
-log.info("makeProductDataList " + productList.size());
+log.info("makeProductModelList " + productList.size());
 		return productList;
 		
 	}
@@ -313,9 +295,9 @@ log.info("makeProductDataList " + productList.size());
         return unitTypeList;
     }
 
-	private ProductData makeProductData(String strNo) {
+	private ProductModel makeProductModel(String strNo) {
 
-		ProductData productData = new ProductData();
+		ProductModel productData = new ProductModel();
 
 		productData.setCustomerNo("setCustomerNo"+strNo);
 		productData.setProductCode("setProductCode"+strNo);
@@ -335,5 +317,23 @@ log.info("makeProductDataList " + productList.size());
 
 		return productData;
 		
+	}
+
+	@Override
+	public BranchViewModel create(BranchViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public BranchViewModel update(BranchViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public BranchViewModel delete(BranchViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 }

@@ -25,22 +25,34 @@ import net.sf.jasperreports.engine.data.JRCsvDataSource;
 @Controller
 public class BranchController {
 
-//	顧客検索画面
+//	支店検索画面
 	@RequestMapping("/sms-branch.html")	
-	public String branchForm(Model model) {
+	public String searchForm(Model model) {
 		return "sms-branch";
 	}
 
-//	顧客詳細画面
-	@RequestMapping("/sms-branch-detail.html")	
-	public String branchDetailForm(Model model) {
-		return "sms-branch-detail";
-	}
-	
-//	顧客登録画面
+//	支店登録画面
 	@RequestMapping("/sms-branch-add.html")	
-	public String branchAddForm(Model model) {
+	public String addForm(Model model) {
 		return "sms-branch-add";
 	}
 	
+//	支店詳細画面
+	@RequestMapping("/sms-branch-detail.html")	
+	public String detailForm(Model model) {
+		return "sms-branch-detail";
+	}
+	
+//	支店変更画面
+	@RequestMapping("/sms-branch-update.html")	
+	public String updateForm(Model model) {
+		return "sms-branch-update";
+	}
+	
+//	納品先登録画面
+	@RequestMapping("/sms-deliverydest-add.html")	
+	public String deliverydestAddForm(Model model) {
+		return "sms-deliverydest-add";
+	}
+
 }

@@ -1,16 +1,23 @@
 package com.ksk.sms.service.view;
 
-import com.ksk.sms.datamodel.OrderDataModel;
+import com.ksk.sms.model.OrderViewModel;
 
 public interface OrderService {
+	
+    public OrderViewModel init();
 
-    OrderDataModel init();
+    public OrderViewModel search(OrderViewModel inModel);
 
-    OrderDataModel search(OrderDataModel inModel);
+    public OrderViewModel create(OrderViewModel inModel);
 
-	OrderDataModel customerChange(OrderDataModel inModel);
+    public OrderViewModel update(OrderViewModel inModel);
 
-    OrderDataModel branchChange(OrderDataModel inModel);
+    public OrderViewModel delete(OrderViewModel inModel);
+	
+    public OrderViewModel customerChange(OrderViewModel inModel);
 
-    OrderDataModel close(OrderDataModel inModel);
+    public OrderViewModel branchChange(OrderViewModel inModel);
+
+    public OrderViewModel close(OrderViewModel inModel);
+    
 }

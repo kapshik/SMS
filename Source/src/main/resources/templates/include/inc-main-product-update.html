@@ -1,0 +1,76 @@
+<section class="forms" data-bind="with: dataModel">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header d-flex align-items-center">
+          <h4>商品情報</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label>商品名</label>
+                <select class="form-control form-control-sm" data-bind="options: productMasterList,
+                  optionsValue: 'key', optionsText: 'value', value: productModel.productName, optionsCaption:'選択してください'">
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">       
+                <label>商品コード</label>
+                <input type="text" disabled="" class="form-control form-control-sm"  data-bind="value: productModel.productCode">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label>入り数</label>
+                <input type="text" class="form-control input-sm" data-bind="value: productModel.quantity">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">       
+                <label>金額</label>
+                <input type="text" class="form-control input-sm" data-bind="value: productModel.amount">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label>商品区分</label>
+                <select class="form-control form-control-sm" data-bind="options: productModel.productTypeList,
+                  optionsValue: 'key', optionsText: 'value', value: productModel.productType, optionsCaption:'選択してください'">
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">       
+                <label>単位</label>
+                <select class="form-control form-control-sm" data-bind="options: productModel.unitTypeList,
+                  optionsValue: 'key', optionsText: 'value', value: productModel.unitType, optionsCaption:'選択してください'">
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAdd">更新</button>
+        </div>
+        <div class="col-sm-3 offset-sm-6">
+          <button type="button" class="btn btn-secondary btn-block btn-sm" data-bind="click: $root.doCancel">キャンセル</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
