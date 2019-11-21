@@ -13,6 +13,7 @@ $(function () {
     });
 	$('#id_order_menu').collapse('show');
 	$('#id_order_menu_1').addClass('active');
+    $('.loading').addClass('hidden');
 });
 
 sms.vm.order = function() {
@@ -29,6 +30,7 @@ sms.vm.order = function() {
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
 			param.success();
+			self.dataModel.title("注文検索");
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
 			self.handler.handle(xhr, exception);
@@ -43,7 +45,6 @@ sms.vm.order = function() {
             url: u,
             data: toJSON(self.dataModel)
           }).done(function(response) {
-            //TODO 時間がかかる場合は個別に実施
             ko.mapping.fromJS(response, self.dataModel);
           }).fail(function(xhr, exception){
             self.messages.removeAll();

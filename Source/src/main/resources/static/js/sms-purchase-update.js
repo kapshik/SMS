@@ -2,7 +2,7 @@ $(function () {
     // ------------------------------------------------------- //
     // Initialize Page By Server Data
     // ------------------------------------------------------ //
-    var viewModel = new sms.vm.product();
+    var viewModel = new sms.vm.purchase();
     viewModel.doInit({
         success : function() {
         viewModel.bind();
@@ -11,24 +11,25 @@ $(function () {
         viewModel.bind();
         }
     });
+	$('#id_purchase_menu').collapse('show');
+	$('#id_purchase_menu_3').addClass('active');
+    $('.loading').addClass('hidden');
 });
 
-// ------------------------------------------------------- //
-// ViewModel
-// ------------------------------------------------------ //
-sms.vm.product = function() {
+sms.vm.purchase = function() {
 	var self = this;
 
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
 
 	self.doInit = function( param ) {
-		var u = '/product/init';
+		var u = '/purchase/init';
 		$.ajax({
 			type: 'get',
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
+			self.dataModel.title("仕入変更");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -38,7 +39,7 @@ sms.vm.product = function() {
 	};
 
     self.doCustomerChange = function() {
-        var u = '/product/customerChange';
+        var u = '/purchase/customerChange';
         $.ajax({
             type: 'post',
             url: u,
@@ -52,7 +53,49 @@ sms.vm.product = function() {
     };
 
     self.doSearch = function() {
-        var u = '/product/search';
+        var u = '/purchase/search';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doAdd = function() {
+        var u = '/purchase/add';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doUpdate = function() {
+        var u = '/purchase/update';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doDelete = function() {
+        var u = '/purchase/delete';
         $.ajax({
             type: 'post',
             url: u,

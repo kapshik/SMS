@@ -113,6 +113,7 @@ $(document).ready(function () {
         }
     });
 	$('#id_home_menu').addClass('active');
+    $('.loading').addClass('hidden');
 });
 
 $(function () {

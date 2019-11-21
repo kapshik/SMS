@@ -13,6 +13,7 @@ $(function () {
     });
 	$('#id_order_menu').collapse('show');
 	$('#id_order_menu_3').addClass('active');
+    $('.loading').addClass('hidden');
 });
 
 sms.vm.order = function() {
@@ -28,6 +29,7 @@ sms.vm.order = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
+			self.dataModel.title("注文詳細");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -65,7 +67,7 @@ sms.vm.order = function() {
         });
     };
 
-    self.doAddOrder = function() {
+    self.doAdd = function() {
         var u = '/order/customerChange';
         $.ajax({
             type: 'post',

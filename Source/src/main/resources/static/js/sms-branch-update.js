@@ -13,6 +13,7 @@ $(function () {
     });
 	$('#id_branch_menu').collapse('show');
 	$('#id_branch_menu_3').addClass('active');
+    $('.loading').addClass('hidden');
 });
 
 // ------------------------------------------------------- //
@@ -31,6 +32,7 @@ sms.vm.branch = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
+			self.dataModel.title("支店変更");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();

@@ -13,6 +13,7 @@ $(function () {
     });
 	$('#id_customer_menu').collapse('show');
 	$('#id_customer_menu_2').addClass('active');
+    $('.loading').addClass('hidden');
 });
 
 // ------------------------------------------------------- //
@@ -31,6 +32,7 @@ sms.vm.customer = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
+			self.dataModel.title("顧客登録");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();

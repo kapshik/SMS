@@ -31,16 +31,22 @@ public class DeliveryController {
 		return "sms-delivery";
 	}
 
+//	納品登録画面
+	@RequestMapping("/sms-delivery-add.html")	
+	public String deliveryAddForm(Model model) {
+		return "sms-delivery-add";
+	}
+	
 //	納品詳細画面
 	@RequestMapping("/sms-delivery-detail.html")	
 	public String deliveryDetailForm(Model model) {
 		return "sms-delivery-detail";
 	}
 	
-//	納品登録画面
-	@RequestMapping("/sms-delivery-add.html")	
-	public String deliveryAddForm(Model model) {
-		return "sms-delivery-add";
+//	納品変更画面
+	@RequestMapping("/sms-delivery-update.html")	
+	public String deliveryUpdateForm(Model model) {
+		return "sms-delivery-update";
 	}
 	
 }

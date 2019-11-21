@@ -23,12 +23,12 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.data.JRCsvDataSource;
 
 @Controller
-public class StatisticController {
+public class StatisticsController {
 
 //	統計情報画面
-	@RequestMapping("/sms-statistic.html")	
-	public String statisticForm(Model model) {
-		return "sms-statistic";
+	@RequestMapping("/sms-statistics.html")	
+	public String statisticsForm(Model model) {
+		return "sms-statistics";
 	}
 
 }

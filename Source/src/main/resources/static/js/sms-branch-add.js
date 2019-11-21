@@ -13,6 +13,7 @@ $(function () {
     });
 	$('#id_branch_menu').collapse('show');
 	$('#id_branch_menu_2').addClass('active');
+    $('.loading').addClass('hidden');
 });
 
 // ------------------------------------------------------- //
@@ -31,6 +32,7 @@ sms.vm.branch = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(ko.toJS(response));
+			self.dataModel.title("支店登録");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();

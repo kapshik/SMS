@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class EstimationModel implements Serializable{
+public class EstimateModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
