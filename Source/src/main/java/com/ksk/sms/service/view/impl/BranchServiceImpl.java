@@ -13,10 +13,10 @@ import com.ksk.sms.model.BranchModel;
 import com.ksk.sms.model.BranchViewModel;
 import com.ksk.sms.model.DeliveryDestModel;
 import com.ksk.sms.model.ProductModel;
-import com.ksk.sms.service.view.BranchService;
+import com.ksk.sms.service.view.SmsViewService;
 
 @Service
-public class BranchServiceImpl  implements  BranchService {
+public class BranchServiceImpl  implements SmsViewService<BranchViewModel> {
 
 	private static final Logger log = LogManager.getLogger(BranchServiceImpl.class);
 

@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ksk.sms.model.InvoiceViewModel;
-import com.ksk.sms.service.view.InvoiceService;
+import com.ksk.sms.service.view.SmsViewService;
 
 @RestController
 public class InvoiceRestController {
 
 	@Autowired
-	private InvoiceService service;
+	private SmsViewService<InvoiceViewModel> service;
 	
 	@GetMapping("invoice/init")
 	public InvoiceViewModel init() {

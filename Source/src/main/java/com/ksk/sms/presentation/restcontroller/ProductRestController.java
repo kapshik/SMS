@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ksk.sms.model.ProductViewModel;
-import com.ksk.sms.service.view.ProductService;
+import com.ksk.sms.service.view.SmsViewService;
 
 @RestController
 public class ProductRestController {
 
 	@Autowired
-	private ProductService service;
+	private SmsViewService<ProductViewModel> service;
 	
 	@GetMapping("product/init")
 	public ProductViewModel init() {

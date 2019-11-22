@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ksk.sms.model.CustomerViewModel;
-import com.ksk.sms.service.view.CustomerService;
+import com.ksk.sms.service.view.SmsViewService;
 
 @RestController
 public class CustomerRestController {
 
 	@Autowired
-	private CustomerService service;
+	private SmsViewService<CustomerViewModel> service;
 	
 	@GetMapping("customer/init")
 	public CustomerViewModel init() {

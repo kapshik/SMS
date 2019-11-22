@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ksk.sms.model.BranchViewModel;
-import com.ksk.sms.service.view.BranchService;
+import com.ksk.sms.service.view.SmsViewService;
 
 @RestController
 public class BranchRestController {
 
 	@Autowired
-	private BranchService service;
+	private SmsViewService<BranchViewModel> service;
 	
 	@GetMapping("branch/init")
 	public BranchViewModel init() {

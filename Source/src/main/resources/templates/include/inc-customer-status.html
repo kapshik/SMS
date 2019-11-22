@@ -1,0 +1,42 @@
+<section data-bind="with: dataModel">
+  <div class="container-fluid">
+    <div class="card mt-3">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-lg-8">
+            <H4>顧客別注文状況</H4>
+          </div>
+          <div class="col-lg-1">
+            <label class="form-control-label">顧客</label>
+          </div>
+          <div class="col-lg-3">
+            <select class="form-control form-control-sm" 
+              data-bind="options: customerList,
+                optionsValue: 'key', optionsText: 'value', value:criteria.customerNo,
+                optionsCaption:'選択してください',
+                event: {change: $root.doCustomerChange}">
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="calendar">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Modal-->
+<div th:include="modal/modal-customer-add">
+</div>
+<div th:include="modal/modal-customer-detail">
+</div>
+<div th:include="modal/modal-customer-update">
+</div>
+<div th:include="modal/modal-branch-add">
+</div>
+<div th:include="modal/modal-deliveryDest-add">
+</div>
+<div th:include="modal/modal-product-add">
+</div>
+<!-- Modal-->

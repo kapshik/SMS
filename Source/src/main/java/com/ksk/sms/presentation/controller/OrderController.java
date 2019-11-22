@@ -25,10 +25,22 @@ import net.sf.jasperreports.engine.data.JRCsvDataSource;
 @Controller
 public class OrderController {
 
-//	注文検索画面
+//	注文メイン画面
 	@RequestMapping("/sms-order.html")	
-	public String searchForm(Model model) {
+	public String mainForm(Model model) {
 		return "sms-order";
+	}
+
+//	注文状況画面
+	@RequestMapping("/sms-order-status.html")	
+	public String statusForm(Model model) {
+		return "sms-order-status";
+	}
+
+//	注文検索画面
+	@RequestMapping("/sms-order-search.html")	
+	public String searchForm(Model model) {
+		return "sms-order-search";
 	}
 
 //	注文登録画面

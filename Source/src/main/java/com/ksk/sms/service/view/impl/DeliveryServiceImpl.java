@@ -17,10 +17,10 @@ import com.ksk.sms.model.DeliveryDestModel;
 import com.ksk.sms.model.DeliveryViewModel;
 import com.ksk.sms.model.OrderModel;
 import com.ksk.sms.model.ProductModel;
-import com.ksk.sms.service.view.DeliveryService;
+import com.ksk.sms.service.view.SmsViewService;
 
 @Service
-public class DeliveryServiceImpl implements DeliveryService {
+public class DeliveryServiceImpl implements SmsViewService<DeliveryViewModel> {
 
 	private static final Logger log = LogManager.getLogger(DeliveryServiceImpl.class);
 

@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ksk.sms.model.StockViewModel;
-import com.ksk.sms.service.view.StockService;
+import com.ksk.sms.service.view.SmsViewService;
 
 @RestController
 public class StockRestController {
 
 	@Autowired
-	private StockService service;
+	private SmsViewService<StockViewModel> service;
 	
 	@GetMapping("stock/init")
 	public StockViewModel init() {

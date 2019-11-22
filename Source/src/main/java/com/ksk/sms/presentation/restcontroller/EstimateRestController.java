@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ksk.sms.model.EstimateViewModel;
-import com.ksk.sms.service.view.EstimateService;
+import com.ksk.sms.service.view.SmsViewService;
 
 @RestController
 public class EstimateRestController {
 
 	@Autowired
-	private EstimateService service;
+	private SmsViewService<EstimateViewModel> service;
 	
 	@GetMapping("estimate/init")
 	public EstimateViewModel init() {
