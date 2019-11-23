@@ -12,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_customer_menu').collapse('show');
-	$('#id_customer_menu_1').addClass('active');
+	$('#id_customer_menu_2').addClass('active');
     $('.loading').addClass('hidden');
 });
 
@@ -32,7 +32,7 @@ sms.vm.customer = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
-			self.dataModel.title("顧客検索");
+			self.dataModel.title("顧客状況");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();

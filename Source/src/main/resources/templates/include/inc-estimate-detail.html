@@ -10,7 +10,7 @@
             <div class="form-group row">
               <label class="form-control-label col-sm-3">顧客名</label>
               <div class="col-sm-9">
-                <select class="form-control form-control-sm" 
+                <select disabled class="form-control form-control-sm" 
                   data-bind="options: customerList,
                     optionsValue: 'key', optionsText: 'value', value:customerModel.customerNo,
                     optionsCaption:'選択してください',
@@ -21,19 +21,19 @@
             <div class="form-group row">       
               <label class="form-control-label col-sm-3">住所</label>
               <div class="col-sm-9">
-                <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: customerModel.address">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: customerModel.address">
               </div>
             </div>
             <div class="form-group row">       
               <label class="form-control-label col-sm-3">電話</label>
               <div class="col-sm-9">
-                <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: customerModel.telNo">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: customerModel.telNo">
               </div>
             </div>
             <div class="form-group row">       
               <label class="form-control-label col-sm-3">ファックス</label>
               <div class="col-sm-9">
-                <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: customerModel.faxNo">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: customerModel.faxNo">
               </div>
             </div>
           </form>
@@ -50,7 +50,7 @@
             <div class="form-group row">
               <label class="form-control-label col-sm-3">支店名</label>
               <div class="col-sm-9">
-                <select class="form-control form-control-sm"
+                <select disabled class="form-control form-control-sm"
                   data-bind="options: branchList,
                     optionsValue: 'key', optionsText: 'value', value:branchModel.branchNo,
                     optionsCaption:'選択してください'">
@@ -60,19 +60,19 @@
             <div class="form-group row">       
               <label class="form-control-label col-sm-3">住所</label>
               <div class="col-sm-9">
-                <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: branchModel.address">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.address">
               </div>
             </div>
             <div class="form-group row">       
               <label class="form-control-label col-sm-3">電話</label>
               <div class="col-sm-9">
-                <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: branchModel.telNo">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.telNo">
               </div>
             </div>
             <div class="form-group row">       
               <label class="form-control-label col-sm-3">ファックス</label>
               <div class="col-sm-9">
-                <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: branchModel.faxNo">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.faxNo">
               </div>
             </div>
           </form>
@@ -91,7 +91,7 @@
             <div class="form-group row">
               <label class="form-control-label col-sm-3">納品先名</label>
               <div class="col-sm-9">
-                <select class="form-control form-control-sm"
+                <select disabled class="form-control form-control-sm"
                   data-bind="options: deliveryDestList,
                     optionsValue: 'key', optionsText: 'value', value:deliveryDestModel.deliveryDestNo,
                     optionsCaption:'選択してください'">
@@ -101,19 +101,19 @@
             <div class="form-group row">       
               <label class="form-control-label col-sm-3">住所</label>
               <div class="col-sm-9">
-                <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: deliveryDestModel.address">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: deliveryDestModel.address">
               </div>
             </div>
             <div class="form-group row">       
               <label class="form-control-label col-sm-3">電話</label>
               <div class="col-sm-9">
-                <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: deliveryDestModel.telNo">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: deliveryDestModel.telNo">
               </div>
             </div>
             <div class="form-group row">       
               <label class="form-control-label col-sm-3">ファックス</label>
               <div class="col-sm-9">
-                <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: deliveryDestModel.faxNo">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: deliveryDestModel.faxNo">
               </div>
             </div>
           </form>
@@ -129,25 +129,25 @@
           <div class="form-group row">
             <label class="form-control-label col-sm-3">注文No</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control form-control-sm" data-bind="value: detail.orderNo">
+              <input type="text" disabled class="form-control form-control-sm" data-bind="value: detail.orderNo">
             </div>
           </div>
           <div class="form-group row">       
             <label class="form-control-label col-sm-3">送り状No</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control form-control-sm" data-bind="value: detail.shippingLabelNo">
+              <input type="text" disabled class="form-control form-control-sm" data-bind="value: detail.shippingLabelNo">
             </div>
           </div>
           <div class="form-group row">       
             <label class="form-control-label col-sm-3">発注日</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: detail.orderDate">
+              <input type="text" disabled class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: detail.orderDate">
             </div>
           </div>
           <div class="form-group row">       
             <label class="form-control-label col-sm-3">発送日</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: detail.shippingDate">
+              <input type="text" disabled class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: detail.shippingDate">
             </div>
           </div>
         </div>
@@ -175,12 +175,6 @@
       <div class="row">
         <div class="col-sm-6">
           <h4>商品情報</h4>
-        </div>
-        <div class="col-sm-3">
-          <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAddItem">商品追加</button>
-        </div>
-        <div class="col-sm-3">
-          <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doDeleteItem, enable: productModelList().length > 0">商品削除</button>
         </div>
       </div>
     </div>

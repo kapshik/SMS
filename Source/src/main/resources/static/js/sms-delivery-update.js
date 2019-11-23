@@ -12,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_delivery_menu').collapse('show');
-	$('#id_delivery_menu_3').addClass('active');
+	$('#id_delivery_menu_5').addClass('active');
     $('.loading').addClass('hidden');
 });
 
@@ -29,7 +29,7 @@ sms.vm.delivery = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
-			self.dataModel.title("納品変更");
+			self.dataModel.title("納品書確認");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();

@@ -12,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_estimate_menu').collapse('show');
-	$('#id_estimate_menu_2').addClass('active');
+	$('#id_estimate_menu_4').addClass('active');
     $('.loading').addClass('hidden');
 });
 
@@ -123,7 +123,7 @@ sms.vm.estimate = function() {
     };
 
     self.doUpdateItem = function() {
-        self.isUpdate = true;
+        self.isUpdate = false;
 console.log("doUpdateItem:" + self.isUpdate);    
         $('#id_modal_product_update').modal('show');
         doUnCheckedTableRow();

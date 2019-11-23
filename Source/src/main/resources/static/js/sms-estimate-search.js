@@ -12,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_estimate_menu').collapse('show');
-	$('#id_estimate_menu_1').addClass('active');
+	$('#id_estimate_menu_3').addClass('active');
     $('.loading').addClass('hidden');
 });
 

@@ -12,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_product_menu').collapse('show');
-	$('#id_product_menu_1').addClass('active');
+	$('#id_product_menu_2').addClass('active');
     $('.loading').addClass('hidden');
 });
 
@@ -32,7 +32,7 @@ sms.vm.product = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
-			self.dataModel.title("商品検索");
+			self.dataModel.title("商品状況");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();

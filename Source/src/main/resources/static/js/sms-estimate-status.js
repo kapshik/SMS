@@ -12,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_estimate_menu').collapse('show');
-	$('#id_estimate_menu_1').addClass('active');
+	$('#id_estimate_menu_2').addClass('active');
     $('.loading').addClass('hidden');
 });
 
@@ -30,7 +30,7 @@ sms.vm.estimate = function() {
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
 			param.success();
-			self.dataModel.title("見積検索");
+			self.dataModel.title("見積状況");
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
 			self.handler.handle(xhr, exception);

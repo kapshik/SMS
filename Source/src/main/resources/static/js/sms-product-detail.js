@@ -12,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_product_menu').collapse('show');
-	$('#id_product_menu_3').addClass('active');
+	$('#id_product_menu_1').addClass('active');
     $('.loading').addClass('hidden');
 });
 

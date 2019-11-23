@@ -29,7 +29,7 @@ sms.vm.purchase = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
-			self.dataModel.title("仕入検索");
+			self.dataModel.title("仕入管理");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();

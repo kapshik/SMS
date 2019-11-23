@@ -12,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_invoice_menu').collapse('show');
-	$('#id_invoice_menu_3').addClass('active');
+	$('#id_invoice_menu_5').addClass('active');
     $('.loading').addClass('hidden');
 });
 
@@ -29,7 +29,7 @@ sms.vm.invoice = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
-			self.dataModel.title("請求変更");
+			self.dataModel.title("請求書確認");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();

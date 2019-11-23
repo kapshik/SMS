@@ -12,13 +12,14 @@ $(function () {
         }
     });
 	$('#id_estimate_menu').collapse('show');
-	$('#id_estimate_menu_3').addClass('active');
+	$('#id_estimate_menu_5').addClass('active');
     $('.loading').addClass('hidden');
 });
 
 sms.vm.estimate = function() {
 	var self = this;
 
+    self.isUpdate = ko.observable(true);
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
 
@@ -74,7 +75,6 @@ sms.vm.estimate = function() {
             url: u,
             data: toJSON(self.dataModel)
           }).done(function(response) {
-            //TODO 時間がかかる場合は個別に実施
             ko.mapping.fromJS(response, self.dataModel);
           }).fail(function(xhr, exception){
             self.messages.removeAll();
@@ -119,6 +119,21 @@ sms.vm.estimate = function() {
 
     self.doDeleteItem = function() {
         self.dataModel.productModelList.pop();
+        doUnCheckedTableRow();
+    };
+
+    self.doUpdateItem = function() {
+        self.isUpdate = false;
+console.log("doUpdateItem:" + self.isUpdate);    
+        $('#id_modal_product_update').modal('show');
+        doUnCheckedTableRow();
+    };
+
+    self.doItemDetail = function() {
+        self.isUpdate = false;
+console.log("doItemDetail:" + self.isUpdate);    
+        $('#id_modal_product_detail').modal('show');
+        doUnCheckedTableRow();
     };
 
 	self.bind = function() {

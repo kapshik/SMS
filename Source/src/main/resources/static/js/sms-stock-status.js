@@ -12,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_stock_menu').collapse('show');
-	$('#id_stock_menu_1').addClass('active');
+	$('#id_stock_menu_2').addClass('active');
     $('.loading').addClass('hidden');
 });
 
@@ -29,7 +29,7 @@ sms.vm.stock = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
-			self.dataModel.title("在庫検索");
+			self.dataModel.title("在庫状況");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();

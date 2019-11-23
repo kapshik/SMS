@@ -12,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_branch_menu').collapse('show');
-	$('#id_branch_menu_1').addClass('active');
+	$('#id_branch_menu_3').addClass('active');
     $('.loading').addClass('hidden');
 });
 

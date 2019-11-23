@@ -9,13 +9,13 @@ public class StockController {
 
 //	在庫メイン画面
 	@RequestMapping("/sms-stock.html")	
-	public String statusForm(Model model) {
+	public String mainForm(Model model) {
 		return "sms-stock";
 	}
 
 //	在庫状況画面
 	@RequestMapping("/sms-stock-status.html")	
-	public String stockForm(Model model) {
+	public String statusForm(Model model) {
 		return "sms-stock-status";
 	}
 
@@ -27,19 +27,31 @@ public class StockController {
 
 //	在庫登録画面
 	@RequestMapping("/sms-stock-add.html")	
-	public String stockAddForm(Model model) {
+	public String addForm(Model model) {
 		return "sms-stock-add";
+	}
+	
+//	在庫登録画面
+	@RequestMapping("/sms-stock-in.html")	
+	public String inForm(Model model) {
+		return "sms-stock-in";
+	}
+	
+//	在庫登録画面
+	@RequestMapping("/sms-stock-out.html")	
+	public String outForm(Model model) {
+		return "sms-stock-out";
 	}
 	
 //	在庫詳細画面
 	@RequestMapping("/sms-stock-detail.html")	
-	public String stockDetailForm(Model model) {
+	public String detailForm(Model model) {
 		return "sms-stock-detail";
 	}
 	
 //	在庫変更画面
 	@RequestMapping("/sms-stock-update.html")	
-	public String stockUpdateForm(Model model) {
+	public String updateForm(Model model) {
 		return "sms-stock-update";
 	}
 	

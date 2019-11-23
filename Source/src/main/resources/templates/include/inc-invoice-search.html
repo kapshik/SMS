@@ -29,7 +29,7 @@
 <section data-bind="with: dataModel">
   <div class="card">
     <div class="card-header">
-      <h4>検索条件</h4><span data-bind="text: userName"></span>
+      <h4>検索条件</h4>
     </div>
     <div class="card-body">
       <div class="row">
@@ -107,17 +107,17 @@
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <button disabled id="id_btn_order_detail" type="button" data-toggle="modal" data-target="#id_modal_order_detail" class="btn btn-primary btn-block btn-sm with-table-row">注文詳細</button>
+            <button disabled id="id_btn_order_detail" type="button" data-toggle="modal" data-target="#id_modal_order_add" class="btn btn-primary btn-block btn-sm with-table-row">請求書作成</button>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <button disabled id="id_btn_order_update" type="button" data-toggle="modal" data-target="#id_modal_order_update" class="btn btn-primary btn-block btn-sm with-table-row">注文変更</button>
+            <button disabled id="id_btn_order_update" type="button" data-toggle="modal" data-target="#id_modal_order_update" class="btn btn-primary btn-block btn-sm with-table-row">請求書変更</button>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <button disabled data-bind="click:$root.doDelete" type="button" class="btn btn-primary btn-block btn-sm with-table-row">注文削除</button>
+            <button disabled id="id_btn_order_detail" type="button" data-toggle="modal" data-target="#id_modal_order_detail" class="btn btn-primary btn-block btn-sm with-table-row">請求書詳細</button>
           </div>
         </div>
       </div>

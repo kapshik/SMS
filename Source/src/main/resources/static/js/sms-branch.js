@@ -32,7 +32,7 @@ sms.vm.branch = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
-			self.dataModel.title("支店検索");
+			self.dataModel.title("支店管理");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();

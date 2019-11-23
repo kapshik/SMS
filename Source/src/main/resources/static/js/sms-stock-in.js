@@ -2,35 +2,35 @@ $(function () {
     // ------------------------------------------------------- //
     // Initialize Page By Server Data
     // ------------------------------------------------------ //
-    var viewModel = new sms.vm.estimate();
+    var viewModel = new sms.vm.stock();
     viewModel.doInit({
         success : function() {
-            viewModel.bind();
-        },
-        failed : function() {
-            viewModel.bind();
+        viewModel.bind();
+    },
+    failed : function() {
+        viewModel.bind();
         }
     });
-	$('#id_estimate_menu').collapse('show');
-	$('#id_estimate_menu_1').addClass('active');
+	$('#id_stock_menu').collapse('show');
+	$('#id_stock_menu_4').addClass('active');
     $('.loading').addClass('hidden');
 });
 
-sms.vm.estimate = function() {
+sms.vm.stock = function() {
 	var self = this;
 
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
 
 	self.doInit = function( param ) {
-		var u = '/estimate/init';
+		var u = '/stock/init';
 		$.ajax({
 			type: 'get',
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
+			self.dataModel.title("入庫登録");
 			param.success();
-			self.dataModel.title("見積管理");
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
 			self.handler.handle(xhr, exception);
@@ -39,7 +39,7 @@ sms.vm.estimate = function() {
 	};
 
     self.doCustomerChange = function() {
-        var u = '/estimate/customerChange';
+        var u = '/stock/customerChange';
         $.ajax({
             type: 'post',
             url: u,
@@ -54,7 +54,7 @@ sms.vm.estimate = function() {
     };
 
     self.doSearch = function() {
-        var u = '/estimate/search';
+        var u = '/stock/search';
         $.ajax({
             type: 'post',
             url: u,
@@ -67,8 +67,8 @@ sms.vm.estimate = function() {
         });
     };
 
-    self.doDelete = function() {
-        var u = '/estimate/delete';
+    self.doAdd = function() {
+        var u = '/stock/customerChange';
         $.ajax({
             type: 'post',
             url: u,
