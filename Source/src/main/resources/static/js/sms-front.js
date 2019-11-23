@@ -159,4 +159,8 @@ function doCheckedTableRow() {
     var r = $('input[name="table_radio"]:checked').val();
     $('.with-table-row').prop("disabled", false);
 };
+function doUnCheckedTableRow() {
+    var r = $('input[name="table_radio"]:checked').val();
+    $('.with-table-row').prop("disabled", true);
+};
 

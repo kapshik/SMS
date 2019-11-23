@@ -25,9 +25,9 @@ import net.sf.jasperreports.engine.data.JRCsvDataSource;
 @Controller
 public class ReportController {
 
-//	帳票画面
+//	帳票メイン画面
 	@RequestMapping("/sms-report.html")	
-	public String reportForm(Model model) {
+	public String mainForm(Model model) {
 		return "sms-report";
 	}
 

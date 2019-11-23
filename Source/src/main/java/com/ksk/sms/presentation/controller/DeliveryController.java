@@ -25,27 +25,39 @@ import net.sf.jasperreports.engine.data.JRCsvDataSource;
 @Controller
 public class DeliveryController {
 
-//	納品検索画面
+//	納品メイン画面
 	@RequestMapping("/sms-delivery.html")	
-	public String deliveryForm(Model model) {
+	public String mainForm(Model model) {
 		return "sms-delivery";
+	}
+
+//	納品状況画面
+	@RequestMapping("/sms-delivery-status.html")	
+	public String statusForm(Model model) {
+		return "sms-delivery-status";
+	}
+
+//	納品検索画面
+	@RequestMapping("/sms-delivery-search.html")	
+	public String searchForm(Model model) {
+		return "sms-delivery-search";
 	}
 
 //	納品登録画面
 	@RequestMapping("/sms-delivery-add.html")	
-	public String deliveryAddForm(Model model) {
+	public String addForm(Model model) {
 		return "sms-delivery-add";
 	}
 	
 //	納品詳細画面
 	@RequestMapping("/sms-delivery-detail.html")	
-	public String deliveryDetailForm(Model model) {
+	public String detailForm(Model model) {
 		return "sms-delivery-detail";
 	}
 	
 //	納品変更画面
 	@RequestMapping("/sms-delivery-update.html")	
-	public String deliveryUpdateForm(Model model) {
+	public String updateForm(Model model) {
 		return "sms-delivery-update";
 	}
 	

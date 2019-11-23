@@ -7,10 +7,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class StockController {
 
-//	在庫検索画面
+//	在庫メイン画面
 	@RequestMapping("/sms-stock.html")	
-	public String stockForm(Model model) {
+	public String statusForm(Model model) {
 		return "sms-stock";
+	}
+
+//	在庫状況画面
+	@RequestMapping("/sms-stock-status.html")	
+	public String stockForm(Model model) {
+		return "sms-stock-status";
+	}
+
+//	在庫検索画面
+	@RequestMapping("/sms-stock-search.html")	
+	public String searchForm(Model model) {
+		return "sms-stock-search";
 	}
 
 //	在庫登録画面

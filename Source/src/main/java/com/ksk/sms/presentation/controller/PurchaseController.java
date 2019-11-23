@@ -7,10 +7,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PurchaseController {
 
-//	仕入検索画面
+//	仕入メイン画面
 	@RequestMapping("/sms-purchase.html")	
-	public String purchaseForm(Model model) {
+	public String mainForm(Model model) {
 		return "sms-purchase";
+	}
+
+//	仕入状況画面
+	@RequestMapping("/sms-purchase-status.html")	
+	public String statusForm(Model model) {
+		return "sms-purchase-status";
+	}
+
+//	仕入検索画面
+	@RequestMapping("/sms-purchase-search.html")	
+	public String searchForm(Model model) {
+		return "sms-purchase-search";
 	}
 
 //	仕入登録画面

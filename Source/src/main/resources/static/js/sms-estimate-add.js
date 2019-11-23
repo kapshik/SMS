@@ -19,6 +19,7 @@ $(function () {
 sms.vm.estimate = function() {
 	var self = this;
 
+    self.isUpdate = ko.observable(true);
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
 
@@ -118,6 +119,21 @@ sms.vm.estimate = function() {
 
     self.doDeleteItem = function() {
         self.dataModel.productModelList.pop();
+        doUnCheckedTableRow();
+    };
+
+    self.doUpdateItem = function() {
+        self.isUpdate = true;
+console.log("doUpdateItem:" + self.isUpdate);    
+        $('#id_modal_product_update').modal('show');
+        doUnCheckedTableRow();
+    };
+
+    self.doItemDetail = function() {
+        self.isUpdate = false;
+console.log("doItemDetail:" + self.isUpdate);    
+        $('#id_modal_product_detail').modal('show');
+        doUnCheckedTableRow();
     };
 
 	self.bind = function() {

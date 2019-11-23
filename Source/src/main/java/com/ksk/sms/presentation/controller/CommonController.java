@@ -23,7 +23,7 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 public class CommonController {
 
 	// エラー画面
-	@RequestMapping("error.html")	
+	@RequestMapping("/error.html")	
 	public String errorForm(Model model) {
 		return "error";
 	}

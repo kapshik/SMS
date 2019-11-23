@@ -120,6 +120,17 @@ sms.vm.estimate = function() {
         self.dataModel.productModelList.pop();
     };
 
+    var isUpdate = false;
+    self.doUpdateItem = function() {
+        isUpdate = true;
+        $('#myModal').modal('show');
+    };
+
+    self.doItemDetail = function() {
+        isUpdate = false;
+        $('#myModal').modal('show');
+    };
+
 	self.bind = function() {
 		ko.applyBindings(this);
 	};

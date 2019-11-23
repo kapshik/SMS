@@ -24,5 +24,9 @@ public class OrderModel implements Serializable{
 	private String unitPrice;
 	private String discountUnitPrice;
 	private String memo;
+	private String estimationNo;
+	private String estimationDate;
+	private String estimationSendDate;
+	private String invoiceDate;
 }
 

@@ -43,7 +43,7 @@ public class EstimateServiceImpl implements SmsViewService<EstimateViewModel> {
 		outModel.setBranchModel(new BranchModel());
 		outModel.setCustomerModel(new CustomerModel());
 		outModel.setDeliveryDestModel(new DeliveryDestModel());
-		outModel.setProductModel(new ProductModel());
+		outModel.setProductModel(makeProductModel("XX"));
     	
 		outModel.setOrderModelList(new ArrayList<OrderModel>());
 		outModel.setProductModelList(new ArrayList<ProductModel>());

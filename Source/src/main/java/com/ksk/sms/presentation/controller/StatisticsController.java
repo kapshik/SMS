@@ -25,9 +25,9 @@ import net.sf.jasperreports.engine.data.JRCsvDataSource;
 @Controller
 public class StatisticsController {
 
-//	統計情報画面
+//	統計情報メイン画面
 	@RequestMapping("/sms-statistics.html")	
-	public String statisticsForm(Model model) {
+	public String mainForm(Model model) {
 		return "sms-statistics";
 	}
 
