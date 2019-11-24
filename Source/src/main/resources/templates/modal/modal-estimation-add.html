@@ -1,9 +1,9 @@
 <!-- Modal-->
-<div id="id_modal_order_add" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+<div id="id_modal_estimation_add" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
   <div role="document" class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 id="exampleModalLabel" class="modal-title">注文登録</h5>
+        <h5 id="exampleModalLabel" class="modal-title">見積登録</h5>
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body" data-bind="with: dataModel">
@@ -131,31 +131,31 @@
           <div class="col-lg-6">
             <div class="card">
               <div class="card-header d-flex align-items-center">
-                <h4>注文情報</h4>
+                <h4>見積情報</h4>
               </div>
               <div class="card-body">
-                <div class="form-group row">
+                <div class="form-group row align-items-center">
+                  <label class="form-control-label col-sm-3">見積No</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control form-control-sm" data-bind="value: detail.estimationNo">
+                  </div>
+                </div>
+                <div class="form-group row align-items-center">       
                   <label class="form-control-label col-sm-3">注文No</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control form-control-sm" data-bind="value: detail.orderNo">
                   </div>
                 </div>
-                <div class="form-group row">       
-                  <label class="form-control-label col-sm-3">送り状No</label>
+                <div class="form-group row align-items-center">       
+                  <label class="form-control-label col-sm-3">見積作成日</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control form-control-sm" data-bind="value: detail.shippingLabelNo">
+                    <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: detail.estimationDate">
                   </div>
                 </div>
-                <div class="form-group row">       
-                  <label class="form-control-label col-sm-3">発注日</label>
+                <div class="form-group row align-items-center">       
+                  <label class="form-control-label col-sm-3">見積提示日</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: detail.orderDate">
-                  </div>
-                </div>
-                <div class="form-group row">       
-                  <label class="form-control-label col-sm-3">発送日</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: detail.shippingDate">
+                    <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: detail.estimationSendDate">
                   </div>
                 </div>
               </div>

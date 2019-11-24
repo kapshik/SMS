@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-sm-3">
           <div class="form-group">
-            <button type="button" data-toggle="modal" data-target="#id_modal_order_add" class="btn btn-info btn-block btn-sm">注文登録</button>
+            <button type="button" data-toggle="modal" data-target="#id_modal_estimation_add" class="btn btn-info btn-block btn-sm">見積登録</button>
           </div>
         </div>
         <div class="col-sm-3">
@@ -35,8 +35,8 @@
       <div class="row">
         <div class="col-sm-3">
           <div class="form-group">
-            <label>注文No</label>
-            <input type="text" placeholder="注文No" class="form-control form-control-sm" data-bind="value: criteria.orderNo">
+            <label>見積No</label>
+            <input type="text" placeholder="見積文No" class="form-control form-control-sm" data-bind="value: criteria.estimationNo">
           </div>
         </div>
         <div class="col-sm-3">
@@ -74,26 +74,26 @@
       <div class="row">
         <div class="col-sm-3">
           <div class="form-group">
-            <label class="form-control-label">発注日</label>
+            <label class="form-control-label">見積作成日</label>
+            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.estimationDate">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="form-control-label">見積提示日</label>
+            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.estimationSendDate">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="form-control-label">受注日</label>
             <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.orderDate">
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <label class="form-control-label">納品日</label>
-            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.deliveryDate">
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label class="form-control-label">出荷日</label>
-            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.shippingDate">
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label class="form-control-label">登録日</label>
-            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.registrationDate">
+            <label class="form-control-label">請求日</label>
+            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.invoiceDate">
           </div>
         </div>
       </div>
@@ -102,22 +102,22 @@
       <div class="row">
         <div class="col-sm-3">
           <div class="form-group">
-            <button  id="id_btn_order_search" type="button" data-bind="click:$root.doSearch" class="btn btn-primary btn-block btn-sm">注文検索</button>
+            <button  id="id_btn_search" type="button" data-bind="click:$root.doSearch" class="btn btn-primary btn-block btn-sm">見積検索</button>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <button disabled id="id_btn_order_detail" type="button" data-toggle="modal" data-target="#id_modal_order_detail" class="btn btn-primary btn-block btn-sm with-table-row">注文詳細</button>
+            <button disabled id="id_btn_detail" type="button" data-toggle="modal" data-target="#id_modal_estimation_detail" class="btn btn-primary btn-block btn-sm with-table-row">見積詳細</button>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <button disabled id="id_btn_order_update" type="button" data-toggle="modal" data-target="#id_modal_order_update" class="btn btn-primary btn-block btn-sm with-table-row">注文変更</button>
+            <button disabled id="id_btn_update" type="button" data-toggle="modal" data-target="#id_modal_estimation_update" class="btn btn-primary btn-block btn-sm with-table-row">見積変更</button>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <button disabled data-bind="click:$root.doDelete" type="button" class="btn btn-primary btn-block btn-sm with-table-row">注文削除</button>
+            <button disabled data-bind="click:$root.doDelete" type="button" class="btn btn-primary btn-block btn-sm with-table-row">見積削除</button>
           </div>
         </div>
       </div>
@@ -127,22 +127,22 @@
 <section data-bind="with: dataModel">
   <div class="card" data-bind="visible : orderModelList().length > 0">
     <div class="card-header">
-      <h4>注文検索結果</h4>
+      <h4>見積検索結果</h4>
     </div>
     <div class="card-body">
       <div class="table-responsive">
       <table id="id_order_list" class="table table-striped table-hover table-sm table-bordered" style="width:100%">
         <thead>
           <tr>
-            <th>#</th>
-            <th>発注No.</th>
-            <th>顧客名</th>
-            <th>支店名</th>
-            <th>納品先</th>
-            <th>発注日</th>
-            <th>納品日</th>
-            <th>発送日</th>
-            <th>作成日</th>
+            <th width="2%">#</th>
+            <th width="10%">見積No</th>
+            <th width="15%">顧客名</th>
+            <th width="15%">支店名</th>
+            <th width="18%">納品先名</th>
+            <th width="10%">発注日</th>
+            <th width="10%">納品日</th>
+            <th width="10%">発送日</th>
+            <th width="10%">作成日</th>
           </tr>
         </thead>
         <tbody data-bind="foreach: orderModelList">
@@ -152,14 +152,14 @@
                 <input type="radio" class="form-check-input" name="table_radio" data-bind="value: orderNo" onClick="doCheckedTableRow()">
               </div>
             </th>
-            <td><span data-bind="text: orderNo"></span></td>
+            <td><span data-bind="text: estimationNo"></span></td>
             <td><span data-bind="text: customerNo"></span></td>
             <td><span data-bind="text: branchNo"></span></td>
             <td><span data-bind="text: deliveryDestNo"></span></td>
+            <td><span data-bind="text: estimationDate"></span></td>
+            <td><span data-bind="text: estimationSendDate"></span></td>
             <td><span data-bind="text: orderDate"></span></td>
-            <td><span data-bind="text: deliveryDate"></span></td>
-            <td><span data-bind="text: shippingDate"></span></td>
-            <td><span data-bind="text: registrationDate"></span></td>
+            <td><span data-bind="text: invoiceDate"></span></td>
           </tr>
         </tbody>
       </table>
@@ -168,11 +168,11 @@
   </div>
 </section>
 <!-- Modal-->
-<div th:include="modal/modal-order-add">
+<div th:include="modal/modal-estimation-add">
 </div>
-<div th:include="modal/modal-order-detail">
+<div th:include="modal/modal-estimation-detail">
 </div>
-<div th:include="modal/modal-order-update">
+<div th:include="modal/modal-estimation-update">
 </div>
 <div th:include="modal/modal-customer-add">
 </div>

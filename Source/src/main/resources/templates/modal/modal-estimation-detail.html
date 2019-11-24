@@ -1,9 +1,9 @@
 <!-- Modal-->
-<div id="id_modal_order_add" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+<div id="id_modal_estimation_detail" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
   <div role="document" class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 id="exampleModalLabel" class="modal-title">注文登録</h5>
+        <h5 id="exampleModalLabel" class="modal-title">見積詳細</h5>
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body" data-bind="with: dataModel">
@@ -13,35 +13,30 @@
               <div class="card-header d-flex align-items-center">
                 <h4>顧客情報</h4>
               </div>
-              <div class="card-body">
+              <div class="card-body disabled">
                 <form>
                   <div class="form-group row">
                     <label class="form-control-label col-sm-3">顧客名</label>
                     <div class="col-sm-9">
-                      <select class="form-control form-control-sm" 
-                        data-bind="options: customerList,
-                          optionsValue: 'key', optionsText: 'value', value:detail.customerNo,
-                          optionsCaption:'選択してください',
-                          event: {change: $root.doCustomerChange}">
-                      </select>
+                      <input type="text" disabled class="form-control form-control-sm" data-bind="value: customerModel.customerName">
                     </div>
                   </div>
                   <div class="form-group row">       
                     <label class="form-control-label col-sm-3">住所</label>
                     <div class="col-sm-9">
-                      <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: customerModel.address">
+                      <input type="text" disabled class="form-control form-control-sm" data-bind="value: customerModel.address">
                     </div>
                   </div>
                   <div class="form-group row">       
                     <label class="form-control-label col-sm-3">電話</label>
                     <div class="col-sm-9">
-                      <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: customerModel.telNo">
+                      <input type="text" disabled class="form-control form-control-sm" data-bind="value: customerModel.telNo">
                     </div>
                   </div>
                   <div class="form-group row">       
                     <label class="form-control-label col-sm-3">ファックス</label>
                     <div class="col-sm-9">
-                      <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: customerModel.faxNo">
+                      <input type="text" disabled class="form-control form-control-sm" data-bind="value: customerModel.faxNo">
                     </div>
                   </div>
                 </form>
@@ -58,29 +53,25 @@
                   <div class="form-group row">
                     <label class="form-control-label col-sm-3">支店名</label>
                     <div class="col-sm-9">
-                      <select class="form-control form-control-sm"
-                        data-bind="options: branchList,
-                          optionsValue: 'key', optionsText: 'value', value:detail.branchNo,
-                          optionsCaption:'選択してください'">
-                      </select>
+                      <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.branchName">
                     </div>
                   </div>
                   <div class="form-group row">       
                     <label class="form-control-label col-sm-3">住所</label>
                     <div class="col-sm-9">
-                      <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: branchModel.address">
+                      <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.address">
                     </div>
                   </div>
                   <div class="form-group row">       
                     <label class="form-control-label col-sm-3">電話</label>
                     <div class="col-sm-9">
-                      <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: branchModel.telNo">
+                      <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.telNo">
                     </div>
                   </div>
                   <div class="form-group row">       
                     <label class="form-control-label col-sm-3">ファックス</label>
                     <div class="col-sm-9">
-                      <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: branchModel.faxNo">
+                      <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.faxNo">
                     </div>
                   </div>
                 </form>
@@ -99,29 +90,25 @@
                   <div class="form-group row">
                     <label class="form-control-label col-sm-3">納品先名</label>
                     <div class="col-sm-9">
-                      <select class="form-control form-control-sm"
-                        data-bind="options: deliveryDestList,
-                          optionsValue: 'key', optionsText: 'value', value:detail.deliveryDestNo,
-                          optionsCaption:'選択してください'">
-                      </select>
+                      <input type="text" disabled class="form-control form-control-sm" data-bind="value: deliveryDestModel.deliveryDestName">
                     </div>
                   </div>
                   <div class="form-group row">       
                     <label class="form-control-label col-sm-3">住所</label>
                     <div class="col-sm-9">
-                      <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: deliveryDestModel.address">
+                      <input type="text" disabled class="form-control form-control-sm" data-bind="value: deliveryDestModel.address">
                     </div>
                   </div>
                   <div class="form-group row">       
                     <label class="form-control-label col-sm-3">電話</label>
                     <div class="col-sm-9">
-                      <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: deliveryDestModel.telNo">
+                      <input type="text" disabled class="form-control form-control-sm" data-bind="value: deliveryDestModel.telNo">
                     </div>
                   </div>
                   <div class="form-group row">       
                     <label class="form-control-label col-sm-3">ファックス</label>
                     <div class="col-sm-9">
-                      <input type="text" disabled="" class="form-control form-control-sm" data-bind="value: deliveryDestModel.faxNo">
+                      <input type="text" disabled class="form-control form-control-sm" data-bind="value: deliveryDestModel.faxNo">
                     </div>
                   </div>
                 </form>
@@ -131,31 +118,31 @@
           <div class="col-lg-6">
             <div class="card">
               <div class="card-header d-flex align-items-center">
-                <h4>注文情報</h4>
+                <h4>見積情報</h4>
               </div>
               <div class="card-body">
-                <div class="form-group row">
+                <div class="form-group row align-items-center">
+                  <label class="form-control-label col-sm-3">見積No</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control form-control-sm" data-bind="value: detail.estimationNo">
+                  </div>
+                </div>
+                <div class="form-group row align-items-center">       
                   <label class="form-control-label col-sm-3">注文No</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control form-control-sm" data-bind="value: detail.orderNo">
                   </div>
                 </div>
-                <div class="form-group row">       
-                  <label class="form-control-label col-sm-3">送り状No</label>
+                <div class="form-group row align-items-center">       
+                  <label class="form-control-label col-sm-3">見積作成日</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control form-control-sm" data-bind="value: detail.shippingLabelNo">
+                    <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: detail.estimationDate">
                   </div>
                 </div>
-                <div class="form-group row">       
-                  <label class="form-control-label col-sm-3">発注日</label>
+                <div class="form-group row align-items-center">       
+                  <label class="form-control-label col-sm-3">見積提示日</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: detail.orderDate">
-                  </div>
-                </div>
-                <div class="form-group row">       
-                  <label class="form-control-label col-sm-3">発送日</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: detail.shippingDate">
+                    <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: detail.estimationSendDate">
                   </div>
                 </div>
               </div>
@@ -166,23 +153,16 @@
         <div class="form-group row">       
           <label class="form-control-label col-sm-1">メモ</label>
           <div class="col-sm-11">
-            <textarea class="form-control form-control-sm" rows="2" data-bind="value: detail.memo"></textarea>
+            <textarea class="form-control form-control-sm" rows="2" readonly data-bind="value: detail.memo"></textarea>
           </div>
         </div>
 
+        <!-- Page Header-->
         <div class="card">
           <div class="card-header d-flex align-items-center">
-            <div class="col-sm-6">
-              <h4>商品情報</h4>
-            </div>
-            <div class="col-sm-3">
-              <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAddItem">商品追加</button>
-            </div>
-            <div class="col-sm-3">
-              <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doDeleteItem, enable: productModelList().length > 0">商品削除</button>
-            </div>
+            <h4>商品情報</h4>
           </div>
-          <div class="card-body" data-bind="visible : productModelList().length > 0">
+          <div class="card-body">
             <div class="table-responsive">
               <table id="id_order_add_list" class="table table-striped table-bordered table-hover table-sm" style="width: 100%;">
                 <thead>
@@ -199,18 +179,14 @@
                 </thead>
                 <tbody data-bind="foreach: productModelList">
                   <tr>
-                    <td width="10%">
-                      <select class="form-control form-control-sm" data-bind="options: productMasterList,
-                        optionsValue: 'key', optionsText: 'value', value: productName, optionsCaption:'選択してください'">
-                      </select>
-                    </td>
-                    <td width="10%"><span data-bind="text: productCode" class="form-control form-control-sm"></td>
-                    <td width="5%"><input data-bind="value: quantity" type="text" class="form-control form-control-sm"></td>
-                    <td width="5%"><span data-bind="text: quantityOfBox" class="form-control form-control-sm"></td>
-                    <td width="10%"><span data-bind="text: unitPrice" class="form-control form-control-sm"></td>
-                    <td width="10%"><input data-bind="value: discountPrice" type="text" class="form-control form-control-sm"></td>
-                    <td width="10%"><span data-bind="text: amount" class="form-control form-control-sm"></td>
-                    <td><input data-bind="value: remarks" type="text" class="form-control form-control-sm"></td>
+                    <td><span data-bind="text: customerNo"></td>
+                    <td><span data-bind="text: productCode"></td>
+                    <td><span data-bind="text: quantity"></td>
+                    <td><span data-bind="text: quantityOfBox"></td>
+                    <td><span data-bind="text: unitPrice"></td>
+                    <td><span data-bind="text: discountPrice"></td>
+                    <td><span data-bind="text: amount"></td>
+                    <td><span data-bind="text: remarks"></td>
                   </tr>
                 </tbody>
               </table>
@@ -219,8 +195,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAddOrder">登録</button>
-        <button type="button" class="btn btn-secondary btn-block btn-sm" data-dismiss="modal" data-bind="click: $root.doCancel">キャンセル</button>
+        <button type="button" class="btn btn-secondary btn-block btn-sm" data-dismiss="modal">終了</button>
       </div>
     </div>
   </div>

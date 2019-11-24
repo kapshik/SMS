@@ -13,7 +13,9 @@ $(function () {
     });
 	$('#id_product_menu').collapse('show');
 	$('#id_product_menu_1').addClass('active');
-    $('.loading').addClass('hidden');
+    setTimeout( function(){
+            $('.loading').addClass('hidden');
+    }, LOADING_TIMEOUT);
 });
 
 // ------------------------------------------------------- //

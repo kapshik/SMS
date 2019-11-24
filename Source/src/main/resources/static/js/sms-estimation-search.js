@@ -2,36 +2,37 @@ $(function () {
     // ------------------------------------------------------- //
     // Initialize Page By Server Data
     // ------------------------------------------------------ //
-    var viewModel = new sms.vm.estimate();
+    var viewModel = new sms.vm.estimation();
     viewModel.doInit({
         success : function() {
-        viewModel.bind();
-    },
-    failed : function() {
-        viewModel.bind();
+            viewModel.bind();
+        },
+        failed : function() {
+            viewModel.bind();
         }
     });
-	$('#id_estimate_menu').collapse('show');
-	$('#id_estimate_menu_4').addClass('active');
-    $('.loading').addClass('hidden');
+	$('#id_estimation_menu').collapse('show');
+	$('#id_estimation_menu_3').addClass('active');
+    setTimeout( function(){
+            $('.loading').addClass('hidden');
+    }, LOADING_TIMEOUT);
 });
 
-sms.vm.estimate = function() {
+sms.vm.estimation = function() {
 	var self = this;
 
-    self.isUpdate = ko.observable(true);
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
 
 	self.doInit = function( param ) {
-		var u = '/estimate/init';
+		var u = '/estimation/init';
 		$.ajax({
 			type: 'get',
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
-			self.dataModel.title("見積登録");
 			param.success();
+			self.dataModel.title("見積検索");
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
 			self.handler.handle(xhr, exception);
@@ -40,7 +41,7 @@ sms.vm.estimate = function() {
 	};
 
     self.doCustomerChange = function() {
-        var u = '/estimate/customerChange';
+        var u = '/estimation/customerChange';
         $.ajax({
             type: 'post',
             url: u,
@@ -55,7 +56,7 @@ sms.vm.estimate = function() {
     };
 
     self.doSearch = function() {
-        var u = '/estimate/search';
+        var u = '/estimation/search';
         $.ajax({
             type: 'post',
             url: u,
@@ -68,8 +69,8 @@ sms.vm.estimate = function() {
         });
     };
 
-    self.doAdd = function() {
-        var u = '/estimate/customerChange';
+    self.doDelete = function() {
+        var u = '/estimation/delete';
         $.ajax({
             type: 'post',
             url: u,
@@ -119,21 +120,6 @@ sms.vm.estimate = function() {
 
     self.doDeleteItem = function() {
         self.dataModel.productModelList.pop();
-        doUnCheckedTableRow();
-    };
-
-    self.doUpdateItem = function() {
-        self.isUpdate = false;
-console.log("doUpdateItem:" + self.isUpdate);    
-        $('#id_modal_product_update').modal('show');
-        doUnCheckedTableRow();
-    };
-
-    self.doItemDetail = function() {
-        self.isUpdate = false;
-console.log("doItemDetail:" + self.isUpdate);    
-        $('#id_modal_product_detail').modal('show');
-        doUnCheckedTableRow();
     };
 
 	self.bind = function() {

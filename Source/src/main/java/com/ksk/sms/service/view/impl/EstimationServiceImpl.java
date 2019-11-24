@@ -6,31 +6,30 @@ import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
 import com.ksk.sms.model.BranchModel;
 import com.ksk.sms.model.CustomerModel;
 import com.ksk.sms.model.DeliveryDestModel;
-import com.ksk.sms.model.EstimateViewModel;
+import com.ksk.sms.model.EstimationViewModel;
 import com.ksk.sms.model.OrderModel;
 import com.ksk.sms.model.ProductModel;
+import com.ksk.sms.service.common.SmsService;
 import com.ksk.sms.service.view.SmsViewService;
 
-@Service
-public class EstimateServiceImpl implements SmsViewService<EstimateViewModel> {
+import lombok.extern.log4j.Log4j2;
 
-	private static final Logger log = LogManager.getLogger(EstimateServiceImpl.class);
+@Log4j2
+@Service
+public class EstimationServiceImpl extends SmsService implements SmsViewService<EstimationViewModel> {
 
 	@Override
-    public EstimateViewModel init() {
+    public EstimationViewModel init() {
 
-        EstimateViewModel outModel = new EstimateViewModel();
+        EstimationViewModel outModel = new EstimationViewModel();
 
-		outModel.setUserName("user guest");
-//		outModel.setTitle("注文管理");
+		outModel.setUserName(getUserName());
     	
 		outModel.setCustomerList(makeCustomerList());
 		outModel.setBranchList(makeBranchList());
@@ -47,14 +46,14 @@ public class EstimateServiceImpl implements SmsViewService<EstimateViewModel> {
     	
 		outModel.setOrderModelList(new ArrayList<OrderModel>());
 		outModel.setProductModelList(new ArrayList<ProductModel>());
-log.info("init");
+
     	return outModel;
     }
 
 	@Override
-    public EstimateViewModel search(EstimateViewModel inModel) {
+    public EstimationViewModel search(EstimationViewModel inModel) {
 
-        EstimateViewModel outModel = Objects.requireNonNull(inModel);
+        EstimationViewModel outModel = Objects.requireNonNull(inModel);
 
 log.info("inModel.getUserName = " + inModel.getUserName());
 log.info("inModel.getOrderNo = " + inModel.getCriteria().getOrderNo());
@@ -75,9 +74,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public EstimateViewModel customerChange(EstimateViewModel inModel) {
+    public EstimationViewModel customerChange(EstimationViewModel inModel) {
 
-        EstimateViewModel outModel = Objects.requireNonNull(inModel);
+        EstimationViewModel outModel = Objects.requireNonNull(inModel);
 
     	outModel.setBranchList(makeBranchList());
 
@@ -85,9 +84,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public EstimateViewModel branchChange(EstimateViewModel inModel) {
+    public EstimationViewModel branchChange(EstimationViewModel inModel) {
     	
-        EstimateViewModel outModel = Objects.requireNonNull(inModel);
+        EstimationViewModel outModel = Objects.requireNonNull(inModel);
     	
         try {
 			BeanUtils.copyProperties(inModel, outModel);
@@ -102,9 +101,9 @@ log.info("outModel.getUserName = " + outModel.getUserName());
     }
 
     @Override
-    public EstimateViewModel close(EstimateViewModel inModel) {
+    public EstimationViewModel close(EstimationViewModel inModel) {
     	
-        EstimateViewModel outModel = Objects.requireNonNull(inModel);
+        EstimationViewModel outModel = Objects.requireNonNull(inModel);
 
     	return outModel;
 
@@ -375,19 +374,19 @@ log.info("makeProductModelList " + productList.size());
 	}
 
 	@Override
-	public EstimateViewModel create(EstimateViewModel inModel) {
+	public EstimationViewModel create(EstimationViewModel inModel) {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 
 	@Override
-	public EstimateViewModel update(EstimateViewModel inModel) {
+	public EstimationViewModel update(EstimationViewModel inModel) {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 
 	@Override
-	public EstimateViewModel delete(EstimateViewModel inModel) {
+	public EstimationViewModel delete(EstimationViewModel inModel) {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}

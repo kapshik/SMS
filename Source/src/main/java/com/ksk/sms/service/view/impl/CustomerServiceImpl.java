@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
@@ -14,20 +12,21 @@ import com.ksk.sms.model.CustomerModel;
 import com.ksk.sms.model.CustomerViewModel;
 import com.ksk.sms.model.DeliveryDestModel;
 import com.ksk.sms.model.ProductModel;
+import com.ksk.sms.service.common.SmsService;
 import com.ksk.sms.service.view.SmsViewService;
 
-@Service
-public class CustomerServiceImpl implements SmsViewService<CustomerViewModel> {
+import lombok.extern.log4j.Log4j2;
 
-	private static final Logger log = LogManager.getLogger(CustomerServiceImpl.class);
+@Log4j2
+@Service
+public class CustomerServiceImpl extends SmsService implements SmsViewService<CustomerViewModel> {
 
 	@Override
     public CustomerViewModel init() {
 
         CustomerViewModel outModel = new CustomerViewModel();
 
-		outModel.setUserName("user guest");
-		outModel.setTitle("顧客管理");
+		outModel.setUserName(getUserName());
     	
 		outModel.setCustomerList(makeCustomerList());
 		outModel.setBranchList(makeBranchList());

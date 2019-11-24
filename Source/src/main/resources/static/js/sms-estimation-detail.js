@@ -2,35 +2,37 @@ $(function () {
     // ------------------------------------------------------- //
     // Initialize Page By Server Data
     // ------------------------------------------------------ //
-    var viewModel = new sms.vm.estimate();
+    var viewModel = new sms.vm.estimation();
     viewModel.doInit({
         success : function() {
-            viewModel.bind();
-        },
-        failed : function() {
-            viewModel.bind();
+        viewModel.bind();
+    },
+    failed : function() {
+        viewModel.bind();
         }
     });
-	$('#id_estimate_menu').collapse('show');
-	$('#id_estimate_menu_1').addClass('active');
-    $('.loading').addClass('hidden');
+	$('#id_estimation_menu').collapse('show');
+	$('#id_estimation_menu_1').addClass('active');
+    setTimeout( function(){
+            $('.loading').addClass('hidden');
+    }, LOADING_TIMEOUT);
 });
 
-sms.vm.estimate = function() {
+sms.vm.estimation = function() {
 	var self = this;
 
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
 
 	self.doInit = function( param ) {
-		var u = '/estimate/init';
+		var u = '/estimation/init';
 		$.ajax({
 			type: 'get',
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
+			self.dataModel.title("見積詳細");
 			param.success();
-			self.dataModel.title("見積管理");
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
 			self.handler.handle(xhr, exception);
@@ -39,7 +41,7 @@ sms.vm.estimate = function() {
 	};
 
     self.doCustomerChange = function() {
-        var u = '/estimate/customerChange';
+        var u = '/estimation/customerChange';
         $.ajax({
             type: 'post',
             url: u,
@@ -54,7 +56,7 @@ sms.vm.estimate = function() {
     };
 
     self.doSearch = function() {
-        var u = '/estimate/search';
+        var u = '/estimation/search';
         $.ajax({
             type: 'post',
             url: u,
@@ -67,13 +69,14 @@ sms.vm.estimate = function() {
         });
     };
 
-    self.doDelete = function() {
-        var u = '/estimate/delete';
+    self.doAdd = function() {
+        var u = '/estimation/customerChange';
         $.ajax({
             type: 'post',
             url: u,
             data: toJSON(self.dataModel)
           }).done(function(response) {
+            //TODO 時間がかかる場合は個別に実施
             ko.mapping.fromJS(response, self.dataModel);
           }).fail(function(xhr, exception){
             self.messages.removeAll();

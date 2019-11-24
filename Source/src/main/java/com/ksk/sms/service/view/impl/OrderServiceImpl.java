@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
@@ -17,20 +15,21 @@ import com.ksk.sms.model.DeliveryDestModel;
 import com.ksk.sms.model.OrderModel;
 import com.ksk.sms.model.OrderViewModel;
 import com.ksk.sms.model.ProductModel;
+import com.ksk.sms.service.common.SmsService;
 import com.ksk.sms.service.view.SmsViewService;
 
-@Service
-public class OrderServiceImpl implements SmsViewService<OrderViewModel>{
+import lombok.extern.log4j.Log4j2;
 
-	private static final Logger log = LogManager.getLogger(OrderServiceImpl.class);
+@Log4j2
+@Service
+public class OrderServiceImpl extends SmsService implements SmsViewService<OrderViewModel>{
 
 	@Override
     public OrderViewModel init() {
 
         OrderViewModel outModel = new OrderViewModel();
 
-		outModel.setUserName("user guest");
-//		outModel.setTitle("注文管理");
+		outModel.setUserName(getUserName());
     	
 		outModel.setCustomerList(makeCustomerList());
 		outModel.setBranchList(makeBranchList());
@@ -47,7 +46,7 @@ public class OrderServiceImpl implements SmsViewService<OrderViewModel>{
     	
 		outModel.setOrderModelList(new ArrayList<OrderModel>());
 		outModel.setProductModelList(new ArrayList<ProductModel>());
-log.info("init");
+log.info("OrderServiceImpl init");
     	return outModel;
     }
 

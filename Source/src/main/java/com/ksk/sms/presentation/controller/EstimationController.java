@@ -5,42 +5,42 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class EstimateController {
+public class EstimationController {
 
 //	見積メイン画面
-	@RequestMapping("/sms-estimate.html")	
+	@RequestMapping("/sms-estimation.html")	
 	public String mainForm(Model model) {
-		return "sms-estimate";
+		return "sms-estimation";
 	}
 
 //	見積状況画面
-	@RequestMapping("/sms-estimate-status.html")	
+	@RequestMapping("/sms-estimation-status.html")	
 	public String statusForm(Model model) {
-		return "sms-estimate-status";
+		return "sms-estimation-status";
 	}
 
 //	見積検索画面
-	@RequestMapping("/sms-estimate-search.html")	
+	@RequestMapping("/sms-estimation-search.html")	
 	public String searchForm(Model model) {
-		return "sms-estimate-search";
+		return "sms-estimation-search";
 	}
 
 //	見積登録画面
-	@RequestMapping("/sms-estimate-add.html")	
+	@RequestMapping("/sms-estimation-add.html")	
 	public String addForm(Model model) {
-		return "sms-estimate-add";
+		return "sms-estimation-add";
 	}
 	
 //	見積詳細画面
-	@RequestMapping("/sms-estimate-detail.html")	
+	@RequestMapping("/sms-estimation-detail.html")	
 	public String detailForm(Model model) {
-		return "sms-estimate-detail";
+		return "sms-estimation-detail";
 	}
 	
 //	見積変更画面
-	@RequestMapping("/sms-estimate-update.html")	
+	@RequestMapping("/sms-estimation-update.html")	
 	public String updateForm(Model model) {
-		return "sms-estimate-update";
+		return "sms-estimation-update";
 	}
 	
 }

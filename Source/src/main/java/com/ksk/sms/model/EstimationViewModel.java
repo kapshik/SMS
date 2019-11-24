@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class EstimateViewModel extends SmsViewModel{
+public class EstimationViewModel extends SmsViewModel{
 
 	private OrderModel criteria;
 	private OrderModel detail;

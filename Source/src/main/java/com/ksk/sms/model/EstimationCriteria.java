@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class EstimateCriteria implements Serializable{
+public class EstimationCriteria implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 

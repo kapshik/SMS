@@ -1,3 +1,6 @@
+    setTimeout( function(){
+            $('.loading').addClass('hidden');
+    }, LOADING_TIMEOUT);
 $(function () {
     // ------------------------------------------------------- //
     // Initialize Page By Server Data
@@ -13,7 +16,9 @@ $(function () {
     });
 	$('#id_branch_menu').collapse('show');
 	$('#id_branch_menu_1').addClass('active');
-    $('.loading').addClass('hidden');
+    setTimeout( function(){
+            $('.loading').addClass('hidden');
+    }, LOADING_TIMEOUT);
 });
 
 // ------------------------------------------------------- //

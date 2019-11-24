@@ -1,5 +1,5 @@
 $(function () {
-    setTimeout(function(){
-        $('.loading').addClass('hidden');
-    },1000);
+    setTimeout( function(){
+            $('.loading').addClass('hidden');
+    }, LOADING_TIMEOUT);
 });

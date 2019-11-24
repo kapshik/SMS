@@ -13,3 +13,5 @@ sms.common.log = {};
 
 sms.validation = {};
 sms.pagination = {};
+
+var LOADING_TIMEOUT = 500;

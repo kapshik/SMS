@@ -13,7 +13,9 @@ $(function () {
     });
 	$('#id_delivery_menu').collapse('show');
 	$('#id_delivery_menu_4').addClass('active');
-    $('.loading').addClass('hidden');
+    setTimeout( function(){
+            $('.loading').addClass('hidden');
+    }, LOADING_TIMEOUT);
 });
 
 sms.vm.delivery = function() {

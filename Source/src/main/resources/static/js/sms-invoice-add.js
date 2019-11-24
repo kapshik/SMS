@@ -13,7 +13,9 @@ $(function () {
     });
 	$('#id_invoice_menu').collapse('show');
 	$('#id_invoice_menu_4').addClass('active');
-    $('.loading').addClass('hidden');
+    setTimeout( function(){
+            $('.loading').addClass('hidden');
+    }, LOADING_TIMEOUT);
 });
 
 sms.vm.invoice = function() {

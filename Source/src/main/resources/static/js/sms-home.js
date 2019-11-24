@@ -113,22 +113,9 @@ $(document).ready(function () {
         }
     });
 	$('#id_home_menu').addClass('active');
-    $('.loading').addClass('hidden');
-});
-
-$(function () {
-
-    Messenger.options = {
-        extraClasses: 'messenger-fixed messenger-on-top  messenger-on-right',
-        theme: 'flat',
-        messageDefaults: {
-            showCloseButton: true
-        }
-    }
-    Messenger().post({
-        message: 'こんにちは?<br>弊社販売管理システムをお使い頂き有難う御座います！',
-        type: 'success'
-    });
+    setTimeout( function(){
+            $('.loading').addClass('hidden');
+    }, LOADING_TIMEOUT);
 });
 
 sms.vm.home = function() {
@@ -144,6 +131,8 @@ sms.vm.home = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
+			self.dataModel.title("注文管理システム");
+			self.postMessage("こんにちは? "+ self.dataModel.userName() + "<br>弊社販売管理システムをお使い頂き有難う御座います！", "success");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -155,5 +144,37 @@ sms.vm.home = function() {
 	self.bind = function() {
 		ko.applyBindings(this);
 	};
+
+    self.postMessage = function (inMessage, inType) {
+        Messenger().post({
+            message: inMessage,
+            type: inType
+        });
+    };
 };
 
+$(function () {
+    Messenger.options = {
+        extraClasses: 'messenger-fixed messenger-on-top  messenger-on-right',
+        theme: 'flat',
+        messageDefaults: {
+            showCloseButton: true
+        }
+    }
+});
+
+/*
+$(function () {
+    Messenger.options = {
+        extraClasses: 'messenger-fixed messenger-on-top  messenger-on-right',
+        theme: 'flat',
+        messageDefaults: {
+            showCloseButton: true
+        }
+    }
+    Messenger().post({
+        message: 'こんにちは?<br>弊社販売管理システムをお使い頂き有難う御座います！',
+        type: 'success'
+    });
+});
+*/

@@ -1,168 +1,176 @@
-<section>
-  <div class="card">
-    <div class="card-body text-center">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button type="button" data-toggle="modal" data-target="#id_modal_order_add" class="btn btn-info btn-block btn-sm">注文登録</button>
+<section class="charts">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card line-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>仕入状況1</h4>
+          </div>
+          <div class="card-body">
+            <canvas id="lineChartExample"></canvas>
           </div>
         </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button type="button" data-toggle="modal" data-target="#id_modal_customer_add" class="btn btn-warning btn-block btn-sm">顧客登録</button>
+      </div>
+      <div class="col-md-6">
+        <div class="card bar-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>仕入状況2</h4>
           </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button type="button" data-toggle="modal" data-target="#id_modal_branch_add" class="btn btn-danger btn-block btn-sm">支店登録</button>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button type="button" data-toggle="modal" data-target="#id_modal_product_add" class="btn btn-secondary btn-block btn-sm">商品登録</button>
+          <div class="card-body">
+            <canvas id="barChartExample"></canvas>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<section data-bind="with: dataModel">
-  <div class="card">
-    <div class="card-header">
-      <h4>検索条件</h4>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label>注文No</label>
-            <input type="text" placeholder="注文No" class="form-control form-control-sm" data-bind="value: criteria.orderNo">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card line-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>仕入状況3</h4>
           </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label class="form-control-label">顧客</label>
-            <select class="form-control form-control-sm" 
-              data-bind="options: customerList,
-                optionsValue: 'key', optionsText: 'value', value:criteria.customerNo,
-                optionsCaption:'選択してください',
-                event: {change: $root.doCustomerChange}">
-            </select>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label class="form-control-label">支店</label>
-            <select class="form-control form-control-sm"
-              data-bind="options: branchList,
-                optionsValue: 'key', optionsText: 'value', value:criteria.branchNo,
-                optionsCaption:'選択してください'">
-            </select>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label class="form-control-label">納品先</label>
-            <select class="form-control form-control-sm"
-              data-bind="options: deliveryDestList,
-                optionsValue: 'key', optionsText: 'value', value:criteria.deliveryDestNo,
-                optionsCaption:'選択してください'">
-            </select>
+          <div class="card-body">
+            <canvas id="lineChartExample1"></canvas>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label class="form-control-label">発注日</label>
-            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.orderDate">
+      <div class="col-md-6">
+        <div class="card bar-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>仕入状況4</h4>
           </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label class="form-control-label">納品日</label>
-            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.deliveryDate">
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label class="form-control-label">出荷日</label>
-            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.shippingDate">
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label class="form-control-label">登録日</label>
-            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.registrationDate">
+          <div class="card-body">
+            <canvas id="barChartExample1"></canvas>
           </div>
         </div>
       </div>
     </div>
-    <div class="card-footer text-center">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button  id="id_btn_order_search" type="button" data-bind="click:$root.doSearch" class="btn btn-primary btn-block btn-sm">注文検索</button>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card pie-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>顧客A</h4>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="pieChartExample"></canvas>
+            </div>
           </div>
         </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button disabled id="id_btn_order_detail" type="button" data-toggle="modal" data-target="#id_modal_order_detail" class="btn btn-primary btn-block btn-sm with-table-row">注文詳細</button>
+      </div>
+      <div class="col-md-3">
+        <div class="card polar-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>顧客B</h4>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="polarChartExample"></canvas>
+            </div>
           </div>
         </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button disabled id="id_btn_order_update" type="button" data-toggle="modal" data-target="#id_modal_order_update" class="btn btn-primary btn-block btn-sm with-table-row">注文変更</button>
+      </div>
+      <div class="col-md-3">
+        <div class="card pie-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>顧客C</h4>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="pieChartExample1"></canvas>
+            </div>
           </div>
         </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button disabled data-bind="click:$root.doDelete" type="button" class="btn btn-primary btn-block btn-sm with-table-row">注文削除</button>
+      </div>
+      <div class="col-md-3">
+        <div class="card polar-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>顧客D</h4>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="polarChartExample1"></canvas>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<section data-bind="with: dataModel">
-  <div class="card" data-bind="visible : orderModelList().length > 0">
-    <div class="card-header">
-      <h4>注文検索結果</h4>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card polar-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>在庫-仕入1</h4>
+          </div>
+          <div class="card-body">
+            <div class="gauge-container">
+              <canvas id="gauge1" class="gauge-canvas"></canvas><span id="gauge1Value" class="gauge-label"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card polar-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>在庫-仕入2</h4>
+          </div>
+          <div class="card-body">
+            <div class="gauge-container">
+              <canvas id="gauge2" class="gauge-canvas"></canvas><span id="gauge2Value" class="gauge-label"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card polar-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>在庫-仕入3</h4>
+          </div>
+          <div class="card-body">
+            <div class="gauge-container">
+              <canvas id="gauge3" class="gauge-canvas"></canvas><span id="gauge3Value" class="gauge-label"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card polar-chart-example">
+          <div class="card-header d-flex align-items-center">
+            <h4>在庫-仕入4</h4>
+          </div>
+          <div class="card-body">
+            <div class="gauge-container">
+              <canvas id="gauge4" class="gauge-canvas"></canvas><span id="gauge4Value" class="gauge-label"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <div class="table-responsive">
-      <table id="id_order_list" class="table table-striped table-hover table-sm table-bordered" style="width:100%">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>発注No.</th>
-            <th>顧客名</th>
-            <th>支店名</th>
-            <th>納品先</th>
-            <th>発注日</th>
-            <th>納品日</th>
-            <th>発送日</th>
-            <th>作成日</th>
-          </tr>
-        </thead>
-        <tbody data-bind="foreach: orderModelList">
-          <tr>
-            <th scope="row">
-              <div class="form-check-inline">
-                <input type="radio" class="form-check-input" name="table_radio" data-bind="value: orderNo" onClick="doCheckedTableRow()">
-              </div>
-            </th>
-            <td><span data-bind="text: orderNo"></span></td>
-            <td><span data-bind="text: customerNo"></span></td>
-            <td><span data-bind="text: branchNo"></span></td>
-            <td><span data-bind="text: deliveryDestNo"></span></td>
-            <td><span data-bind="text: orderDate"></span></td>
-            <td><span data-bind="text: deliveryDate"></span></td>
-            <td><span data-bind="text: shippingDate"></span></td>
-            <td><span data-bind="text: registrationDate"></span></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="card">
+      <div class="card-header">
+        <h4>追加情報</h4>
+      </div>
+      <div class="card-body">
+        <div class="row mt-5">
+          <div class="col-md-3">
+            <p>データ01<span values="5,6,7,9,9,5,3,2,2,4,6,7,5,6,7,9,9,5,3,2,2,4,6,7" class="sparklines"></span></p>
+            <p>データ02<span values="5,6,7,2,0,-4,-2,4,5,6,7,2,0,-4,-2,4" sparkType="bar" class="sparklines"></span></p>
+            <p>データ03<span values="5:10,2:3,7:4,4:3,5:10,2:3,7:4,4:3" sparkType="bar" class="sparklines"></span></p>
+          </div>
+          <div class="col-md-3">
+            <p>データ04<span values="5,6,7,9,9,5,3,2,2,4,6,7,5,6,7,9,9,5,3,2,2,4,6,7" sparkType="box" class="sparklines"></span></p>
+            <p>データ05<span values="5,6,7,9,9,5,3,2,2,4,6,7" sparkType="discrete" sparkWidth="50" class="sparklines"></span></p>
+            <p>データ06<span values="1,3,5" sparkType="pie" class="sparklines">                           </span></p>
+          </div>
+          <div class="col-md-3">
+            <p>データ07<span values="5,6,7,9,9,5,3,2,2,4,6,7,5,6,7,9,9,5,3,2,2,4,6,7" class="sparklines"></span></p>
+            <p>データ08<span values="5,6,7,2,0,-4,-2,4,5,6,7,2,0,-4,-2,4" sparkType="bar" class="sparklines"></span></p>
+            <p>データ09<span values="5:10,2:3,7:4,4:3,5:10,2:3,7:4,4:3" sparkType="bar" class="sparklines"></span></p>
+          </div>
+          <div class="col-md-3">
+            <p>データ10<span values="5,6,7,9,9,5,3,2,2,4,6,7,5,6,7,9,9,5,3,2,2,4,6,7" sparkType="box" class="sparklines"></span></p>
+            <p>データ11<span values="5,6,7,9,9,5,3,2,2,4,6,7" sparkType="discrete" sparkWidth="50" class="sparklines"></span></p>
+            <p>データ12<span values="1,3,5" sparkType="pie" class="sparklines">                           </span></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
