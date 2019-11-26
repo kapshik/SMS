@@ -10,7 +10,7 @@ import com.ksk.sms.dao.entity.UserInfo;
 @Repository
 public interface UserInfoRepository extends JpaRepository<UserInfo, String>{
 
-	@Query(value="SELECT * FROM user_info WHERE USER = :usr", nativeQuery = true)
+	@Query(value="SELECT * FROM tbl_user WHERE USERNAME = :usr", nativeQuery = true)
 	public UserInfo getUserInfo(@Param("usr")String user);
 
 }

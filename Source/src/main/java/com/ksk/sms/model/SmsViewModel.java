@@ -14,7 +14,8 @@ public class SmsViewModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	protected String userName;
+	protected String username;
+	protected String role;
 	protected String title;
 
 	protected List<KeyValue> branchList;
@@ -22,5 +23,7 @@ public class SmsViewModel implements Serializable{
 	protected List<KeyValue> deliveryDestList;
 	protected List<KeyValue> productMasterList;
 	protected List<KeyValue> paymentTermsList;
+	protected List<KeyValue> productTypeList;
+	protected List<KeyValue> unitTypeList;
 }
 

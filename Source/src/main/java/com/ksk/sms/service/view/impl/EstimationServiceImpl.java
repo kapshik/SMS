@@ -29,7 +29,7 @@ public class EstimationServiceImpl extends SmsService implements SmsViewService<
 
         EstimationViewModel outModel = new EstimationViewModel();
 
-		outModel.setUserName(getUserName());
+		outModel.setUsername(getUsername());
     	
 		outModel.setCustomerList(makeCustomerList());
 		outModel.setBranchList(makeBranchList());
@@ -55,7 +55,7 @@ public class EstimationServiceImpl extends SmsService implements SmsViewService<
 
         EstimationViewModel outModel = Objects.requireNonNull(inModel);
 
-log.info("inModel.getUserName = " + inModel.getUserName());
+log.info("inModel.getUsername = " + inModel.getUsername());
 log.info("inModel.getOrderNo = " + inModel.getCriteria().getOrderNo());
 
 		outModel.setDetail(makeOrderModel("XX"));
@@ -68,7 +68,7 @@ log.info("inModel.getOrderNo = " + inModel.getCriteria().getOrderNo());
 		outModel.setOrderModelList(makeOrderModelList());
 
     	log.info("search");
-log.info("outModel.getUserName = " + outModel.getUserName());
+log.info("outModel.getUsername = " + outModel.getUsername());
 		
         return outModel;
     }

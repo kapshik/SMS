@@ -26,7 +26,7 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
 
         CustomerViewModel outModel = new CustomerViewModel();
 
-		outModel.setUserName(getUserName());
+		outModel.setUsername(getUsername());
     	
 		outModel.setCustomerList(makeCustomerList());
 		outModel.setBranchList(makeBranchList());
@@ -53,7 +53,7 @@ log.info("init");
 
         CustomerViewModel outModel = Objects.requireNonNull(inModel);
 
-log.info("inModel.getUserName = " + inModel.getUserName());
+log.info("inModel.getUsername = " + inModel.getUsername());
 log.info("inModel.getCustomerNo = " + inModel.getCriteria().getCustomerNo());
 
 		outModel.setDetail(makeCustomerModel("XX"));
@@ -65,7 +65,7 @@ log.info("inModel.getCustomerNo = " + inModel.getCriteria().getCustomerNo());
 		outModel.setCustomerModelList(makeCustomerModelList());
 
     	log.info("search");
-log.info("outModel.getUserName = " + outModel.getUserName());
+log.info("outModel.getUsername = " + outModel.getUsername());
 		
         return outModel;
     }

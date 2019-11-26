@@ -29,7 +29,7 @@ public class ProductServiceImpl extends SmsService implements SmsViewService<Pro
 
         ProductViewModel outModel = new ProductViewModel();
 
-		outModel.setUserName(getUserName());
+		outModel.setUsername(getUsername());
     	
 		outModel.setCustomerList(makeCustomerList());
 		outModel.setBranchList(makeBranchList());

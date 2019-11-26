@@ -1,12 +1,11 @@
 package com.ksk.sms.service.common.impl;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,21 +27,25 @@ public class UserDetailsServiceImpl implements UserDetailsService{
         UserInfo userInfo = userInfoRepository.getUserInfo(userName);
 		if (Objects.isNull(userInfo)) {
 	        userInfo = new UserInfo();
-	        userInfo.setUser("Test");
+	        userInfo.setUsername("Test");
 	        userInfo.setPassword("PASS");
 //			throw new UsernameNotFoundException("User Not Found...");
 		}
 
-    	List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
-        GrantedAuthority authority = new SimpleGrantedAuthority("USER");
-        grantList.add(authority);
+    	Collection<GrantedAuthority> grantList = getAuthorityList(userInfo.getRole());
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        UserDetails userDetails = 
-    		(UserDetails)new SmsUserDetails(userInfo.getUser(), encoder.encode(userInfo.getPassword()), grantList);
-
-        return userDetails;
+        SmsUserDetails smsUserDetails = new SmsUserDetails(userInfo.getUsername(), encoder.encode(userInfo.getPassword()), grantList);
+        
+        return (UserDetails)smsUserDetails;
     }
 
+    private Collection<GrantedAuthority> getAuthorityList(String inRole) {
+        if(inRole.equals("ROLE_ADMIN")){
+            return AuthorityUtils.createAuthorityList("ROLE_USER","ROLE_ADMIN");
+        } else {
+            return AuthorityUtils.createAuthorityList("ROLE_USER");
+        }
+    }
 }

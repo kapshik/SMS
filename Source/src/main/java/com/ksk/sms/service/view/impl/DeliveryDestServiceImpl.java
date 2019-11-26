@@ -25,7 +25,7 @@ public class DeliveryDestServiceImpl extends SmsService implements SmsViewServic
 
         DeliveryDestViewModel outModel = new DeliveryDestViewModel();
 
-		outModel.setUserName(getUserName());
+		outModel.setUsername(getUsername());
     	
 		outModel.setCustomerList(makeCustomerList());
 		outModel.setBranchList(makeBranchList());
@@ -51,7 +51,7 @@ log.info("init");
 
         DeliveryDestViewModel outModel = Objects.requireNonNull(inModel);
 
-log.info("inModel.getUserName = " + inModel.getUserName());
+log.info("inModel.getUsername = " + inModel.getUsername());
 log.info("inModel.getDeliveryDestNo = " + inModel.getCriteria().getDeliveryDestNo());
 
 		outModel.setDetail(makeDeliveryDestModel("BB"));
@@ -64,7 +64,7 @@ log.info("inModel.getDeliveryDestNo = " + inModel.getCriteria().getDeliveryDestN
 		outModel.setDeliveryDestModelList(makeDeliveryDestModelList());
 
     	log.info("search");
-log.info("outModel.getUserName = " + outModel.getUserName());
+log.info("outModel.getUsername = " + outModel.getUsername());
 		
         return outModel;
     }

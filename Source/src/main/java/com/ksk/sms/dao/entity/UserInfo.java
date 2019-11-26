@@ -13,19 +13,19 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name="user_info")
+@Table(name="tbl_user")
 public class UserInfo implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id	
-	@Column(name="id")
-	private String id;
-	
-	@Column(name="user")
-	private String user;
+	@Column(name="username")
+	private String username;
 	
 	@Column(name="password")
 	private String password;
+
+	@Column(name="role")
+	private String role;
 }
 

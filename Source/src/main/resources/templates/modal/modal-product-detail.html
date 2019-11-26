@@ -11,8 +11,8 @@
           <div class="col-lg-6">
             <div class="form-group">
               <label>商品名</label>
-              <select class="form-control form-control-sm" data-bind="options: productMasterList,
-                optionsValue: 'key', optionsText: 'value', value: productName, optionsCaption:'選択してください'">
+              <select class="form-control form-control-sm" data-bind="value: productName">
+                <option th:each="keyValue : ${smsViewModel.productMasterList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
               </select>
             </div>
           </div>
@@ -41,16 +41,16 @@
           <div class="col-lg-6">
             <div class="form-group">
               <label>商品区分</label>
-              <select class="form-control form-control-sm" data-bind="options: productTypeList,
-                optionsValue: 'key', optionsText: 'value', value: productType, optionsCaption:'選択してください'">
+              <select class="form-control form-control-sm" data-bind="value: productType">
+                <option th:each="keyValue : ${smsViewModel.productTypeList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
               </select>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="form-group">       
               <label>単位</label>
-              <select class="form-control form-control-sm" data-bind="options: unitTypeList,
-                optionsValue: 'key', optionsText: 'value', value: unitType, optionsCaption:'選択してください'">
+              <select class="form-control form-control-sm" data-bind="value: unitType">
+                <option th:each="keyValue : ${smsViewModel.unitTypeList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
               </select>
             </div>
           </div>

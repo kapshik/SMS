@@ -59,10 +59,8 @@
           <div class="col-lg-6">
             <div class="form-group">
               <label class="form-control-label">支払条件</label>
-              <select class="form-control form-control-sm" 
-                data-bind="options: paymentTermsList,
-                  optionsValue: 'key', optionsText: 'value', value:customerModel.paymentTerms,
-                  optionsCaption:'選択してください'">
+              <select class="form-control form-control-sm" data-bind="value:customerModel.paymentTerms">
+                <option th:each="keyValue : ${smsViewModel.paymentTermsList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
               </select>
             </div>
           </div>

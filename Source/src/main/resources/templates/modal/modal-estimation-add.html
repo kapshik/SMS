@@ -18,11 +18,8 @@
                   <div class="form-group row">
                     <label class="form-control-label col-sm-3">顧客名</label>
                     <div class="col-sm-9">
-                      <select class="form-control form-control-sm" 
-                        data-bind="options: customerList,
-                          optionsValue: 'key', optionsText: 'value', value:detail.customerNo,
-                          optionsCaption:'選択してください',
-                          event: {change: $root.doCustomerChange}">
+                      <select class="form-control form-control-sm" data-bind="value:detail.customerNo, event:{change: $root.doCustomerChange}">
+                        <option th:each="keyValue : ${smsViewModel.customerList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                       </select>
                     </div>
                   </div>
@@ -58,10 +55,8 @@
                   <div class="form-group row">
                     <label class="form-control-label col-sm-3">支店名</label>
                     <div class="col-sm-9">
-                      <select class="form-control form-control-sm"
-                        data-bind="options: branchList,
-                          optionsValue: 'key', optionsText: 'value', value:detail.branchNo,
-                          optionsCaption:'選択してください'">
+                      <select class="form-control form-control-sm" data-bind="value:detail.branchNo">
+                        <option th:each="keyValue : ${smsViewModel.branchList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                       </select>
                     </div>
                   </div>
@@ -99,10 +94,8 @@
                   <div class="form-group row">
                     <label class="form-control-label col-sm-3">納品先名</label>
                     <div class="col-sm-9">
-                      <select class="form-control form-control-sm"
-                        data-bind="options: deliveryDestList,
-                          optionsValue: 'key', optionsText: 'value', value:detail.deliveryDestNo,
-                          optionsCaption:'選択してください'">
+                      <select class="form-control form-control-sm" data-bind="value:detail.deliveryDestNo">
+                        <option th:each="keyValue : ${smsViewModel.deliveryDestList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                       </select>
                     </div>
                   </div>
@@ -206,8 +199,8 @@
                       </div>
                     </th>
                     <td>
-                      <select class="form-control form-control-sm" data-bind="options: productMasterList,
-                        optionsValue: 'key', optionsText: 'value', value: productName, optionsCaption:'選択してください'">
+                      <select class="form-control form-control-sm" data-bind="value: productName">
+                        <option th:each="keyValue : ${smsViewModel.productMasterList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                       </select>
                     </td>
                     <td><span data-bind="text: productCode" class="form-control form-control-sm"></td>

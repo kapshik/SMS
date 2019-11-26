@@ -21,7 +21,7 @@ public class HomeRestController {
 	public HomeViewModel init(@AuthenticationPrincipal SmsUserDetails inUserDetail) {
 		HomeViewModel model = new HomeViewModel();
 		model.setOrderModelList(makeList());
-		model.setUserName(inUserDetail.getUsername());
+		model.setUsername(inUserDetail.getUsername());
 
 		log.info("SmsUserDetails " + inUserDetail.getUsername());
 		

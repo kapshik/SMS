@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ksk.sms.service.report.impl.TestReportDataFactory;
 
+import lombok.extern.log4j.Log4j2;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -19,8 +20,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 
+@Log4j2
 @Controller
-public class CommonController {
+public class CommonController extends SmsController {
 
 	// エラー画面
 	@RequestMapping("/error.html")	
@@ -38,6 +40,8 @@ public class CommonController {
 //	エントリ画面（login後）
 	@RequestMapping("/sms-home.html")	
 	public String homeForm(Model model) {
+
+        log.info(model);
 		return "sms-home";
 	}
 

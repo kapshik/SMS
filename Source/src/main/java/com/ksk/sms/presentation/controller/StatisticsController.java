@@ -1,33 +1,20 @@
 package com.ksk.sms.presentation.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ksk.sms.service.report.impl.TestReportDataFactory;
+import lombok.extern.log4j.Log4j2;
 
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.data.JRCsvDataSource;
-
+@Log4j2
 @Controller
-public class StatisticsController {
+public class StatisticsController extends SmsController {
 
 //	統計情報メイン画面
 	@RequestMapping("/sms-statistics.html")	
 	public String mainForm(Model model) {
+
+        log.info(model);
 		return "sms-statistics";
 	}
 
