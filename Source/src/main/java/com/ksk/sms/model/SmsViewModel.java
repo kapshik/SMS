@@ -25,5 +25,7 @@ public class SmsViewModel implements Serializable{
 	protected List<KeyValue> paymentTermsList;
 	protected List<KeyValue> productTypeList;
 	protected List<KeyValue> unitTypeList;
+	
+	protected List<OutStockModel> outStockList;
 }
 

@@ -107,12 +107,18 @@
       </li>
     </ul>
   </div>
-  <div class="admin-menu" th:if="${isAdmin}">
+  <div class="admin-menu">
     <h5 class="sidenav-heading">管理メニュー</h5>
     <ul id="id_admin_menu" class="side-menu list-unstyled"> 
-      <li id="id_admin_menu_1"> <a href="sms-statistics.html"> <i class="icon-line-chart"> </i>統計情報</a></li>
-      <li id="id_admin_menu_2"> <a href="sms-report.html"> <i class="icon-page"> </i>帳票出力</a></li>
-      <li id="id_admin_menu_3"> <a href="#"> <i class="icon-mail"> </i>Contact Us</a></li>
+      <li id="id_admin_menu_1" th:if="${isAdmin}"> <a href="sms-statistics.html"><i class="icon-line-chart"></i>統計情報</a></li>
+      <li><a href="#id_report_menu" aria-expanded="false" data-toggle="collapse"> <i class="icon-form"></i>帳票出力</a>
+        <ul id="id_report_menu" class="collapse list-unstyled ">
+          <li id="id_report_menu_1"><a href="sms-report.html">出荷履歴</a></li>
+          <li id="id_report_menu_2"><a href="sms-delivery-update.html">納品書</a></li>
+          <li id="id_report_menu_3"><a href="sms-invoice-update.html">請求書</a></li>
+        </ul>
+      </li>
+      <li id="id_admin_menu_3" th:if="${isAdmin}"> <a href="#"> <i class="icon-mail"> </i>Contact Us</a></li>
     </ul>
   </div>
 </div>

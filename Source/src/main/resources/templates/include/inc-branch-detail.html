@@ -10,10 +10,8 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>顧客名</label>
-                <select class="form-control form-control-sm" 
-                  data-bind="options: customerList,
-                    optionsValue: 'key', optionsText: 'value', value:branchModel.customerNo,
-                    optionsCaption:'選択してください'">
+                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:branchModel.customerNo, event:{change: $root.doCustomerChange}">
+                  <option th:each="keyValue : ${smsViewModel.customerList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                 </select>
               </div>
             </div>
@@ -107,10 +105,11 @@
     <div class="card-body">
       <div class="row">
         <div class="col-sm-3">
-          <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAdd">登録</button>
         </div>
         <div class="col-sm-3 offset-sm-6">
-          <button type="button" class="btn btn-secondary btn-block btn-sm" data-bind="click: $root.doCancel">キャンセル</button>
+          <div class="form-group">
+            <button type="button" class="btn btn-secondary btn-block btn-sm" data-bind="click: $root.doCancel">キャンセル</button>
+          </div>
         </div>
       </div>
     </div>

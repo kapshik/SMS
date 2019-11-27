@@ -10,11 +10,8 @@
             <div class="form-group row align-items-center">
               <label class="form-control-label col-sm-2">顧客名</label>
               <div class="col-sm-10">
-                <select class="form-control form-control-sm" 
-                  data-bind="options: customerList,
-                    optionsValue: 'key', optionsText: 'value', value:customerModel.customerNo,
-                    optionsCaption:'選択してください',
-                    event: {change: $root.doCustomerChange}">
+                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:customerModel.customerNo, event:{change: $root.doCustomerChange}">
+                  <option th:each="keyValue : ${smsViewModel.customerList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                 </select>
               </div>
             </div>
@@ -48,10 +45,8 @@
             <div class="form-group row align-items-center">
               <label class="form-control-label col-sm-2">支店名</label>
               <div class="col-sm-10">
-                <select class="form-control form-control-sm"
-                  data-bind="options: branchList,
-                    optionsValue: 'key', optionsText: 'value', value:branchModel.branchNo,
-                    optionsCaption:'選択してください'">
+                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:branchModel.branchNo">
+                  <option th:each="keyValue : ${smsViewModel.branchList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                 </select>
               </div>
             </div>
@@ -87,10 +82,8 @@
             <div class="form-group row align-items-center">
               <label class="form-control-label col-sm-2">納品先名</label>
               <div class="col-sm-10">
-                <select class="form-control form-control-sm"
-                  data-bind="options: deliveryDestList,
-                    optionsValue: 'key', optionsText: 'value', value:deliveryDestModel.deliveryDestNo,
-                    optionsCaption:'選択してください'">
+                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:deliveryDestModel.deliveryDestNo">
+                  <option th:each="keyValue : ${smsViewModel.deliveryDestList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                 </select>
               </div>
             </div>
@@ -166,10 +159,14 @@
     <div class="card-body">
       <div class="row">
         <div class="col-sm-6">
-          <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAdd">納品書作成</button>
+          <div class="form-group">
+            <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAdd">納品書作成</button>
+          </div>
         </div>
         <div class="col-sm-6">
-          <a role="button" class="btn btn-primary btn-block btn-sm" href="sms-delivery-update.html">納品書確認</a>
+          <div class="form-group">
+            <a role="button" class="btn btn-primary btn-block btn-sm" href="sms-delivery-update.html">納品書確認</a>
+          </div>
         </div>
       </div>
     </div>

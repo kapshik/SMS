@@ -42,31 +42,24 @@
         <div class="col-sm-3">
           <div class="form-group">
             <label class="form-control-label">顧客</label>
-            <select class="form-control form-control-sm" 
-              data-bind="options: customerList,
-                optionsValue: 'key', optionsText: 'value', value:criteria.customerNo,
-                optionsCaption:'選択してください',
-                event: {change: $root.doCustomerChange}">
+            <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:criteria.customerNo, event:{change: $root.doCustomerChange}">
+              <option th:each="keyValue : ${smsViewModel.customerList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
             </select>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label class="form-control-label">支店</label>
-            <select class="form-control form-control-sm"
-              data-bind="options: branchList,
-                optionsValue: 'key', optionsText: 'value', value:criteria.branchNo,
-                optionsCaption:'選択してください'">
+            <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:criteria.branchNo">
+              <option th:each="keyValue : ${smsViewModel.branchList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
             </select>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label class="form-control-label">納品先</label>
-            <select class="form-control form-control-sm"
-              data-bind="options: deliveryDestList,
-                optionsValue: 'key', optionsText: 'value', value:criteria.deliveryDestNo,
-                optionsCaption:'選択してください'">
+            <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:criteria.deliveryDestNo">
+              <option th:each="keyValue : ${smsViewModel.deliveryDestList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
             </select>
           </div>
         </div>

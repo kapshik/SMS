@@ -2,10 +2,12 @@ package com.ksk.sms.service.view.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
+import com.ksk.sms.model.OutStockModel;
 import com.ksk.sms.model.SmsViewModel;
 import com.ksk.sms.service.common.SmsService;
 import com.ksk.sms.service.view.SmsViewService;
@@ -34,6 +36,8 @@ public class SmsCommonServiceImpl extends SmsService implements SmsViewService<S
 		outModel.setProductTypeList(makeProductTypeList());
 		outModel.setUnitTypeList(makeÙnitTypeList());
 
+		outModel.setOutStockList(makeOutStockList());
+    	
     	log.info("init");
     	return outModel;
     }
@@ -173,6 +177,53 @@ public class SmsCommonServiceImpl extends SmsService implements SmsViewService<S
 		unitTypeList.add(unitType);
 		
         return unitTypeList;
+    }
+
+	private List<OutStockModel> makeOutStockList() {
+        List<OutStockModel> outStockList = new ArrayList<OutStockModel>();
+
+		Random random = new Random();
+		for(int i=1; i<50; i++) {
+	        OutStockModel outStock = new OutStockModel();
+
+			outStock.setProductCode("CODE_" + random.nextInt(10)+i);
+			outStock.setProductName("商品名　"+ random.nextInt(1000));
+			outStock.setNum01(random.nextInt(1000));
+			outStock.setNum02(random.nextInt(1000));
+			outStock.setNum03(random.nextInt(1000));
+			outStock.setNum04(random.nextInt(1000));
+			outStock.setNum05(random.nextInt(1000));
+			outStock.setNum06(random.nextInt(1000));
+			outStock.setNum07(random.nextInt(1000));
+			outStock.setNum08(random.nextInt(1000));
+			outStock.setNum09(random.nextInt(1000));
+			outStock.setNum10(random.nextInt(1000));
+			outStock.setNum11(random.nextInt(1000));
+			outStock.setNum12(random.nextInt(1000));
+			outStock.setNum13(random.nextInt(1000));
+			outStock.setNum14(random.nextInt(1000));
+			outStock.setNum15(random.nextInt(1000));
+			outStock.setNum16(random.nextInt(1000));
+			outStock.setNum17(random.nextInt(1000));
+			outStock.setNum18(random.nextInt(1000));
+			outStock.setNum19(random.nextInt(1000));
+			outStock.setNum20(random.nextInt(1000));
+			outStock.setNum21(random.nextInt(1000));
+			outStock.setNum22(random.nextInt(1000));
+			outStock.setNum23(random.nextInt(1000));
+			outStock.setNum24(random.nextInt(1000));
+			outStock.setNum25(random.nextInt(1000));
+			outStock.setNum26(random.nextInt(1000));
+			outStock.setNum27(random.nextInt(1000));
+			outStock.setNum28(random.nextInt(1000));
+			outStock.setNum29(random.nextInt(1000));
+			outStock.setNum30(random.nextInt(1000));
+			outStock.setNum31(random.nextInt(1000));
+			outStock.setSum(random.nextInt(10000));
+
+			outStockList.add(outStock);
+		}
+        return outStockList;
     }
 
 	@Override
