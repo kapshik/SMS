@@ -1,6 +1,7 @@
 package com.ksk.sms.presentation.controller;
 
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,8 +47,8 @@ public class CommonController extends SmsController {
 	}
 
 	private void makePdf(){
-		String outFile = "./first.pdf";
-		InputStream is = CommonController.class.getResourceAsStream("/report/FirstTest_A4_Table.jrxml");
+		String outFile = "./Invoice_" + LocalDate.now() + ".pdf";
+		InputStream is = CommonController.class.getResourceAsStream("/report/InvoiceTemplate.jrxml");
 
 		TestReportDataFactory testReportDataFactory = new TestReportDataFactory();
 		Collection<Map<String, ?>> source = testReportDataFactory.makeList();
