@@ -10,18 +10,18 @@ public class TestReportDataFactory {
 	public Collection<Map<String, ?>> makeList() {
 		Collection<Map<String, ?>> orderList = new ArrayList<>();
 		
-		for(int i=0; i<10; i++) {
+		for(int i=1; i<100; i++) {
 			String strNo = Integer.toString(i);
 			Map<String, Object> rowData = new HashMap<>();
 
 			rowData.put("orderNo", strNo);
-			rowData.put("customer", "Customer"+strNo);
-			rowData.put("branchName", "BranchName"+strNo);
-			rowData.put("deliveryDestination", "DeliveryDestination"+strNo);
-			rowData.put("orderDate", "OrderDate"+strNo);
-			rowData.put("deliveryDate", "DeliveryDate"+strNo);
-			rowData.put("shippingDate", "ShippingDate"+strNo);
-			rowData.put("creationDate", "CreationDate"+strNo);
+			rowData.put("customer", "顧客"+strNo);
+			rowData.put("branchName", "支店"+strNo);
+			rowData.put("deliveryDestination", "納品先"+strNo);
+			rowData.put("orderDate", "受注日"+strNo);
+			rowData.put("deliveryDate", "納品日"+strNo);
+			rowData.put("shippingDate", "発送日"+strNo);
+			rowData.put("creationDate", "作成日"+strNo);
 			
 			orderList.add(rowData);
 		}
