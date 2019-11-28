@@ -74,16 +74,24 @@
       <div class="card-header">
         <div class="row">
           <div class="col-sm-6">
-            <h4>支店情報</h4>
+            <div class="form-group">
+              <h4>支店情報</h4>
+            </div>
           </div>
           <div class="col-sm-2">
-            <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#id_modal_branch_add">支店作成</button>
+            <div class="form-group">
+              <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#id_modal_branch_add">支店作成</button>
+            </div>
           </div>
           <div class="col-sm-2">
-            <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAddItem">支店追加</button>
+            <div class="form-group">
+              <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAddItem">支店追加</button>
+            </div>
           </div>
           <div class="col-sm-2">
-            <button type="button" class="btn btn-primary btn-block btn-sm with-table-row" data-bind="click: $root.doDeleteItem">支店削除</button>
+            <div class="form-group">
+              <button type="button" class="btn btn-primary btn-block btn-sm with-table-row" data-bind="click: $root.doDeleteItem">支店削除</button>
+            </div>
           </div>
       </div>
       <div class="card-body" data-bind="visible : branchModelList().length > 0">

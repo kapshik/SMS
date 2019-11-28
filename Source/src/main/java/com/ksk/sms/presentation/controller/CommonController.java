@@ -34,7 +34,8 @@ public class CommonController extends SmsController {
 	// ログイン画面
     @RequestMapping({"/", "/login.html", "/invalidSession"})	
     public String loginForm(Model model) {
-    	makePdf();
+//    	makePdf(model);
+        model.addAttribute("reportFileName", makePdf());
         return "login";
     }
 
@@ -46,9 +47,9 @@ public class CommonController extends SmsController {
 		return "sms-home";
 	}
 
-	private void makePdf(){
-		String outFile = "./Invoice_" + LocalDate.now() + ".pdf";
-		InputStream is = CommonController.class.getResourceAsStream("/report/InvoiceTemplate.jrxml");
+	private String makePdf(){
+		String outFile = "./reportOut/Invoice_" + LocalDate.now() + ".pdf";
+		InputStream is = CommonController.class.getResourceAsStream("/report/InvoiceTemplateTableBased.jrxml");
 
 		TestReportDataFactory testReportDataFactory = new TestReportDataFactory();
 		Collection<Map<String, ?>> source = testReportDataFactory.makeList();
@@ -62,7 +63,7 @@ public class CommonController extends SmsController {
 			} catch (JRException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
-				return;
+				return outFile;
 			}
 			JasperPrint jasperPrint = null;
 			try {
@@ -70,15 +71,16 @@ public class CommonController extends SmsController {
 			} catch (JRException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
-				return;
+				return outFile;
 			}
 			try {
 				JasperExportManager.exportReportToPdfFile(jasperPrint, outFile);
 			} catch (JRException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
-				return;
+				return outFile;
 			}
+			return outFile;
 	}
 
 }

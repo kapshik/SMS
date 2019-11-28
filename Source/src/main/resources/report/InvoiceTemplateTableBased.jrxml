@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice_Table_Based" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="template.engine" value="tabular_template"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NO_DATA_ADAPTER"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -54,50 +54,71 @@
 		</conditionalStyle>
 	</style>
 	<subDataset name="tableDataset" uuid="4530619d-28cf-4f6c-9b12-11dded8493ad">
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NO_DATA_ADAPTER"/>
 		<queryString>
 			<![CDATA[]]>
 		</queryString>
+		<field name="orderNo" class="java.lang.String"/>
+		<field name="customer" class="java.lang.String"/>
+		<field name="branchName" class="java.lang.String"/>
+		<field name="deliveryDestination" class="java.lang.String"/>
+		<field name="orderDate" class="java.lang.String"/>
+		<field name="deliveryDate" class="java.lang.String"/>
+		<field name="shippingDate" class="java.lang.String"/>
+		<field name="creationDate" class="java.lang.String"/>
 	</subDataset>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="orderNo" class="java.lang.String"/>
-	<field name="customer" class="java.lang.String"/>
-	<field name="branchName" class="java.lang.String"/>
-	<field name="deliveryDestination" class="java.lang.String"/>
-	<field name="orderDate" class="java.lang.String"/>
-	<field name="deliveryDate" class="java.lang.String"/>
-	<field name="shippingDate" class="java.lang.String"/>
-	<field name="creationDate" class="java.lang.String"/>
 	<title>
 		<band height="184" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="89" width="150" height="15" uuid="33274f5d-5b7e-4be2-a2ff-65d452a618ed"/>
+				<textElement>
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[東京都港区港南2-16-2]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="104" width="150" height="15" uuid="1d3045ed-03d6-4253-a959-aeeb491b73ca"/>
+				<textElement>
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[太陽生命品川ビル20F]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="119" width="150" height="15" uuid="235bf8b6-1e1e-49c7-b59f-7a46c30b8209"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
 				<text><![CDATA[株式会社シーエムエス　御中]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="400" y="119" width="149" height="15" uuid="b62092ec-9053-4f27-b387-9b25d2909a68"/>
+				<textElement>
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[東京都江東区森下5-11-8]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="400" y="89" width="149" height="15" uuid="edbd74ac-0cbd-44c9-8a8e-ccf745191172"/>
+				<textElement>
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[株式会社ティ・エム・シー]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="400" y="134" width="149" height="15" uuid="dd52166a-1135-4931-adef-51e7972118bc"/>
+				<textElement>
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[荒川ビル2F]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="400" y="104" width="149" height="15" uuid="2d2f365d-7b12-4a8f-990d-ff528a2660bc"/>
+				<textElement>
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[〒135-0004]]></text>
 			</staticText>
 			<staticText>
@@ -108,7 +129,9 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[発行日:]]></text>
 			</staticText>
 			<staticText>
@@ -119,7 +142,9 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[伝票番号：]]></text>
 			</staticText>
 			<staticText>
@@ -134,8 +159,8 @@
 					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Center">
-					<font size="19" isBold="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="20" isBold="true"/>
 				</textElement>
 				<text><![CDATA[請　求　書]]></text>
 			</staticText>
@@ -147,15 +172,23 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[担当：]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="400" y="150" width="149" height="15" uuid="9097b3a4-cb99-4c47-812e-48b809af88aa"/>
+				<textElement>
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[TEL：03-6659-3871]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="400" y="166" width="149" height="15" uuid="1a2ab324-29de-4a1e-80a9-1cab60662628"/>
+				<textElement>
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[FAX：03-6659-3872]]></text>
 			</staticText>
 			<staticText>
@@ -166,7 +199,9 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[宋　承必]]></text>
 			</staticText>
 			<staticText>
@@ -177,7 +212,9 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[2019/11/02]]></text>
 			</staticText>
 			<staticText>
@@ -188,7 +225,9 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[201911001]]></text>
 			</staticText>
 			<staticText>
@@ -199,7 +238,9 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
 				<text><![CDATA[1/20]]></text>
 			</staticText>
 		</band>
@@ -231,7 +272,7 @@
 								<reportElement key="" style="Column header" x="0" y="0" width="50" height="20" forecolor="#000000" uuid="5f67d478-19fe-4db9-b1f0-d91e38f5dd64"/>
 								<box leftPadding="2"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="DejaVu Sans" size="14" isBold="true"/>
+									<font fontName="DejaVu Sans" size="11" isBold="true"/>
 								</textElement>
 								<text><![CDATA[No]]></text>
 							</staticText>
@@ -239,8 +280,10 @@
 						<jr:detailCell style="Table_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="50" height="20" uuid="4441af5f-e786-46c9-8da3-c0283024e2a0"/>
-								<textElement verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[orderNo]]></textFieldExpression>
+								<textElement verticalAlignment="Middle">
+									<font fontName="ipaexg" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{orderNo}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -251,7 +294,7 @@
 								<reportElement key="" style="Column header" x="0" y="0" width="80" height="20" forecolor="#000000" uuid="f574f84b-fd47-43ff-aa5b-c1c90b7c2772"/>
 								<box leftPadding="2"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="ＭＳ Ｐゴシック" size="14" isBold="true"/>
+									<font fontName="ipaexg" size="11"/>
 								</textElement>
 								<text><![CDATA[品名/内容]]></text>
 							</staticText>
@@ -259,8 +302,10 @@
 						<jr:detailCell style="Table_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="80" height="20" uuid="b2f845f3-e009-4d87-8c3e-5b0036436688"/>
-								<textElement verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[customer]]></textFieldExpression>
+								<textElement verticalAlignment="Middle">
+									<font fontName="ipaexg" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{customer}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -270,7 +315,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="70" height="20" uuid="70a2f719-53a0-49d2-accc-ae24503f54e6"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="14"/>
+									<font fontName="ipaexg" size="11"/>
 								</textElement>
 								<text><![CDATA[数量]]></text>
 							</staticText>
@@ -278,8 +323,10 @@
 						<jr:detailCell style="Table_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="70" height="20" uuid="05b7fc2e-69b6-4954-a492-3e8042945eba"/>
-								<textElement verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[branchName]]></textFieldExpression>
+								<textElement verticalAlignment="Middle">
+									<font fontName="ipaexg" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{branchName}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -289,7 +336,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="70" height="20" uuid="81e7cd0d-f126-4f81-96c4-7358f06fc521"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="14"/>
+									<font fontName="ipaexg" size="11"/>
 								</textElement>
 								<text><![CDATA[ケース]]></text>
 							</staticText>
@@ -297,8 +344,10 @@
 						<jr:detailCell style="Table_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="70" height="20" uuid="b898aa44-a38c-4de4-a3bc-565e77d56695"/>
-								<textElement verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[deliveryDestination]]></textFieldExpression>
+								<textElement verticalAlignment="Middle">
+									<font fontName="ipaexg" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{deliveryDestination}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -308,7 +357,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="60" height="20" uuid="9008dc50-137e-4b59-a788-dca27dfd8f82"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="14"/>
+									<font fontName="ipaexg" size="11"/>
 								</textElement>
 								<text><![CDATA[単価]]></text>
 							</staticText>
@@ -316,8 +365,10 @@
 						<jr:detailCell style="Table_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="60" height="20" uuid="bf019b3d-99bb-4510-85a6-e14c69457885"/>
-								<textElement verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[orderDate]]></textFieldExpression>
+								<textElement verticalAlignment="Middle">
+									<font fontName="ipaexg" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{orderDate}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -327,7 +378,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="60" height="20" uuid="499e60ec-d4d0-41a7-ae4f-f306285598ff"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="14"/>
+									<font fontName="ipaexg" size="11"/>
 								</textElement>
 								<text><![CDATA[金額]]></text>
 							</staticText>
@@ -335,8 +386,10 @@
 						<jr:detailCell style="Table_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="60" height="20" uuid="f6612036-887f-4e60-bc91-909946f3b643"/>
-								<textElement verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[deliveryDate]]></textFieldExpression>
+								<textElement verticalAlignment="Middle">
+									<font fontName="ipaexg" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{deliveryDate}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -346,7 +399,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="80" height="20" uuid="abc4a199-36b8-4aca-9af2-e4c3012b1712"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="14"/>
+									<font fontName="ipaexg" size="11"/>
 								</textElement>
 								<text><![CDATA[営業所]]></text>
 							</staticText>
@@ -354,8 +407,10 @@
 						<jr:detailCell style="Table_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="80" height="20" uuid="6bc7417b-1c98-42d0-8719-838d46747fc1"/>
-								<textElement verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[shippingDate]]></textFieldExpression>
+								<textElement verticalAlignment="Middle">
+									<font fontName="ipaexg" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{shippingDate}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -365,7 +420,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="85" height="20" uuid="38edc6db-4e0a-4155-b03e-a8bed9dc7e63"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="14"/>
+									<font fontName="ipaexg" size="11"/>
 								</textElement>
 								<text><![CDATA[発注番号]]></text>
 							</staticText>
@@ -373,8 +428,10 @@
 						<jr:detailCell style="Table_TD" height="20">
 							<textField>
 								<reportElement x="0" y="0" width="85" height="20" uuid="a902bf0f-2fca-49ba-a3e0-686bf6de4bd8"/>
-								<textElement verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[creationDate]]></textFieldExpression>
+								<textElement verticalAlignment="Middle">
+									<font fontName="ipaexg" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{creationDate}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

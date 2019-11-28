@@ -84,6 +84,19 @@ sms.vm.invoice = function() {
         });
     };
 
+    self.doDownload = function() {
+        var u = '/invoice/download';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
     self.doAddItem = function() {
         var product = {"customerNo":"setCustomerNo1",
                         "productCode":"setProductCode1",

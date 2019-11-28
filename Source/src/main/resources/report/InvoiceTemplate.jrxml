@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FirstTest_A4_Table" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fc97a963-c0b6-4c19-a348-7e2773e092a3">
+	<property name="template.engine" value="tabular_template"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FirstTestDataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="377"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="609"/>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="ReportTitle" class="java.lang.String" evaluationTime="Early"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="orderNo" class="java.lang.String"/>
+	<field name="customer" class="java.lang.String"/>
+	<field name="branchName" class="java.lang.String"/>
+	<field name="deliveryDestination" class="java.lang.String"/>
+	<field name="orderDate" class="java.lang.String"/>
+	<field name="deliveryDate" class="java.lang.String"/>
+	<field name="shippingDate" class="java.lang.String"/>
+	<field name="creationDate" class="java.lang.String"/>
+	<title>
+		<band height="181" splitType="Stretch">
+			<staticText>
+				<reportElement x="400" y="119" width="149" height="15" uuid="9c095780-da5e-473f-9a1b-a52f1d5c1423"/>
+				<text><![CDATA[東京都江東区森下5-11-8]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="10" width="65" height="20" uuid="cff37be3-4a7a-47b3-8e03-e4ec0ca19905"/>
+				<box rightPadding="4">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<text><![CDATA[発行日:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="166" width="149" height="15" uuid="e3b36789-33fb-4b79-a888-979fc58bc564"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<text><![CDATA[FAX：03-6659-3872]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="104" width="150" height="15" uuid="dae22c19-039f-4a5c-a93e-cfbf43cfa705"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<text><![CDATA[太陽生命品川ビル20F]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="134" width="149" height="15" uuid="9f0a510e-fa2a-4f0d-82d3-e36d9cc6c9eb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<text><![CDATA[荒川ビル2F]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="119" width="150" height="15" uuid="c2061ecd-a23d-47d8-bf5e-83ee522ad4e1"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<text><![CDATA[株式会社シーエムエス　御中]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="89" width="149" height="15" uuid="810a9387-ef38-45da-aa8f-99af1722f636"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<text><![CDATA[株式会社ティ・エム・シー]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="104" width="149" height="15" uuid="b7f854f1-5fa6-462f-b341-0e9672a4f584"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<text><![CDATA[〒135-0004]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="150" width="149" height="15" uuid="1421b489-60f7-4c51-a768-0d68e5146685"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<text><![CDATA[TEL：03-6659-3871]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="89" width="150" height="15" uuid="530d25ff-1368-463e-a3c4-f5e07eddcb8d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<text><![CDATA[東京都港区港南2-16-2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="30" width="65" height="20" uuid="589a1b48-a64e-4e3d-bfe1-8d4b805fb1e4"/>
+				<box rightPadding="4">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<text><![CDATA[伝票番号：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="465" y="10" width="84" height="20" uuid="48b62759-2b96-453c-8b97-16f446ff8650"/>
+				<box rightPadding="4">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[2019/11/02]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="0" width="140" height="25" uuid="38848bf0-2bc5-4e5e-8da9-09afa9790ee4">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="3.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="2.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="ipaexg" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[請　求　書]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="50" width="65" height="20" uuid="6514d5e4-0d68-488d-97a0-1b438011ac38"/>
+				<box rightPadding="4">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<text><![CDATA[担当：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="465" y="50" width="84" height="20" uuid="5db6aa21-eabc-4bca-b83a-d5d05366674d"/>
+				<box rightPadding="4">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<text><![CDATA[宋　承必]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="465" y="30" width="84" height="20" uuid="8b757481-bb9e-4c17-9a7a-f44bc8bdcc12"/>
+				<box rightPadding="4">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[201911001]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="2" width="65" height="20" backcolor="#FCFC7E" uuid="fafdf994-16c1-4006-bac0-0a7245840603"/>
+				<box rightPadding="4">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[1/20]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="10" width="40" height="20" forecolor="#FFFFFF" backcolor="#1234CC" uuid="591c4bc2-936c-48c7-bd93-8d2342c826f1"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="40" y="10" width="110" height="20" forecolor="#FFFFFF" backcolor="#1234CC" uuid="c2d49c99-bd4e-4d3f-8cbe-8e4659a5eb19"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[品名／内容]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="150" y="10" width="50" height="20" forecolor="#FFFFFF" backcolor="#1234CC" uuid="13f2b371-5974-4cf1-af93-b9e9ba27dc84"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[数量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="200" y="10" width="50" height="20" forecolor="#FFFFFF" backcolor="#1234CC" uuid="b5a1b984-bea9-4709-8861-99981333a934"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ケース]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="250" y="10" width="60" height="20" forecolor="#FFFFFF" backcolor="#1234CC" uuid="4323b67e-56e6-4861-aebf-0a11dc0d7ff3"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[単価]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="310" y="10" width="70" height="20" forecolor="#FFFFFF" backcolor="#1234CC" uuid="7357ad10-8af3-4a12-b387-e7d6f94e8e63"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="380" y="10" width="80" height="20" forecolor="#FFFFFF" backcolor="#1234CC" uuid="ee6fcdc2-4466-46fd-8319-5933a0da6896"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[営業所]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="460" y="10" width="100" height="20" forecolor="#FFFFFF" backcolor="#1234CC" uuid="962c719f-4245-407d-8f16-145839e148e3"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[発注番号]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="0" y="0" width="40" height="20" backcolor="#F0FFF9" uuid="ddc38140-913c-4e1d-a266-fbb3b3276d3c"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{orderNo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="40" y="0" width="110" height="20" backcolor="#F0FFF9" uuid="3f73a841-97bd-42d3-9c2a-378a8af8f9d5"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="150" y="0" width="50" height="20" backcolor="#F0FFF9" uuid="5888cc2f-8b97-4e26-a430-a63ffd81e729"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{branchName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="200" y="0" width="50" height="20" backcolor="#F0FFF9" uuid="05253f49-27b2-406a-94c2-42eb1119146a"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deliveryDestination}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="250" y="0" width="60" height="20" backcolor="#F0FFF9" uuid="47ffbe6e-9c40-4073-8c13-b7924ae2d759"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{orderDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="310" y="0" width="70" height="20" backcolor="#F0FFF9" uuid="fa7acf4d-0de6-4f91-8529-c16b83cc6af0"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deliveryDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="380" y="0" width="80" height="20" backcolor="#F0FFF9" uuid="855bd24e-f765-44b3-b895-efe5eb9d2a00"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shippingDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="460" y="0" width="100" height="20" backcolor="#F0FFF9" uuid="69612734-22c0-4a68-b1fa-8d2e9a7b1af2"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="ipaexg" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{creationDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
