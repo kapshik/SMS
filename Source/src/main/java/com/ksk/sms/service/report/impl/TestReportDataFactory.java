@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class TestReportDataFactory {
 
-	public Collection<Map<String, ?>> makeList() {
+	public static Collection<Map<String, ?>> makeList() {
 		Collection<Map<String, ?>> orderList = new ArrayList<>();
 		Random random = new Random();
 		for(int i=1; i<100; i++) {

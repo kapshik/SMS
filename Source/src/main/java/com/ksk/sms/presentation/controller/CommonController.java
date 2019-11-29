@@ -3,14 +3,13 @@ package com.ksk.sms.presentation.controller;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ksk.sms.service.report.impl.TestReportDataFactory;
+import com.ksk.sms.service.report.impl.InvoiceTableModelFactory;
 
 import lombok.extern.log4j.Log4j2;
 import net.sf.jasperreports.engine.JRException;
@@ -34,14 +33,14 @@ public class CommonController extends SmsController {
 	// ログイン画面
     @RequestMapping({"/", "/login.html", "/invalidSession"})	
     public String loginForm(Model model) {
-//    	makePdf(model);
-        model.addAttribute("reportFileName", makePdf());
         return "login";
     }
 
 //	エントリ画面（login後）
 	@RequestMapping("/sms-home.html")	
 	public String homeForm(Model model) {
+		//makePdf(model);
+		//model.addAttribute("reportFileName", makePdf());
 
         log.info(model);
 		return "sms-home";
@@ -49,38 +48,37 @@ public class CommonController extends SmsController {
 
 	private String makePdf(){
 		String outFile = "./reportOut/Invoice_" + LocalDate.now() + ".pdf";
-		InputStream is = CommonController.class.getResourceAsStream("/report/InvoiceTemplateTableBased.jrxml");
+		InputStream is = CommonController.class.getResourceAsStream("/report/Invoice.jrxml");
 
-		TestReportDataFactory testReportDataFactory = new TestReportDataFactory();
-		Collection<Map<String, ?>> source = testReportDataFactory.makeList();
+//		TestReportDataFactory testReportDataFactory = new TestReportDataFactory();
+		Collection<Map<String, ?>> source = new InvoiceTableModelFactory().makeList();
 
-		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("ReportTitle", "請求書");
+		Map<String, Object> parameters = new InvoiceTableModelFactory().makeParameters();
 
-			JasperReport jasperReport = null;
-			try {
-				jasperReport = JasperCompileManager.compileReport(is);
-			} catch (JRException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-				return outFile;
-			}
-			JasperPrint jasperPrint = null;
-			try {
-				jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JRMapCollectionDataSource(source));
-			} catch (JRException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-				return outFile;
-			}
-			try {
-				JasperExportManager.exportReportToPdfFile(jasperPrint, outFile);
-			} catch (JRException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-				return outFile;
-			}
+		JasperReport jasperReport = null;
+		try {
+			jasperReport = JasperCompileManager.compileReport(is);
+		} catch (JRException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
 			return outFile;
+		}
+		JasperPrint jasperPrint = null;
+		try {
+			jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JRMapCollectionDataSource(source));
+		} catch (JRException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+			return outFile;
+		}
+		try {
+			JasperExportManager.exportReportToPdfFile(jasperPrint, outFile);
+		} catch (JRException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+			return outFile;
+		}
+		return outFile;
 	}
 
 }
