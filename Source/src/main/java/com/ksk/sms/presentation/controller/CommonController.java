@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ksk.sms.service.report.impl.InvoiceTableModelFactory;
+import com.ksk.sms.service.report.impl.InvoiceReportFactory;
 
 import lombok.extern.log4j.Log4j2;
 import net.sf.jasperreports.engine.JRException;
@@ -51,9 +51,9 @@ public class CommonController extends SmsController {
 		InputStream is = CommonController.class.getResourceAsStream("/report/Invoice.jrxml");
 
 //		TestReportDataFactory testReportDataFactory = new TestReportDataFactory();
-		Collection<Map<String, ?>> source = new InvoiceTableModelFactory().makeList();
+		Collection<Map<String, ?>> source = new InvoiceReportFactory().makeList();
 
-		Map<String, Object> parameters = new InvoiceTableModelFactory().makeParameters();
+		Map<String, Object> parameters = new InvoiceReportFactory().makeParameters();
 
 		JasperReport jasperReport = null;
 		try {

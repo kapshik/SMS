@@ -59,16 +59,15 @@ public class InvoiceRestController {
 	@PostMapping("invoice/download")
 	public void download(ModelAndView model, HttpServletResponse response) throws IOException, JRException {
 
-		reportService.mekeInvoice(response, "attachment");
+		reportService.mekeReport(response, "attachment");
 		log.info("attachment");
-
 	}
 
 	@PostMapping("invoice/display")
 	public void display(ModelAndView model, HttpServletResponse response) throws IOException, JRException {
 		
-		reportService.mekeInvoice(response, "inline");
+		reportService.mekeReport(response, "inline");
 		log.info("inline");
-
 	}
+
 }

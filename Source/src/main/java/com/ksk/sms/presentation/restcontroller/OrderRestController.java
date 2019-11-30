@@ -1,5 +1,9 @@
 package com.ksk.sms.presentation.restcontroller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -7,11 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ksk.sms.model.OrderViewModel;
+import com.ksk.sms.service.report.OrderReportService;
 import com.ksk.sms.service.view.SmsViewService;
 
 import lombok.extern.log4j.Log4j2;
+import net.sf.jasperreports.engine.JRException;
 
 @Log4j2
 @RestController
@@ -21,6 +28,9 @@ public class OrderRestController {
 	@Autowired
 	private SmsViewService<OrderViewModel> service;
 	
+	@Autowired
+	private OrderReportService reportService;
+
 	@GetMapping("order/init")
 	public OrderViewModel init() {
 		OrderViewModel outModel = service.init();
@@ -58,5 +68,19 @@ public class OrderRestController {
 
         return inModel;
     }
+
+	@PostMapping("order/download")
+	public void download(ModelAndView model, HttpServletResponse response) throws IOException, JRException {
+
+		reportService.mekeReport(response, "attachment");
+		log.info("attachment");
+	}
+
+	@PostMapping("order/display")
+	public void display(ModelAndView model, HttpServletResponse response) throws IOException, JRException {
+		
+		reportService.mekeReport(response, "inline");
+		log.info("inline");
+	}
 
 }

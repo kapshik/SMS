@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.presentation.controller.CommonController;
-import com.ksk.sms.service.report.InvoiceReportService;
+import com.ksk.sms.service.report.DeliveryReportService;
 
 import lombok.extern.log4j.Log4j2;
 import net.sf.jasperreports.engine.JRException;
@@ -26,13 +26,13 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 
 @Log4j2
 @Service
-public class InvoiceReportServiceImpl implements InvoiceReportService  {
+public class DeliveryReportServiceImpl implements DeliveryReportService  {
 	
 	@Autowired
-	InvoiceReportFactory reportFactory;
+	DeliveryReportFactory reportFactory;
 
 	public void mekeReport(HttpServletResponse response, String option) throws IOException, JRException {
-		String outFileName = "Invoice_" + LocalDate.now() + ".pdf";
+		String outFileName = "Delivery_" + LocalDate.now() + ".pdf";
 
 		response.setContentType("application/pdf");
 		response.setHeader("Content-Disposition", String.format(option + "; filename=\"" + outFileName + "\""));
@@ -41,7 +41,7 @@ public class InvoiceReportServiceImpl implements InvoiceReportService  {
 		Collection<Map<String, ?>> source = reportFactory.makeList();
 		Map<String, Object> parameters = reportFactory.makeParameters();
 
-		InputStream inputStream = CommonController.class.getResourceAsStream("/report/Invoice.jrxml");
+		InputStream inputStream = CommonController.class.getResourceAsStream("/report/Delivery.jrxml");
 		OutputStream outputStream = response.getOutputStream();
 
 		JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
