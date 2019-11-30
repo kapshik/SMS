@@ -3,6 +3,7 @@ package com.ksk.sms.service.report.impl;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -31,10 +32,11 @@ public class OrderReportServiceImpl implements OrderReportService  {
 	OrderReportFactory reportFactory;
 
 	public void mekeReport(HttpServletResponse response, String option) throws IOException, JRException {
-		String outFileName = "Delivery_" + LocalDate.now() + ".pdf";
+//		String outFileName = "OrderConfirmation_" + LocalDate.now() + ".pdf";
+		String outFileName = "注文確認書_" + LocalDate.now() + ".pdf";
 
 		response.setContentType("application/pdf");
-		response.setHeader("Content-Disposition", String.format(option + "; filename=\"" + outFileName + "\""));
+		response.setHeader("Content-Disposition", option + "; filename=" + URLEncoder.encode(outFileName, "UTF-8"));
 		response.setHeader("Cache-Control","must-revalidate, post-check=0, pre-check=0");
 
 //		Collection<Map<String, ?>> source = reportFactory.makeList();
