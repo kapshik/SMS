@@ -10,9 +10,7 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>商品名</label>
-                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value: productName">
-                  <option th:each="keyValue : ${smsViewModel.productMasterList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-                </select>
+                <input type="text" disabled class="form-control form-control-sm"  data-bind="value:productName">
               </div>
             </div>
             <div class="col-lg-6">
@@ -26,13 +24,13 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>入り数</label>
-                <input type="text" class="form-control input-sm" data-bind="value:quantity">
+                <input type="text" disabled class="form-control input-sm" data-bind="value:quantity">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">       
                 <label>金額</label>
-                <input type="text" class="form-control input-sm" data-bind="value:amount">
+                <input type="text" disabled class="form-control input-sm" data-bind="value:amount">
               </div>
             </div>
           </div>
@@ -40,34 +38,15 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>商品区分</label>
-                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value: productType">
-                  <option th:each="keyValue : ${smsViewModel.productTypeList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-                </select>
+                <input type="text" disabled class="form-control input-sm" data-bind="value:productType">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">       
                 <label>単位</label>
-                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value: unitType">
-                  <option th:each="keyValue : ${smsViewModel.unitTypeList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-                </select>
+                <input type="text" disabled class="form-control input-sm" data-bind="value:unitType">
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="card">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-3">
-        </div>
-        <div class="col-sm-3 offset-sm-6">
-          <div class="form-group">
-            <button type="button" class="btn btn-secondary btn-block btn-sm" data-bind="click: $root.doCancel">キャンセル</button>
           </div>
         </div>
       </div>

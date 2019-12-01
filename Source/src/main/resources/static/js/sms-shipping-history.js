@@ -24,6 +24,14 @@ $(function () {
     new $.fn.dataTable.Buttons( dataTable, {
         buttons: [
             {
+                extend: 'excelHtml5',
+                title: '株式会社シーエムエス様　出荷履歴',
+                className: 'btn btn-info btn-sm',
+                filename: '出荷履歴',
+                text: 'Download Excel'
+            },
+/*            
+            {
                 extend: 'copyHtml5',
                 className: 'btn btn-info btn-sm',
                 text: 'Copy to clipboard'
@@ -33,13 +41,6 @@ $(function () {
                 className: 'btn btn-primary btn-sm' 
             }, 
             {
-                extend: 'excelHtml5',
-                title: '株式会社シーエムエス様　出荷履歴',
-                className: 'btn btn-danger btn-sm',
-                filename: '出荷履歴',
-                text: 'Excel Download'
-            },
-            {
                 extend: 'pdfHtml5',
                 download: 'open',
                 pageSize: 'A3',
@@ -47,13 +48,14 @@ $(function () {
                 className: 'btn btn-warning btn-sm',
                 download: 'open'
             }
+*/
         ]
     });
     dataTable.buttons().container().appendTo( '#id_out_stock_list_wrapper .col-md-6:eq(0)' );
     
     
-	$('#id_report_menu').collapse('show');
-	$('#id_report_menu_1').addClass('active');
+	$('#id_customer_menu').collapse('show');
+	$('#id_customer_menu_6').addClass('active');
     setTimeout( function(){
             $('.loading').addClass('hidden');
     }, LOADING_TIMEOUT);

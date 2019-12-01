@@ -1,30 +1,4 @@
-<section>
-  <div class="card">
-    <div class="card-body text-center">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button type="button" data-toggle="modal" data-target="#id_modal_order_add" class="btn btn-info btn-block btn-sm">注文登録</button>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button type="button" data-toggle="modal" data-target="#id_modal_customer_add" class="btn btn-warning btn-block btn-sm">顧客登録</button>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button type="button" data-toggle="modal" data-target="#id_modal_branch_add" class="btn btn-danger btn-block btn-sm">支店登録</button>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button type="button" data-toggle="modal" data-target="#id_modal_product_add" class="btn btn-secondary btn-block btn-sm">商品登録</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<section th:insert="include/inc-default-buttons" th:if="${isAdmin}">
 </section>
 <section data-bind="with: dataModel">
   <div class="card">
@@ -68,25 +42,25 @@
         <div class="col-sm-3">
           <div class="form-group">
             <label class="form-control-label">発注日</label>
-            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.orderDate">
+            <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.orderDate" placeholder="2019/12/01">
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label class="form-control-label">納品日</label>
-            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.deliveryDate">
+            <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.deliveryDate" placeholder="2019/12/01">
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label class="form-control-label">出荷日</label>
-            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.shippingDate">
+            <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.shippingDate" placeholder="2019/12/01">
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label class="form-control-label">登録日</label>
-            <input type="text" value="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.registrationDate">
+            <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.registrationDate" placeholder="2019/12/01">
           </div>
         </div>
       </div>
@@ -98,19 +72,29 @@
             <button  id="id_btn_order_search" type="button" data-bind="click:$root.doSearch" class="btn btn-primary btn-block btn-sm">注文検索</button>
           </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3" th:if="${isAdmin}">
           <div class="form-group">
             <button disabled id="id_btn_order_detail" type="button" data-toggle="modal" data-target="#id_modal_order_detail" class="btn btn-primary btn-block btn-sm with-table-row">注文詳細</button>
           </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3" th:if="${isAdmin}">
           <div class="form-group">
             <button disabled id="id_btn_order_update" type="button" data-toggle="modal" data-target="#id_modal_order_update" class="btn btn-primary btn-block btn-sm with-table-row">注文変更</button>
           </div>
         </div>
+        <div class="col-sm-3" th:if="${not isAdmin}">
+          <div class="form-group">
+            <a class="btn btn-primary btn-block btn-sm disabled with-table-row" href="sms-order-detail.html" role="button">注文詳細</a>
+          </div>
+        </div>
+        <div class="col-sm-3" th:if="${not isAdmin}">
+          <div class="form-group">
+            <a class="btn btn-primary btn-block btn-sm disabled with-table-row" href="sms-order-update.html" role="button">注文変更</a>
+          </div>
+        </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <button disabled data-bind="click:$root.doDelete" type="button" class="btn btn-primary btn-block btn-sm with-table-row">注文削除</button>
+            <button disabled data-bind="click:$root.doDeleteItem" type="button" class="btn btn-primary btn-block btn-sm with-table-row">注文削除</button>
           </div>
         </div>
       </div>
@@ -161,16 +145,20 @@
   </div>
 </section>
 <!-- Modal-->
+<div th:insert="modal/modal-error">
+</div>
 <div th:insert="modal/modal-order-add">
-</div>
-<div th:insert="modal/modal-order-detail">
-</div>
-<div th:insert="modal/modal-order-update">
 </div>
 <div th:insert="modal/modal-customer-add">
 </div>
 <div th:insert="modal/modal-branch-add">
 </div>
+<div th:insert="modal/modal-deliverydest-add">
+</div>
 <div th:insert="modal/modal-product-add">
+</div>
+<div th:insert="modal/modal-order-detail">
+</div>
+<div th:insert="modal/modal-order-update">
 </div>
 <!-- Modal-->

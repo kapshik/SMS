@@ -1,34 +1,4 @@
-<section>
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
-        <div class="card-body text-center">
-          <div class="row">
-            <div class="col-lg-3">
-              <div class="form-group">
-                <button type="button" data-toggle="modal" data-target="#id_modal_customer_add" class="btn btn-primary btn-block btn-sm">顧客登録</button>
-              </div>
-            </div>
-            <div class="col-lg-3">
-              <div class="form-group">
-                <button type="button" data-toggle="modal" data-target="#id_modal_branch_add" class="btn btn-primary btn-block btn-sm">支店登録</button>
-              </div>
-            </div>
-            <div class="col-lg-3">
-              <div class="form-group">
-                <button type="button" data-toggle="modal" data-target="#id_modal_deliverydest_add" class="btn btn-primary btn-block btn-sm">納品先登録</button>
-              </div>
-            </div>
-            <div class="col-lg-3">
-              <div class="form-group">
-                <button type="button" data-toggle="modal" data-target="#id_modal_product_add" class="btn btn-primary btn-block btn-sm">商品登録</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<section th:insert="include/inc-default-buttons" th:if="${isAdmin}">
 </section>
 <section data-bind="with: dataModel">
   <div class="card">
@@ -63,16 +33,16 @@
       <div class="row">
         <div class="col-lg-4">
           <div class="form-group">
-            <label class="form-control-label">納品先</label>
-            <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:criteria.deliveryDestNo">
-              <option th:each="keyValue : ${smsViewModel.deliveryDestList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-            </select>
+            <label class="form-control-label">開始日</label>
+            <input type="text" value="06/22/1980" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.startDate">
           </div>
         </div>
         <div class="col-lg-4">
           <div class="form-group">
-            <label class="form-control-label">開始日</label>
-            <input type="text" value="06/22/1980" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.startDate">
+            <label class="form-control-label">納品先</label>
+            <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:criteria.deliveryDestNo">
+              <option th:each="keyValue : ${smsViewModel.deliveryDestList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
+            </select>
           </div>
         </div>
         <div class="col-lg-4">
@@ -126,10 +96,10 @@
               <th width="5%">郵便番号</th>
               <th width="20%">住所１</th>
               <th>住所２</th>
-              <th width="5%">電話</th>
-              <th width="5%">ファックス</th>
+              <th width="10%">電話</th>
+              <th width="10%">ファックス</th>
               <th width="5%">開始日</th>
-              <th width="20%">支払条件</th>
+              <th width="15%">支払条件</th>
             </tr>
           </thead>
           <tbody data-bind="foreach: customerModelList">
@@ -155,16 +125,20 @@
   </div>
 </section>
 <!-- Modal-->
+<div th:insert="modal/modal-error">
+</div>
+<div th:insert="modal/modal-order-add">
+</div>
 <div th:insert="modal/modal-customer-add">
+</div>
+<div th:insert="modal/modal-branch-add">
+</div>
+<div th:insert="modal/modal-deliverydest-add">
+</div>
+<div th:insert="modal/modal-product-add">
 </div>
 <div th:insert="modal/modal-customer-detail">
 </div>
 <div th:insert="modal/modal-customer-update">
-</div>
-<div th:insert="modal/modal-branch-add">
-</div>
-<div th:insert="modal/modal-deliveryDest-add">
-</div>
-<div th:insert="modal/modal-product-add">
 </div>
 <!-- Modal-->

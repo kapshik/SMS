@@ -10,15 +10,13 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>顧客名</label>
-                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:branchModel.customerNo, event:{change: $root.doCustomerChange}">
-                  <option th:each="keyValue : ${smsViewModel.customerList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-                </select>
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.customerName" placeholder="顧客名">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">       
                 <label>支店名</label>
-                <input type="text" class="form-control form-control-sm" placeholder="支店名" data-bind="value: branchModel.branchName">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.branchName" placeholder="支店名">
               </div>
             </div>
           </div>
@@ -26,13 +24,13 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>郵便番号</label>
-                <input type="text" class="form-control form-control-sm" data-bind="value: branchModel.zipcode" placeholder="101-0061">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.zipcode" placeholder="101-0061">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">       
                 <label>住所１</label>
-                <input type="text" class="form-control form-control-sm" data-bind="value: branchModel.address" placeholder="住所１">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.address" placeholder="住所１">
               </div>
             </div>
           </div>
@@ -40,7 +38,7 @@
             <div class="col-lg-12">
               <div class="form-group">
                 <label>住所２</label>
-                <input type="text" class="form-control form-control-sm" data-bind="value: branchModel.addressDetail" placeholder="住所２">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.addressDetail" placeholder="住所２">
               </div>
             </div>
           </div>
@@ -48,13 +46,13 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>電話番号</label>
-                <input type="text" class="form-control form-control-sm" data-bind="value: branchModel.telNo" placeholder="090-1324-5678">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.telNo" placeholder="090-1324-5678">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">       
                 <label>ファックス</label>
-                <input type="text" class="form-control form-control-sm" data-bind="value: branchModel.faxNo" placeholder="03-1324-5678">
+                <input type="text" disabled class="form-control form-control-sm" data-bind="value: branchModel.faxNo" placeholder="03-1324-5678">
               </div>
             </div>
           </div>
@@ -100,21 +98,3 @@
     </div>
   </div>
 </section>
-<section>
-  <div class="card">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-3">
-        </div>
-        <div class="col-sm-3 offset-sm-6">
-          <div class="form-group">
-            <button type="button" class="btn btn-secondary btn-block btn-sm" data-bind="click: $root.doCancel">キャンセル</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Modal-->
-<div th:insert="modal/modal-deliverydest-add">
-</div>

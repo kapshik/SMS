@@ -35,16 +35,16 @@
           <li id="id_order_menu_3"><a href="sms-order-search.html">注文検索</a></li>
           <li id="id_order_menu_5"><a href="sms-order-update.html">注文変更</a></li>
           <li id="id_order_menu_6"><a href="sms-order-detail.html">注文詳細</a></li>
-          <li id="id_order_menu_7"><a href="sms-order-create.html">注文確認書作成</a></li>
+          <li id="id_order_menu_7" th:if="${isAdmin}"><a href="sms-order-create.html">注文確認書作成</a></li>
         </ul>
       </li>
-      <li th:if="${isAdmin}"><a href="#id_delivery_menu" aria-expanded="false" data-toggle="collapse"><i class="icon-paper-airplane"></i>納品管理</a>
+      <li><a href="#id_delivery_menu" aria-expanded="false" data-toggle="collapse"><i class="icon-paper-airplane"></i>納品管理</a>
         <ul id="id_delivery_menu" class="collapse list-unstyled ">
-          <li id="id_delivery_menu_1"><a href="sms-delivery.html">納品管理</a></li>
-          <li id="id_delivery_menu_2"><a href="sms-delivery-status.html">納品状況</a></li>
+          <li id="id_delivery_menu_1" th:if="${isAdmin}"><a href="sms-delivery.html">納品管理</a></li>
+          <li id="id_delivery_menu_2" th:if="${isAdmin}"><a href="sms-delivery-status.html">納品状況</a></li>
           <li id="id_delivery_menu_4"><a href="sms-delivery-create.html">納品書作成</a></li>
-          <li id="id_delivery_menu_3"><a href="sms-delivery-search.html">納品書検索</a></li>
-          <li id="id_delivery_menu_5"><a href="sms-delivery-detail.html">納品書確認</a></li>
+          <li id="id_delivery_menu_3" th:if="${isAdmin}"><a href="sms-delivery-search.html">納品書検索</a></li>
+          <li id="id_delivery_menu_5" th:if="${isAdmin}"><a href="sms-delivery-detail.html">納品書確認</a></li>
         </ul>
       </li>
       <li><a href="#id_invoice_menu" aria-expanded="false" data-toggle="collapse"><i class="icon-bill"></i>請求管理 </a>
@@ -52,8 +52,8 @@
           <li id="id_invoice_menu_1" th:if="${isAdmin}"><a href="sms-invoice.html">請求管理</a></li>
           <li id="id_invoice_menu_2" th:if="${isAdmin}"><a href="sms-invoice-status.html">請求状況</a></li>
           <li id="id_invoice_menu_4"><a href="sms-invoice-create.html">請求書作成</a></li>
-          <li id="id_invoice_menu_3"><a href="sms-invoice-search.html">請求書検索</a></li>
-          <li id="id_invoice_menu_5"><a href="sms-invoice-detail.html">請求書確認</a></li>
+          <li id="id_invoice_menu_3" th:if="${isAdmin}"><a href="sms-invoice-search.html">請求書検索</a></li>
+          <li id="id_invoice_menu_5" th:if="${isAdmin}"><a href="sms-invoice-detail.html">請求書確認</a></li>
         </ul>
       </li>
     </ul>
@@ -114,10 +114,10 @@
       </li>
     </ul>
   </div>
-  <div class="admin-menu">
+  <div class="admin-menu" th:if="${isAdmin}">
     <h5 class="sidenav-heading">管理メニュー</h5>
     <ul id="id_admin_menu" class="side-menu list-unstyled"> 
-      <li id="id_admin_menu_1" th:if="${isAdmin}"><a href="sms-statistics.html"><i class="icon-line-chart"></i>統計情報</a></li>
+      <li id="id_admin_menu_1"><a href="sms-statistics.html"><i class="icon-line-chart"></i>統計情報</a></li>
       <li><a href="#id_report_menu" aria-expanded="false" data-toggle="collapse"><i class="icon-form"></i>帳票出力</a>
         <ul id="id_report_menu" class="collapse list-unstyled ">
           <li id="id_report_menu_4"><a href="sms-order-create.html">注文確認書作成</a></li>

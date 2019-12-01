@@ -118,7 +118,8 @@ sms.vm.order = function() {
     };
 
     self.doDeleteItem = function() {
-        self.dataModel.productModelList.pop();
+        self.dataModel.orderModelList.pop();
+        doCheckedTableRow();
     };
 
 	self.bind = function() {

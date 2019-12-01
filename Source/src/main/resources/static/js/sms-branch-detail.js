@@ -1,6 +1,3 @@
-    setTimeout( function(){
-            $('.loading').addClass('hidden');
-    }, LOADING_TIMEOUT);
 $(function () {
     // ------------------------------------------------------- //
     // Initialize Page By Server Data
@@ -15,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_branch_menu').collapse('show');
-	$('#id_branch_menu_6').addClass('active');
+	$('#id_branch_menu_7').addClass('active');
     setTimeout( function(){
             $('.loading').addClass('hidden');
     }, LOADING_TIMEOUT);

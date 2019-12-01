@@ -10,15 +10,15 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>商品名</label>
-                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value: productName">
-                  <option th:each="keyValue : ${smsViewModel.productMasterList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-                </select>
+                <input type="text" class="form-control input-sm" data-bind="value:productName">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">       
                 <label>商品コード</label>
-                <input type="text" disabled class="form-control form-control-sm"  data-bind="value:productCode">
+                <input type="text" class="form-control form-control-sm" data-bind="value:productCode"
+                  pattern="[A-Z]{2}-[A-Z0-9]{3}"
+                  placeholder="AB-A01">
               </div>
             </div>
           </div>

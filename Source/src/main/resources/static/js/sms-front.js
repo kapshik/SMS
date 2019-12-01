@@ -157,10 +157,11 @@ function toJSON( data ) {
 // ------------------------------------------------------ //
 function doCheckedTableRow() {
     var r = $('input[name="table_radio"]:checked').val();
-    $('.with-table-row').prop("disabled", false);
+    if(r) {
+        $('.with-table-row').prop("disabled", false);
+        $('.with-table-row').removeClass("disabled");
+    } else {
+        $('.with-table-row').prop("disabled", true);
+        $('.with-table-row').addClass("disabled");
+    }
 };
-function doUnCheckedTableRow() {
-    var r = $('input[name="table_radio"]:checked').val();
-    $('.with-table-row').prop("disabled", true);
-};
-
