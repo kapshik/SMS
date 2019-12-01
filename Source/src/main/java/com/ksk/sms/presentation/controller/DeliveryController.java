@@ -26,7 +26,15 @@ public class DeliveryController extends SmsController {
 		return "sms-delivery-status";
 	}
 
-//	納品検索画面
+//	納品書作成画面
+	@RequestMapping("/sms-delivery-create.html")	
+	public String createForm(Model model) {
+
+        log.info(model);
+		return "sms-delivery-create";
+	}
+	
+//	納品書検索画面
 	@RequestMapping("/sms-delivery-search.html")	
 	public String searchForm(Model model) {
 
@@ -34,28 +42,12 @@ public class DeliveryController extends SmsController {
 		return "sms-delivery-search";
 	}
 
-//	納品登録画面
-	@RequestMapping("/sms-delivery-add.html")	
-	public String addForm(Model model) {
-
-        log.info(model);
-		return "sms-delivery-add";
-	}
-	
-//	納品詳細画面
+//	納品書確認画面
 	@RequestMapping("/sms-delivery-detail.html")	
 	public String detailForm(Model model) {
 
         log.info(model);
 		return "sms-delivery-detail";
-	}
-	
-//	納品変更画面
-	@RequestMapping("/sms-delivery-update.html")	
-	public String updateForm(Model model) {
-
-        log.info(model);
-		return "sms-delivery-update";
 	}
 	
 }

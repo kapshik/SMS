@@ -1,18 +1,17 @@
 package com.ksk.sms.presentation.controller;
 
-import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
+@Controller
 public class SmsController {
+//TODO
+//取り合えず残しておく、不要が確定したら削除する。
 
-	public Model setCommonAttribute(Model model) {
-//		model.addAttribute("username", SmsUserInfoUtil.getUsername());
-//        model.addAttribute("isAdmin", SmsUserInfoUtil.getRole().equals("ROLE_ADMIN") );
-
-        log.info(model);
-		return model;
+	public SmsController() {
+		log.info("SmsController constructor!");
 	}
 
 }

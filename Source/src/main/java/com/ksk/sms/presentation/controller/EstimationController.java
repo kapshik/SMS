@@ -26,14 +26,6 @@ public class EstimationController extends SmsController {
 		return "sms-estimation-status";
 	}
 
-//	見積検索画面
-	@RequestMapping("/sms-estimation-search.html")	
-	public String searchForm(Model model) {
-
-        log.info(model);
-		return "sms-estimation-search";
-	}
-
 //	見積登録画面
 	@RequestMapping("/sms-estimation-add.html")	
 	public String addForm(Model model) {
@@ -42,20 +34,28 @@ public class EstimationController extends SmsController {
 		return "sms-estimation-add";
 	}
 	
-//	見積詳細画面
-	@RequestMapping("/sms-estimation-detail.html")	
-	public String detailForm(Model model) {
+//	見積検索画面
+	@RequestMapping("/sms-estimation-search.html")	
+	public String searchForm(Model model) {
 
         log.info(model);
-		return "sms-estimation-detail";
+		return "sms-estimation-search";
 	}
-	
+
 //	見積変更画面
 	@RequestMapping("/sms-estimation-update.html")	
 	public String updateForm(Model model) {
 
         log.info(model);
 		return "sms-estimation-update";
+	}
+	
+//	見積詳細画面
+	@RequestMapping("/sms-estimation-detail.html")	
+	public String detailForm(Model model) {
+
+        log.info(model);
+		return "sms-estimation-detail";
 	}
 	
 }

@@ -26,14 +26,6 @@ public class OrderController extends SmsController {
 		return "sms-order-status";
 	}
 
-//	注文検索画面
-	@RequestMapping("/sms-order-search.html")	
-	public String searchForm(Model model) {
-
-        log.info(model);
-		return "sms-order-search";
-	}
-
 //	注文登録画面
 	@RequestMapping("/sms-order-add.html")	
 	public String addForm(Model model) {
@@ -42,12 +34,12 @@ public class OrderController extends SmsController {
 		return "sms-order-add";
 	}
 	
-//	注文詳細画面
-	@RequestMapping("/sms-order-detail.html")	
-	public String detailForm(Model model) {
+//	注文検索画面
+	@RequestMapping("/sms-order-search.html")	
+	public String searchForm(Model model) {
 
         log.info(model);
-		return "sms-order-detail";
+		return "sms-order-search";
 	}
 
 //	注文変更画面
@@ -58,5 +50,20 @@ public class OrderController extends SmsController {
 		return "sms-order-update";
 	}
 
-	
+//	注文詳細画面
+	@RequestMapping("/sms-order-detail.html")	
+	public String detailForm(Model model) {
+
+        log.info(model);
+		return "sms-order-detail";
+	}
+
+//	注文確認書作成画面
+	@RequestMapping("/sms-order-create.html")	
+	public String createForm(Model model) {
+
+        log.info(model);
+		return "sms-order-create";
+	}
+
 }

@@ -29,16 +29,21 @@
     <link rel="stylesheet" href="vendor/bootstrap-tagsinput/bootstrap-tagsinput.css">
     <!-- No UI Slider-->
     <link rel="stylesheet" href="vendor/nouislider/nouislider.css">
+    <!-- DataTables CSS-->
+    <link rel="stylesheet" href="vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendor/datatables/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendor/datatables/select.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendor/datatables/responsive.bootstrap4.min.css">
     <!-- jQuery Circle-->
     <link rel="stylesheet" href="css/grasp_mobile_progress_circle-1.0.0.min.css">
     <!-- Custom Scrollbar-->
     <link rel="stylesheet" href="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="css/style.default.premium.css" id="theme-stylesheet">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.ico">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.ico">
   </head>
   <body>
     <!-- Loading Spinner -->
@@ -46,15 +51,15 @@
     </div>
 
     <!-- Side Navbar -->
-    <nav class="side-navbar" th:insert="include/inc-side-navbar">
+    <nav class="side-navbar" th:include="include/inc-side-navbar">
     </nav>
     <div class="page">
       <!-- navbar-->
-      <header class="header" th:insert="include/inc-header">
+      <header class="header" th:include="include/inc-header">
       </header>
-      <div class="container-fluid" th:insert="include/inc-estimation-confirm">
+      <div class="container-fluid" th:include="include/inc-shipping-history">
       </div>
-      <footer class="main-footer" th:insert="include/inc-footer">
+      <footer class="main-footer" th:include="include/inc-footer">
       </footer>
     </div>
     <!-- JavaScript files-->
@@ -80,6 +85,18 @@
     <script src="vendor/jasny-bootstrap/js/jasny-bootstrap.min.js"> </script>
     <!-- MultiSelect-->
     <script src="vendor/multiselect/js/jquery.multi-select.js"> </script>
+    <!-- Data Tables-->
+    <script src="vendor/datatables/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="vendor/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script src="vendor/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="vendor/datatables/dataTables.buttons.min.js"></script>
+    <script src="vendor/datatables/dataTables.responsive.min.js"></script>
+    <script src="vendor/datatables/dataTables.select.min.js"></script>
+    <script src="vendor/datatables/buttons.bootstrap4.min.js"></script>
+    <script src="vendor/datatables/buttons.html5.min.js"></script>
+    <script src="vendor/datatables/responsive.bootstrap4.min.js"></script>
     <!-- Knockout-->
     <script src="vendor/knockout/knockout-3.5.1.js"></script>
     <script src="vendor/knockout/knockout.mapping-latest.js"></script>
@@ -89,7 +106,7 @@
     <script src="js/base/common.js"></script>
 -->
     <script src="js/base/validation.js"></script>
-    <script src="js/sms-estimation-confirm.js"></script>
+    <script src="js/sms-shipping-history.js"></script>
     <!-- Main File-->
     <script src="js/sms-front.js"></script>
   </body>

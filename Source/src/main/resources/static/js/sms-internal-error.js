@@ -131,8 +131,8 @@ sms.vm.home = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
-			self.dataModel.title("注文管理システム");
-			self.postMessage("こんにちは? "+ self.dataModel.username() + "<br>弊社販売管理システムをお使い頂き有難う御座います！", "success");
+			self.dataModel.title("エラー画面");
+			self.postMessage(self.dataModel.username() + "さん<br>エラー内容を確認してください！", "error");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();

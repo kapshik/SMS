@@ -12,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_invoice_menu').collapse('show');
-	$('#id_invoice_menu_1').addClass('active');
+	$('#id_invoice_menu_5').addClass('active');
     setTimeout( function(){
             $('.loading').addClass('hidden');
     }, LOADING_TIMEOUT);
@@ -31,7 +31,7 @@ sms.vm.invoice = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
-			self.dataModel.title("請求詳細");
+			self.dataModel.title("請求書確認");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -78,6 +78,19 @@ sms.vm.invoice = function() {
           }).done(function(response) {
             //TODO 時間がかかる場合は個別に実施
             ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doDownload = function() {
+        var u = '/invoice/download';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
           }).fail(function(xhr, exception){
             self.messages.removeAll();
             self.handler.handle(xhr, exception);

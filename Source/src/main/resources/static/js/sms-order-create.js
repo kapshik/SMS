@@ -2,7 +2,7 @@ $(function () {
     // ------------------------------------------------------- //
     // Initialize Page By Server Data
     // ------------------------------------------------------ //
-    var viewModel = new sms.vm.delivery();
+    var viewModel = new sms.vm.order();
     viewModel.doInit({
         success : function() {
         viewModel.bind();
@@ -11,27 +11,27 @@ $(function () {
         viewModel.bind();
         }
     });
-	$('#id_delivery_menu').collapse('show');
-	$('#id_delivery_menu_5').addClass('active');
+	$('#id_order_menu').collapse('show');
+	$('#id_order_menu_7').addClass('active');
     setTimeout( function(){
             $('.loading').addClass('hidden');
     }, LOADING_TIMEOUT);
 });
 
-sms.vm.delivery = function() {
+sms.vm.order = function() {
 	var self = this;
 
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
 
 	self.doInit = function( param ) {
-		var u = '/delivery/init';
+		var u = '/order/init';
 		$.ajax({
 			type: 'get',
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
-			self.dataModel.title("納品書確認");
+			self.dataModel.title("注文確認書作成");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -41,7 +41,7 @@ sms.vm.delivery = function() {
 	};
 
     self.doCustomerChange = function() {
-        var u = '/delivery/customerChange';
+        var u = '/order/customerChange';
         $.ajax({
             type: 'post',
             url: u,
@@ -56,7 +56,7 @@ sms.vm.delivery = function() {
     };
 
     self.doSearch = function() {
-        var u = '/delivery/search';
+        var u = '/order/search';
         $.ajax({
             type: 'post',
             url: u,
@@ -70,7 +70,7 @@ sms.vm.delivery = function() {
     };
 
     self.doAdd = function() {
-        var u = '/delivery/customerChange';
+        var u = '/order/customerChange';
         $.ajax({
             type: 'post',
             url: u,

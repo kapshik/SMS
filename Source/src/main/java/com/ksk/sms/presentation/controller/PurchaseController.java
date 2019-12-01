@@ -26,14 +26,6 @@ public class PurchaseController extends SmsController {
 		return "sms-purchase-status";
 	}
 
-//	仕入検索画面
-	@RequestMapping("/sms-purchase-search.html")	
-	public String searchForm(Model model) {
-
-        log.info(model);
-		return "sms-purchase-search";
-	}
-
 //	仕入登録画面
 	@RequestMapping("/sms-purchase-add.html")	
 	public String paddForm(Model model) {
@@ -42,14 +34,14 @@ public class PurchaseController extends SmsController {
 		return "sms-purchase-add";
 	}
 	
-//	仕入詳細画面
-	@RequestMapping("/sms-purchase-detail.html")	
-	public String detailForm(Model model) {
+//	仕入検索画面
+	@RequestMapping("/sms-purchase-search.html")	
+	public String searchForm(Model model) {
 
         log.info(model);
-		return "sms-purchase-detail";
+		return "sms-purchase-search";
 	}
-	
+
 //	仕入変更画面
 	@RequestMapping("/sms-purchase-update.html")	
 	public String updateForm(Model model) {
@@ -57,5 +49,13 @@ public class PurchaseController extends SmsController {
         log.info(model);
 		return "sms-purchase-update";
 	}
-	
+
+//	仕入詳細画面
+	@RequestMapping("/sms-purchase-detail.html")	
+	public String detailForm(Model model) {
+
+        log.info(model);
+		return "sms-purchase-detail";
+	}
+
 }

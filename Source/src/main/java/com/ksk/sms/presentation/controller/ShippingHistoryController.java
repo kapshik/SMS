@@ -8,14 +8,14 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Controller
-public class ReportController extends SmsController {
+public class ShippingHistoryController extends SmsController {
 
-//	帳票メイン画面
-	@RequestMapping("/sms-report.html")	
+//	出荷履歴画面
+	@RequestMapping("/sms-shipping-history.html")	
 	public String mainForm(Model model) {
 
         log.info(model);
-		return "sms-report";
+		return "sms-shipping-history";
 	}
 
 }

@@ -19,36 +19,37 @@ $(function () {
         ordering: false,
         info: false,
         select: false,
-        scrollY: '70vh',
-        dom: 'Bfrtip',
-        buttons: 
-        [
+        scrollY: '64vh'
+    });
+    new $.fn.dataTable.Buttons( dataTable, {
+        buttons: [
             {
-                extend: 'copy',
-                "className": 'btn btn-info btn-xs' 
+                extend: 'copyHtml5',
+                className: 'btn btn-info btn-sm',
+                text: 'Copy to clipboard'
             }, 
             {
                 extend: 'csvHtml5',
-                "className": 'btn btn-info btn-xs' 
+                className: 'btn btn-primary btn-sm' 
             }, 
             {
                 extend: 'excelHtml5',
                 title: '株式会社シーエムエス様　出荷履歴',
-                "className": 'btn btn-info btn-xs' 
-            },/*
+                className: 'btn btn-danger btn-sm',
+                filename: '出荷履歴',
+                text: 'Excel Download'
+            },
             {
-                extend: 'pdf',
+                extend: 'pdfHtml5',
                 download: 'open',
                 pageSize: 'A3',
                 orientation: 'landscape',
-                "className": 'btn btn-info btn-xs' 
-            },*/
-            {
-                extend: 'print',
-                "className": 'btn btn-info btn-xs' 
+                className: 'btn btn-warning btn-sm',
+                download: 'open'
             }
         ]
     });
+    dataTable.buttons().container().appendTo( '#id_out_stock_list_wrapper .col-md-6:eq(0)' );
     
     
 	$('#id_report_menu').collapse('show');

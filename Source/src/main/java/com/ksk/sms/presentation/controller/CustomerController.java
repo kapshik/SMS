@@ -26,6 +26,14 @@ public class CustomerController extends SmsController  {
 		return "sms-customer-status";
 	}
 
+//	顧客登録画面
+	@RequestMapping("/sms-customer-add.html")	
+	public String addForm(Model model) {
+
+        log.info(model);
+		return "sms-customer-add";
+	}
+
 //	顧客検索画面
 	@RequestMapping("/sms-customer-search.html")	
 	public String searchForm(Model model) {
@@ -34,12 +42,12 @@ public class CustomerController extends SmsController  {
 		return "sms-customer-search";
 	}
 
-//	顧客登録画面
-	@RequestMapping("/sms-customer-add.html")	
-	public String addForm(Model model) {
+//	顧客変更画面
+	@RequestMapping("/sms-customer-update.html")	
+	public String updateForm(Model model) {
 
         log.info(model);
-		return "sms-customer-add";
+		return "sms-customer-update";
 	}
 
 //	顧客詳細画面
@@ -49,13 +57,5 @@ public class CustomerController extends SmsController  {
         log.info(model);
 		return "sms-customer-detail";
 	}
-	
-//	顧客変更画面
-	@RequestMapping("/sms-customer-update.html")	
-	public String updateForm(Model model) {
 
-        log.info(model);
-		return "sms-customer-update";
-	}
-	
 }

@@ -26,14 +26,6 @@ public class ProductController extends SmsController {
 		return "sms-product-status";
 	}
 
-//	商品検索画面
-	@RequestMapping("/sms-product-search.html")	
-	public String searchForm(Model model) {
-
-        log.info(model);
-		return "sms-product-search";
-	}
-
 //	商品登録画面
 	@RequestMapping("/sms-product-add.html")	
 	public String addForm(Model model) {
@@ -42,14 +34,14 @@ public class ProductController extends SmsController {
 		return "sms-product-add";
 	}
 
-//	商品詳細画面
-	@RequestMapping("/sms-product-detail.html")	
-	public String detailForm(Model model) {
+//	商品検索画面
+	@RequestMapping("/sms-product-search.html")	
+	public String searchForm(Model model) {
 
         log.info(model);
-		return "sms-product-detail";
+		return "sms-product-search";
 	}
-	
+
 //	商品変更画面
 	@RequestMapping("/sms-product-update.html")	
 	public String updateForm(Model model) {
@@ -58,4 +50,12 @@ public class ProductController extends SmsController {
 		return "sms-product-update";
 	}
 	
+//	商品詳細画面
+	@RequestMapping("/sms-product-detail.html")	
+	public String detailForm(Model model) {
+
+        log.info(model);
+		return "sms-product-detail";
+	}
+
 }

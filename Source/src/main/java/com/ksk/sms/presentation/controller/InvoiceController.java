@@ -26,7 +26,15 @@ public class InvoiceController extends SmsController {
 		return "sms-invoice-status";
 	}
 
-//	請求検索画面
+//	請求書作成画面
+	@RequestMapping("/sms-invoice-create.html")	
+	public String createForm(Model model) {
+
+        log.info(model);
+		return "sms-invoice-create";
+	}
+	
+//	請求書検索画面
 	@RequestMapping("/sms-invoice-search.html")	
 	public String searchForm(Model model) {
 
@@ -34,28 +42,12 @@ public class InvoiceController extends SmsController {
 		return "sms-invoice-search";
 	}
 
-//	請求登録画面
-	@RequestMapping("/sms-invoice-add.html")	
-	public String addForm(Model model) {
-
-        log.info(model);
-		return "sms-invoice-add";
-	}
-	
-//	請求詳細画面
+//	請求書確認画面
 	@RequestMapping("/sms-invoice-detail.html")	
 	public String detailForm(Model model) {
 
         log.info(model);
 		return "sms-invoice-detail";
-	}
-	
-//	請求変更画面
-	@RequestMapping("/sms-invoice-update.html")	
-	public String updateForm(Model model) {
-
-        log.info(model);
-		return "sms-invoice-update";
 	}
 	
 }

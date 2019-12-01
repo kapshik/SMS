@@ -35,14 +35,6 @@ public class StockController extends SmsController {
 	}
 
 //	在庫登録画面
-	@RequestMapping("/sms-stock-add.html")	
-	public String addForm(Model model) {
-
-        log.info(model);
-		return "sms-stock-add";
-	}
-	
-//	在庫登録画面
 	@RequestMapping("/sms-stock-in.html")	
 	public String inForm(Model model) {
 
@@ -58,14 +50,6 @@ public class StockController extends SmsController {
 		return "sms-stock-out";
 	}
 	
-//	在庫詳細画面
-	@RequestMapping("/sms-stock-detail.html")	
-	public String detailForm(Model model) {
-
-        log.info(model);
-		return "sms-stock-detail";
-	}
-	
 //	在庫変更画面
 	@RequestMapping("/sms-stock-update.html")	
 	public String updateForm(Model model) {
@@ -73,5 +57,5 @@ public class StockController extends SmsController {
         log.info(model);
 		return "sms-stock-update";
 	}
-	
+
 }

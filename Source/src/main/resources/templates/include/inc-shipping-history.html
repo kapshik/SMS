@@ -11,7 +11,7 @@
             <label class="form-control-label">顧客</label>
           </div>
           <div class="col-lg-3">
-            <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:criteria.customerNo, event:{change: $root.doCustomerChange}">
+            <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:dataModel.criteria.customerNo, event:{change: $root.doCustomerChange}">
               <option th:each="keyValue : ${smsViewModel.customerList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
             </select>
           </div>

@@ -15,7 +15,7 @@ $(function () {
         }
     });
 	$('#id_branch_menu').collapse('show');
-	$('#id_branch_menu_1').addClass('active');
+	$('#id_branch_menu_6').addClass('active');
     setTimeout( function(){
             $('.loading').addClass('hidden');
     }, LOADING_TIMEOUT);

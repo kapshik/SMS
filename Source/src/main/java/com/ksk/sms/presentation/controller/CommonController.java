@@ -24,7 +24,7 @@ import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 @Controller
 public class CommonController extends SmsController {
 
-	// エラー画面
+	// エラー画面（login前）
 	@RequestMapping("/error.html")	
 	public String errorForm(Model model) {
 		return "error";
@@ -39,46 +39,17 @@ public class CommonController extends SmsController {
 //	エントリ画面（login後）
 	@RequestMapping("/sms-home.html")	
 	public String homeForm(Model model) {
-		//makePdf(model);
-		//model.addAttribute("reportFileName", makePdf());
 
         log.info(model);
 		return "sms-home";
 	}
 
-	private String makePdf(){
-		String outFile = "./reportOut/Invoice_" + LocalDate.now() + ".pdf";
-		InputStream is = CommonController.class.getResourceAsStream("/report/Invoice.jrxml");
+//	エラー画面（login後）
+	@RequestMapping("/sms-internal-error.html")	
+	public String internalErrorForm(Model model) {
 
-//		TestReportDataFactory testReportDataFactory = new TestReportDataFactory();
-		Collection<Map<String, ?>> source = new InvoiceReportFactory().makeList();
-
-		Map<String, Object> parameters = new InvoiceReportFactory().makeParameters();
-
-		JasperReport jasperReport = null;
-		try {
-			jasperReport = JasperCompileManager.compileReport(is);
-		} catch (JRException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-			return outFile;
-		}
-		JasperPrint jasperPrint = null;
-		try {
-			jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JRMapCollectionDataSource(source));
-		} catch (JRException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-			return outFile;
-		}
-		try {
-			JasperExportManager.exportReportToPdfFile(jasperPrint, outFile);
-		} catch (JRException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-			return outFile;
-		}
-		return outFile;
+        log.info(model);
+		return "sms-internal-error";
 	}
 
 }

@@ -1,0 +1,29 @@
+<!-- Modal-->
+<div id="id_modal_error" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+  <div role="document" class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="exampleModalLabel" class="modal-title">エラー画面</h5>
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="modal-body" data-bind="with: dataModel.productModel">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>エラーコード</label>
+            </div>
+          </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>エラー内容</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-block btn-sm" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
