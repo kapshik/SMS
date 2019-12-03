@@ -1,5 +1,13 @@
 $(function () {
     // ------------------------------------------------------- //
+    // Datepicker Functionality
+    // ------------------------------------------------------ //
+    $('.input-datepicker-autoclose').datepicker({
+        autoclose: true,
+        format: 'yyyy/mm/dd'
+    });
+
+    // ------------------------------------------------------- //
     // Initialize Page By Server Data
     // ------------------------------------------------------ //
     var viewModel = new sms.vm.delivery();

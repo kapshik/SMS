@@ -92,6 +92,16 @@ $(document).ready(function () {
 
 /* 削除または使う画面へ移動
     // ------------------------------------------------------- //
+    // Jquery Progress Circle
+    // ------------------------------------------------------ //
+    var progress_circle = $("#progress-circle").gmpc({
+        color: brandPrimary,
+        line_width: 5,
+        percent: 80
+    });
+    progress_circle.gmpc('animate', 80, 3000);
+
+    // ------------------------------------------------------- //
     // TouchSpin Functionality
     // ------------------------------------------------------ //
     $("input[name='touchspin-num']").TouchSpin({
