@@ -8,6 +8,7 @@ class SmsApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
