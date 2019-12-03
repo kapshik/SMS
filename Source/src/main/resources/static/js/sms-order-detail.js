@@ -25,7 +25,7 @@ sms.vm.order = function() {
 	self.handler = new sms.vm.ErrorViewModel();
 
 	self.doInit = function( param ) {
-		var u = '/order/init';
+		var u = 'order/detail/init';
 		$.ajax({
 			type: 'get',
 			url: u,
@@ -34,8 +34,8 @@ sms.vm.order = function() {
 			self.dataModel.title("注文詳細");
 			param.success();
 		}).fail(function(xhr, exception){
-			self.messages.removeAll();
-			self.handler.handle(xhr, exception);
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
 			param.failed();
 		});
 	};

@@ -6,7 +6,6 @@ $(document).ready(function () {
     // Main Template Color
     var brandPrimary = '#33b35a';
 
-
     // ------------------------------------------------------- //
     // Line Chart
     // ------------------------------------------------------ //
@@ -101,6 +100,16 @@ $(document).ready(function () {
                 }]
         }
     });
+
+    // ------------------------------------------------------- //
+    // Jquery Progress Circle
+    // ------------------------------------------------------ //
+    var progress_circle = $("#progress-circle").gmpc({
+        color: brandPrimary,
+        line_width: 5,
+        percent: 80
+    });
+    progress_circle.gmpc('animate', 80, 3000);
 
 
     var viewModel = new sms.vm.home();

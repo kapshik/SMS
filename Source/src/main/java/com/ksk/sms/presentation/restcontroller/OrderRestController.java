@@ -62,6 +62,22 @@ public class OrderRestController {
 		return outModel;
 	}
 	
+	@GetMapping("order/update/init")
+	public OrderViewModel updateInit() {
+		OrderViewModel initModel = service.init();
+		OrderViewModel outModel = service.search(initModel);
+		
+		return outModel;
+	}
+	
+	@GetMapping("order/detail/init")
+	public OrderViewModel detailInit() {
+		OrderViewModel initModel = service.init();
+		OrderViewModel outModel = service.search(initModel);
+		
+		return outModel;
+	}
+	
     @ModelAttribute("orderViewModel")
     public OrderViewModel setSessionAttribute(OrderViewModel inModel){
     	log.info("orderViewModel = {}", inModel);

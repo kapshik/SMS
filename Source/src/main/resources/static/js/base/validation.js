@@ -74,12 +74,12 @@ sms.vm.ErrorViewModel = function() {
 
 sms.model.ErrorModel = {
   goToVerifyFound : function() {
-    window.location = "../err/errorPage401.html";
+    window.location = "/error.html"; //401
   },
   goToPageNotFound : function() {
-    window.location = "../err/errorPage404.html";
+    window.location = "/error.html"; //404
   },
   goToSystemError : function() {
-    window.location = "../err/errorPage.html";
+    window.location = "/error.html"; //
   }
 };

@@ -25,7 +25,7 @@ sms.vm.order = function() {
 	self.handler = new sms.vm.ErrorViewModel();
 
 	self.doInit = function( param ) {
-		var u = '/order/init';
+		var u = '/order/update/init';
 		$.ajax({
 			type: 'get',
 			url: u,

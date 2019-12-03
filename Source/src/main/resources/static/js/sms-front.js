@@ -83,16 +83,6 @@ $(document).ready(function () {
     });
 
     // ------------------------------------------------------- //
-    // Jquery Progress Circle
-    // ------------------------------------------------------ //
-    var progress_circle = $("#progress-circle").gmpc({
-        color: brandPrimary,
-        line_width: 5,
-        percent: 80
-    });
-    progress_circle.gmpc('animate', 80, 3000);
-
-    // ------------------------------------------------------- //
     // External links to new window
     // ------------------------------------------------------ //
     $('.external').on('click', function (e) {
@@ -100,6 +90,7 @@ $(document).ready(function () {
         window.open($(this).attr("href"));
     });
 
+/* 削除または使う画面へ移動
     // ------------------------------------------------------- //
     // TouchSpin Functionality
     // ------------------------------------------------------ //
@@ -126,7 +117,7 @@ $(document).ready(function () {
         autoclose: true,
         format: 'yyyy/mm/dd'
     });
-
+*/
     // ------------------------------------------------------- //
     // Ajax Functionality
     // ------------------------------------------------------ //
