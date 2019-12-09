@@ -10,7 +10,7 @@
             <div class="form-group row">
               <label class="form-control-label col-sm-3">顧客名</label>
               <div class="col-sm-9">
-                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:customerModel.customerNo, event:{change: $root.doCustomerChange}">
+                <select class="form-control form-control-sm" data-bind="value:customerModel.customerNo, event:{change: $root.doCustomerChange}">
                   <option th:each="keyValue : ${smsViewModel.customerList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                 </select>
               </div>
@@ -47,7 +47,7 @@
             <div class="form-group row">
               <label class="form-control-label col-sm-3">支店名</label>
               <div class="col-sm-9">
-                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:branchModel.branchNo">
+                <select class="form-control form-control-sm" data-bind="value:branchModel.branchNo">
                   <option th:each="keyValue : ${smsViewModel.branchList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                 </select>
               </div>
@@ -86,7 +86,7 @@
             <div class="form-group row">
               <label class="form-control-label col-sm-3">納品先名</label>
               <div class="col-sm-9">
-                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:deliveryDestModel.deliveryDestNo">
+                <select class="form-control form-control-sm" data-bind="value:deliveryDestModel.deliveryDestNo">
                   <option th:each="keyValue : ${smsViewModel.deliveryDestList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                 </select>
               </div>
@@ -189,7 +189,7 @@
           <tbody data-bind="foreach: productModelList">
             <tr>
               <td>
-                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value: productName">
+                <select class="form-control form-control-sm" data-bind="value: productName">
                   <option th:each="keyValue : ${smsViewModel.productMasterList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                 </select>
               </td>

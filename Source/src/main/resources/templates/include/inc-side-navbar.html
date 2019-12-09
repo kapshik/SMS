@@ -33,27 +33,37 @@
           <li id="id_order_menu_2" th:if="${isAdmin}"><a href="sms-order-status.html">注文状況</a></li>
           <li id="id_order_menu_4"><a href="sms-order-add.html">注文登録</a></li>
           <li id="id_order_menu_3"><a href="sms-order-search.html">注文検索</a></li>
-          <li id="id_order_menu_5"><a href="sms-order-update.html">注文変更</a></li>
-          <li id="id_order_menu_6"><a href="sms-order-detail.html">注文詳細</a></li>
+          <li id="id_order_menu_5" th:if="${isAdmin}"><a href="sms-order-update.html">注文変更</a></li>
+          <li id="id_order_menu_6" th:if="${isAdmin}"><a href="sms-order-detail.html">注文詳細</a></li>
           <li id="id_order_menu_7" th:if="${isAdmin}"><a href="sms-order-create.html">注文確認書作成</a></li>
         </ul>
       </li>
-      <li><a href="#id_delivery_menu" aria-expanded="false" data-toggle="collapse"><i class="icon-paper-airplane"></i>納品管理</a>
+      <li th:if="${isAdmin}"><a href="#id_delivery_menu" aria-expanded="false" data-toggle="collapse"><i class="icon-paper-airplane"></i>納品管理</a>
         <ul id="id_delivery_menu" class="collapse list-unstyled ">
-          <li id="id_delivery_menu_1" th:if="${isAdmin}"><a href="sms-delivery.html">納品管理</a></li>
-          <li id="id_delivery_menu_2" th:if="${isAdmin}"><a href="sms-delivery-status.html">納品状況</a></li>
+          <li id="id_delivery_menu_1"><a href="sms-delivery.html">納品管理</a></li>
+          <li id="id_delivery_menu_2"><a href="sms-delivery-status.html">納品状況</a></li>
           <li id="id_delivery_menu_4"><a href="sms-delivery-create.html">納品書作成</a></li>
-          <li id="id_delivery_menu_3" th:if="${isAdmin}"><a href="sms-delivery-search.html">納品書検索</a></li>
-          <li id="id_delivery_menu_5" th:if="${isAdmin}"><a href="sms-delivery-detail.html">納品書確認</a></li>
+          <li id="id_delivery_menu_3"><a href="sms-delivery-search.html">納品書検索</a></li>
+          <li id="id_delivery_menu_5"><a href="sms-delivery-detail.html">納品書確認</a></li>
         </ul>
       </li>
-      <li><a href="#id_invoice_menu" aria-expanded="false" data-toggle="collapse"><i class="icon-bill"></i>請求管理 </a>
+      <li th:if="${isAdmin}"><a href="#id_invoice_menu" aria-expanded="false" data-toggle="collapse"><i class="icon-bill"></i>請求管理 </a>
         <ul id="id_invoice_menu" class="collapse list-unstyled ">
-          <li id="id_invoice_menu_1" th:if="${isAdmin}"><a href="sms-invoice.html">請求管理</a></li>
-          <li id="id_invoice_menu_2" th:if="${isAdmin}"><a href="sms-invoice-status.html">請求状況</a></li>
+          <li id="id_invoice_menu_1"><a href="sms-invoice.html">請求管理</a></li>
+          <li id="id_invoice_menu_2"><a href="sms-invoice-status.html">請求状況</a></li>
           <li id="id_invoice_menu_4"><a href="sms-invoice-create.html">請求書作成</a></li>
-          <li id="id_invoice_menu_3" th:if="${isAdmin}"><a href="sms-invoice-search.html">請求書検索</a></li>
-          <li id="id_invoice_menu_5" th:if="${isAdmin}"><a href="sms-invoice-detail.html">請求書確認</a></li>
+          <li id="id_invoice_menu_3"><a href="sms-invoice-search.html">請求書検索</a></li>
+          <li id="id_invoice_menu_5"><a href="sms-invoice-detail.html">請求書確認</a></li>
+        </ul>
+      </li>
+      <li><a href="#id_stock_menu" aria-expanded="false" data-toggle="collapse"><i class="icon-check"></i>在庫管理</a>
+        <ul id="id_stock_menu" class="collapse list-unstyled ">
+          <li id="id_stock_menu_1" th:if="${isAdmin}"><a href="sms-stock.html">在庫管理</a></li>
+          <li id="id_stock_menu_2" th:if="${isAdmin}"><a href="sms-stock-status.html">在庫状況</a></li>
+          <li id="id_stock_menu_4"><a href="sms-stock-in.html">入庫登録</a></li>
+          <li id="id_stock_menu_3"><a href="sms-stock-search.html">在庫検索</a></li>
+          <li id="id_stock_menu_5" th:if="${isAdmin}"><a href="sms-stock-out.html">出庫登録</a></li>
+          <li id="id_stock_menu_6" th:if="${isAdmin}"><a href="sms-stock-update.html">在庫変更(棚卸)</a></li>
         </ul>
       </li>
     </ul>
@@ -67,8 +77,8 @@
           <li id="id_customer_menu_2" th:if="${isAdmin}"><a href="sms-customer-status.html">顧客状況</a></li>
           <li id="id_customer_menu_4"><a href="sms-customer-add.html">顧客登録</a></li>
           <li id="id_customer_menu_3"><a href="sms-customer-search.html">顧客検索</a></i>
-          <li id="id_customer_menu_5"><a href="sms-customer-update.html">顧客変更</a></li>
-          <li id="id_customer_menu_6"><a href="sms-customer-detail.html">顧客詳細</a></li>
+          <li id="id_customer_menu_5" th:if="${isAdmin}"><a href="sms-customer-update.html">顧客変更</a></li>
+          <li id="id_customer_menu_6" th:if="${isAdmin}"><a href="sms-customer-detail.html">顧客詳細</a></li>
         </ul>
       </li>
       <li><a href="#id_branch_menu" aria-expanded="false" data-toggle="collapse"><i class="icon-form"></i>支店管理</a>
@@ -77,8 +87,8 @@
           <li id="id_branch_menu_2" th:if="${isAdmin}"><a href="sms-branch-status.html">支店状況</a></li>
           <li id="id_branch_menu_4"><a href="sms-branch-add.html">支店登録</a></li>
           <li id="id_branch_menu_3"><a href="sms-branch-search.html">支店検索</a></li>
-          <li id="id_branch_menu_5"><a href="sms-branch-update.html">支店変更</a></li>
-          <li id="id_branch_menu_7"><a href="sms-branch-detail.html">支店詳細</a></li>
+          <li id="id_branch_menu_5" th:if="${isAdmin}"><a href="sms-branch-update.html">支店変更</a></li>
+          <li id="id_branch_menu_7" th:if="${isAdmin}"><a href="sms-branch-detail.html">支店詳細</a></li>
           <li id="id_branch_menu_6"><a href="sms-deliverydest-add.html">納品先登録</a></li>
         </ul>
       </li>
@@ -88,18 +98,8 @@
           <li id="id_product_menu_2" th:if="${isAdmin}"><a href="sms-product-status.html">商品状況</a></li>
           <li id="id_product_menu_4"><a href="sms-product-add.html">商品登録</a></li>
           <li id="id_product_menu_3"><a href="sms-product-search.html">商品検索</a></li>
-          <li id="id_product_menu_5"><a href="sms-product-update.html">商品変更</a></li>
-          <li id="id_product_menu_6"><a href="sms-product-detail.html">商品詳細</a></li>
-        </ul>
-      </li>
-      <li th:if="${isAdmin}"><a href="#id_stock_menu" aria-expanded="false" data-toggle="collapse"><i class="icon-check"></i>在庫管理</a>
-        <ul id="id_stock_menu" class="collapse list-unstyled ">
-          <li id="id_stock_menu_1"><a href="sms-stock.html">在庫管理</a></li>
-          <li id="id_stock_menu_2"><a href="sms-stock-status.html">在庫状況</a></li>
-          <li id="id_stock_menu_3"><a href="sms-stock-search.html">在庫検索</a></li>
-          <li id="id_stock_menu_4"><a href="sms-stock-in.html">入庫登録</a></li>
-          <li id="id_stock_menu_5"><a href="sms-stock-out.html">出庫登録</a></li>
-          <li id="id_stock_menu_6"><a href="sms-stock-update.html">在庫変更(棚卸)</a></li>
+          <li id="id_product_menu_5" th:if="${isAdmin}"><a href="sms-product-update.html">商品変更</a></li>
+          <li id="id_product_menu_6" th:if="${isAdmin}"><a href="sms-product-detail.html">商品詳細</a></li>
         </ul>
       </li>
       <li th:if="${isAdmin}"><a href="#id_purchase_menu" aria-expanded="false" data-toggle="collapse"><i class="icon-form"></i>仕入管理</a>

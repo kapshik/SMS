@@ -16,7 +16,7 @@
         <div class="col-lg-4">
           <div class="form-group">
             <label class="form-control-label">顧客</label>
-            <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:criteria.customerNo, event:{change: $root.doCustomerChange}">
+            <select class="form-control form-control-sm" data-bind="value:criteria.customerNo, event:{change: $root.doCustomerChange}">
               <option th:each="keyValue : ${smsViewModel.customerList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
             </select>
           </div>
@@ -24,7 +24,7 @@
         <div class="col-lg-4">
           <div class="form-group">
             <label class="form-control-label">支店</label>
-            <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:criteria.branchNo">
+            <select class="form-control form-control-sm" data-bind="value:criteria.branchNo">
               <option th:each="keyValue : ${smsViewModel.branchList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
             </select>
           </div>
@@ -34,7 +34,7 @@
         <div class="col-lg-4">
           <div class="form-group">
             <label class="form-control-label">納品先</label>
-            <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:criteria.deliveryDestNo">
+            <select class="form-control form-control-sm" data-bind="value:criteria.deliveryDestNo">
               <option th:each="keyValue : ${smsViewModel.deliveryDestList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
             </select>
           </div>
@@ -48,7 +48,7 @@
         <div class="col-lg-4">
           <div class="form-group">
             <label class="form-control-label">支払条件</label>
-            <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:criteria.paymentTerms">
+            <select class="form-control form-control-sm" data-bind="value:criteria.paymentTerms">
               <option th:each="keyValue : ${smsViewModel.paymentTermsList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
             </select>
           </div>

@@ -157,21 +157,11 @@
             <h4>商品情報</h4>
           </div>
         </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAddItem">商品追加</button>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button type="button" disabled class="btn btn-primary btn-block btn-sm with-table-row" data-bind="click: $root.doDeleteItem">商品削除</button>
-          </div>
-        </div>
       </div>
     </div>
     <div class="card-body" data-bind="visible : productModelList().length > 0">
       <div class="table-responsive">
-        <table id="id_order_add_list" class="table table-striped table-bordered table-hover table-sm" style="width: 100%;">
+        <table id="id_order_add_list" class="table table-bordered table-sm" style="width: 100%;">
           <thead>
             <tr>
               <th width="10%">商品名</th>
@@ -186,14 +176,14 @@
           </thead>
           <tbody data-bind="foreach: productModelList">
             <tr>
-              <td><span data-bind="text: productName" class="form-control form-control-sm"></td>
-              <td><span data-bind="text: productCode" class="form-control form-control-sm"></td>
-              <td><span data-bind="text: quantity" type="text" class="form-control form-control-sm"></td>
-              <td><span data-bind="text: quantityOfBox" class="form-control form-control-sm"></td>
-              <td><span data-bind="text: unitPrice" class="form-control form-control-sm"></td>
-              <td><span data-bind="text: discountPrice" type="text" class="form-control form-control-sm"></td>
-              <td><span data-bind="text: amount" class="form-control form-control-sm"></td>
-              <td><span data-bind="text: remarks" type="text" class="form-control form-control-sm"></td>
+              <td><input type="text" disabled data-bind="value: productName" class="form-control form-control-sm"></td>
+              <td><input type="text" disabled data-bind="value: productCode" class="form-control form-control-sm"></td>
+              <td><input type="text" disabled data-bind="value: quantity" class="form-control form-control-sm"></td>
+              <td><input type="text" disabled data-bind="value: quantityOfBox" class="form-control form-control-sm"></td>
+              <td><input type="text" disabled data-bind="value: unitPrice" class="form-control form-control-sm"></td>
+              <td><input type="text" disabled data-bind="value: discountPrice" class="form-control form-control-sm"></td>
+              <td><input type="text" disabled data-bind="value: amount" class="form-control form-control-sm"></td>
+              <td><input type="text" disabled data-bind="value: remarks" class="form-control form-control-sm"></td>
             </tr>
           </tbody>
         </table>
@@ -205,15 +195,36 @@
   <div class="card">
     <div class="card-body">
       <div class="row">
-        <div class="col-sm-6">
-          <form action="/order/download" method="post">
-            <button class="btn btn-primary btn-block btn-sm" type="submit">注文確認書作成</button>
-          </form>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <form action="/order/download" method="post">
+              <button type="submit" class="btn btn-primary btn-block btn-sm">注文確認書作成</button>
+            </form>
+          </div>
         </div>
-        <div class="col-sm-6">
-          <form action="/order/display" method="post" target="_blank">
-            <button class="btn btn-primary btn-block btn-sm" type="submit">注文確認書確認</a>
-          </form>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <form action="/delivery/download" method="post">
+              <button type="submit" class="btn btn-primary btn-block btn-sm">納品書作成</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <form action="/invoice/download" method="post">
+              <button type="submit" class="btn btn-primary btn-block btn-sm">請求書作成</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-sm-2 offset-sm-2">
+          <div class="form-group">
+            <a class="btn btn-primary btn-block btn-sm" href="sms-order-update.html" role="button">注文変更</a>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <button type="button" class="btn btn-secondary btn-block btn-sm" data-bind="click: $root.doCancel">戻る</button>
+          </div>
         </div>
       </div>
     </div>

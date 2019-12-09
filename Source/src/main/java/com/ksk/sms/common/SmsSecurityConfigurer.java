@@ -62,6 +62,6 @@ public class SmsSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	            .and()
 	        .sessionManagement()
 	            .invalidSessionUrl("/error.html")
-	        	.maximumSessions(1);
+	        	.maximumSessions(2);
     }
 }

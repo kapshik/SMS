@@ -10,7 +10,7 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>顧客名</label>
-                <select class="form-control form-control-sm selectpicker" data-style="btn-primary" data-bind="value:branchModel.customerNo, event:{change: $root.doCustomerChange}">
+                <select class="form-control form-control-sm" data-bind="value:branchModel.customerNo, event:{change: $root.doCustomerChange}">
                   <option th:each="keyValue : ${smsViewModel.customerList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
                 </select>
               </div>
