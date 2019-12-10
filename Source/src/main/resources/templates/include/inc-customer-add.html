@@ -69,84 +69,23 @@
     </div>
   </div>
 </section>
-<section data-bind="with: dataModel">
-    <div class="card">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <h4>支店情報</h4>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="form-group">
-              <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#id_modal_branch_add">支店作成</button>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="form-group">
-              <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAddItem">支店追加</button>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="form-group">
-              <button type="button" class="btn btn-primary btn-block btn-sm with-table-row" data-bind="click: $root.doDeleteItem">支店削除</button>
-            </div>
-          </div>
-      </div>
-      <div class="card-body" data-bind="visible : branchModelList().length > 0">
-        <div class="table-responsive">
-          <table id="id_customer_list" class="table table-striped table-hover table-sm table-bordered" style="width: 100%;">
-            <thead>
-              <tr>
-                <th width="2%">#</th>
-                <th width="10%">支店名</th>
-                <th width="10%">郵便番号</th>
-                <th width="20%">住所１</th>
-                <th>住所２</th>
-                <th width="10%">電話</th>
-                <th width="10%">ファックス</th>
-              </tr>
-            </thead>
-            <tbody data-bind="foreach: branchModelList">
-              <tr class="clickable-row">
-                <th scope="row">
-                  <div class="form-check-inline">
-                    <input type="radio" class="form-check-input" name="table_radio" data-bind="value: branchNo" onClick="doCheckedTableRow()">
-                  </div>
-                </th>
-                <td><span data-bind="text: branchName"></span></td>
-                <td><span data-bind="text: zipcode"></span></td>
-                <td><span data-bind="text: address"></span></td>
-                <td><span data-bind="text: addressDetail"></span></td>
-                <td><span data-bind="text: telNo"></span></td>
-                <td><span data-bind="text: faxNo"></span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs nav-justified" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#product">product</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#branch">branch</a>
+  </li>
+</ul>
+<div class="tab-content border">
+  <div id="product" class="container-fluid tab-pane active" th:insert="include/inc-product-list">
   </div>
-</section>
-<section>
-  <div class="card">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAdd">登録</button>
-          </div>
-        </div>
-        <div class="col-sm-3 offset-sm-6">
-          <div class="form-group">
-            <button type="button" class="btn btn-secondary btn-block btn-sm" data-bind="click: $root.doCancel">キャンセル</button>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div id="branch" class="container-fluid tab-pane" th:insert="include/inc-branch-list">
   </div>
-</section>
+</div>
+
 <!-- Modal-->
 <div th:insert="modal/modal-branch-add">
 </div>
