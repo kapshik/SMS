@@ -37,6 +37,7 @@ public class SmsControllerAdvice {
 		model.addAttribute("username", SmsUserInfoUtil.getUsername());
         model.addAttribute("isAdmin", SmsUserInfoUtil.getRole().equals("ROLE_ADMIN") );
         model.addAttribute("smsViewModel", service.init());
+        model.addAttribute("isListNeedBtn", false);
         
         log.info(model);
 	}

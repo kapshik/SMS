@@ -70,22 +70,51 @@
   </div>
 </section>
 
-<!-- Nav tabs -->
-<ul class="nav nav-tabs nav-justified" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#product">product</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#branch">branch</a>
-  </li>
-</ul>
-<div class="tab-content border">
-  <div id="product" class="container-fluid tab-pane active" th:insert="include/inc-product-list">
+<section>
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#product">商品登録</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#branch">支店登録</a>
+    </li>
+  </ul>
+  <div class="tab-content border">
+    <div id="product" class="container-fluid tab-pane active">
+      <br>
+      <div th:insert="include/inc-product-list">
+      </div>
+    </div>
+    <div id="branch" class="container-fluid tab-pane">
+      <br>
+      <div th:insert="include/inc-branch-list">
+      </div>
+    </div>
   </div>
-  <div id="branch" class="container-fluid tab-pane" th:insert="include/inc-branch-list">
+</section>
+
+<section data-bind="with: dataModel">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAdd">登録</button>
+          </div>
+        </div>
+        <div class="col-sm-3 offset-sm-6">
+          <div class="form-group">
+            <button type="button" class="btn btn-secondary btn-block btn-sm" data-bind="click: $root.doCancel">キャンセル</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- Modal-->
 <div th:insert="modal/modal-branch-add">
 </div>
+<div th:insert="modal/modal-product-add">
+</div>
+<!-- Modal-->

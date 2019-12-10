@@ -72,7 +72,7 @@ sms.vm.branch = function() {
         });
     };
 
-    self.doAddItem = function() {
+    self.doDeliveryDestListAdd = function() {
         var deliveryDestModel = { 
                 "customerNo":"C003",
                 "branchNo":"B003",

@@ -29,6 +29,7 @@ public class CustomerController extends SmsController  {
 //	顧客登録画面
 	@RequestMapping("/sms-customer-add.html")	
 	public String addForm(Model model) {
+        model.addAttribute("isListNeedBtn", true);
 
         log.info(model);
 		return "sms-customer-add";
@@ -45,6 +46,7 @@ public class CustomerController extends SmsController  {
 //	顧客変更画面
 	@RequestMapping("/sms-customer-update.html")	
 	public String updateForm(Model model) {
+		model.addAttribute("isListNeedBtn", true);
 
         log.info(model);
 		return "sms-customer-update";

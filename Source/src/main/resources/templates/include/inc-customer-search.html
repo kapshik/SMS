@@ -1,5 +1,3 @@
-<section th:insert="include/inc-default-buttons" th:if="${isAdmin}">
-</section>
 <section data-bind="with: dataModel">
   <div class="card">
     <div class="card-header">
@@ -64,12 +62,12 @@
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <button disabled id="id_btn_customer_detail" type="button" data-toggle="modal" data-target="#id_modal_customer_detail" class="btn btn-primary btn-block btn-sm with-table-row">顧客詳細</button>
+            <a class="btn btn-primary btn-block btn-sm disabled with-table-row" href="sms-customer-detail.html" role="button">顧客詳細</a>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <button disabled id="id_btn_customer_update" type="button" data-toggle="modal" data-target="#id_modal_customer_update" class="btn btn-primary btn-block btn-sm with-table-row">顧客変更</button>
+            <a class="btn btn-primary btn-block btn-sm disabled with-table-row" href="sms-customer-update.html" role="button">顧客変更</a>
           </div>
         </div>
         <div class="col-lg-3">
@@ -81,64 +79,11 @@
     </div>
   </div>
 </section>
-<section data-bind="with:dataModel">
-  <div class="card" data-bind="visible:customerModelList().length > 0">
-    <div class="card-header">
-      <h4>顧客検索結果</h4>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <table id="id_customer_list" class="table table-striped table-hover table-sm" style="width: 100%;">
-          <thead>
-            <tr>
-              <th width="2%">#</th>
-              <th width="10%">顧客名</th>
-              <th width="5%">郵便番号</th>
-              <th width="20%">住所１</th>
-              <th>住所２</th>
-              <th width="10%">電話</th>
-              <th width="10%">ファックス</th>
-              <th width="5%">開始日</th>
-              <th width="15%">支払条件</th>
-            </tr>
-          </thead>
-          <tbody data-bind="foreach: customerModelList">
-            <tr class="clickable-row">
-              <th scope="row">
-                <div class="form-check-inline">
-                  <input type="radio" class="form-check-input" name="table_radio" data-bind="value: customerNo" onClick="doCheckedTableRow()">
-                </div>
-              </th>
-              <td><span data-bind="text: customerName"></span></td>
-              <td><span data-bind="text: zipcode"></span></td>
-              <td><span data-bind="text: address"></span></td>
-              <td><span data-bind="text: addressDetail"></span></td>
-              <td><span data-bind="text: telNo"></span></td>
-              <td><span data-bind="text: faxNo"></span></td>
-              <td><span data-bind="text: startDate"></span></td>
-              <td><span data-bind="text: paymentTerms"></span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
+
+<div th:insert="include/inc-customer-list">
+</div>
+
 <!-- Modal-->
 <div th:insert="modal/modal-error">
-</div>
-<div th:insert="modal/modal-order-add">
-</div>
-<div th:insert="modal/modal-customer-add">
-</div>
-<div th:insert="modal/modal-branch-add">
-</div>
-<div th:insert="modal/modal-deliverydest-add">
-</div>
-<div th:insert="modal/modal-product-add">
-</div>
-<div th:insert="modal/modal-customer-detail">
-</div>
-<div th:insert="modal/modal-customer-update">
 </div>
 <!-- Modal-->

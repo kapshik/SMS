@@ -90,7 +90,7 @@ sms.vm.order = function() {
         });
     };
 
-    self.doAddItem = function() {
+    self.doProductListAdd = function() {
         var product = {"customerNo":"setCustomerNo1",
                         "productCode":"setProductCode1",
                         "productName":"setProductName1",

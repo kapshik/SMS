@@ -29,6 +29,7 @@ public class BranchController extends SmsController {
 //	支店登録画面
 	@RequestMapping("/sms-branch-add.html")	
 	public String addForm(Model model) {
+		model.addAttribute("isListNeedBtn", true);
 
         log.info(model);
 		return "sms-branch-add";
@@ -45,6 +46,7 @@ public class BranchController extends SmsController {
 //	支店変更画面
 	@RequestMapping("/sms-branch-update.html")	
 	public String updateForm(Model model) {
+		model.addAttribute("isListNeedBtn", true);
 
         log.info(model);
 		return "sms-branch-update";

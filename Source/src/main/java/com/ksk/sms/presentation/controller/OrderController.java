@@ -29,6 +29,7 @@ public class OrderController extends SmsController {
 //	注文登録画面
 	@RequestMapping("/sms-order-add.html")	
 	public String addForm(Model model) {
+		model.addAttribute("isListNeedBtn", true);
 
         log.info(model);
 		return "sms-order-add";
@@ -45,6 +46,7 @@ public class OrderController extends SmsController {
 //	注文変更画面
 	@RequestMapping("/sms-order-update.html")	
 	public String updateForm(Model model) {
+		model.addAttribute("isListNeedBtn", true);
 
         log.info(model);
 		return "sms-order-update";

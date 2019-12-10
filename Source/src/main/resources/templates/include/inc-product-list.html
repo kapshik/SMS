@@ -1,5 +1,4 @@
 <section data-bind="with: dataModel">
-<br>
   <div class="card">
     <div class="card-header">
       <div class="row">
@@ -8,12 +7,12 @@
             <h4>商品情報</h4>
           </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3" th:if="${isListNeedBtn}">
           <div class="form-group">
-            <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAddItem">商品追加</button>
+            <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#id_modal_product_add">商品追加</button>
           </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3" th:if="${isListNeedBtn}">
           <div class="form-group">
             <button type="button" disabled class="btn btn-primary btn-block btn-sm with-table-row" data-bind="click: $root.doDeleteItem">商品削除</button>
           </div>
@@ -43,35 +42,17 @@
                   <input type="radio" class="form-check-input" name="table_radio" data-bind="value: productCode" onClick="doCheckedTableRow()">
                 </div>
               </th>
-              <td>
-                <select class="form-control form-control-sm"
-                  data-bind="options:productMasterList, optionsValue: 'key', optionsText: 'value', value:productName, optionsCaption:'選択してください'">
-                </select>
-              </td>
-              <td><span data-bind="text: productCode" class="form-control form-control-sm"></td>
-              <td><input data-bind="value: quantity" type="text" class="form-control form-control-sm"></td>
-              <td><span data-bind="text: quantityOfBox" class="form-control form-control-sm"></td>
-              <td><span data-bind="text: unitPrice" class="form-control form-control-sm"></td>
-              <td><input data-bind="value: discountPrice" type="text" class="form-control form-control-sm"></td>
-              <td><span data-bind="text: amount" class="form-control form-control-sm"></td>
-              <td><input data-bind="value: remarks" type="text" class="form-control form-control-sm"></td>
+              <td data-bind="text: productName"></td>
+              <td data-bind="text: productCode"></td>
+              <td data-bind="text: quantity"></td>
+              <td data-bind="text: quantityOfBox"></td>
+              <td data-bind="text: unitPrice"></td>
+              <td data-bind="text: discountPrice"></td>
+              <td data-bind="text: amount"></td>
+              <td data-bind="text: remarks"></td>
             </tr>
           </tbody>
         </table>
-      </div>
-    </div>
-    <div class="card-footer">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="form-group">
-            <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doAdd">登録</button>
-          </div>
-        </div>
-        <div class="col-sm-3 offset-sm-6">
-          <div class="form-group">
-            <button type="button" class="btn btn-secondary btn-block btn-sm" data-bind="click: $root.doCancel">キャンセル</button>
-          </div>
-        </div>
       </div>
     </div>
   </div>

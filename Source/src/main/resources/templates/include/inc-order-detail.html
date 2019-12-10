@@ -148,70 +148,31 @@
     </div>
   </div>
 </section>
-<section data-bind="with: dataModel">
-  <div class="card">
-    <div class="card-header">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <h4>商品情報</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card-body" data-bind="visible : productModelList().length > 0">
-      <div class="table-responsive">
-        <table id="id_order_add_list" class="table table-bordered table-sm" style="width: 100%;">
-          <thead>
-            <tr>
-              <th width="10%">商品名</th>
-              <th width="10%">商品コード</th>
-              <th width="5%">個数</th>
-              <th width="5%">ケース</th>
-              <th width="10%">単価</th>
-              <th width="10%">修正単価</th>
-              <th width="10%">合計金額</th>
-              <th>備考</th>
-            </tr>
-          </thead>
-          <tbody data-bind="foreach: productModelList">
-            <tr>
-              <td><input type="text" disabled data-bind="value: productName" class="form-control form-control-sm"></td>
-              <td><input type="text" disabled data-bind="value: productCode" class="form-control form-control-sm"></td>
-              <td><input type="text" disabled data-bind="value: quantity" class="form-control form-control-sm"></td>
-              <td><input type="text" disabled data-bind="value: quantityOfBox" class="form-control form-control-sm"></td>
-              <td><input type="text" disabled data-bind="value: unitPrice" class="form-control form-control-sm"></td>
-              <td><input type="text" disabled data-bind="value: discountPrice" class="form-control form-control-sm"></td>
-              <td><input type="text" disabled data-bind="value: amount" class="form-control form-control-sm"></td>
-              <td><input type="text" disabled data-bind="value: remarks" class="form-control form-control-sm"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
+
+<div th:insert="include/inc-product-list">
+</div>
+
 <section>
   <div class="card">
     <div class="card-body">
       <div class="row">
         <div class="col-sm-2">
           <div class="form-group">
-            <form action="/order/download" method="post">
+            <form action="/order/display" method="post">
               <button type="submit" class="btn btn-primary btn-block btn-sm">注文確認書作成</button>
             </form>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group">
-            <form action="/delivery/download" method="post">
+            <form action="/delivery/display" method="post">
               <button type="submit" class="btn btn-primary btn-block btn-sm">納品書作成</button>
             </form>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group">
-            <form action="/invoice/download" method="post">
+            <form action="/invoice/display" method="post">
               <button type="submit" class="btn btn-primary btn-block btn-sm">請求書作成</button>
             </form>
           </div>
