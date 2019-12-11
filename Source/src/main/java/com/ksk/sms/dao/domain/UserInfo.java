@@ -1,4 +1,4 @@
-package com.ksk.sms.dao.entity;
+package com.ksk.sms.dao.domain;
 
 import java.io.Serializable;
 

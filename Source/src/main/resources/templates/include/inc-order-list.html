@@ -1,0 +1,43 @@
+<section data-bind="with: dataModel">
+  <div class="card" data-bind="visible : orderModelList().length > 0">
+    <div class="card-header">
+      <h4>注文検索結果</h4>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+      <table id="id_order_list" class="table table-striped table-hover table-sm table-bordered" style="width:100%">
+        <thead>
+          <tr>
+            <th width="2%">#</th>
+            <th width="10%">発注No</th>
+            <th width="15%">顧客名</th>
+            <th width="15%">支店名</th>
+            <th width="18%">納品先名</th>
+            <th width="10%">発注日</th>
+            <th width="10%">納品日</th>
+            <th width="10%">発送日</th>
+            <th width="10%">作成日</th>
+          </tr>
+        </thead>
+        <tbody data-bind="foreach: orderModelList">
+          <tr>
+            <th scope="row">
+              <div class="form-check-inline">
+                <input type="radio" class="form-check-input" name="table_radio" data-bind="value: orderNo" onClick="doCheckedTableRow()">
+              </div>
+            </th>
+            <td data-bind="text: orderNo"></td>
+            <td data-bind="text: customerNo"></td>
+            <td data-bind="text: branchNo"></td>
+            <td data-bind="text: deliveryDestNo"></td>
+            <td data-bind="text: orderDate"></td>
+            <td data-bind="text: deliveryDate"></td>
+            <td data-bind="text: shippingDate"></td>
+            <td data-bind="text: registrationDate"></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</section>

@@ -12,7 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.ksk.sms.dao.entity.UserInfo;
+import com.ksk.sms.dao.domain.UserInfo;
+import com.ksk.sms.dao.mapper.UserInfoMapper;
 import com.ksk.sms.dao.repository.UserInfoRepository;
 
 @Service
@@ -20,11 +21,15 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
     @Autowired
     private UserInfoRepository userInfoRepository;
+    
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        UserInfo userInfo = userInfoRepository.getUserInfo(userName);
+//        UserInfo userInfo = userInfoRepository.getUserInfo(userName);
+        UserInfo userInfo = userInfoMapper.getUserInfo(userName);
 		if (Objects.isNull(userInfo)) {
 	        userInfo = new UserInfo();
 	        userInfo.setUsername("Test");
