@@ -80,6 +80,20 @@ sms.vm.customer = function() {
         });
     };
 
+    self.doCreate = function() {
+        var u = '/customer/create';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
     self.doBranchListAdd = function() {
         var branchModel = { "customerNo":"C002",
                             "branchNo":"B002",

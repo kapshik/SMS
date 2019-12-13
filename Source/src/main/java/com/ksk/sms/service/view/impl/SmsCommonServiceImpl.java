@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
+import com.ksk.sms.dao.domain.Customer;
+import com.ksk.sms.dao.mapper.CustomerMapper;
 import com.ksk.sms.model.OutStockModel;
 import com.ksk.sms.model.SmsViewModel;
 import com.ksk.sms.service.common.SmsService;
@@ -18,6 +21,9 @@ import lombok.extern.log4j.Log4j2;
 @Service
 public class SmsCommonServiceImpl extends SmsService implements SmsViewService<SmsViewModel> {
 
+    @Autowired
+    private CustomerMapper customerMapper;
+	
 	@Override
     public SmsViewModel init() {
 
@@ -44,14 +50,15 @@ public class SmsCommonServiceImpl extends SmsService implements SmsViewService<S
 
 	private List<KeyValue> makeCustomerList() {
         List<KeyValue> customerList = new ArrayList<KeyValue>();
+		List<Customer> selectedList = customerMapper.findList(new Customer());
 		
-		for(int i=1; i<5; i++) {
-			String strNo = Integer.toString(i);
+        for(Customer item : selectedList){
 			KeyValue customer = new KeyValue();
 
-			customer.setKey("000"+strNo);
-			customer.setValue("Customer "+strNo);
-			
+			customer.setKey(item.getCustomerNo());
+			customer.setValue(item.getCustomerName());
+
+			log.info("Key:{}, Value:{}", customer.getKey(), customer.getValue());
 			customerList.add(customer);
 		}
 		

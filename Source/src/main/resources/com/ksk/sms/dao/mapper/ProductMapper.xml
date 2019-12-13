@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ksk.sms.dao.mapper.ProductMapper">
+
+	<sql id="whereStatements">
+		<where>
+			<if test="productCode != null and productCode != ''">
+				AND productCode = #{productCode}
+			</if>
+			<if test="productName != null and productName != ''">
+				AND productName = #{productName}
+			</if>
+			<if test="quantity != null and quantity != ''">
+				AND quantity = #{quantity}
+			</if>
+			<if test="quantityPerBox != null and quantityPerBox != ''">
+				AND quantityPerBox = #{quantityPerBox}
+			</if>
+			<if test="quantityOfBox != null and quantityOfBox != ''">
+				AND quantityOfBox = #{quantityOfBox}
+			</if>
+			<if test="buyPrice != null and buyPrice != ''">
+				AND buyPrice = #{buyPrice}
+			</if>
+			<if test="unitPrice != null and unitPrice != ''">
+				AND unitPrice = #{unitPrice}
+			</if>
+			<if test="productType != null and productType != ''">
+				AND productType = #{productType}
+			</if>
+			<if test="unitType != null and unitType != ''">
+				AND unitType = #{unitType}
+			</if>
+			<if test="remarks != null and remarks != ''">
+				AND remarks = #{remarks}
+			</if>
+			<if test="scheduledInStockDate != null and scheduledInStockDate != ''">
+				AND scheduledInStockDate = #{scheduledInStockDate}
+			</if>
+			<if test="quantityInStock != null and quantityInStock != ''">
+				AND quantityInStock = #{quantityInStock}
+			</if>
+		</where>
+	</sql>
+
+    <select id="findOne" parameterType="com.ksk.sms.dao.domain.Product" resultType="com.ksk.sms.dao.domain.Product">
+		SELECT
+			*
+		FROM
+			tbl_product
+		WHERE
+			productCode =  #{productCode}
+    </select>
+
+    <select id="findList" parameterType="com.ksk.sms.dao.domain.Product" resultType="com.ksk.sms.dao.domain.Product">
+		SELECT
+			* 
+		FROM
+			tbl_product
+		<include refid="whereStatements" />
+		ORDER BY
+			productCode
+    </select>
+
+    <select id="count" parameterType="com.ksk.sms.dao.domain.Product" resultType="_long">
+		SELECT
+			COUNT(*)
+		FROM
+			tbl_product
+		<include refid="whereStatements" />
+    </select>
+
+    <insert id="create" parameterType="com.ksk.sms.dao.domain.Product">
+		INSERT INTO
+			tbl_product
+		(
+		    productCode,
+		    productName,
+		    quantity,
+		    quantityPerBox,
+		    quantityOfBox,
+		    buyPrice,
+		    unitPrice,
+		    productType,
+		    unitType,
+		    remarks,
+		    scheduledInStockDate,
+		    quantityInStock
+		)
+		VALUES
+		(
+			#{productCode},
+			#{productName},
+			#{quantity},
+			#{quantityPerBox},
+			#{quantityOfBox},
+			#{buyPrice},
+			#{unitPrice},
+			#{productType},
+			#{unitType},
+			#{remarks},
+			#{scheduledInStockDate},
+			#{quantityInStock}
+		)
+    </insert>
+
+    <insert id="createAll" parameterType="list">
+		INSERT INTO
+			tbl_product
+		(
+		    productCode,
+		    productName,
+		    quantity,
+		    quantityPerBox,
+		    quantityOfBox,
+		    buyPrice,
+		    unitPrice,
+		    productType,
+		    unitType,
+		    remarks,
+		    scheduledInStockDate,
+		    quantityInStock
+		)
+		VALUES
+		<foreach collection="list" item="com.ksk.sms.dao.domain.Product" separator=",">
+		(
+			#{productCode},
+			#{productName},
+			#{quantity},
+			#{quantityPerBox},
+			#{quantityOfBox},
+			#{buyPrice},
+			#{unitPrice},
+			#{productType},
+			#{unitType},
+			#{remarks},
+			#{scheduledInStockDate},
+			#{quantityInStock}
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.ksk.sms.dao.domain.Product">
+		UPDATE
+			tbl_product
+		<set>
+			<if test="productName != null">productName = #{productName}, </if>
+			<if test="quantity != null">quantity = #{quantity}, </if>
+			<if test="quantityPerBox != null">quantityPerBox = #{quantityPerBox}, </if>
+			<if test="quantityOfBox != null">quantityOfBox = #{quantityOfBox}, </if>
+			<if test="buyPrice != null">buyPrice = #{buyPrice}, </if>
+			<if test="unitPrice != null">unitPrice = #{unitPrice}, </if>
+			<if test="productType != null">productType = #{productType}, </if>
+			<if test="unitType != null">unitType = #{unitType}, </if>
+			<if test="remarks != null">remarks = #{remarks}, </if>
+			<if test="scheduledInStockDate != null">scheduledInStockDate = #{scheduledInStockDate}, </if>
+			<if test="quantityInStock != null">quantityInStock = #{quantityInStock}, </if>
+		</set>
+		WHERE
+			productCode =  #{productCode}
+	</update>
+
+	<delete id="delete" parameterType="com.ksk.sms.dao.domain.Product">
+		DELETE FROM
+				tbl_product
+		WHERE
+			productCode =  #{productCode}
+	</delete>
+
+</mapper>

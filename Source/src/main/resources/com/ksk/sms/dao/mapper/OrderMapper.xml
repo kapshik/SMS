@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ksk.sms.dao.mapper.OrderMapper">
+
+	<sql id="whereStatements">
+		<where>
+			<if test="customerNo != null and customerNo != ''">
+				AND customerNo = #{customerNo}
+			</if>
+			<if test="branchNo != null and branchNo != ''">
+				AND branchNo = #{branchNo}
+			</if>
+			<if test="deliveryDestNo != null and deliveryDestNo != ''">
+				AND deliveryDestNo = #{deliveryDestNo}
+			</if>
+			<if test="orderNo != null and orderNo != ''">
+				AND orderNo = #{orderNo}
+			</if>
+			<if test="shippingLabelNo != null and shippingLabelNo != ''">
+				AND shippingLabelNo = #{shippingLabelNo}
+			</if>
+			<if test="estimationNo != null and estimationNo != ''">
+				AND estimationNo = #{estimationNo}
+			</if>
+			<if test="memo != null and memo != ''">
+				AND memo = #{memo}
+			</if>
+			<if test="estimationDate != null and estimationDate != ''">
+				AND estimationDate = #{estimationDate}
+			</if>
+			<if test="orderDate != null and orderDate != ''">
+				AND orderDate = #{orderDate}
+			</if>
+			<if test="registrationDate != null and registrationDate != ''">
+				AND registrationDate = #{registrationDate}
+			</if>
+			<if test="shippingDate != null and shippingDate != ''">
+				AND shippingDate = #{shippingDate}
+			</if>
+			<if test="deliveryDate != null and deliveryDate != ''">
+				AND deliveryDate = #{deliveryDate}
+			</if>
+			<if test="invoiceDate != null and invoiceDate != ''">
+				AND invoiceDate = #{invoiceDate}
+			</if>
+			<if test="requiredDate != null and requiredDate != ''">
+				AND requiredDate = #{requiredDate}
+			</if>
+			<if test="status != null and status != ''">
+				AND status = #{status}
+			</if>
+		</where>
+	</sql>
+
+    <select id="findOne" parameterType="com.ksk.sms.dao.domain.Order" resultType="com.ksk.sms.dao.domain.Order">
+		SELECT
+			*
+		FROM
+			tbl_order
+		WHERE
+			customerNo =  #{customerNo}
+			AND orderNo =  #{orderNo}
+    </select>
+
+    <select id="findList" parameterType="com.ksk.sms.dao.domain.Order" resultType="com.ksk.sms.dao.domain.Order">
+		SELECT
+			* 
+		FROM
+			tbl_order
+		<include refid="whereStatements" />
+		ORDER BY
+			customerNo, orderNo
+    </select>
+
+    <select id="count" parameterType="com.ksk.sms.dao.domain.Order" resultType="_long">
+		SELECT
+			COUNT(*)
+		FROM
+			tbl_order
+		<include refid="whereStatements" />
+    </select>
+
+    <insert id="create" parameterType="com.ksk.sms.dao.domain.Order">
+		INSERT INTO
+			tbl_order
+		(
+		    customerNo,
+		    branchNo,
+		    deliveryDestNo,
+		    orderNo,
+		    shippingLabelNo,
+		    estimationNo,
+		    memo,
+		    estimationDate,
+		    orderDate,
+		    registrationDate,
+		    shippingDate,
+		    deliveryDate,
+		    invoiceDate,
+		    requiredDate,
+		    status
+		)
+		VALUES
+		(
+			#{customerNo},
+			#{branchNo},
+			#{deliveryDestNo},
+			#{orderNo},
+			#{shippingLabelNo},
+			#{estimationNo},
+			#{memo},
+			#{estimationDate},
+			#{orderDate},
+			#{registrationDate},
+			#{shippingDate},
+			#{deliveryDate},
+			#{invoiceDate},
+			#{requiredDate},
+			#{status}
+		)
+    </insert>
+
+    <insert id="createAll" parameterType="list">
+		INSERT INTO
+			tbl_order
+		(
+		    customerNo,
+		    branchNo,
+		    deliveryDestNo,
+		    orderNo,
+		    shippingLabelNo,
+		    estimationNo,
+		    memo,
+		    estimationDate,
+		    orderDate,
+		    registrationDate,
+		    shippingDate,
+		    deliveryDate,
+		    invoiceDate,
+		    requiredDate,
+		    status
+		)
+		VALUES
+		<foreach collection="list" item="com.ksk.sms.dao.domain.Order" separator=",">
+		(
+			#{customerNo},
+			#{branchNo},
+			#{deliveryDestNo},
+			#{orderNo},
+			#{shippingLabelNo},
+			#{estimationNo},
+			#{memo},
+			#{estimationDate},
+			#{orderDate},
+			#{registrationDate},
+			#{shippingDate},
+			#{deliveryDate},
+			#{invoiceDate},
+			#{requiredDate},
+			#{status}
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.ksk.sms.dao.domain.Order">
+		UPDATE
+			tbl_order
+		<set>
+			<if test="branchNo != null">branchNo = #{branchNo}, </if>
+			<if test="deliveryDestNo != null">deliveryDestNo = #{deliveryDestNo}, </if>
+			<if test="shippingLabelNo != null">shippingLabelNo = #{shippingLabelNo}, </if>
+			<if test="estimationNo != null">estimationNo = #{estimationNo}, </if>
+			<if test="memo != null">memo = #{memo}, </if>
+			<if test="estimationDate != null">estimationDate = #{estimationDate}, </if>
+			<if test="orderDate != null">orderDate = #{orderDate}, </if>
+			<if test="registrationDate != null">registrationDate = #{registrationDate}, </if>
+			<if test="shippingDate != null">shippingDate = #{shippingDate}, </if>
+			<if test="deliveryDate != null">deliveryDate = #{deliveryDate}, </if>
+			<if test="invoiceDate != null">invoiceDate = #{invoiceDate}, </if>
+			<if test="requiredDate != null">requiredDate = #{requiredDate}, </if>
+			<if test="status != null">status = #{status}, </if>
+		</set>
+		WHERE
+			customerNo =  #{customerNo}
+			AND orderNo =  #{orderNo}
+	</update>
+
+	<delete id="delete" parameterType="com.ksk.sms.dao.domain.Order">
+		DELETE FROM
+				tbl_order
+		WHERE
+			customerNo =  #{customerNo}
+			AND orderNo =  #{orderNo}
+	</delete>
+
+</mapper>

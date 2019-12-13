@@ -4,9 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
+import com.ksk.sms.common.SmsBeanUtilsBean;
+import com.ksk.sms.dao.domain.Address;
+import com.ksk.sms.dao.domain.Customer;
+import com.ksk.sms.dao.mapper.AddressMapper;
+import com.ksk.sms.dao.mapper.CustomerMapper;
 import com.ksk.sms.model.BranchModel;
 import com.ksk.sms.model.CustomerModel;
 import com.ksk.sms.model.CustomerViewModel;
@@ -21,6 +27,11 @@ import lombok.extern.log4j.Log4j2;
 @Service
 public class CustomerServiceImpl extends SmsService implements SmsViewService<CustomerViewModel> {
 
+    @Autowired
+    private AddressMapper addressMapper;
+    @Autowired
+    private CustomerMapper customerMapper;
+	
 	@Override
     public CustomerViewModel init() {
 
@@ -36,7 +47,7 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
 
 		outModel.setCriteria(new CustomerModel());
 		outModel.setDetail(new CustomerModel());
-		outModel.setCustomerModel(new CustomerModel());
+		outModel.setCustomerModel(makeCustomerModel("XX"));
 		outModel.setBranchModel(new BranchModel());
 		outModel.setDeliveryDestModel(new DeliveryDestModel());
 		outModel.setProductModel(new ProductModel());
@@ -204,11 +215,12 @@ log.info("makeCustomerModelList " + customerList.size());
 	private CustomerModel makeCustomerModel(String strNo) {
 
 		CustomerModel customerData = new CustomerModel();
-
+		Address address = addressMapper.findOne("101-0061");
+		
 		customerData.setCustomerNo("C00" + strNo);
 		customerData.setCustomerName("顧客名" + strNo);
 		customerData.setZipcode("101-0015");
-		customerData.setAddress("東京都千代田区水道橋");
+		customerData.setAddress(address.getKenName() + address.getCityName() + address.getTownName());
 		customerData.setAddressDetail("尾道ラーメン3階" + strNo);
 		customerData.setTelNo("03-1234-5678");
 		customerData.setFaxNo("03-9876-5432");
@@ -341,8 +353,15 @@ log.info("makeProductModelList " + productList.size());
 
 	@Override
 	public CustomerViewModel create(CustomerViewModel inModel) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+        CustomerViewModel outModel = Objects.requireNonNull(inModel);
+        Customer customer = new Customer();
+        
+    	SmsBeanUtilsBean.copyProperties(customer, inModel.getCustomerModel());
+        int iCreated = customerMapper.create(customer);
+
+    	log.info("iCreated {}", iCreated);
+		
+        return outModel;
 	}
 
 	@Override
@@ -356,4 +375,5 @@ log.info("makeProductModelList " + productList.size());
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
+	
 }

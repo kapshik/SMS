@@ -29,6 +29,13 @@ public class CustomerRestController {
 		return outModel;
 	}
 	
+	@PostMapping("customer/create")
+	public CustomerViewModel create(@RequestBody CustomerViewModel inModel) {
+		CustomerViewModel outModel = service.create(inModel);
+		
+		return outModel;
+	}
+	
 	@PostMapping("customer/delete")
 	public CustomerViewModel delete(@RequestBody CustomerViewModel inModel) {
 		CustomerViewModel outModel = service.search(inModel);

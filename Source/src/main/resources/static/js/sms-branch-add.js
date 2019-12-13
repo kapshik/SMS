@@ -72,6 +72,20 @@ sms.vm.branch = function() {
         });
     };
 
+    self.doCreate = function() {
+        var u = '/branch/create';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
     self.doDeliveryDestListAdd = function() {
         var deliveryDestModel = { 
                 "customerNo":"C003",

@@ -4,9 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
+import com.ksk.sms.common.SmsBeanUtilsBean;
+import com.ksk.sms.dao.domain.Branch;
+import com.ksk.sms.dao.domain.Customer;
+import com.ksk.sms.dao.mapper.BranchMapper;
+import com.ksk.sms.dao.mapper.CustomerMapper;
 import com.ksk.sms.model.BranchModel;
 import com.ksk.sms.model.BranchViewModel;
 import com.ksk.sms.model.DeliveryDestModel;
@@ -19,6 +25,11 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Service
 public class BranchServiceImpl extends SmsService implements SmsViewService<BranchViewModel> {
+
+    @Autowired
+    private CustomerMapper customerMapper;
+    @Autowired
+    private BranchMapper branchMapper;
 
 	@Override
     public BranchViewModel init() {
@@ -100,14 +111,15 @@ log.info("outModel.getUsername = " + outModel.getUsername());
 
 	private List<KeyValue> makeCustomerList() {
         List<KeyValue> customerList = new ArrayList<KeyValue>();
+		List<Customer> selectedList = customerMapper.findList(new Customer());
 		
-		for(int i=1; i<5; i++) {
-			String strNo = Integer.toString(i);
+        for(Customer item : selectedList){
 			KeyValue customer = new KeyValue();
 
-			customer.setKey("000"+strNo);
-			customer.setValue("Customer "+strNo);
-			
+			customer.setKey(item.getCustomerNo());
+			customer.setValue(item.getCustomerName());
+
+			log.info("Key:{}, Value:{}", customer.getKey(), customer.getValue());
 			customerList.add(customer);
 		}
 		
@@ -321,8 +333,18 @@ log.info("makeProductModelList " + productList.size());
 
 	@Override
 	public BranchViewModel create(BranchViewModel inModel) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+        BranchViewModel outModel = Objects.requireNonNull(inModel);
+        Branch branch = new Branch();
+        
+    	SmsBeanUtilsBean.copyProperties(branch, inModel.getBranchModel());
+    	log.info("branch {}", branch.getBranchName());
+    	log.info("branch {}", branch.getCustomerNo());
+    	
+        int iCreated = branchMapper.create(branch);
+
+    	log.info("iCreated {}", iCreated);
+		
+        return outModel;
 	}
 
 	@Override

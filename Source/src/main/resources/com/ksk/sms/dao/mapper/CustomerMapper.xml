@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ksk.sms.dao.mapper.CustomerMapper">
+
+	<sql id="whereStatements">
+		<where>
+			<if test="customerNo != null and customerNo != ''">
+				AND customerNo = #{customerNo}
+			</if>
+			<if test="customerName != null and customerName != ''">
+				AND customerName = #{customerName}
+			</if>
+			<if test="zipcode != null and zipcode != ''">
+				AND zipcode = #{zipcode}
+			</if>
+			<if test="address != null and address != ''">
+				AND address = #{address}
+			</if>
+			<if test="addressDetail != null and addressDetail != ''">
+				AND addressDetail = #{addressDetail}
+			</if>
+			<if test="telNo != null and telNo != ''">
+				AND telNo = #{telNo}
+			</if>
+			<if test="faxNo != null and faxNo != ''">
+				AND faxNo = #{faxNo}
+			</if>
+			<if test="startDate != null and startDate != ''">
+				AND startDate = #{startDate}
+			</if>
+			<if test="paymentTerms != null and paymentTerms != ''">
+				AND paymentTerms = #{paymentTerms}
+			</if>
+		</where>
+	</sql>
+
+    <select id="findOne" parameterType="com.ksk.sms.dao.domain.Customer" resultType="com.ksk.sms.dao.domain.Customer">
+		SELECT
+			*
+		FROM
+			tbl_customer
+		WHERE
+			customerNo =  #{customerNo}
+    </select>
+
+    <select id="findList" parameterType="com.ksk.sms.dao.domain.Customer" resultType="com.ksk.sms.dao.domain.Customer">
+		SELECT
+			* 
+		FROM
+			tbl_customer
+		<include refid="whereStatements" />
+		ORDER BY
+			customerNo
+    </select>
+
+    <select id="count" parameterType="com.ksk.sms.dao.domain.Customer" resultType="_long">
+		SELECT
+			COUNT(*)
+		FROM
+			tbl_customer
+		<include refid="whereStatements" />
+    </select>
+
+    <insert id="create" parameterType="com.ksk.sms.dao.domain.Customer">
+		INSERT INTO
+			tbl_customer
+		(
+		    customerName,
+		    zipcode,
+		    address,
+		    addressDetail,
+		    telNo,
+		    faxNo,
+		    startDate,
+		    paymentTerms
+		)
+		VALUES
+		(
+			#{customerName},
+			#{zipcode},
+			#{address},
+			#{addressDetail},
+			#{telNo},
+			#{faxNo},
+			#{startDate},
+			#{paymentTerms}
+		)
+    </insert>
+
+    <insert id="createAll" parameterType="list">
+		INSERT INTO
+			tbl_customer
+		(
+		    customerName,
+		    zipcode,
+		    address,
+		    addressDetail,
+		    telNo,
+		    faxNo,
+		    startDate,
+		    paymentTerms
+		)
+		VALUES
+		<foreach collection="list" item="com.ksk.sms.dao.domain.Customer" separator=",">
+		(
+			#{customerName},
+			#{zipcode},
+			#{address},
+			#{addressDetail},
+			#{telNo},
+			#{faxNo},
+			#{startDate},
+			#{paymentTerms}
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.ksk.sms.dao.domain.Customer">
+		UPDATE
+			tbl_customer
+		<set>
+			<if test="customerName != null">customerName = #{customerName}, </if>
+			<if test="zipcode != null">zipcode = #{zipcode}, </if>
+			<if test="address != null">address = #{address}, </if>
+			<if test="addressDetail != null">addressDetail = #{addressDetail}, </if>
+			<if test="telNo != null">telNo = #{telNo}, </if>
+			<if test="faxNo != null">faxNo = #{faxNo}, </if>
+			<if test="startDate != null">startDate = #{startDate}, </if>
+			<if test="paymentTerms != null">paymentTerms = #{paymentTerms}, </if>
+		</set>
+		WHERE
+			customerNo =  #{customerNo}
+	</update>
+
+	<delete id="delete" parameterType="com.ksk.sms.dao.domain.Customer">
+		DELETE FROM
+				tbl_customer
+		WHERE
+			customerNo =  #{customerNo}
+	</delete>
+
+</mapper>

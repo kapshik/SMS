@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ksk.sms.dao.mapper.OrderDetailMapper">
+
+	<sql id="whereStatements">
+		<where>
+			<if test="customerNo != null and customerNo != ''">
+				AND customerNo = #{customerNo}
+			</if>
+			<if test="orderNo != null and orderNo != ''">
+				AND orderNo = #{orderNo}
+			</if>
+			<if test="productCode != null and productCode != ''">
+				AND productCode = #{productCode}
+			</if>
+			<if test="quantityOrdered != null and quantityOrdered != ''">
+				AND quantityOrdered = #{quantityOrdered}
+			</if>
+			<if test="priceOrdered != null and priceOrdered != ''">
+				AND priceOrdered = #{priceOrdered}
+			</if>
+		</where>
+	</sql>
+
+    <select id="findOne" parameterType="com.ksk.sms.dao.domain.OrderDetail" resultType="com.ksk.sms.dao.domain.OrderDetail">
+		SELECT
+			*
+		FROM
+			tbl_orderdetail
+		WHERE
+			customerNo =  #{customerNo}
+			AND orderNo = #{orderNo}
+			AND productCode = #{productCode}
+    </select>
+
+    <select id="findList" parameterType="com.ksk.sms.dao.domain.OrderDetail" resultType="com.ksk.sms.dao.domain.OrderDetail">
+		SELECT
+			* 
+		FROM
+			tbl_orderdetail
+		<include refid="whereStatements" />
+		ORDER BY
+			customerNo, orderNo, productCode
+    </select>
+
+    <select id="count" parameterType="com.ksk.sms.dao.domain.OrderDetail" resultType="_long">
+		SELECT
+			COUNT(*)
+		FROM
+			tbl_orderdetail
+		<include refid="whereStatements" />
+    </select>
+
+    <insert id="create" parameterType="com.ksk.sms.dao.domain.OrderDetail">
+		INSERT INTO
+			tbl_orderdetail
+		(
+		    customerNo,
+		    orderNo,
+		    productCode,
+		    quantityOrdered,
+		    priceOrdered
+		)
+		VALUES
+		(
+			#{customerNo},
+			#{orderNo},
+			#{productCode},
+			#{quantityOrdered},
+			#{priceOrdered}
+		)
+    </insert>
+
+    <insert id="createAll" parameterType="list">
+		INSERT INTO
+			tbl_orderdetail
+		(
+		    customerNo,
+		    orderNo,
+		    productCode,
+		    quantityOrdered,
+		    priceOrdered
+		)
+		VALUES
+		<foreach collection="list" item="com.ksk.sms.dao.domain.OrderDetail" separator=",">
+		(
+			#{customerNo},
+			#{orderNo},
+			#{productCode},
+			#{quantityOrdered},
+			#{priceOrdered}
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.ksk.sms.dao.domain.OrderDetail">
+		UPDATE
+			tbl_orderdetail
+		<set>
+			<if test="quantityOrdered != null">quantityOrdered = #{quantityOrdered}, </if>
+			<if test="priceOrdered != null">priceOrdered = #{priceOrdered}, </if>
+		</set>
+		WHERE
+			customerNo =  #{customerNo}
+			AND orderNo = #{orderNo}
+			AND productCode = #{productCode}
+	</update>
+
+	<delete id="delete" parameterType="com.ksk.sms.dao.domain.OrderDetail">
+		DELETE FROM
+				tbl_orderdetail
+		WHERE
+			customerNo =  #{customerNo}
+			AND orderNo = #{orderNo}
+			AND productCode = #{productCode}
+	</delete>
+
+</mapper>

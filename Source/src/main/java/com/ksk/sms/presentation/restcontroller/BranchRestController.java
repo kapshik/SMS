@@ -29,6 +29,13 @@ public class BranchRestController {
 		return outModel;
 	}
 	
+	@PostMapping("branch/create")
+	public BranchViewModel create(@RequestBody BranchViewModel inModel) {
+		BranchViewModel outModel = service.create(inModel);
+		
+		return outModel;
+	}
+	
 	@PostMapping("branch/delete")
 	public BranchViewModel delete(@RequestBody BranchViewModel inModel) {
 		BranchViewModel outModel = service.search(inModel);
