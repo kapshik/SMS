@@ -44,8 +44,8 @@ public class BranchRestController {
 	}
 	
 	@PostMapping("branch/branchChange")
-	public BranchViewModel BranchChange(@RequestBody BranchViewModel inModel) {
-		BranchViewModel outModel = service.search(inModel);
+	public BranchViewModel branchChange(@RequestBody BranchViewModel inModel) {
+		BranchViewModel outModel = service.branchChange(inModel);
 		
 		return outModel;
 	}

@@ -246,7 +246,7 @@ public class PurchaseServiceImpl extends SmsService implements SmsViewService<Pu
 		customerData.setAddressDetail("尾道ラーメン3階");
 		customerData.setTelNo("03-1234-5678");
 		customerData.setFaxNo("03-9876-5432");
-		customerData.setStartDate("2019/11/22");
+//		customerData.setStartDate("2019/11/22");
 		customerData.setPaymentTerms("月末締め翌月末払い");
 
 		return customerData;
@@ -356,12 +356,12 @@ public class PurchaseServiceImpl extends SmsService implements SmsViewService<Pu
 		productData.setCustomerNo("setCustomerNo" + strNo);
 		productData.setProductCode("setProductCode" + strNo);
 		productData.setProductName("setProductName" + strNo);
-		productData.setQuantity(strNo);
-		productData.setQuantityPerBox("setQuantityPerBox" + strNo);
-		productData.setQuantityOfBox("setQuantityOfBox" + strNo);
-		productData.setUnitPrice("setUnitPrice" + strNo);
-		productData.setDiscountPrice("setDiscountPrice" + strNo);
-		productData.setAmount("setAmount" + strNo);
+		productData.setQuantity(0);
+		productData.setQuantityPerBox(0);
+		productData.setQuantityOfBox(0);
+		productData.setUnitPrice(0);
+		productData.setDiscountPrice(0);
+		productData.setAmount(0);
 		productData.setProductType("setProductType" + strNo);
 		productData.setUnitType("setUnitType" + strNo);
 		productData.setRemarks("setRemarks" + strNo);

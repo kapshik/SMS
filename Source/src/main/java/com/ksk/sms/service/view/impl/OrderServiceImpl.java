@@ -1,14 +1,20 @@
 package com.ksk.sms.service.view.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
+import com.ksk.sms.common.SmsBeanUtilsBean;
+import com.ksk.sms.dao.domain.Branch;
+import com.ksk.sms.dao.domain.Customer;
+import com.ksk.sms.dao.domain.DeliveryDest;
+import com.ksk.sms.dao.mapper.BranchMapper;
+import com.ksk.sms.dao.mapper.CustomerMapper;
+import com.ksk.sms.dao.mapper.DeliveryDestMapper;
 import com.ksk.sms.model.BranchModel;
 import com.ksk.sms.model.CustomerModel;
 import com.ksk.sms.model.DeliveryDestModel;
@@ -24,6 +30,13 @@ import lombok.extern.log4j.Log4j2;
 @Service
 public class OrderServiceImpl extends SmsService implements SmsViewService<OrderViewModel>{
 
+	@Autowired
+    private CustomerMapper customerMapper;
+    @Autowired
+    private BranchMapper branchMapper;
+    @Autowired
+    private DeliveryDestMapper deliveryDestMapper;
+    
 	@Override
     public OrderViewModel init() {
 
@@ -32,8 +45,8 @@ public class OrderServiceImpl extends SmsService implements SmsViewService<Order
 		outModel.setUsername(getUsername());
     	
 		outModel.setCustomerList(makeCustomerList());
-		outModel.setBranchList(makeBranchList());
-		outModel.setDeliveryDestList(makeDeliveryDestList());
+		outModel.setBranchList(new ArrayList<KeyValue>());
+		outModel.setDeliveryDestList(new ArrayList<KeyValue>());
 		outModel.setProductMasterList(makeProductMasterList());
 		outModel.setPaymentTermsList(makePaymentTermsList());
 
@@ -76,9 +89,22 @@ log.info("outModel.getUsername = " + outModel.getUsername());
     @Override
     public OrderViewModel customerChange(OrderViewModel inModel) {
 
-        OrderViewModel outModel = Objects.requireNonNull(inModel);
-
-    	outModel.setBranchList(makeBranchList());
+    	OrderViewModel outModel = Objects.requireNonNull(inModel);
+		CustomerModel customerModel = inModel.getCustomerModel();
+    	Customer criteria = new Customer();
+    	criteria.setCustomerNo(customerModel.getCustomerNo());
+    	
+		Customer customer = customerMapper.findOne(criteria);
+		if(Objects.nonNull(customer)) {
+	    	SmsBeanUtilsBean.copyProperties(customerModel, customer);
+		}
+		
+    	outModel.setCustomerModel(customerModel);
+    	outModel.setBranchList(makeBranchList(customerModel.getCustomerNo()));
+    	log.info("inModel.getCustomerName = " + inModel.getCustomerModel().getCustomerName());
+    	log.info("inModel.getAddress = " + inModel.getCustomerModel().getAddress());
+    	log.info("outModel.getCustomerName = " + outModel.getCustomerModel().getCustomerName());
+    	log.info("outModel.getAddress = " + outModel.getCustomerModel().getAddress());
 
         return outModel;
     }
@@ -86,17 +112,27 @@ log.info("outModel.getUsername = " + outModel.getUsername());
     @Override
     public OrderViewModel branchChange(OrderViewModel inModel) {
     	
-        OrderViewModel outModel = Objects.requireNonNull(inModel);
+    	OrderViewModel outModel = Objects.requireNonNull(inModel);
     	
-        try {
-			BeanUtils.copyProperties(inModel, outModel);
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
+		BranchModel branchModel = inModel.getBranchModel();
+		Branch criteria = new Branch();
+    	criteria.setCustomerNo(inModel.getCustomerModel().getCustomerNo());
+    	criteria.setBranchNo(branchModel.getBranchNo());
+    	
+		Branch branch = branchMapper.findOne(criteria);
+		if(Objects.nonNull(branch)) {
+			SmsBeanUtilsBean.copyProperties(branchModel, branch);
 		}
-		outModel.setDeliveryDestList(makeDeliveryDestList());
 
-    	return outModel;
+    	outModel.setBranchModel(branchModel);
+    	outModel.setDeliveryDestList(makeDeliveryDestList(branchModel.getBranchNo()));
+
+    	log.info("inModel.getCustomerNo = " + inModel.getCustomerModel().getCustomerNo());
+    	log.info("inModel.getBranchNo = " + inModel.getBranchModel().getBranchNo());
+    	log.info("outModel.getBranchName = " + outModel.getBranchModel().getBranchName());
+    	log.info("outModel.getBranchNo = " + outModel.getBranchModel().getBranchNo());
+    	
+        return outModel;
 
     }
 
@@ -125,32 +161,42 @@ log.info("outModel.getUsername = " + outModel.getUsername());
         return customerList;
     }
 	
-	private List<KeyValue> makeBranchList() {
+	private List<KeyValue> makeBranchList(String inCustomerNo) {
         List<KeyValue> branchList = new ArrayList<KeyValue>();
+        Branch criteria = new Branch();
+        criteria.setCustomerNo(inCustomerNo);
+        
+		log.info("inCustomerNo:{}", inCustomerNo);
+		List<Branch> selectedList = branchMapper.findList(criteria);
 		
-		for(int i=1; i<5; i++) {
-			String strNo = Integer.toString(i);
+        for(Branch item : selectedList){
 			KeyValue branch = new KeyValue();
 
-			branch.setKey("000"+strNo);
-			branch.setValue("Branch "+strNo);
-			
+			branch.setKey(item.getBranchNo());
+			branch.setValue(item.getBranchName());
+
+			log.info("Key:{}, Value:{}", branch.getKey(), branch.getValue());
 			branchList.add(branch);
 		}
 		
         return branchList;
     }
 
-	private List<KeyValue> makeDeliveryDestList() {
+	private List<KeyValue> makeDeliveryDestList(String inBranchNo) {
         List<KeyValue> deliveryDestList = new ArrayList<KeyValue>();
+        DeliveryDest criteria = new DeliveryDest();
+        criteria.setBranchNo(inBranchNo);
+        
+		log.info("inBranchNo:{}", inBranchNo);
+		List<DeliveryDest> selectedList = deliveryDestMapper.findList(criteria);
 		
-		for(int i=1; i<5; i++) {
-			String strNo = Integer.toString(i);
+        for(DeliveryDest item : selectedList){
 			KeyValue deliveryDest = new KeyValue();
 
-			deliveryDest.setKey("000"+strNo);
-			deliveryDest.setValue("DeliveryDest "+strNo);
-			
+			deliveryDest.setKey(item.getDeliveryDestNo());
+			deliveryDest.setValue(item.getDeliveryDestName());
+
+			log.info("Key:{}, Value:{}", deliveryDest.getKey(), deliveryDest.getValue());
 			deliveryDestList.add(deliveryDest);
 		}
 		
@@ -246,7 +292,7 @@ log.info("makeOrderModelList " + orderList.size());
 		customerData.setAddressDetail("尾道ラーメン3階");
 		customerData.setTelNo("03-1234-5678");
 		customerData.setFaxNo("03-9876-5432");
-		customerData.setStartDate("2019/11/22");
+//		customerData.setStartDate("2019/11/22");
 		customerData.setPaymentTerms("月末締め翌月末払い");
 
 		return customerData;
@@ -356,12 +402,12 @@ log.info("makeProductModelList " + productList.size());
 		productData.setCustomerNo("setCustomerNo"+strNo);
 		productData.setProductCode("setProductCode"+strNo);
 		productData.setProductName("setProductName"+strNo);
-		productData.setQuantity(strNo);
-		productData.setQuantityPerBox("setQuantityPerBox"+strNo);
-		productData.setQuantityOfBox("setQuantityOfBox"+strNo);
-		productData.setUnitPrice("setUnitPrice"+strNo);
-		productData.setDiscountPrice("setDiscountPrice"+strNo);
-		productData.setAmount("setAmount"+strNo);
+		productData.setQuantity(0);
+		productData.setQuantityPerBox(0);
+		productData.setQuantityOfBox(0);
+		productData.setUnitPrice(0);
+		productData.setDiscountPrice(0);
+		productData.setAmount(0);
 		productData.setProductType("setProductType"+strNo);
 		productData.setUnitType("setUnitType"+strNo);
 		productData.setRemarks("setRemarks"+strNo);

@@ -3,24 +3,25 @@ package com.ksk.sms.dao.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.ksk.sms.dao.domain.Branch;
 
 @Mapper
 public interface BranchMapper {
 
-	public Branch findOne(Branch customer);
+	public Branch findOne(Branch data);
 
-	public List<Branch> findList(Branch customer);
+	public List<Branch> findList(Branch data);
 	
-	public long count(Branch customer);
+	public long count(Branch data);
 	
-	public int create(Branch customer);
+	public int create(Branch data);
 	
-	public int createAll(List<Branch> customers);
+	public int createAll(@Param("list") List<Branch> data);
 
-	public int update(Branch customer);
+	public int update(Branch data);
 
-	public int delete(Branch customer);
+	public int delete(Branch data);
 
 }

@@ -45,7 +45,7 @@ public class CustomerRestController {
 	
 	@PostMapping("customer/customerChange")
 	public CustomerViewModel customerChange(@RequestBody CustomerViewModel inModel) {
-		CustomerViewModel outModel = service.search(inModel);
+		CustomerViewModel outModel = service.customerChange(inModel);
 		
 		return outModel;
 	}

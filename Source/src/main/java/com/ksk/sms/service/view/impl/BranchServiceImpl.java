@@ -11,8 +11,10 @@ import com.ksk.sms.common.KeyValue;
 import com.ksk.sms.common.SmsBeanUtilsBean;
 import com.ksk.sms.dao.domain.Branch;
 import com.ksk.sms.dao.domain.Customer;
+import com.ksk.sms.dao.domain.DeliveryDest;
 import com.ksk.sms.dao.mapper.BranchMapper;
 import com.ksk.sms.dao.mapper.CustomerMapper;
+import com.ksk.sms.dao.mapper.DeliveryDestMapper;
 import com.ksk.sms.model.BranchModel;
 import com.ksk.sms.model.BranchViewModel;
 import com.ksk.sms.model.DeliveryDestModel;
@@ -27,9 +29,11 @@ import lombok.extern.log4j.Log4j2;
 public class BranchServiceImpl extends SmsService implements SmsViewService<BranchViewModel> {
 
     @Autowired
-    private CustomerMapper customerMapper;
+    private DeliveryDestMapper deliveryDestMapper;
     @Autowired
     private BranchMapper branchMapper;
+    @Autowired
+    private CustomerMapper customerMapper;
 
 	@Override
     public BranchViewModel init() {
@@ -314,12 +318,12 @@ log.info("makeProductModelList " + productList.size());
 		productData.setCustomerNo("setCustomerNo"+strNo);
 		productData.setProductCode("setProductCode"+strNo);
 		productData.setProductName("setProductName"+strNo);
-		productData.setQuantity(strNo);
-		productData.setQuantityPerBox("setQuantityPerBox"+strNo);
-		productData.setQuantityOfBox("setQuantityOfBox"+strNo);
-		productData.setUnitPrice("setUnitPrice"+strNo);
-		productData.setDiscountPrice("setDiscountPrice"+strNo);
-		productData.setAmount("setAmount"+strNo);
+		productData.setQuantity(0);
+		productData.setQuantityPerBox(0);
+		productData.setQuantityOfBox(0);
+		productData.setUnitPrice(0);
+		productData.setDiscountPrice(0);
+		productData.setAmount(0);
 		productData.setProductType("setProductType"+strNo);
 		productData.setUnitType("setUnitType"+strNo);
 		productData.setRemarks("setRemarks"+strNo);
@@ -341,8 +345,19 @@ log.info("makeProductModelList " + productList.size());
     	log.info("branch {}", branch.getCustomerNo());
     	
         int iCreated = branchMapper.create(branch);
-
     	log.info("iCreated {}", iCreated);
+		
+		List<DeliveryDest> deliveryDestList = new ArrayList<DeliveryDest>();
+        for(DeliveryDestModel item : inModel.getDeliveryDestModelList()){
+			DeliveryDest deliveryDest = new DeliveryDest();
+
+	    	SmsBeanUtilsBean.copyProperties(deliveryDest, item);
+	    	deliveryDest.setCustomerNo(branch.getBranchNo());
+
+        	deliveryDestList.add(deliveryDest);
+		}
+		iCreated = deliveryDestMapper.createAll(deliveryDestList);
+    	log.info("DeliveryDest iCreated {}", iCreated);
 		
         return outModel;
 	}

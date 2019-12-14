@@ -46,7 +46,7 @@
               <label class="form-control-label col-sm-2">支店名</label>
               <div class="col-sm-10">
                 <select class="form-control form-control-sm"
-                  data-bind="options:branchList, optionsValue: 'key', optionsText: 'value', value:branchModel.branchNo, optionsCaption:'選択してください'">
+                  data-bind="options:branchList, optionsValue: 'key', optionsText: 'value', value:branchModel.branchNo, event:{change: $root.doBranchChange}">
                 </select>
               </div>
             </div>
@@ -83,7 +83,7 @@
               <label class="form-control-label col-sm-2">納品先名</label>
               <div class="col-sm-10">
                 <select class="form-control form-control-sm"
-                  data-bind="options:deliveryDestList, optionsValue: 'key', optionsText: 'value', value:deliveryDestModel.deliveryDestNo, optionsCaption:'選択してください'">
+                  data-bind="options:deliveryDestList, optionsValue: 'key', optionsText: 'value', value:deliveryDestModel.deliveryDestNo">
                 </select>
               </div>
             </div>

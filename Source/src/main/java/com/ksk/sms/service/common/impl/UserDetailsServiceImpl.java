@@ -16,6 +16,9 @@ import com.ksk.sms.dao.domain.UserInfo;
 import com.ksk.sms.dao.mapper.UserInfoMapper;
 import com.ksk.sms.dao.repository.UserInfoRepository;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 
@@ -34,9 +37,10 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	        userInfo = new UserInfo();
 	        userInfo.setUsername("Test");
 	        userInfo.setPassword("PASS");
+	        userInfo.setRole("XXX");
 //			throw new UsernameNotFoundException("User Not Found...");
 		}
-
+    	log.info(userInfo.getUsername());
     	Collection<GrantedAuthority> grantList = getAuthorityList(userInfo.getRole());
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

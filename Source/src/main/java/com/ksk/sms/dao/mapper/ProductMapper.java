@@ -3,24 +3,25 @@ package com.ksk.sms.dao.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.ksk.sms.dao.domain.Product;
 
 @Mapper
 public interface ProductMapper {
 
-	public Product findOne(Product customer);
+	public Product findOne(Product data);
 
-	public List<Product> findList(Product customer);
+	public List<Product> findList(Product data);
 	
-	public long count(Product customer);
+	public long count(Product data);
 	
-	public int create(Product customer);
+	public int create(Product data);
 	
-	public int createAll(List<Product> customers);
+	public int createAll(@Param("list") List<Product> data);
 
-	public int update(Product customer);
+	public int update(Product data);
 
-	public int delete(Product customer);
+	public int delete(Product data);
 
 }

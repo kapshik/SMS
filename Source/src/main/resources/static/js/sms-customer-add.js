@@ -4,7 +4,7 @@ $(function () {
     // ------------------------------------------------------ //
     $('.input-datepicker-autoclose').datepicker({
         autoclose: true,
-        format: 'yyyy/mm/dd'
+        format: 'yyyy-mm-dd'
     });
 
     // ------------------------------------------------------- //
@@ -95,54 +95,20 @@ sms.vm.customer = function() {
     };
 
     self.doBranchListAdd = function() {
-        var branchModel = { "customerNo":"C002",
-                            "branchNo":"B002",
-                            "branchName":"支店名",
-                            "zipcode":"101-0015",
-                            "address":"東京都千代田区水道橋",
-                            "addressDetail":"尾道ラーメン3階",
-                            "telNo":"03-1234-5678",
-                            "faxNo":"03-9876-5432"
-        };
-        self.dataModel.branchModelList.push(branchModel);
+        var branch = $.extend({}, ko.mapping.toJS(self.dataModel.branchModel));
+        self.dataModel.branchModelList.push(branch);
     };
 
     self.doProductListAdd = function() {
-        var product = {"customerNo":"setCustomerNo1",
-                        "productCode":"setProductCode1",
-                        "productName":"setProductName1",
-                        "quantity":"1",
-                        "quantityPerBox":"setQuantityPerBox1",
-                        "quantityOfBox":"setQuantityOfBox1",
-                        "unitPrice":"setUnitPrice1",
-                        "discountPrice":"setDiscountPrice1",
-                        "amount":"setAmount1",
-                        "productType":"setProductType1",
-                        "unitType":"setUnitType1",
-                        "remarks":"setRemarks1",
-                        "productTypeList":[
-                            {"key":"0001","value":"送料別"},
-                            {"key":"0002","value":"送料込"},
-                            {"key":"0003","value":"その他"}
-                        ],
-                        "unitTypeList":[
-                            {"key":"0001","value":"本"},
-                            {"key":"0002","value":"丁"},
-                            {"key":"0003","value":"個"},
-                            {"key":"0004","value":"BOX"}
-                        ],
-                        "productMasterList":[
-                            {"key":"0000","value":"product 0"},
-                            {"key":"0001","value":"product 1"},
-                            {"key":"0002","value":"product 2"},
-                            {"key":"0003","value":"product 3"},
-                            {"key":"0004","value":"product 4"}
-                        ]
-        };
+        var product = $.extend({}, ko.mapping.toJS(self.dataModel.productModel));
         self.dataModel.productModelList.push(product);
     };
 
-    self.doDeleteItem = function() {
+    self.doDeleteProductItem = function() {
+        self.dataModel.productModelList.pop();
+    };
+
+    self.doDeleteBranchItem = function() {
         self.dataModel.branchModelList.pop();
     };
 

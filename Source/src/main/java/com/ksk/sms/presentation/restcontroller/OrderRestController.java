@@ -57,7 +57,14 @@ public class OrderRestController {
 	
 	@PostMapping("order/customerChange")
 	public OrderViewModel customerChange(@RequestBody OrderViewModel inModel) {
-		OrderViewModel outModel = service.search(inModel);
+		OrderViewModel outModel = service.customerChange(inModel);
+		
+		return outModel;
+	}
+	
+	@PostMapping("order/branchChange")
+	public OrderViewModel branchChange(@RequestBody OrderViewModel inModel) {
+		OrderViewModel outModel = service.branchChange(inModel);
 		
 		return outModel;
 	}

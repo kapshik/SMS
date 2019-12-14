@@ -8,6 +8,6 @@ import com.ksk.sms.dao.domain.UserInfo;
 @Mapper
 public interface UserInfoMapper {
 
-	public UserInfo getUserInfo(@Param("usr")String user);
+	public UserInfo getUserInfo(@Param("user")String user);
 
 }

@@ -105,7 +105,7 @@
 		)
     </insert>
 
-    <insert id="createAll" parameterType="list">
+    <insert id="createAll" parameterType="java.util.List">
 		INSERT INTO
 			tbl_product
 		(
@@ -123,20 +123,20 @@
 		    quantityInStock
 		)
 		VALUES
-		<foreach collection="list" item="com.ksk.sms.dao.domain.Product" separator=",">
+		<foreach collection="list" item="item" separator=",">
 		(
-			#{productCode},
-			#{productName},
-			#{quantity},
-			#{quantityPerBox},
-			#{quantityOfBox},
-			#{buyPrice},
-			#{unitPrice},
-			#{productType},
-			#{unitType},
-			#{remarks},
-			#{scheduledInStockDate},
-			#{quantityInStock}
+			#{item.productCode},
+			#{item.productName},
+			#{item.quantity},
+			#{item.quantityPerBox},
+			#{item.quantityOfBox},
+			#{item.buyPrice},
+			#{item.unitPrice},
+			#{item.productType},
+			#{item.unitType},
+			#{item.remarks},
+			#{item.scheduledInStockDate},
+			#{item.quantityInStock}
 		)
 		</foreach>
 	</insert>

@@ -64,7 +64,7 @@
 		<include refid="whereStatements" />
     </select>
 
-    <insert id="create" parameterType="com.ksk.sms.dao.domain.DeliveryDest">
+    <insert id="create" parameterType="com.ksk.sms.dao.domain.DeliveryDest" useGeneratedKeys="true"  keyProperty="deliveryDestNo">
 		INSERT INTO
 			tbl_deliverydest
 		(
@@ -104,16 +104,16 @@
 		    faxNo
 		)
 		VALUES
-		<foreach collection="list" item="com.ksk.sms.dao.domain.DeliveryDest" separator=",">
+		<foreach collection="list" item="item" separator=",">
 		(
-			#{customerNo},
-			#{branchNo},
-			#{deliveryDestName},
-			#{zipcode},
-			#{address},
-			#{addressDetail},
-			#{telNo},
-			#{faxNo}
+			#{item.customerNo},
+			#{item.branchNo},
+			#{item.deliveryDestName},
+			#{item.zipcode},
+			#{item.address},
+			#{item.addressDetail},
+			#{item.telNo},
+			#{item.faxNo}
 		)
 		</foreach>
 	</insert>

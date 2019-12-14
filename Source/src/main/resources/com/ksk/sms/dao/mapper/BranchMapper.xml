@@ -60,7 +60,7 @@
 		<include refid="whereStatements" />
     </select>
 
-    <insert id="create" parameterType="com.ksk.sms.dao.domain.Branch">
+    <insert id="create" parameterType="com.ksk.sms.dao.domain.Branch" useGeneratedKeys="true"  keyProperty="branchNo">
 		INSERT INTO
 			tbl_branch
 		(
@@ -84,7 +84,7 @@
 		)
     </insert>
 
-    <insert id="createAll" parameterType="list">
+    <insert id="createAll" parameterType="java.util.List">
 		INSERT INTO
 			tbl_branch
 		(
@@ -97,15 +97,15 @@
 		    faxNo
 		)
 		VALUES
-		<foreach collection="list" item="com.ksk.sms.dao.domain.Branch" separator=",">
+		<foreach collection="list" item="item" separator=",">
 		(
-			#{customerNo},
-			#{branchName},
-			#{zipcode},
-			#{address},
-			#{addressDetail},
-			#{telNo},
-			#{faxNo}
+			#{item.customerNo},
+			#{item.branchName},
+			#{item.zipcode},
+			#{item.address},
+			#{item.addressDetail},
+			#{item.telNo},
+			#{item.faxNo}
 		)
 		</foreach>
 	</insert>

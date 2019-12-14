@@ -1,0 +1,18 @@
+source `D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_productbycustomer.sql`
+source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_address.sql
+source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_branch.sql
+source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_customer.sql
+source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_deliverydest.sql
+source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_order.sql
+source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_orderdetail.sql
+source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_product.sql
+
+source ./tbl_productbycustomer.sql
+source ./tbl_address.sql
+source ./tbl_branch.sql
+source ./tbl_customer.sql
+source ./tbl_deliverydest.sql
+source ./tbl_order.sql
+source ./tbl_orderdetail.sql
+source ./tbl_product.sql
+source ./zenkoku.sql

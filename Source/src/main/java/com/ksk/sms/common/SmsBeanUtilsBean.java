@@ -5,8 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.commons.beanutils.BeanUtilsBean;
-import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.Converter;
 
 import lombok.extern.log4j.Log4j2;
@@ -16,9 +15,10 @@ public class SmsBeanUtilsBean {
 
 	public static void copyProperties(Object dest, Object orig) {
         try {
-        	BeanUtilsBean bu = new BeanUtilsBean(new ConvertUtilsBean(), BeanUtilsBean.getInstance().getPropertyUtils());
-        	bu.getConvertUtils().register(new SmsDateConverter(), Date.class);
-	    	bu.copyProperties(dest, orig);
+        	BeanUtils.copyProperties(dest, orig);
+//        	BeanUtilsBean bu = new BeanUtilsBean(new ConvertUtilsBean(), BeanUtilsBean.getInstance().getPropertyUtils());
+//        	bu.getConvertUtils().register(new SmsDateConverter(), Date.class);
+//	    	bu.copyProperties(dest, orig);
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
@@ -30,6 +30,9 @@ public class SmsBeanUtilsBean {
         @SuppressWarnings({ "rawtypes", "unchecked" })
         @Override
         public Object convert(Class targetClass, Object value) {
+        	if (value instanceof Date) {
+        		return value;
+        	}
 			try {
 				return formatter.parse(value.toString());
 			} catch (ParseException e) {

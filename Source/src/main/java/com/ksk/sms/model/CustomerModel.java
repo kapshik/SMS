@@ -1,6 +1,7 @@
 package com.ksk.sms.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +19,7 @@ public class CustomerModel implements Serializable{
 	private String addressDetail;
 	private String telNo;
 	private String faxNo;
-	private String startDate;
+	private Date startDate;
 	private String paymentTerms;
 }
 

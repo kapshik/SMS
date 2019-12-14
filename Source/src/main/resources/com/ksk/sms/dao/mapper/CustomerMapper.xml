@@ -62,7 +62,7 @@
 		<include refid="whereStatements" />
     </select>
 
-    <insert id="create" parameterType="com.ksk.sms.dao.domain.Customer">
+    <insert id="create" parameterType="com.ksk.sms.dao.domain.Customer" useGeneratedKeys="true"  keyProperty="customerNo">
 		INSERT INTO
 			tbl_customer
 		(

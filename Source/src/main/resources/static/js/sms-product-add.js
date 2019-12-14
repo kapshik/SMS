@@ -1,5 +1,13 @@
 $(function () {
     // ------------------------------------------------------- //
+    // Datepicker Functionality
+    // ------------------------------------------------------ //
+    $('.input-datepicker-autoclose').datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd'
+    });
+
+    // ------------------------------------------------------- //
     // Initialize Page By Server Data
     // ------------------------------------------------------ //
     var viewModel = new sms.vm.product();
@@ -71,43 +79,23 @@ sms.vm.product = function() {
         });
     };
 
-    self.doAddItem = function() {
-        var product = {"customerNo":"setCustomerNo1",
-                        "productCode":"setProductCode1",
-                        "productName":"setProductName1",
-                        "quantity":"1",
-                        "quantityPerBox":"setQuantityPerBox1",
-                        "quantityOfBox":"setQuantityOfBox1",
-                        "unitPrice":"setUnitPrice1",
-                        "discountPrice":"setDiscountPrice1",
-                        "amount":"setAmount1",
-                        "productType":"setProductType1",
-                        "unitType":"setUnitType1",
-                        "remarks":"setRemarks1",
-                        "productTypeList":[
-                            {"key":"0001","value":"送料別"},
-                            {"key":"0002","value":"送料込"},
-                            {"key":"0003","value":"その他"}
-                        ],
-                        "unitTypeList":[
-                            {"key":"0001","value":"本"},
-                            {"key":"0002","value":"丁"},
-                            {"key":"0003","value":"個"},
-                            {"key":"0004","value":"BOX"}
-                        ],
-                        "productMasterList":[
-                            {"key":"0000","value":"product 0"},
-                            {"key":"0001","value":"product 1"},
-                            {"key":"0002","value":"product 2"},
-                            {"key":"0003","value":"product 3"},
-                            {"key":"0004","value":"product 4"}
-                        ]
-        };
-        self.dataModel.productModelList.push(product);
+    self.doCreate = function() {
+        var u = '/product/create';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
     };
 
-    self.doDeleteItem = function() {
-        self.dataModel.productModelList.pop();
+    self.doBranchListAdd = function() {
+        var branch = $.extend({}, ko.mapping.toJS(self.dataModel.branchModel));
+        self.dataModel.branchModelList.push(branch);
     };
 
 	self.bind = function() {

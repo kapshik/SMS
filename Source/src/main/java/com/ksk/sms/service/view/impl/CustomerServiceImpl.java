@@ -6,13 +6,19 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ksk.sms.common.KeyValue;
 import com.ksk.sms.common.SmsBeanUtilsBean;
 import com.ksk.sms.dao.domain.Address;
+import com.ksk.sms.dao.domain.Branch;
 import com.ksk.sms.dao.domain.Customer;
+import com.ksk.sms.dao.domain.Product;
 import com.ksk.sms.dao.mapper.AddressMapper;
+import com.ksk.sms.dao.mapper.BranchMapper;
 import com.ksk.sms.dao.mapper.CustomerMapper;
+import com.ksk.sms.dao.mapper.ProductMapper;
 import com.ksk.sms.model.BranchModel;
 import com.ksk.sms.model.CustomerModel;
 import com.ksk.sms.model.CustomerViewModel;
@@ -31,6 +37,10 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
     private AddressMapper addressMapper;
     @Autowired
     private CustomerMapper customerMapper;
+    @Autowired
+    private BranchMapper branchMapper;
+    @Autowired
+    private ProductMapper productMapper;
 	
 	@Override
     public CustomerViewModel init() {
@@ -40,7 +50,7 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
 		outModel.setUsername(getUsername());
     	
 		outModel.setCustomerList(makeCustomerList());
-		outModel.setBranchList(makeBranchList());
+		outModel.setBranchList(new ArrayList<KeyValue>());
 		outModel.setDeliveryDestList(makeDeliveryDestList());
 		outModel.setProductMasterList(makeProductMasterList());
 		outModel.setPaymentTermsList(makePaymentTermsList());
@@ -70,9 +80,9 @@ log.info("inModel.getCustomerNo = " + inModel.getCriteria().getCustomerNo());
 		outModel.setDetail(makeCustomerModel("XX"));
 		outModel.setBranchModel(makeBranchModel());
 		outModel.setDeliveryDestModel(makeDeliveryDestModel());
-		outModel.setProductModel(makeProductModel("XX"));
+//		outModel.setProductModel(makeProductModel("XX"));
     	
-		outModel.setProductModelList(makeProductModelList());
+//		outModel.setProductModelList(makeProductModelList());
 		outModel.setCustomerModelList(makeCustomerModelList());
 
     	log.info("search");
@@ -86,7 +96,7 @@ log.info("outModel.getUsername = " + outModel.getUsername());
 
         CustomerViewModel outModel = Objects.requireNonNull(inModel);
 
-    	outModel.setBranchList(makeBranchList());
+    	outModel.setBranchList(makeBranchList(inModel.getCustomerModel().getCustomerNo()));
 
         return outModel;
     }
@@ -127,16 +137,20 @@ log.info("outModel.getUsername = " + outModel.getUsername());
         return customerList;
     }
 	
-	private List<KeyValue> makeBranchList() {
+	private List<KeyValue> makeBranchList(String inCustomerNo) {
         List<KeyValue> branchList = new ArrayList<KeyValue>();
+        Branch criteria = new Branch();
+        criteria.setCustomerNo(inCustomerNo);
+        
+		List<Branch> selectedList = branchMapper.findList(criteria);
 		
-		for(int i=1; i<5; i++) {
-			String strNo = Integer.toString(i);
+        for(Branch item : selectedList){
 			KeyValue branch = new KeyValue();
 
-			branch.setKey("000"+strNo);
-			branch.setValue("Branch "+strNo);
-			
+			branch.setKey(item.getBranchNo());
+			branch.setValue(item.getBranchName());
+
+			log.info("Key:{}, Value:{}", branch.getKey(), branch.getValue());
 			branchList.add(branch);
 		}
 		
@@ -224,7 +238,7 @@ log.info("makeCustomerModelList " + customerList.size());
 		customerData.setAddressDetail("尾道ラーメン3階" + strNo);
 		customerData.setTelNo("03-1234-5678");
 		customerData.setFaxNo("03-9876-5432");
-		customerData.setStartDate("2019/11/22");
+//		customerData.setStartDate("2019/11/22");
 		customerData.setPaymentTerms("月末締め翌月末払い");
 
 		return customerData;
@@ -268,13 +282,13 @@ log.info("makeCustomerModelList " + customerList.size());
 
 	private List<ProductModel> makeProductModelList() {
 		List<ProductModel> productList = new ArrayList<ProductModel>();
-		
+/*		
 		for(int i=1; i<10; i++) {
 			String strNo = Integer.toString(i);
 			ProductModel productData = makeProductModel(strNo);
 			productList.add(productData);
 		}
-
+*/
 log.info("makeProductModelList " + productList.size());
 		return productList;
 		
@@ -334,12 +348,12 @@ log.info("makeProductModelList " + productList.size());
 		productData.setCustomerNo("setCustomerNo"+strNo);
 		productData.setProductCode("setProductCode"+strNo);
 		productData.setProductName("setProductName"+strNo);
-		productData.setQuantity(strNo);
-		productData.setQuantityPerBox("setQuantityPerBox"+strNo);
-		productData.setQuantityOfBox("setQuantityOfBox"+strNo);
-		productData.setUnitPrice("setUnitPrice"+strNo);
-		productData.setDiscountPrice("setDiscountPrice"+strNo);
-		productData.setAmount("setAmount"+strNo);
+		productData.setQuantity(0);
+		productData.setQuantityPerBox(0);
+		productData.setQuantityOfBox(0);
+		productData.setUnitPrice(0);
+		productData.setDiscountPrice(0);
+		productData.setAmount(0);
 		productData.setProductType("setProductType"+strNo);
 		productData.setUnitType("setUnitType"+strNo);
 		productData.setRemarks("setRemarks"+strNo);
@@ -351,6 +365,7 @@ log.info("makeProductModelList " + productList.size());
 		
 	}
 
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	@Override
 	public CustomerViewModel create(CustomerViewModel inModel) {
         CustomerViewModel outModel = Objects.requireNonNull(inModel);
@@ -358,9 +373,37 @@ log.info("makeProductModelList " + productList.size());
         
     	SmsBeanUtilsBean.copyProperties(customer, inModel.getCustomerModel());
         int iCreated = customerMapper.create(customer);
+    	log.info("Customer iCreated {}", iCreated);
+    	log.info("customer.getCustomerNo {}", customer.getCustomerNo());
 
-    	log.info("iCreated {}", iCreated);
+		if( inModel.getBranchModelList().size() > 0 ) {
+			List<Branch> branchList = new ArrayList<Branch>();
+	        for(BranchModel item : inModel.getBranchModelList()){
+				Branch branch = new Branch();
+
+		    	SmsBeanUtilsBean.copyProperties(branch, item);
+
+		    	log.info("branch.customerNo1 {}", branch.getCustomerNo());
+		    	branch.setCustomerNo(customer.getCustomerNo());
+		    	log.info("branch.customerNo2 {}", branch.getCustomerNo());
+				branchList.add(branch);
+			}
+			iCreated = branchMapper.createAll(branchList);
+	    	log.info("Branch iCreated {}", iCreated);
+		}
 		
+		if( inModel.getProductModelList().size() > 0 ) {
+			List<Product> productList = new ArrayList<Product>();
+	        for(ProductModel item : inModel.getProductModelList()){
+				Product product = new Product();
+
+		    	SmsBeanUtilsBean.copyProperties(product, item);
+
+				productList.add(product);
+			}
+			iCreated = productMapper.createAll(productList);
+	    	log.info("Product iCreated {}", iCreated);
+		}
         return outModel;
 	}
 

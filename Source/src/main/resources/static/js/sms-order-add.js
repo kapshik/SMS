@@ -4,7 +4,7 @@ $(function () {
     // ------------------------------------------------------ //
     $('.input-datepicker-autoclose').datepicker({
         autoclose: true,
-        format: 'yyyy/mm/dd'
+        format: 'yyyy-mm-dd'
     });
 
     // ------------------------------------------------------- //
@@ -28,6 +28,7 @@ $(function () {
 
 sms.vm.order = function() {
 	var self = this;
+	var isRunning = false;
 
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
@@ -48,8 +49,52 @@ sms.vm.order = function() {
 		});
 	};
 
-    self.doCustomerChange = function() {
+    self.doCustomerChange = function(selectObj, event) {
         var u = '/order/customerChange';
+        isRunning = true;
+        
+        var temp = ko.mapping.toJS(self.dataModel);
+        temp.customerModel.customerNo = event.target.value;
+        ko.mapping.fromJS(temp, self.dataModel);
+
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+            isRunning = false;
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doBranchChange = function(selectObj, event) {
+        var u = '/order/branchChange';
+        if(isRunning) {
+            return;
+        }
+
+        var temp = ko.mapping.toJS(self.dataModel);
+        temp.branchModel.branchNo = event.target.value;
+        ko.mapping.fromJS(temp, self.dataModel);
+
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+console.log("branchChange3");
+    };
+
+    self.doSearch = function() {
+        var u = '/order/search';
         $.ajax({
             type: 'post',
             url: u,
@@ -62,8 +107,8 @@ sms.vm.order = function() {
         });
     };
 
-    self.doSearch = function() {
-        var u = '/order/search';
+    self.doCreate = function() {
+        var u = '/order/create';
         $.ajax({
             type: 'post',
             url: u,
@@ -91,41 +136,11 @@ sms.vm.order = function() {
     };
 
     self.doProductListAdd = function() {
-        var product = {"customerNo":"setCustomerNo1",
-                        "productCode":"setProductCode1",
-                        "productName":"setProductName1",
-                        "quantity":"1",
-                        "quantityPerBox":"setQuantityPerBox1",
-                        "quantityOfBox":"setQuantityOfBox1",
-                        "unitPrice":"setUnitPrice1",
-                        "discountPrice":"setDiscountPrice1",
-                        "amount":"setAmount1",
-                        "productType":"setProductType1",
-                        "unitType":"setUnitType1",
-                        "remarks":"setRemarks1",
-                        "productTypeList":[
-                            {"key":"0001","value":"送料別"},
-                            {"key":"0002","value":"送料込"},
-                            {"key":"0003","value":"その他"}
-                        ],
-                        "unitTypeList":[
-                            {"key":"0001","value":"本"},
-                            {"key":"0002","value":"丁"},
-                            {"key":"0003","value":"個"},
-                            {"key":"0004","value":"BOX"}
-                        ],
-                        "productMasterList":[
-                            {"key":"0000","value":"product 0"},
-                            {"key":"0001","value":"product 1"},
-                            {"key":"0002","value":"product 2"},
-                            {"key":"0003","value":"product 3"},
-                            {"key":"0004","value":"product 4"}
-                        ]
-        };
+        var product = $.extend({}, ko.mapping.toJS(self.dataModel.productModel));
         self.dataModel.productModelList.push(product);
     };
 
-    self.doDeleteItem = function() {
+    self.doDeleteProductItem = function() {
         self.dataModel.productModelList.pop();
     };
 

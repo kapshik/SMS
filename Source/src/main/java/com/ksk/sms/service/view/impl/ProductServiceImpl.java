@@ -6,9 +6,13 @@ import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.KeyValue;
+import com.ksk.sms.common.SmsBeanUtilsBean;
+import com.ksk.sms.dao.domain.Product;
+import com.ksk.sms.dao.mapper.ProductMapper;
 import com.ksk.sms.model.BranchModel;
 import com.ksk.sms.model.CustomerModel;
 import com.ksk.sms.model.DeliveryDestModel;
@@ -23,6 +27,9 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Service
 public class ProductServiceImpl extends SmsService implements SmsViewService<ProductViewModel> {
+
+    @Autowired
+    private ProductMapper productMapper;
 
 	@Override
     public ProductViewModel init() {
@@ -245,7 +252,7 @@ public class ProductServiceImpl extends SmsService implements SmsViewService<Pro
 		customerData.setAddressDetail("尾道ラーメン3階");
 		customerData.setTelNo("03-1234-5678");
 		customerData.setFaxNo("03-9876-5432");
-		customerData.setStartDate("2019/11/22");
+//		customerData.setStartDate("2019/11/22");
 		customerData.setPaymentTerms("月末締め翌月末払い");
 
 		return customerData;
@@ -356,12 +363,12 @@ log.info("makeProductModelList " + productList.size());
 			productData.setCustomerNo("setCustomerNo"+strNo);
 			productData.setProductCode("setProductCode"+strNo);
 			productData.setProductName("setProductName"+strNo);
-			productData.setQuantity(strNo);
-			productData.setQuantityPerBox("setQuantityPerBox"+strNo);
-			productData.setQuantityOfBox("setQuantityOfBox"+strNo);
-			productData.setUnitPrice("setUnitPrice"+strNo);
-			productData.setDiscountPrice("setDiscountPrice"+strNo);
-			productData.setAmount("setAmount"+strNo);
+			productData.setQuantity(0);
+			productData.setQuantityPerBox(0);
+			productData.setQuantityOfBox(0);
+			productData.setUnitPrice(0);
+			productData.setDiscountPrice(0);
+			productData.setAmount(0);
 			productData.setProductType("setProductType"+strNo);
 			productData.setUnitType("setUnitType"+strNo);
 			productData.setRemarks("setRemarks"+strNo);
@@ -376,8 +383,14 @@ log.info("makeProductModelList " + productList.size());
 
 	@Override
 	public ProductViewModel create(ProductViewModel inModel) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+        ProductViewModel outModel = Objects.requireNonNull(inModel);
+        Product product = new Product();
+        
+    	SmsBeanUtilsBean.copyProperties(product, inModel.getProductModel());
+        int iCreated = productMapper.create(product);
+    	log.info("Product iCreated {}", iCreated);
+    			
+        return outModel;
 	}
 
 	@Override
