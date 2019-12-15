@@ -10,8 +10,8 @@ import lombok.Setter;
 public class OrderViewModel extends SmsViewModel{
 
 	private OrderModel criteria;
-	private OrderModel detail;
-	
+
+	private OrderModel orderModel;
 	private BranchModel branchModel;
 	private CustomerModel customerModel;
 	private DeliveryDestModel deliveryDestModel;

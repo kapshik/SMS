@@ -48,6 +48,13 @@ public class OrderRestController {
 		return outModel;
 	}
 	
+	@PostMapping("order/create")
+	public OrderViewModel create(@RequestBody OrderViewModel inModel) {
+		OrderViewModel outModel = service.create(inModel);
+		
+		return outModel;
+	}
+	
 	@PostMapping("order/delete")
 	public OrderViewModel delete(@RequestBody OrderViewModel inModel) {
 		OrderViewModel outModel = service.search(inModel);
@@ -65,6 +72,13 @@ public class OrderRestController {
 	@PostMapping("order/branchChange")
 	public OrderViewModel branchChange(@RequestBody OrderViewModel inModel) {
 		OrderViewModel outModel = service.branchChange(inModel);
+		
+		return outModel;
+	}
+	
+	@PostMapping("order/deliveryDestChange")
+	public OrderViewModel deliveryDestChange(@RequestBody OrderViewModel inModel) {
+		OrderViewModel outModel = service.deliveryDestChange(inModel);
 		
 		return outModel;
 	}

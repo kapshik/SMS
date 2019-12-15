@@ -18,6 +18,8 @@ public interface SmsViewService <T extends SmsViewModel> {
 
     public T branchChange(T inModel);
 
+    public T deliveryDestChange(T inModel);
+
     public T close(T inModel);
 
 }

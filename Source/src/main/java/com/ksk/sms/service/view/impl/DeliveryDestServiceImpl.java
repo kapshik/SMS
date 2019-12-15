@@ -99,22 +99,6 @@ log.info("outModel.getUsername = " + outModel.getUsername());
 
     }
 
-	private List<KeyValue> makeCustomerList() {
-        List<KeyValue> list = new ArrayList<KeyValue>();
-		
-		for(int i=1; i<5; i++) {
-			String strNo = Integer.toString(i);
-			KeyValue item = new KeyValue();
-
-			item.setKey("000"+strNo);
-			item.setValue("Customer "+strNo);
-			
-			list.add(item);
-		}
-		
-        return list;
-    }
-	
 	private List<KeyValue> makeBranchList() {
         List<KeyValue> list = new ArrayList<KeyValue>();
 		
@@ -147,45 +131,6 @@ log.info("outModel.getUsername = " + outModel.getUsername());
         return list;
     }
 
-	private List<KeyValue> makeProductMasterList() {
-        List<KeyValue> list = new ArrayList<KeyValue>();
-		
-		for(int i=0; i<5; i++) {
-			String strNo = Integer.toString(i);
-			KeyValue item = new KeyValue();
-
-			item.setKey("000"+strNo);
-			item.setValue("product "+strNo);
-			
-			list.add(item);
-		}
-		
-        return list;
-    }
-
-	private List<KeyValue> makePaymentTermsList() {
-        List<KeyValue> list = new ArrayList<KeyValue>();
-		KeyValue item = new KeyValue();
-
-		item.setKey("0001");
-		item.setValue("月末締め翌月末支払い");
-		list.add(item);
-		
-		item.setKey("0002");
-		item.setValue("月末締め翌月25日手形支払い");
-		list.add(item);
-		
-		item.setKey("0003");
-		item.setValue("25日締め翌月末支払い");
-		list.add(item);
-		
-		item.setKey("0004");
-		item.setValue("月末締め翌々月10日支払い");
-		list.add(item);
-		
-        return list;
-    }
-	
 	private List<BranchModel> makeBranchModelList() {
 		List<BranchModel> list = new ArrayList<BranchModel>();
 		
@@ -263,53 +208,6 @@ log.info("makeProductModelList " + list.size());
 		
 	}
 
-	private List<KeyValue> makeProductTypeList() {
-        List<KeyValue> list = new ArrayList<KeyValue>();
-
-        KeyValue item = new KeyValue();
-		item.setKey("0001");
-		item.setValue("送料別");
-		list.add(item);
-		
-		item = new KeyValue();
-		item.setKey("0002");
-		item.setValue("送料込");
-		list.add(item);
-		
-		item = new KeyValue();
-		item.setKey("0003");
-		item.setValue("その他");
-		list.add(item);
-		
-        return list;
-    }
-
-	private List<KeyValue> makeÙnitTypeList() {
-        List<KeyValue> list = new ArrayList<KeyValue>();
-
-        KeyValue item = new KeyValue();
-		item.setKey("0001");
-		item.setValue("本");
-		list.add(item);
-		
-        item = new KeyValue();
-		item.setKey("0002");
-		item.setValue("丁");
-		list.add(item);
-		
-        item = new KeyValue();
-		item.setKey("0003");
-		item.setValue("個");
-		list.add(item);
-		
-        item = new KeyValue();
-		item.setKey("0004");
-		item.setValue("BOX");
-		list.add(item);
-		
-        return list;
-    }
-
 	private ProductModel makeProductModel(String strNo) {
 
 		ProductModel item = new ProductModel();
@@ -348,6 +246,12 @@ log.info("makeProductModelList " + list.size());
 
 	@Override
 	public DeliveryDestViewModel delete(DeliveryDestViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public DeliveryDestViewModel deliveryDestChange(DeliveryDestViewModel inModel) {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}

@@ -6,19 +6,23 @@ import lombok.Data;
 
 @Data
 public class Order {
-    private String customerNo;
     private String branchNo;
+    private String customerNo;
     private String deliveryDestNo;
+    private String estimationNo;
+    private String estimationSendDate;
+    private String memo;
     private String orderNo;
     private String shippingLabelNo;
-    private String estimationNo;
-    private String memo;
+    private String status;
+    private int discountUnitPrice;
+    private int quantity;
+    private int unitPrice;
+    private Date deliveryDate;
     private Date estimationDate;
+    private Date invoiceDate;
     private Date orderDate;
     private Date registrationDate;
-    private Date shippingDate;
-    private Date deliveryDate;
-    private Date invoiceDate;
     private Date requiredDate;
-    private String status;
+    private Date shippingDate;
 }

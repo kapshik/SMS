@@ -62,4 +62,10 @@ log.info("init");
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
+
+	@Override
+	public ReportViewModel deliveryDestChange(ReportViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
 }

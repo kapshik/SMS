@@ -12,8 +12,6 @@ public class HomeViewModel extends SmsViewModel{
 	private List<BranchModel> branchModelList;
 	private List<CustomerModel> customerModelList;
 	private List<DeliveryDestModel> deliveryDestModelList;
-	private List<EstimationModel> estimationModelList;
-	private List<InvoiceModel> invoiceModelList;
 	private List<OrderModel> orderModelList;
 	private List<ProductModel> productModelList;
 	private List<StockModel> stockModelList;

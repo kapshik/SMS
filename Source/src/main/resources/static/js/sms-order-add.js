@@ -75,7 +75,7 @@ sms.vm.order = function() {
         if(isRunning) {
             return;
         }
-
+        isRunning = true;
         var temp = ko.mapping.toJS(self.dataModel);
         temp.branchModel.branchNo = event.target.value;
         ko.mapping.fromJS(temp, self.dataModel);
@@ -86,11 +86,11 @@ sms.vm.order = function() {
             data: toJSON(self.dataModel)
           }).done(function(response) {
             ko.mapping.fromJS(response, self.dataModel);
+            isRunning = false;
           }).fail(function(xhr, exception){
             self.messages.removeAll();
             self.handler.handle(xhr, exception);
         });
-console.log("branchChange3");
     };
 
     self.doSearch = function() {
@@ -121,8 +121,12 @@ console.log("branchChange3");
         });
     };
 
-    self.doAdd = function() {
-        var u = '/order/customerChange';
+    self.doDeliveryDestChange = function() {
+        var u = '/order/deliveryDestChange';
+        if(isRunning) {
+            return;
+        }
+
         $.ajax({
             type: 'post',
             url: u,

@@ -1,6 +1,7 @@
 package com.ksk.sms.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,22 +12,24 @@ public class OrderModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private String customerNo;
-	private String branchNo;
-	private String deliveryDestNo;
-	private String orderNo;
-	private String shippingLabelNo;
-	private String orderDate;
-	private String shippingDate;
-	private String deliveryDate;
-	private String registrationDate;
-	private String quantity;
-	private String unitPrice;
-	private String discountUnitPrice;
-	private String memo;
-	private String estimationNo;
-	private String estimationDate;
-	private String estimationSendDate;
-	private String invoiceDate;
+    private String branchNo;
+    private String customerNo;
+    private String deliveryDestNo;
+    private String estimationNo;
+    private String estimationSendDate;
+    private String memo;
+    private String orderNo;
+    private String shippingLabelNo;
+    private String status;
+    private int discountUnitPrice;
+    private int quantity;
+    private int unitPrice;
+    private Date deliveryDate;
+    private Date estimationDate;
+    private Date invoiceDate;
+    private Date orderDate;
+    private Date registrationDate;
+    private Date requiredDate;
+    private Date shippingDate;
 }
 
