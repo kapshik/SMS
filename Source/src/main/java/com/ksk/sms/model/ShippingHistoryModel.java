@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class OutStockModel implements Serializable{
+public class ShippingHistoryModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 

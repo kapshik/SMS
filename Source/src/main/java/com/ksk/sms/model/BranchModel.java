@@ -12,9 +12,11 @@ public class BranchModel implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String customerNo;
-	private String customerName;
 	private String branchNo;
+	private String deliveryDestNo;
+	private String customerName;
 	private String branchName;
+	private String deliveryDestName;
 	private String zipcode;
 	private String address;
 	private String addressDetail;

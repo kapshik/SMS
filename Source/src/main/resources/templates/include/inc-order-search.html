@@ -1,4 +1,4 @@
-<section data-bind="with: dataModel">
+<section data-bind="with: dataModel.criteria">
   <div class="card">
     <div class="card-header">
       <h4>検索条件</h4>
@@ -8,31 +8,25 @@
         <div class="col-sm-3">
           <div class="form-group">
             <label>注文No</label>
-            <input type="text" placeholder="注文No" class="form-control form-control-sm" data-bind="value: criteria.orderNo">
+            <input type="text" placeholder="注文No" class="form-control form-control-sm" data-bind="value: orderNo">
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <label class="form-control-label">顧客</label>
-            <select class="form-control form-control-sm" data-bind="value:criteria.customerNo, event:{change: $root.doCustomerChange}">
-              <option th:each="keyValue : ${smsViewModel.customerList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-            </select>
+            <label class="form-control-label">顧客名</label>
+            <input type="text" placeholder="顧客名" class="form-control form-control-sm" data-bind="value: customerName">
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <label class="form-control-label">支店</label>
-            <select class="form-control form-control-sm" data-bind="value:criteria.branchNo">
-              <option th:each="keyValue : ${smsViewModel.branchList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-            </select>
+            <label class="form-control-label">支店名</label>
+            <input type="text" placeholder="支店名" class="form-control form-control-sm" data-bind="value: branchName">
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <label class="form-control-label">納品先</label>
-            <select class="form-control form-control-sm" data-bind="value:criteria.deliveryDestNo">
-              <option th:each="keyValue : ${smsViewModel.deliveryDestList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-            </select>
+            <label class="form-control-label">納品先名</label>
+            <input type="text" placeholder="納品先" class="form-control form-control-sm" data-bind="value: deliveryDestName">
           </div>
         </div>
       </div>
@@ -40,25 +34,25 @@
         <div class="col-sm-3">
           <div class="form-group">
             <label class="form-control-label">発注日</label>
-            <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.orderDate" placeholder="2019/12/01">
+            <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: orderDate" placeholder="2019/12/01">
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label class="form-control-label">納品日</label>
-            <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.deliveryDate" placeholder="2019/12/01">
+            <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: deliveryDate" placeholder="2019/12/01">
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label class="form-control-label">出荷日</label>
-            <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.shippingDate" placeholder="2019/12/01">
+            <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: shippingDate" placeholder="2019/12/01">
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label class="form-control-label">登録日</label>
-            <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.registrationDate" placeholder="2019/12/01">
+            <input type="text" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: registrationDate" placeholder="2019/12/01">
           </div>
         </div>
       </div>

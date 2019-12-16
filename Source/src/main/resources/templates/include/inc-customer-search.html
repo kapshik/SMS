@@ -1,4 +1,4 @@
-<section data-bind="with: dataModel">
+<section data-bind="with: dataModel.criteria">
   <div class="card">
     <div class="card-header">
       <h4>検索条件</h4>
@@ -8,23 +8,19 @@
         <div class="col-lg-4">
           <div class="form-group">
             <label>注文No</label>
-            <input type="text" placeholder="99-9999999" class="form-control form-control-sm" data-bind="value: criteria.orderNo">
+            <input type="text" placeholder="99-9999999" class="form-control form-control-sm" data-bind="value: orderNo">
           </div>
         </div>
         <div class="col-lg-4">
           <div class="form-group">
-            <label class="form-control-label">顧客</label>
-            <select class="form-control form-control-sm" data-bind="value:criteria.customerNo, event:{change: $root.doCustomerChange}">
-              <option th:each="keyValue : ${smsViewModel.customerList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-            </select>
+            <label class="form-control-label">顧客名</label>
+            <input type="text" placeholder="顧客名" class="form-control form-control-sm" data-bind="value: customerName">
           </div>
         </div>
         <div class="col-lg-4">
           <div class="form-group">
-            <label class="form-control-label">支店</label>
-            <select class="form-control form-control-sm" data-bind="value:criteria.branchNo">
-              <option th:each="keyValue : ${smsViewModel.branchList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-            </select>
+            <label class="form-control-label">支店名</label>
+            <input type="text" placeholder="支店名" class="form-control form-control-sm" data-bind="value: branchName">
           </div>
         </div>
       </div>
@@ -32,23 +28,19 @@
         <div class="col-lg-4">
           <div class="form-group">
             <label class="form-control-label">開始日</label>
-            <input type="text" placeholder="2019/11/30" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: criteria.startDate">
+            <input type="text" placeholder="2019/11/30" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: startDate">
           </div>
         </div>
         <div class="col-lg-4">
           <div class="form-group">
-            <label class="form-control-label">納品先</label>
-            <select class="form-control form-control-sm" data-bind="value:criteria.deliveryDestNo">
-              <option th:each="keyValue : ${smsViewModel.deliveryDestList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-            </select>
+            <label class="form-control-label">納品先名</label>
+            <input type="text" placeholder="納品先" class="form-control form-control-sm" data-bind="value: deliveryDestName">
           </div>
         </div>
         <div class="col-lg-4">
           <div class="form-group">
             <label class="form-control-label">支払条件</label>
-            <select class="form-control form-control-sm" data-bind="value:criteria.paymentTerms">
-              <option th:each="keyValue : ${smsViewModel.paymentTermsList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-            </select>
+            <input type="text" placeholder="支払条件" class="form-control form-control-sm" data-bind="value: paymentTermsName">
           </div>
         </div>
       </div>

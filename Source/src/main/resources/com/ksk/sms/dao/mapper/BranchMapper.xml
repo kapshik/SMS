@@ -12,16 +12,16 @@
 				AND branchNo = #{branchNo}
 			</if>
 			<if test="branchName != null and branchName != ''">
-				AND branchName = #{branchName}
+				AND branchName LIKE CONCAT('%', #{branchName}, '%')
 			</if>
 			<if test="zipcode != null and zipcode != ''">
-				AND zipcode = #{zipcode}
+				AND zipcode LIKE CONCAT('%', #{zipcode}, '%')
 			</if>
 			<if test="address != null and address != ''">
-				AND address = #{address}
+				AND address LIKE CONCAT('%', #{address}, '%')
 			</if>
 			<if test="addressDetail != null and addressDetail != ''">
-				AND addressDetail = #{addressDetail}
+				AND addressDetail LIKE CONCAT('%', #{addressDetail}, '%')
 			</if>
 			<if test="telNo != null and telNo != ''">
 				AND telNo = #{telNo}

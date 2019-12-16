@@ -13,8 +13,11 @@ public class OrderModel implements Serializable{
 	private static final long serialVersionUID = 1L;
 
     private String branchNo;
+    private String branchName;
     private String customerNo;
+    private String customerName;
     private String deliveryDestNo;
+    private String deliveryDestName;
     private String estimationNo;
     private String estimationSendDate;
     private String memo;

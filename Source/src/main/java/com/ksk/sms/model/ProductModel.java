@@ -16,6 +16,7 @@ public class ProductModel implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String customerNo;
+	private String customerName;
     private String productCode;
     private String productName;
     private int quantity;
@@ -25,6 +26,8 @@ public class ProductModel implements Serializable{
     private int unitPrice;
     private String productType;
     private String unitType;
+	private String productTypeName;
+	private String unitTypeName;
     private String remarks;
     private Date scheduledInStockDate;
     private int quantityInStock;

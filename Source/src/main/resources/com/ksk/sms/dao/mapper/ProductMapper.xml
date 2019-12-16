@@ -6,10 +6,10 @@
 	<sql id="whereStatements">
 		<where>
 			<if test="productCode != null and productCode != ''">
-				AND productCode = #{productCode}
+				AND productCode LIKE CONCAT('%', #{productCode}, '%')
 			</if>
 			<if test="productName != null and productName != ''">
-				AND productName = #{productName}
+				AND productName LIKE CONCAT('%', #{productName}, '%')
 			</if>
 			<if test="quantity != null and quantity != ''">
 				AND quantity = #{quantity}
@@ -33,7 +33,7 @@
 				AND unitType = #{unitType}
 			</if>
 			<if test="remarks != null and remarks != ''">
-				AND remarks = #{remarks}
+				AND remarks LIKE CONCAT('%', #{remarks}, '%')
 			</if>
 			<if test="scheduledInStockDate != null and scheduledInStockDate != ''">
 				AND scheduledInStockDate = #{scheduledInStockDate}

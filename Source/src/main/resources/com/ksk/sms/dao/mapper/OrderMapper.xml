@@ -15,16 +15,16 @@
 				AND deliveryDestNo = #{deliveryDestNo}
 			</if>
 			<if test="orderNo != null and orderNo != ''">
-				AND orderNo = #{orderNo}
+				AND orderNo LIKE CONCAT('%', #{orderNo}, '%')
 			</if>
 			<if test="shippingLabelNo != null and shippingLabelNo != ''">
-				AND shippingLabelNo = #{shippingLabelNo}
+				AND shippingLabelNo LIKE CONCAT('%', #{shippingLabelNo}, '%')
 			</if>
 			<if test="estimationNo != null and estimationNo != ''">
-				AND estimationNo = #{estimationNo}
+				AND estimationNo LIKE CONCAT('%', #{estimationNo}, '%')
 			</if>
 			<if test="memo != null and memo != ''">
-				AND memo = #{memo}
+				AND memo LIKE CONCAT('%', #{memo}, '%')
 			</if>
 			<if test="estimationDate != null and estimationDate != ''">
 				AND estimationDate = #{estimationDate}

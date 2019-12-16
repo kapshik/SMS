@@ -9,16 +9,16 @@
 				AND customerNo = #{customerNo}
 			</if>
 			<if test="customerName != null and customerName != ''">
-				AND customerName = #{customerName}
+				AND customerName LIKE CONCAT('%', #{customerName}, '%')
 			</if>
 			<if test="zipcode != null and zipcode != ''">
-				AND zipcode = #{zipcode}
+				AND zipcode LIKE CONCAT('%', #{zipcode}, '%')
 			</if>
 			<if test="address != null and address != ''">
-				AND address = #{address}
+				AND address LIKE CONCAT('%', #{address}, '%')
 			</if>
 			<if test="addressDetail != null and addressDetail != ''">
-				AND addressDetail = #{addressDetail}
+				AND addressDetail LIKE CONCAT('%', #{addressDetail}, '%')
 			</if>
 			<if test="telNo != null and telNo != ''">
 				AND telNo = #{telNo}

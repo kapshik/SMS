@@ -15,6 +15,9 @@ public class OrderDetail implements Serializable{
 	private String customerNo;
 	private String branchNo;
 	private String deliveryDestNo;
+	private String customerName;
+	private String branchName;
+	private String deliveryDestName;
 	private String orderNo;
 	private String shippingLabelNo;
 	private String orderDate;

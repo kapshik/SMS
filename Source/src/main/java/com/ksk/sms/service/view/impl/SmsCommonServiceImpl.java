@@ -29,8 +29,6 @@ public class SmsCommonServiceImpl extends SmsService implements SmsViewService<S
     	outModel.setProductMasterList(makeProductMasterList());
 		outModel.setProductTypeList(makeProductTypeList());
 		outModel.setUnitTypeList(makeÙnitTypeList());
-
-		outModel.setOutStockList(makeOutStockList());
     	
     	log.info("SmsCommonServiceImpl init");
     	return outModel;

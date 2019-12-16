@@ -12,8 +12,11 @@ public class CustomerModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	private String orderNo;
 	private String customerNo;
 	private String customerName;
+	private String branchName;
+	private String deliveryDestName;
 	private String zipcode;
 	private String address;
 	private String addressDetail;
@@ -21,5 +24,6 @@ public class CustomerModel implements Serializable{
 	private String faxNo;
 	private Date startDate;
 	private String paymentTerms;
+	private String paymentTermsName;
 }
 
