@@ -14,45 +14,45 @@
               </div>
             </div>
             <div class="col-lg-6">
-              <div class="form-group">
-                <label>郵便番号</label>
-                <input id="zipcode" type="text" class="form-control form-control-sm" data-bind="value:zipcode, event:{focusout: $root.doGetAddress}" placeholder="101-0061">
+              <div class="form-group">       
+                <label>開始日</label>
+                <input type="text" placeholder="2019/11/30" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value:startDate">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-6">
-              <div class="form-group">       
-                <label>住所１</label>
-                <input id="address1" type="text" class="form-control form-control-sm" data-bind="value:address" placeholder="住所１">
+              <div class="form-group">
+                <label>郵便番号</label>
+                <input type="text" class="form-control form-control-sm" data-bind="value:zipcode" placeholder="101-0061">
               </div>
             </div>
+            <div class="col-lg-6">
+              <div class="form-group">       
+                <label>住所１</label>
+                <input type="text" class="form-control form-control-sm" data-bind="value:address" placeholder="住所１">
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-lg-6">
               <div class="form-group">
                 <label>住所２</label>
                 <input type="text" class="form-control form-control-sm" data-bind="value:addressDetail" placeholder="住所２">
               </div>
             </div>
-          </div>
-          <div class="row">
             <div class="col-lg-6">
               <div class="form-group">
                 <label>電話番号</label>
                 <input type="text" class="form-control form-control-sm" data-bind="value:telNo" placeholder="090-1324-5678">
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="form-group">       
-                <label>ファックス</label>
-                <input type="text" class="form-control form-control-sm" data-bind="value:faxNo" placeholder="03-1324-5678">
-              </div>
-            </div>
           </div>
           <div class="row">
             <div class="col-lg-6">
               <div class="form-group">       
-                <label>開始日</label>
-                <input type="text" placeholder="2019/11/30" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value:startDate">
+                <label>ファックス</label>
+                <input type="text" class="form-control form-control-sm" data-bind="value:faxNo" placeholder="03-1324-5678">
               </div>
             </div>
             <div class="col-lg-6">
@@ -65,6 +65,29 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#product">商品登録</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#branch">支店登録</a>
+    </li>
+  </ul>
+  <div class="tab-content border">
+    <div id="product" class="container-fluid tab-pane active">
+      <br>
+      <div th:insert="include/inc-product-list">
+      </div>
+    </div>
+    <div id="branch" class="container-fluid tab-pane">
+      <br>
+      <div th:insert="include/inc-branch-list">
       </div>
     </div>
   </div>
@@ -88,3 +111,10 @@
     </div>
   </div>
 </section>
+
+<!-- Modal-->
+<div th:insert="modal/modal-branch-add">
+</div>
+<div th:insert="modal/modal-product-add">
+</div>
+<!-- Modal-->

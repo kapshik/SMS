@@ -6,7 +6,18 @@ $(function () {
         autoclose: true,
         format: 'yyyy-mm-dd'
     });
-
+/*
+    $('.zipcode').blur(function(e) {
+		var u = 'customer/search_address?zipcode=' + $(this).val();
+		$.ajax({
+			type: 'get',
+			url: u,
+		}).done(function(response) {
+		    $('#address1').val(response.results[0].address1);
+		}).fail(function(xhr, exception){
+		});
+    });
+*/
     // ------------------------------------------------------- //
     // Initialize Page By Server Data
     // ------------------------------------------------------ //
@@ -48,6 +59,18 @@ sms.vm.customer = function() {
 			self.messages.removeAll();
 			self.handler.handle(xhr, exception);
 			param.failed();
+		});
+	};
+
+	self.doGetAddress = function( param ) {
+		var u = 'customer/search_address?zipcode=' + $('#zipcode').val();
+		$.ajax({
+			type: 'get',
+			url: u,
+		}).done(function(response) {
+            var obj = JSON.parse(response);
+		    $('#address1').val(obj.results[0].address1+obj.results[0].address2+obj.results[0].address3);
+		}).fail(function(xhr, exception){
 		});
 	};
 

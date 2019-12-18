@@ -10,19 +10,19 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ksk.sms.common.SmsBeanUtilsBean;
-import com.ksk.sms.dao.domain.Address;
 import com.ksk.sms.dao.domain.Branch;
 import com.ksk.sms.dao.domain.Customer;
 import com.ksk.sms.dao.domain.Product;
-import com.ksk.sms.dao.mapper.AddressMapper;
 import com.ksk.sms.dao.mapper.BranchMapper;
 import com.ksk.sms.dao.mapper.CustomerMapper;
 import com.ksk.sms.dao.mapper.ProductMapper;
+import com.ksk.sms.model.AddressModel;
 import com.ksk.sms.model.BranchModel;
 import com.ksk.sms.model.CustomerModel;
 import com.ksk.sms.model.CustomerViewModel;
 import com.ksk.sms.model.DeliveryDestModel;
 import com.ksk.sms.model.ProductModel;
+import com.ksk.sms.service.common.SmsAddressService;
 import com.ksk.sms.service.common.SmsService;
 import com.ksk.sms.service.view.SmsViewService;
 
@@ -33,7 +33,7 @@ import lombok.extern.log4j.Log4j2;
 public class CustomerServiceImpl extends SmsService implements SmsViewService<CustomerViewModel> {
 
     @Autowired
-    private AddressMapper addressMapper;
+    private SmsAddressService smsAddressService;
     @Autowired
     private CustomerMapper customerMapper;
     @Autowired
@@ -124,12 +124,12 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
 	private CustomerModel makeCustomerModel(String strNo) {
 
 		CustomerModel customerData = new CustomerModel();
-		Address address = addressMapper.findOne("101-0061");
+		AddressModel addressModel = smsAddressService.getAddressModel("101-0061");
 		
 		customerData.setCustomerNo("C00" + strNo);
 		customerData.setCustomerName("顧客名" + strNo);
 		customerData.setZipcode("101-0015");
-		customerData.setAddress(address.getKenName() + address.getCityName() + address.getTownName());
+		customerData.setAddress(addressModel.getAddress1() + addressModel.getAddress2() + addressModel.getAddress3());
 		customerData.setAddressDetail("尾道ラーメン3階" + strNo);
 		customerData.setTelNo("03-1234-5678");
 		customerData.setFaxNo("03-9876-5432");
@@ -150,6 +150,7 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
         int iCreated = customerMapper.create(customer);
     	log.info("Customer iCreated {}", iCreated);
     	log.info("customer.getCustomerNo {}", customer.getCustomerNo());
+    	log.info("customer.getStartDate {}", customer.getStartDate());
 
 		if( inModel.getBranchModelList().size() > 0 ) {
 			List<Branch> branchList = new ArrayList<Branch>();

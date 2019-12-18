@@ -45,7 +45,6 @@ public class SmsService {
 			customer.setKey(item.getCustomerNo());
 			customer.setValue(item.getCustomerName());
 
-			log.info("Key:{}, Value:{}", customer.getKey(), customer.getValue());
 			customerList.add(customer);
 		}
 		
@@ -66,7 +65,6 @@ public class SmsService {
 			branch.setKey(item.getBranchNo());
 			branch.setValue(item.getBranchName());
 
-			log.info("Key:{}, Value:{}", branch.getKey(), branch.getValue());
 			branchList.add(branch);
 		}
 		
@@ -87,7 +85,6 @@ public class SmsService {
 			deliveryDest.setKey(item.getDeliveryDestNo());
 			deliveryDest.setValue(item.getDeliveryDestName());
 
-			log.info("Key:{}, Value:{}", deliveryDest.getKey(), deliveryDest.getValue());
 			deliveryDestList.add(deliveryDest);
 		}
 		

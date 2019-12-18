@@ -1,0 +1,118 @@
+<section class="forms" data-bind="with: dataModel">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header d-flex align-items-center">
+          <h4>顧客情報</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label>顧客名</label>
+                <input type="text" class="form-control form-control-sm" placeholder="顧客名" data-bind="value: customerModel.customerName">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">       
+                <label>開始日</label>
+                <input type="text" placeholder="2019/11/30" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: customerModel.startDate">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label>郵便番号</label>
+                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.zipcode" placeholder="101-0061">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">       
+                <label>住所１</label>
+                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.address" placeholder="住所１">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label>住所２</label>
+                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.addressDetail" placeholder="住所２">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label>電話番号</label>
+                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.telNo" placeholder="090-1324-5678">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">       
+                <label>ファックス</label>
+                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.faxNo" placeholder="03-1324-5678">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">支払条件</label>
+                <select class="form-control form-control-sm" data-bind="value:customerModel.paymentTerms">
+                  <option th:each="keyValue : ${smsViewModel.paymentTermsList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#product">商品登録</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#branch">支店登録</a>
+    </li>
+  </ul>
+  <div class="tab-content border">
+    <div id="product" class="container-fluid tab-pane active">
+      <br>
+      <div th:insert="include/inc-product-list">
+      </div>
+    </div>
+    <div id="branch" class="container-fluid tab-pane">
+      <br>
+      <div th:insert="include/inc-branch-list">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bind="with: dataModel">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <a class="btn btn-primary btn-block btn-sm" href="sms-shipping-history.html" role="button">出荷履歴確認</a>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <a class="btn btn-primary btn-block btn-sm" href="sms-product-update.html" role="button">顧客変更</a>
+          </div>
+        </div>
+        <div class="col-sm-3 offset-sm-3">
+          <div class="form-group">
+            <button type="button" class="btn btn-secondary btn-block btn-sm" data-bind="click: $root.doCancel">キャンセル</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
