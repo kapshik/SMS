@@ -3,7 +3,6 @@ package com.ksk.sms.service.report.impl;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -53,7 +52,7 @@ public class InvoiceReportFactory {
 		parameters.put("companyName", "株式会社ティ・エム・シー");
 		parameters.put("tel", "03-6659-3871");
 		parameters.put("fax", "03-6659-3872");
-		parameters.put("issuedDate", new Date());
+		parameters.put("issuedDate", LocalDate.now());
 		parameters.put("invoiceNo", "IV-" + LocalDate.now().getYear() + "-" + "001");
 		
 		parameters.put("paymentTerms", "●　月末閉め翌月末支払い");

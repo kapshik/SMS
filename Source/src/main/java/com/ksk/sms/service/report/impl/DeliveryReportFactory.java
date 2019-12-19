@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -63,7 +62,7 @@ public class DeliveryReportFactory {
 		parameters.put("companyName", "株式会社ティ・エム・シー");
 		parameters.put("tel", "03-6659-3871");
 		parameters.put("fax", "03-6659-3872");
-		parameters.put("issuedDate", new Date());
+		parameters.put("issuedDate", LocalDate.now());
 		parameters.put("deliveryNo", "D-" + LocalDate.now().getYear() + "-" + "001");
 		
 		parameters.put("paymentTerms", "●　月末閉め翌月末支払い");

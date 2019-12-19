@@ -9,5 +9,5 @@ public interface SmsAddressService {
 
     public AddressModel getAddressModel(String zipcode);
     public String getAddress(String zipcode);
-
+	public AddressModel getAddressModelByObject(String zipcode);
 }

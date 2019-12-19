@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ksk.sms.model.AddressModel;
 import com.ksk.sms.model.CustomerViewModel;
 import com.ksk.sms.service.common.SmsAddressService;
 import com.ksk.sms.service.view.SmsViewService;
@@ -37,9 +38,9 @@ public class CustomerRestController {
 	}
 	
 	@GetMapping("customer/search_address")
-	public String search_address(@RequestParam("zipcode") String zipcode) {
+	public AddressModel search_address(@RequestParam("zipcode") String zipcode) {
 		
-	    return smsAddressService.getAddress(zipcode);
+	    return smsAddressService.getAddressModelByObject(zipcode);
 	    
 	}
 	

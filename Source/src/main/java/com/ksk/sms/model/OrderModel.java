@@ -1,7 +1,9 @@
 package com.ksk.sms.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,12 +29,19 @@ public class OrderModel implements Serializable{
     private int discountUnitPrice;
     private int quantity;
     private int unitPrice;
-    private Date deliveryDate;
-    private Date estimationDate;
-    private Date invoiceDate;
-    private Date orderDate;
-    private Date registrationDate;
-    private Date requiredDate;
-    private Date shippingDate;
+	@JsonFormat(pattern="yyyy/MM/dd")
+    private LocalDate deliveryDate;
+	@JsonFormat(pattern="yyyy/MM/dd")
+    private LocalDate estimationDate;
+	@JsonFormat(pattern="yyyy/MM/dd")
+    private LocalDate invoiceDate;
+	@JsonFormat(pattern="yyyy/MM/dd")
+    private LocalDate orderDate;
+	@JsonFormat(pattern="yyyy年MM月dd日")
+    private LocalDate registrationDate;
+	@JsonFormat(pattern="yyyy/MM/dd")
+    private LocalDate requiredDate;
+	@JsonFormat(pattern="yyyy/MM/dd")
+    private LocalDate shippingDate;
 }
 

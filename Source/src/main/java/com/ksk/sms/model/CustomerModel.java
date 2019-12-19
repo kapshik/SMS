@@ -1,7 +1,9 @@
 package com.ksk.sms.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +24,8 @@ public class CustomerModel implements Serializable{
 	private String addressDetail;
 	private String telNo;
 	private String faxNo;
-	private Date startDate;
+	@JsonFormat(pattern="yyyy/MM/dd")
+	private LocalDate startDate;
 	private String paymentTerms;
 	private String paymentTermsName;
 }

@@ -1,6 +1,6 @@
 package com.ksk.sms.dao.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.Data;
 
@@ -16,6 +16,6 @@ public class Product {
     private String productType;
     private String unitType;
     private String remarks;
-    private Date scheduledInStockDate;
+    private LocalDate scheduledInStockDate;
     private int quantityInStock;
 }

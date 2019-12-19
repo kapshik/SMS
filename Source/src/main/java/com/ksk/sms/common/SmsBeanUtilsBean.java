@@ -3,7 +3,7 @@ package com.ksk.sms.common;
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.Converter;
@@ -17,7 +17,7 @@ public class SmsBeanUtilsBean {
         try {
         	BeanUtils.copyProperties(dest, orig);
 //        	BeanUtilsBean bu = new BeanUtilsBean(new ConvertUtilsBean(), BeanUtilsBean.getInstance().getPropertyUtils());
-//        	bu.getConvertUtils().register(new SmsDateConverter(), Date.class);
+//        	bu.getConvertUtils().register(new SmsDateConverter(), LocalDate.class);
 //	    	bu.copyProperties(dest, orig);
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
@@ -30,7 +30,7 @@ public class SmsBeanUtilsBean {
         @SuppressWarnings({ "rawtypes", "unchecked" })
         @Override
         public Object convert(Class targetClass, Object value) {
-        	if (value instanceof Date) {
+        	if (value instanceof LocalDate) {
         		return value;
         	}
 			try {

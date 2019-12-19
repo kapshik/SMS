@@ -1,6 +1,6 @@
 package com.ksk.sms.dao.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.Data;
 
@@ -18,11 +18,11 @@ public class Order {
     private int discountUnitPrice;
     private int quantity;
     private int unitPrice;
-    private Date deliveryDate;
-    private Date estimationDate;
-    private Date invoiceDate;
-    private Date orderDate;
-    private Date registrationDate;
-    private Date requiredDate;
-    private Date shippingDate;
+    private LocalDate deliveryDate;
+    private LocalDate estimationDate;
+    private LocalDate invoiceDate;
+    private LocalDate orderDate;
+    private LocalDate registrationDate;
+    private LocalDate requiredDate;
+    private LocalDate shippingDate;
 }

@@ -1,8 +1,9 @@
 package com.ksk.sms.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.ksk.sms.common.KeyValue;
 
@@ -29,7 +30,8 @@ public class ProductModel implements Serializable{
 	private String productTypeName;
 	private String unitTypeName;
     private String remarks;
-    private Date scheduledInStockDate;
+	@JsonFormat(pattern="yyyy/MM/dd")
+    private LocalDate scheduledInStockDate;
     private int quantityInStock;
 
     private int discountPrice;

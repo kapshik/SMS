@@ -65,10 +65,30 @@
 
     <select id="findList" parameterType="com.ksk.sms.dao.domain.Order" resultType="com.ksk.sms.dao.domain.Order">
 		SELECT
-			* 
+		    customer.customerName AS customerNo,
+		    branch.branchName AS branchNo,
+		    deliverydest.deliveryDestName AS deliveryDestNo,
+		    ord.orderNo AS orderNo,
+		    ord.shippingLabelNo AS shippingLabelNo,
+		    ord.estimationNo AS estimationNo,
+		    ord.memo AS memo,
+		    ord.estimationDate AS estimationDate,
+		    ord.orderDate AS orderDate,
+		    ord.registrationDate AS registrationDate,
+		    ord.shippingDate AS shippingDate,
+		    ord.deliveryDate AS deliveryDate,
+		    ord.invoiceDate AS invoiceDate,
+		    ord.requiredDate AS requiredDate,
+		    ord.status AS status
 		FROM
-			tbl_order
-		<include refid="whereStatements" />
+			tbl_order ord,
+			tbl_branch branch,
+			tbl_customer customer,
+			tbl_deliverydest deliverydest
+		WHERE
+			ord.customerNo = customer.customerNo
+			AND ord.branchNo = branch.branchNo
+			AND ord.deliveryDestNo = deliverydest.deliveryDestNo
 		ORDER BY
 			customerNo, orderNo
     </select>

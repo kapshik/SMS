@@ -1,7 +1,7 @@
 package com.ksk.sms.service.view.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -188,8 +188,8 @@ log.info("OrderServiceImpl init");
     	order.setCustomerNo(inModel.getCustomerModel().getCustomerNo());
     	order.setBranchNo(inModel.getBranchModel().getBranchNo());
     	order.setDeliveryDestNo(inModel.getDeliveryDestModel().getDeliveryDestNo());
-    	order.setRegistrationDate(new Date());
-    	order.setRequiredDate(new Date());
+    	order.setRegistrationDate(LocalDate.now());
+    	order.setRequiredDate(LocalDate.now());
     	order.setStatus("CREATED");
        	log.info(order.toString());
     	

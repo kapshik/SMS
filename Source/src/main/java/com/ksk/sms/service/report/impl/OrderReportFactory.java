@@ -3,9 +3,9 @@ package com.ksk.sms.service.report.impl;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -60,7 +60,7 @@ public class OrderReportFactory {
 		parameters.put("customerFax", "075-601-3235");
 
 		parameters.put("customerTel", "075-601-3234");
-		parameters.put("issuedDate", new Date());
+		parameters.put("issuedDate", LocalDate.now());
 
 		parameters.put("customerAddress1", "京都府京都市伏見区西大手町307-60");
 		parameters.put("customerAddress2", "太陽生命京都南ビル5Ｆ");

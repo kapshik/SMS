@@ -1,6 +1,6 @@
 package com.ksk.sms.dao.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.Data;
 
@@ -13,6 +13,6 @@ public class Customer {
     private String addressDetail;
     private String telNo;
     private String faxNo;
-    private Date startDate;
+    private LocalDate startDate;
     private String paymentTerms;
 }

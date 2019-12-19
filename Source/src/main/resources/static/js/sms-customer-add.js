@@ -4,7 +4,7 @@ $(function () {
     // ------------------------------------------------------ //
     $('.input-datepicker-autoclose').datepicker({
         autoclose: true,
-        format: 'yyyy-mm-dd'
+        format: 'yyyy/mm/dd'
     });
 /*
     $('.zipcode').blur(function(e) {
@@ -68,8 +68,9 @@ sms.vm.customer = function() {
 			type: 'get',
 			url: u,
 		}).done(function(response) {
-            var obj = JSON.parse(response);
-		    $('#address1').val(obj.results[0].address1+obj.results[0].address2+obj.results[0].address3);
+//            var obj = JSON.parse(response);
+//		    $('#address1').val(obj.results[0].address1+obj.results[0].address2+obj.results[0].address3);
+		    $('#address1').val(response.address1+response.address2+response.address3);
 		}).fail(function(xhr, exception){
 		});
 	};

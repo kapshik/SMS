@@ -1,8 +1,8 @@
 package com.ksk.sms.service.view.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -165,10 +165,10 @@ log.info("makeOrderModelList " + orderList.size());
 		orderData.setDeliveryDestNo("001");
 		orderData.setOrderNo(strNo);
 		orderData.setShippingLabelNo("ShippingLabel"+strNo);
-		orderData.setOrderDate(new Date());
-		orderData.setShippingDate(new Date());
-		orderData.setDeliveryDate(new Date());
-		orderData.setRegistrationDate(new Date());
+		orderData.setOrderDate(LocalDate.now());
+		orderData.setShippingDate(LocalDate.now());
+		orderData.setDeliveryDate(LocalDate.now());
+		orderData.setRegistrationDate(LocalDate.now());
 		orderData.setQuantity(0);
 		orderData.setUnitPrice(0);
 		orderData.setDiscountUnitPrice(0);

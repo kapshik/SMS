@@ -1,7 +1,7 @@
 package com.ksk.sms.presentation.restcontroller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -41,9 +41,9 @@ public class HomeRestController {
 			orderData.setDeliveryDestNo("DeliveryDest"+strNo);
 			orderData.setOrderNo(strNo);
 			orderData.setShippingLabelNo("ShippingLabel"+strNo);
-			orderData.setOrderDate(new Date());
-			orderData.setShippingDate(new Date());
-			orderData.setDeliveryDate(new Date());
+			orderData.setOrderDate(LocalDate.now());
+			orderData.setShippingDate(LocalDate.now());
+			orderData.setDeliveryDate(LocalDate.now());
 			orderData.setQuantity(i);
 			orderData.setUnitPrice(i);
 			orderData.setDiscountUnitPrice(i);
