@@ -16,6 +16,8 @@ public interface CustomerMapper {
 	
 	public long count(Customer data);
 	
+	public String nextNo(Customer data);
+
 	public int create(Customer data);
 	
 	public int createAll(@Param("list") List<Customer> data);

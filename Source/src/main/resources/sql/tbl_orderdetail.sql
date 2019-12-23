@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS db_sms.tbl_orderdetail;
 CREATE TABLE db_sms.tbl_orderdetail
 (
-    customerNo INT(11) NOT NULL,
+    customerNo VARCHAR(10) NOT NULL,
     orderNo VARCHAR(50) NOT NULL,
     productCode VARCHAR(50) NOT NULL,
     quantityOrdered INT NOT NULL,

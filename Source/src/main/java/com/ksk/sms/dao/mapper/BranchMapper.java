@@ -16,6 +16,8 @@ public interface BranchMapper {
 	
 	public long count(Branch data);
 	
+	public String nextNo(Branch data);
+
 	public int create(Branch data);
 	
 	public int createAll(@Param("list") List<Branch> data);

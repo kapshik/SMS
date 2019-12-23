@@ -16,6 +16,8 @@ public interface DeliveryDestMapper {
 	
 	public long count(DeliveryDest data);
 	
+	public String nextNo(DeliveryDest data);
+
 	public int create(DeliveryDest data);
 	
 	public int createAll(@Param("list") List<DeliveryDest> data);

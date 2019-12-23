@@ -64,12 +64,23 @@
 		<include refid="whereStatements" />
     </select>
 
+    <select id="nextNo" parameterType="com.ksk.sms.dao.domain.DeliveryDest" resultType="String">
+		SELECT
+			LPAD( IFNULL( MAX( SUBSTRING(deliveryDestNo,2) ), "0" ) + 1, 4, "0" )
+		FROM
+			tbl_deliverydest
+		WHERE
+			customerNo =  #{customerNo}
+			AND branchNo =  #{branchNo}
+    </select>
+
     <insert id="create" parameterType="com.ksk.sms.dao.domain.DeliveryDest" useGeneratedKeys="true"  keyProperty="deliveryDestNo">
 		INSERT INTO
 			tbl_deliverydest
 		(
 		    customerNo,
 		    branchNo,
+		    deliveryDestNo,
 		    deliveryDestName,
 		    zipcode,
 		    address,
@@ -81,6 +92,7 @@
 		(
 			#{customerNo},
 			#{branchNo},
+			#{deliveryDo},
 			#{deliveryDestName},
 			#{zipcode},
 			#{address},
@@ -96,6 +108,7 @@
 		(
 		    customerNo,
 		    branchNo,
+		    deliveryDestNo,
 		    deliveryDestName,
 		    zipcode,
 		    address,
@@ -108,6 +121,7 @@
 		(
 			#{item.customerNo},
 			#{item.branchNo},
+			#{item.deliveryDestNo},
 			#{item.deliveryDestName},
 			#{item.zipcode},
 			#{item.address},

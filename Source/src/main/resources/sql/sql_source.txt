@@ -1,12 +1,15 @@
-source `D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_productbycustomer.sql`
-source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_address.sql
-source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_branch.sql
-source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_customer.sql
-source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_deliverydest.sql
-source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_order.sql
-source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_orderdetail.sql
-source D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_product.sql
+【MySQL Workbench】
+・[file]->[Run SQL Script]
+ D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_address.sql
+ D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_customer.sql
+ D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_branch.sql
+ D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_deliverydest.sql
+ D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_order.sql
+ D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_orderdetail.sql
+ D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_product.sql
+ D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_productbycustomer.sql
 
+【Linux Server】
 source ./tbl_productbycustomer.sql
 source ./tbl_address.sql
 source ./tbl_branch.sql

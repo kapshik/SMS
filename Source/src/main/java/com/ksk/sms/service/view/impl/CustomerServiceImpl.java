@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ksk.sms.common.SmsBeanUtilsBean;
+import com.ksk.sms.common.SmsConst;
 import com.ksk.sms.dao.domain.Branch;
 import com.ksk.sms.dao.domain.Customer;
 import com.ksk.sms.dao.domain.Product;
@@ -147,7 +148,11 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
         Customer customer = new Customer();
         
     	SmsBeanUtilsBean.copyProperties(customer, inModel.getCustomerModel());
-        int iCreated = customerMapper.create(customer);
+		
+        String newNo = customerMapper.nextNo(customer);
+		customer.setCustomerNo(SmsConst.CUSTOMER_PREFIX + newNo);
+
+		int iCreated = customerMapper.create(customer);
     	log.info("Customer iCreated {}", iCreated);
     	log.info("customer.getCustomerNo {}", customer.getCustomerNo());
     	log.info("customer.getStartDate {}", customer.getStartDate());

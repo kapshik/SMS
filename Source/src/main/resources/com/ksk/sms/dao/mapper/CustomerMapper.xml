@@ -62,10 +62,18 @@
 		<include refid="whereStatements" />
     </select>
 
+    <select id="nextNo" parameterType="com.ksk.sms.dao.domain.Customer" resultType="String">
+		SELECT
+			LPAD( IFNULL( MAX( SUBSTRING(customerNo,2) ), "0" ) + 1, 4, "0" )
+		FROM
+			tbl_customer
+    </select>
+
     <insert id="create" parameterType="com.ksk.sms.dao.domain.Customer" useGeneratedKeys="true"  keyProperty="customerNo">
 		INSERT INTO
 			tbl_customer
 		(
+		    customerNo,
 		    customerName,
 		    zipcode,
 		    address,
@@ -77,6 +85,7 @@
 		)
 		VALUES
 		(
+			#{customerNo},
 			#{customerName},
 			#{zipcode},
 			#{address},
@@ -92,7 +101,7 @@
 		INSERT INTO
 			tbl_customer
 		(
-		    customerName,
+		    customerNo,
 		    zipcode,
 		    address,
 		    addressDetail,
@@ -104,6 +113,7 @@
 		VALUES
 		<foreach collection="list" item="item" separator=",">
 		(
+			#{item.customerNo},
 			#{item.customerName},
 			#{item.zipcode},
 			#{item.address},

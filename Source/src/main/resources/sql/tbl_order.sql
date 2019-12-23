@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS db_sms.tbl_order;
 CREATE TABLE db_sms.tbl_order
 (
-    customerNo INT(11) NOT NULL,
-    branchNo INT(11) NOT NULL,
-    deliveryDestNo INT(11) NOT NULL,
+    customerNo VARCHAR(10) NOT NULL,
+    branchNo VARCHAR(10) NOT NULL,
+    deliveryDestNo VARCHAR(10) NOT NULL,
     orderNo VARCHAR(50) NOT NULL,
     shippingLabelNo VARCHAR(50) DEFAULT NULL,
     estimationNo VARCHAR(50) DEFAULT NULL,

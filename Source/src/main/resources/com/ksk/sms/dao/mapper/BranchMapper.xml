@@ -60,11 +60,21 @@
 		<include refid="whereStatements" />
     </select>
 
+    <select id="nextNo" parameterType="com.ksk.sms.dao.domain.Branch" resultType="String">
+		SELECT
+			LPAD( IFNULL( MAX( SUBSTRING(branchNo,2) ), "0" ) + 1, 4, "0" )
+		FROM
+			tbl_branch
+		WHERE
+			customerNo =  #{customerNo}
+    </select>
+
     <insert id="create" parameterType="com.ksk.sms.dao.domain.Branch" useGeneratedKeys="true"  keyProperty="branchNo">
 		INSERT INTO
 			tbl_branch
 		(
 		    customerNo,
+		    branchNo,
 		    branchName,
 		    zipcode,
 		    address,
@@ -75,6 +85,7 @@
 		VALUES
 		(
 			#{customerNo},
+			#{branchNo},
 			#{branchName},
 			#{zipcode},
 			#{address},
@@ -89,6 +100,7 @@
 			tbl_branch
 		(
 		    customerNo,
+		    branchNo,
 		    branchName,
 		    zipcode,
 		    address,
@@ -100,6 +112,7 @@
 		<foreach collection="list" item="item" separator=",">
 		(
 			#{item.customerNo},
+			#{item.branchNo},
 			#{item.branchName},
 			#{item.zipcode},
 			#{item.address},

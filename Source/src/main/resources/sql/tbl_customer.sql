@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS db_sms.tbl_customer;
 CREATE TABLE db_sms.tbl_customer
 (
-    customerNo INT(11) ZEROFILL AUTO_INCREMENT,
+    customerNo VARCHAR(10) NOT NULL,
     customerName VARCHAR(50) NOT NULL,
     zipcode VARCHAR(10) NOT NULL,
     address VARCHAR(100) NOT NULL,

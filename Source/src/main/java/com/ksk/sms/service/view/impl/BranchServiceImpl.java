@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ksk.sms.common.SmsBeanUtilsBean;
+import com.ksk.sms.common.SmsConst;
 import com.ksk.sms.dao.domain.Branch;
 import com.ksk.sms.dao.domain.DeliveryDest;
 import com.ksk.sms.dao.mapper.BranchMapper;
@@ -116,21 +117,26 @@ log.info("init");
     	SmsBeanUtilsBean.copyProperties(branch, inModel.getBranchModel());
     	log.info("branch {}", branch.getBranchName());
     	log.info("branch {}", branch.getCustomerNo());
+		
+        String newNo = branchMapper.nextNo(branch);
+        branch.setBranchNo(SmsConst.BRANCH_PREFIX + newNo);
     	
         int iCreated = branchMapper.create(branch);
     	log.info("iCreated {}", iCreated);
 		
-		List<DeliveryDest> deliveryDestList = new ArrayList<DeliveryDest>();
-        for(DeliveryDestModel item : inModel.getDeliveryDestModelList()){
-			DeliveryDest deliveryDest = new DeliveryDest();
+		if( inModel.getDeliveryDestModelList().size() > 0 ) {
+			List<DeliveryDest> deliveryDestList = new ArrayList<DeliveryDest>();
+	        for(DeliveryDestModel item : inModel.getDeliveryDestModelList()){
+				DeliveryDest deliveryDest = new DeliveryDest();
 
-	    	SmsBeanUtilsBean.copyProperties(deliveryDest, item);
-	    	deliveryDest.setCustomerNo(branch.getBranchNo());
+		    	SmsBeanUtilsBean.copyProperties(deliveryDest, item);
+		    	deliveryDest.setCustomerNo(branch.getBranchNo());
 
-        	deliveryDestList.add(deliveryDest);
+	        	deliveryDestList.add(deliveryDest);
+			}
+			iCreated = deliveryDestMapper.createAll(deliveryDestList);
+	    	log.info("DeliveryDest iCreated {}", iCreated);
 		}
-		iCreated = deliveryDestMapper.createAll(deliveryDestList);
-    	log.info("DeliveryDest iCreated {}", iCreated);
 		
         return outModel;
 	}
