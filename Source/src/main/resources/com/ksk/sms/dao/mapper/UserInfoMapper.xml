@@ -3,6 +3,6 @@
 
 <mapper namespace="com.ksk.sms.dao.mapper.UserInfoMapper">
     <select id="getUserInfo" parameterType="String" resultType="com.ksk.sms.dao.domain.UserInfo">
-		SELECT * FROM tbl_user WHERE username =  #{user}
+		SELECT * FROM tbl_user WHERE username = #{user}
     </select>
 </mapper>

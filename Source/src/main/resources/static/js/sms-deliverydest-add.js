@@ -11,8 +11,8 @@ $(function () {
         viewModel.bind();
         }
     });
-	$('#id_branch_menu').collapse('show');
-	$('#id_branch_menu_6').addClass('active');
+	$('#id_deliverydest_menu').collapse('show');
+	$('#id_deliverydest_menu_4').addClass('active');
     setTimeout( function(){
             $('.loading').addClass('hidden');
     }, LOADING_TIMEOUT);
@@ -44,13 +44,12 @@ sms.vm.deliverydest = function() {
 	};
 
     self.doCustomerChange = function() {
-        var u = '/deliverydest/branchChange';
+        var u = '/deliverydest/customerChange';
         $.ajax({
             type: 'post',
             url: u,
             data: toJSON(self.dataModel)
           }).done(function(response) {
-            //TODO 時間がかかる場合は個別に実施
             ko.mapping.fromJS(response, self.dataModel);
           }).fail(function(xhr, exception){
             self.messages.removeAll();
@@ -72,20 +71,20 @@ sms.vm.deliverydest = function() {
         });
     };
 
-    self.doAddItem = function() {
-        var deliveryDestModel = { 
-                "customerNo":"C003",
-                "branchNo":"B003",
-                "deliveryDestNo":"D003",
-                "deliveryDestName":"納品先",
-                "zipcode":"101-0015",
-                "address":"東京都千代田区水道橋",
-                "addressDetail":"尾道ラーメン3階",
-                "telNo":"03-1234-5678",
-                "faxNo":"03-9876-5432"
-        };
-        self.dataModel.deliveryDestModelList.push(deliveryDestModel);
+    self.doCreate = function() {
+        var u = '/deliverydest/create';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
     };
+
 
     self.doDeleteItem = function() {
         self.dataModel.deliveryDestModelList.pop();

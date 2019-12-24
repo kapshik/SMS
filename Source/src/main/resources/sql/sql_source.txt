@@ -8,9 +8,10 @@
  D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_orderdetail.sql
  D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_product.sql
  D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_productbycustomer.sql
+ D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_stock.sql
+ D:\dev\GitHub\SMSProject\TMC\Source\src\main\resources\sql\tbl_reference.sql
 
 【Linux Server】
-source ./tbl_productbycustomer.sql
 source ./tbl_address.sql
 source ./tbl_branch.sql
 source ./tbl_customer.sql
@@ -18,4 +19,7 @@ source ./tbl_deliverydest.sql
 source ./tbl_order.sql
 source ./tbl_orderdetail.sql
 source ./tbl_product.sql
+source ./tbl_productbycustomer.sql
+source ./tbl_stock.sql
+source ./tbl_reference.sql
 source ./zenkoku.sql

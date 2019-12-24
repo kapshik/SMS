@@ -92,7 +92,7 @@
 		(
 			#{customerNo},
 			#{branchNo},
-			#{deliveryDo},
+			#{deliveryDestNo},
 			#{deliveryDestName},
 			#{zipcode},
 			#{address},
