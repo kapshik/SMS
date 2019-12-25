@@ -14,6 +14,8 @@ public class DeliveryDestModel implements Serializable{
 	private String customerNo;
 	private String branchNo;
 	private String deliveryDestNo;
+	private String customerName;
+	private String branchName;
 	private String deliveryDestName;
 	private String zipcode;
 	private String address;

@@ -2,7 +2,7 @@ $(function () {
     // ------------------------------------------------------- //
     // Initialize Page By Server Data
     // ------------------------------------------------------ //
-    var viewModel = new sms.vm.deliverydest();
+    var viewModel = new sms.vm.branch();
     viewModel.doInit({
         success : function() {
         viewModel.bind();
@@ -12,7 +12,7 @@ $(function () {
         }
     });
 	$('#id_deliverydest_menu').collapse('show');
-	$('#id_deliverydest_menu_4').addClass('active');
+	$('#id_deliverydest_menu_3').addClass('active');
     setTimeout( function(){
             $('.loading').addClass('hidden');
     }, LOADING_TIMEOUT);
@@ -21,7 +21,7 @@ $(function () {
 // ------------------------------------------------------- //
 // ViewModel
 // ------------------------------------------------------ //
-sms.vm.deliverydest = function() {
+sms.vm.branch = function() {
 	var self = this;
 
 	self.messages = ko.observableArray();
@@ -34,7 +34,7 @@ sms.vm.deliverydest = function() {
 			url: u,
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
-			self.dataModel.title("納品先登録");
+			self.dataModel.title("納品先検索");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -42,31 +42,6 @@ sms.vm.deliverydest = function() {
 			param.failed();
 		});
 	};
-
-	self.doGetAddress = function( param ) {
-		var u = 'common/search_address?zipcode=' + $('#zipcode').val();
-		$.ajax({
-			type: 'get',
-			url: u,
-		}).done(function(response) {
-		    self.dataModel.deliveryDestModel.address(response.address1+response.address2+response.address3);
-		}).fail(function(xhr, exception){
-		});
-	};
-
-    self.doCustomerChange = function() {
-        var u = '/deliverydest/customerChange';
-        $.ajax({
-            type: 'post',
-            url: u,
-            data: toJSON(self.dataModel)
-          }).done(function(response) {
-            ko.mapping.fromJS(response, self.dataModel);
-          }).fail(function(xhr, exception){
-            self.messages.removeAll();
-            self.handler.handle(xhr, exception);
-        });
-    };
 
     self.doSearch = function() {
         var u = '/deliverydest/search';
@@ -82,8 +57,8 @@ sms.vm.deliverydest = function() {
         });
     };
 
-    self.doCreate = function() {
-        var u = '/deliverydest/create';
+    self.doDelete = function() {
+        var u = '/deliverydest/detete';
         $.ajax({
             type: 'post',
             url: u,
@@ -94,11 +69,6 @@ sms.vm.deliverydest = function() {
             self.messages.removeAll();
             self.handler.handle(xhr, exception);
         });
-    };
-
-
-    self.doDeleteItem = function() {
-        self.dataModel.deliveryDestModelList.pop();
     };
 
 	self.bind = function() {

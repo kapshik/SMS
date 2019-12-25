@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ksk.sms.common.SmsBeanUtilsBean;
 import com.ksk.sms.dao.domain.Product;
@@ -35,27 +37,27 @@ public class ProductServiceImpl extends SmsService implements SmsViewService<Pro
 
 		outModel.setUsername(getUsername());
     	
-		outModel.setCustomerList(makeCustomerList());
-		outModel.setBranchList(makeBranchList(""));
-		outModel.setDeliveryDestList(makeDeliveryDestList(""));
-		outModel.setProductMasterList(makeProductMasterList());
-		outModel.setPaymentTermsList(makePaymentTermsList());
-
-		outModel.setCriteria(new ProductModel());
-		outModel.setDetail(new ProductModel());
-    	
-		outModel.setOrderDetail(new OrderModel());
-		outModel.setBranchModel(new BranchModel());
-		outModel.setCustomerModel(new CustomerModel());
-		outModel.setDeliveryDestModel(new DeliveryDestModel());
+    	//登録・詳細・更新画面用
 		outModel.setProductModel(new ProductModel());
-    	
-		outModel.setOrderModelList(new ArrayList<OrderModel>());
+
+    	//検索画面用
+		outModel.setCriteria(new ProductModel());
 		outModel.setProductModelList(new ArrayList<ProductModel>());
 
-    	log.info("init");
     	return outModel;
     }
+
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@Override
+	public ProductViewModel create(ProductViewModel inModel) {
+        ProductViewModel outModel = Objects.requireNonNull(inModel);
+        Product product = new Product();
+        
+    	SmsBeanUtilsBean.copyProperties(product, inModel.getProductModel());
+        int iCreated = productMapper.create(product);
+    			
+        return outModel;
+	}
 
 	@Override
     public ProductViewModel search(ProductViewModel inModel) {
@@ -71,7 +73,6 @@ public class ProductServiceImpl extends SmsService implements SmsViewService<Pro
 
     		SmsBeanUtilsBean.copyProperties(productModel, item);
 
-			log.info(productModel.toString());
 			productModelList.add(productModel);
 		}
 		
@@ -80,46 +81,10 @@ public class ProductServiceImpl extends SmsService implements SmsViewService<Pro
         return outModel;
     }
 
-    @Override
-    public ProductViewModel customerChange(ProductViewModel inModel) {
-
-        ProductViewModel outModel = Objects.requireNonNull(inModel);
-
-    	outModel.setBranchList(makeBranchList(inModel.getCustomerModel().getCustomerNo()));
-
-        return outModel;
-    }
-
-    @Override
-    public ProductViewModel branchChange(ProductViewModel inModel) {
-    	
-        ProductViewModel outModel = Objects.requireNonNull(inModel);
-    	
-    	outModel.setDeliveryDestList(makeDeliveryDestList(inModel.getBranchModel().getBranchNo()));
-
-    	return outModel;
-
-    }
-
-    @Override
-    public ProductViewModel close(ProductViewModel inModel) {
-    	
-        ProductViewModel outModel = Objects.requireNonNull(inModel);
-
-    	return outModel;
-
-    }
-
 	@Override
-	public ProductViewModel create(ProductViewModel inModel) {
-        ProductViewModel outModel = Objects.requireNonNull(inModel);
-        Product product = new Product();
-        
-    	SmsBeanUtilsBean.copyProperties(product, inModel.getProductModel());
-        int iCreated = productMapper.create(product);
-    	log.info("Product iCreated {}", iCreated);
-    			
-        return outModel;
+	public ProductViewModel detail(ProductViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 
 	@Override
@@ -135,8 +100,27 @@ public class ProductServiceImpl extends SmsService implements SmsViewService<Pro
 	}
 
 	@Override
+    public ProductViewModel close(ProductViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+    }
+
+    @Override
+    public ProductViewModel customerChange(ProductViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+    }
+
+    @Override
+    public ProductViewModel branchChange(ProductViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+    }
+
+	@Override
 	public ProductViewModel deliveryDestChange(ProductViewModel inModel) {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
+
 }

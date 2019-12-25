@@ -51,21 +51,5 @@ public class BranchController extends SmsController {
         log.info(model);
 		return "sms-branch-update";
 	}
-	
-//	支店詳細画面
-	@RequestMapping("/sms-branch-detail.html")	
-	public String detailForm(Model model) {
-
-        log.info(model);
-		return "sms-branch-detail";
-	}
-	
-//	納品先登録画面
-	@RequestMapping("/sms-deliverydest-add.html")	
-	public String deliverydestAddForm(Model model) {
-
-        log.info(model);
-		return "sms-deliverydest-add";
-	}
 
 }

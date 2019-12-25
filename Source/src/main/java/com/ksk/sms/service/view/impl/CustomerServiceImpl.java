@@ -49,25 +49,63 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
 
 		outModel.setUsername(getUsername());
     	
-		outModel.setCustomerList(makeCustomerList());
-		outModel.setBranchList(makeBranchList(""));
-		outModel.setDeliveryDestList(makeDeliveryDestList(""));
-		outModel.setProductMasterList(makeProductMasterList());
-		outModel.setPaymentTermsList(makePaymentTermsList());
-
-		outModel.setCriteria(new CustomerModel());
-		outModel.setDetail(new CustomerModel());
-		outModel.setCustomerModel(makeCustomerModel("XX"));
+    	//登録・詳細・更新画面用
+		outModel.setCustomerModel(new CustomerModel());
+		//outModel.setPaymentTermsList(makePaymentTermsList());
+    	//TODO リスト無しで確定したら削除
 		outModel.setBranchModel(new BranchModel());
-		outModel.setDeliveryDestModel(new DeliveryDestModel());
+    	outModel.setBranchModelList(new ArrayList<BranchModel>());
 		outModel.setProductModel(new ProductModel());
-    	
-		outModel.setCustomerModelList(new ArrayList<CustomerModel>());
-		outModel.setBranchModelList(new ArrayList<BranchModel>());
 		outModel.setProductModelList(new ArrayList<ProductModel>());
+    	
+    	//検索画面用
+		outModel.setCriteria(new CustomerModel());
+		outModel.setCustomerModelList(new ArrayList<CustomerModel>());
 
     	return outModel;
     }
+
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@Override
+	public CustomerViewModel create(CustomerViewModel inModel) {
+        CustomerViewModel outModel = Objects.requireNonNull(inModel);
+        Customer customer = new Customer();
+        
+    	SmsBeanUtilsBean.copyProperties(customer, inModel.getCustomerModel());
+		
+        String newNo = customerMapper.nextNo(customer);
+		customer.setCustomerNo(SmsConst.CUSTOMER_PREFIX + newNo);
+
+		int iCreated = customerMapper.create(customer);
+
+    	//TODO リスト無しで確定したら削除
+		if( inModel.getBranchModelList().size() > 0 ) {
+			List<Branch> branchList = new ArrayList<Branch>();
+	        for(BranchModel item : inModel.getBranchModelList()){
+				Branch branch = new Branch();
+
+		    	SmsBeanUtilsBean.copyProperties(branch, item);
+
+		    	branch.setCustomerNo(customer.getCustomerNo());
+				branchList.add(branch);
+			}
+			iCreated = branchMapper.createAll(branchList);
+		}
+		
+    	//TODO リスト無しで確定したら削除
+		if( inModel.getProductModelList().size() > 0 ) {
+			List<Product> productList = new ArrayList<Product>();
+	        for(ProductModel item : inModel.getProductModelList()){
+				Product product = new Product();
+
+		    	SmsBeanUtilsBean.copyProperties(product, item);
+
+				productList.add(product);
+			}
+			iCreated = productMapper.createAll(productList);
+		}
+        return outModel;
+	}
 
 	@Override
     public CustomerViewModel search(CustomerViewModel inModel) {
@@ -92,6 +130,30 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
         return outModel;
     }
 
+	@Override
+	public CustomerViewModel detail(CustomerViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public CustomerViewModel update(CustomerViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public CustomerViewModel delete(CustomerViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+    @Override
+    public CustomerViewModel close(CustomerViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+    }
+
     @Override
     public CustomerViewModel customerChange(CustomerViewModel inModel) {
 
@@ -112,93 +174,6 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
     	return outModel;
 
     }
-
-    @Override
-    public CustomerViewModel close(CustomerViewModel inModel) {
-    	
-        CustomerViewModel outModel = Objects.requireNonNull(inModel);
-
-    	return outModel;
-
-    }
-
-	private CustomerModel makeCustomerModel(String strNo) {
-
-		CustomerModel customerData = new CustomerModel();
-		AddressModel addressModel = smsAddressService.getAddressModel("101-0061");
-		
-		customerData.setCustomerNo("C00" + strNo);
-		customerData.setCustomerName("顧客名" + strNo);
-		customerData.setZipcode("101-0015");
-		customerData.setAddress(addressModel.getAddress1() + addressModel.getAddress2() + addressModel.getAddress3());
-		customerData.setAddressDetail("尾道ラーメン3階" + strNo);
-		customerData.setTelNo("03-1234-5678");
-		customerData.setFaxNo("03-9876-5432");
-//		customerData.setStartDate("2019/11/22");
-		customerData.setPaymentTerms("月末締め翌月末払い");
-
-		return customerData;
-		
-	}
-
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	@Override
-	public CustomerViewModel create(CustomerViewModel inModel) {
-        CustomerViewModel outModel = Objects.requireNonNull(inModel);
-        Customer customer = new Customer();
-        
-    	SmsBeanUtilsBean.copyProperties(customer, inModel.getCustomerModel());
-		
-        String newNo = customerMapper.nextNo(customer);
-		customer.setCustomerNo(SmsConst.CUSTOMER_PREFIX + newNo);
-
-		int iCreated = customerMapper.create(customer);
-    	log.info("Customer iCreated {}", iCreated);
-    	log.info("customer.getCustomerNo {}", customer.getCustomerNo());
-    	log.info("customer.getStartDate {}", customer.getStartDate());
-
-		if( inModel.getBranchModelList().size() > 0 ) {
-			List<Branch> branchList = new ArrayList<Branch>();
-	        for(BranchModel item : inModel.getBranchModelList()){
-				Branch branch = new Branch();
-
-		    	SmsBeanUtilsBean.copyProperties(branch, item);
-
-		    	log.info("branch.customerNo1 {}", branch.getCustomerNo());
-		    	branch.setCustomerNo(customer.getCustomerNo());
-		    	log.info("branch.customerNo2 {}", branch.getCustomerNo());
-				branchList.add(branch);
-			}
-			iCreated = branchMapper.createAll(branchList);
-	    	log.info("Branch iCreated {}", iCreated);
-		}
-		
-		if( inModel.getProductModelList().size() > 0 ) {
-			List<Product> productList = new ArrayList<Product>();
-	        for(ProductModel item : inModel.getProductModelList()){
-				Product product = new Product();
-
-		    	SmsBeanUtilsBean.copyProperties(product, item);
-
-				productList.add(product);
-			}
-			iCreated = productMapper.createAll(productList);
-	    	log.info("Product iCreated {}", iCreated);
-		}
-        return outModel;
-	}
-
-	@Override
-	public CustomerViewModel update(CustomerViewModel inModel) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
-	@Override
-	public CustomerViewModel delete(CustomerViewModel inModel) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
 
 	@Override
 	public CustomerViewModel deliveryDestChange(CustomerViewModel inModel) {

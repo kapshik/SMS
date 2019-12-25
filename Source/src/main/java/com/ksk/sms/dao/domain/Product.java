@@ -8,14 +8,10 @@ import lombok.Data;
 public class Product {
     private String productCode;
     private String productName;
-    private int quantity;
-    private int quantityPerBox;
-    private int quantityOfBox;
-    private int buyPrice;
     private int unitPrice;
     private String productType;
+	private String productTypeName;
     private String unitType;
+	private String unitTypeName;
     private String remarks;
-    private LocalDate scheduledInStockDate;
-    private int quantityInStock;
 }

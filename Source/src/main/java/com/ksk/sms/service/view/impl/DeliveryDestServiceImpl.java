@@ -1,9 +1,13 @@
 package com.ksk.sms.service.view.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ksk.sms.common.SmsBeanUtilsBean;
 import com.ksk.sms.common.SmsConst;
@@ -30,21 +34,77 @@ public class DeliveryDestServiceImpl extends SmsService implements SmsViewServic
 
 		outModel.setUsername(getUsername());
     	
-		outModel.setCustomerList(makeCustomerList());
-		outModel.setBranchList(makeBranchList(""));
-
+    	//登録・詳細・更新画面用
 		outModel.setDeliveryDestModel(new DeliveryDestModel());
-    	
-log.info("init");
+		//outModel.setCustomerList(makeCustomerList());
+		//outModel.setBranchList(makeBranchList(""));
+
+    	//検索画面用
+		outModel.setCriteria(new DeliveryDestModel());
+		outModel.setDeliveryDestModelList(new ArrayList<DeliveryDestModel>());
+
     	return outModel;
     }
+
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@Override
+	public DeliveryDestViewModel create(DeliveryDestViewModel inModel) {
+        DeliveryDestViewModel outModel = Objects.requireNonNull(inModel);
+        DeliveryDest deliveryDest = new DeliveryDest();
+        
+    	SmsBeanUtilsBean.copyProperties(deliveryDest, inModel.getDeliveryDestModel());
+		
+        String newNo = deliveryDestMapper.nextNo(deliveryDest);
+        deliveryDest.setDeliveryDestNo(SmsConst.DELIVERY_DEST_PREFIX + newNo);
+    	
+        int iCreated = deliveryDestMapper.create(deliveryDest);
+		
+        return outModel;
+	}
 
 	@Override
     public DeliveryDestViewModel search(DeliveryDestViewModel inModel) {
 
         DeliveryDestViewModel outModel = Objects.requireNonNull(inModel);
+    	DeliveryDest criteria = new DeliveryDest();
+    	SmsBeanUtilsBean.copyProperties(criteria, inModel.getCriteria());
+    	
+		List<DeliveryDestModel> deliveryDestModelList = new ArrayList<DeliveryDestModel>();
+		List<DeliveryDest> selectedList = deliveryDestMapper.findList(criteria);
+        for(DeliveryDest item : selectedList){
+			DeliveryDestModel deliveryDestModel = new DeliveryDestModel();
+
+    		SmsBeanUtilsBean.copyProperties(deliveryDestModel, item);
+
+			deliveryDestModelList.add(deliveryDestModel);
+		}
+		outModel.setDeliveryDestModelList(deliveryDestModelList);
 
         return outModel;
+    }
+
+	@Override
+	public DeliveryDestViewModel detail(DeliveryDestViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public DeliveryDestViewModel update(DeliveryDestViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public DeliveryDestViewModel delete(DeliveryDestViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+    public DeliveryDestViewModel close(DeliveryDestViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
     }
 
     @Override
@@ -58,50 +118,11 @@ log.info("init");
         return outModel;
     }
 
-	@Override
-	public DeliveryDestViewModel create(DeliveryDestViewModel inModel) {
-        DeliveryDestViewModel outModel = Objects.requireNonNull(inModel);
-        DeliveryDest deliveryDest = new DeliveryDest();
-        
-    	SmsBeanUtilsBean.copyProperties(deliveryDest, inModel.getDeliveryDestModel());
-    	log.info("branch {}", deliveryDest.getDeliveryDestName());
-    	log.info("branch {}", deliveryDest.getCustomerNo());
-		
-        String newNo = deliveryDestMapper.nextNo(deliveryDest);
-        deliveryDest.setDeliveryDestNo(SmsConst.DELIVERY_DEST_PREFIX + newNo);
-    	
-        int iCreated = deliveryDestMapper.create(deliveryDest);
-    	log.info("iCreated {}", iCreated);
-		
-        return outModel;
-	}
-
-	@Override
-    public DeliveryDestViewModel close(DeliveryDestViewModel inModel) {
-    	
-        DeliveryDestViewModel outModel = Objects.requireNonNull(inModel);
-
-    	return outModel;
-
-    }
-
     @Override
     public DeliveryDestViewModel branchChange(DeliveryDestViewModel inModel) {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
     }
-
-	@Override
-	public DeliveryDestViewModel update(DeliveryDestViewModel inModel) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
-	@Override
-	public DeliveryDestViewModel delete(DeliveryDestViewModel inModel) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
 
 	@Override
 	public DeliveryDestViewModel deliveryDestChange(DeliveryDestViewModel inModel) {

@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ksk.sms.common.SmsBeanUtilsBean;
 import com.ksk.sms.common.SmsConst;
@@ -16,7 +18,6 @@ import com.ksk.sms.dao.mapper.DeliveryDestMapper;
 import com.ksk.sms.model.BranchModel;
 import com.ksk.sms.model.BranchViewModel;
 import com.ksk.sms.model.DeliveryDestModel;
-import com.ksk.sms.model.ProductModel;
 import com.ksk.sms.service.common.SmsService;
 import com.ksk.sms.service.view.SmsViewService;
 
@@ -38,24 +39,48 @@ public class BranchServiceImpl extends SmsService implements SmsViewService<Bran
 
 		outModel.setUsername(getUsername());
     	
-		outModel.setCustomerList(makeCustomerList());
-		outModel.setBranchList(makeBranchList(""));
-		outModel.setDeliveryDestList(makeDeliveryDestList(""));
-		outModel.setProductMasterList(makeProductMasterList());
-		outModel.setPaymentTermsList(makePaymentTermsList());
-
-		outModel.setCriteria(new BranchModel());
-		outModel.setDetail(new BranchModel());
+    	//登録・詳細・更新画面用
 		outModel.setBranchModel(new BranchModel());
+		//outModel.setCustomerList(makeCustomerList());
+    	//TODO リスト無しで確定したら削除
 		outModel.setDeliveryDestModel(new DeliveryDestModel());
-		outModel.setProductModel(new ProductModel());
-    	
-		outModel.setBranchModelList(new ArrayList<BranchModel>());
 		outModel.setDeliveryDestModelList(new ArrayList<DeliveryDestModel>());
-		outModel.setProductModelList(new ArrayList<ProductModel>());
-log.info("init");
+
+    	//検索画面用
+		outModel.setCriteria(new BranchModel());
+		outModel.setBranchModelList(new ArrayList<BranchModel>());
+
     	return outModel;
     }
+
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@Override
+	public BranchViewModel create(BranchViewModel inModel) {
+        BranchViewModel outModel = Objects.requireNonNull(inModel);
+        Branch branch = new Branch();
+        
+    	SmsBeanUtilsBean.copyProperties(branch, inModel.getBranchModel());
+		
+        String newNo = branchMapper.nextNo(branch);
+        branch.setBranchNo(SmsConst.BRANCH_PREFIX + newNo);
+    	
+        int iCreated = branchMapper.create(branch);
+		
+		if( inModel.getDeliveryDestModelList().size() > 0 ) {
+			List<DeliveryDest> deliveryDestList = new ArrayList<DeliveryDest>();
+	        for(DeliveryDestModel item : inModel.getDeliveryDestModelList()){
+				DeliveryDest deliveryDest = new DeliveryDest();
+
+		    	SmsBeanUtilsBean.copyProperties(deliveryDest, item);
+		    	deliveryDest.setCustomerNo(branch.getBranchNo());
+
+	        	deliveryDestList.add(deliveryDest);
+			}
+			iCreated = deliveryDestMapper.createAll(deliveryDestList);
+		}
+		
+        return outModel;
+	}
 
 	@Override
     public BranchViewModel search(BranchViewModel inModel) {
@@ -79,66 +104,10 @@ log.info("init");
         return outModel;
     }
 
-    @Override
-    public BranchViewModel customerChange(BranchViewModel inModel) {
-
-        BranchViewModel outModel = Objects.requireNonNull(inModel);
-
-       	outModel.setBranchList(makeBranchList(inModel.getCustomerModel().getCustomerNo()));
-
-        return outModel;
-    }
-
-    @Override
-    public BranchViewModel branchChange(BranchViewModel inModel) {
-    	
-        BranchViewModel outModel = Objects.requireNonNull(inModel);
-    	
-    	outModel.setDeliveryDestList(makeDeliveryDestList(inModel.getBranchModel().getBranchNo()));
-
-    	return outModel;
-
-    }
-
-    @Override
-    public BranchViewModel close(BranchViewModel inModel) {
-    	
-        BranchViewModel outModel = Objects.requireNonNull(inModel);
-
-    	return outModel;
-
-    }
-
 	@Override
-	public BranchViewModel create(BranchViewModel inModel) {
-        BranchViewModel outModel = Objects.requireNonNull(inModel);
-        Branch branch = new Branch();
-        
-    	SmsBeanUtilsBean.copyProperties(branch, inModel.getBranchModel());
-    	log.info("branch {}", branch.getBranchName());
-    	log.info("branch {}", branch.getCustomerNo());
-		
-        String newNo = branchMapper.nextNo(branch);
-        branch.setBranchNo(SmsConst.BRANCH_PREFIX + newNo);
-    	
-        int iCreated = branchMapper.create(branch);
-    	log.info("iCreated {}", iCreated);
-		
-		if( inModel.getDeliveryDestModelList().size() > 0 ) {
-			List<DeliveryDest> deliveryDestList = new ArrayList<DeliveryDest>();
-	        for(DeliveryDestModel item : inModel.getDeliveryDestModelList()){
-				DeliveryDest deliveryDest = new DeliveryDest();
-
-		    	SmsBeanUtilsBean.copyProperties(deliveryDest, item);
-		    	deliveryDest.setCustomerNo(branch.getBranchNo());
-
-	        	deliveryDestList.add(deliveryDest);
-			}
-			iCreated = deliveryDestMapper.createAll(deliveryDestList);
-	    	log.info("DeliveryDest iCreated {}", iCreated);
-		}
-		
-        return outModel;
+	public BranchViewModel detail(BranchViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 
 	@Override
@@ -152,6 +121,24 @@ log.info("init");
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
+
+    @Override
+    public BranchViewModel close(BranchViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+    }
+
+    @Override
+    public BranchViewModel customerChange(BranchViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+    }
+
+    @Override
+    public BranchViewModel branchChange(BranchViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+    }
 
 	@Override
 	public BranchViewModel deliveryDestChange(BranchViewModel inModel) {

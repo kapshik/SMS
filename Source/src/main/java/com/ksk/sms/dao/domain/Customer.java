@@ -15,4 +15,5 @@ public class Customer {
     private String faxNo;
     private LocalDate startDate;
     private String paymentTerms;
+    private String paymentTermsName;
 }

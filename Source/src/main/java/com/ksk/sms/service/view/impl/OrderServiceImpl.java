@@ -226,4 +226,10 @@ log.info("OrderServiceImpl init");
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
+
+	@Override
+	public OrderViewModel detail(OrderViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
 }

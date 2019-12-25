@@ -37,7 +37,16 @@
 
     <select id="findOne" parameterType="com.ksk.sms.dao.domain.Customer" resultType="com.ksk.sms.dao.domain.Customer">
 		SELECT
-			*
+		    customerNo,
+		    customerName,
+		    zipcode,
+		    address,
+		    addressDetail,
+		    telNo,
+		    faxNo,
+		    startDate,
+		    paymentTerms,
+		    (SELECT name FROM tbl_reference WHERE type = 'PAYMENT_TERMS' AND code = paymentTerms) paymentTermsName
 		FROM
 			tbl_customer
 		WHERE
@@ -46,7 +55,16 @@
 
     <select id="findList" parameterType="com.ksk.sms.dao.domain.Customer" resultType="com.ksk.sms.dao.domain.Customer">
 		SELECT
-			* 
+		    customerNo,
+		    customerName,
+		    zipcode,
+		    address,
+		    addressDetail,
+		    telNo,
+		    faxNo,
+		    startDate,
+		    paymentTerms,
+		    (SELECT name FROM tbl_reference WHERE type = 'PAYMENT_TERMS' AND code = paymentTerms) paymentTermsName
 		FROM
 			tbl_customer
 		<include refid="whereStatements" />

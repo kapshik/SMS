@@ -123,4 +123,10 @@ public class ShippingHistoryServiceImpl extends SmsService implements SmsViewSer
         return shippingHistoryModelList;
     }
 
+	@Override
+	public ShippingHistoryViewModel detail(ShippingHistoryViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
 }

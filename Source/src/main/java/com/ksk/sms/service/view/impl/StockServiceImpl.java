@@ -261,7 +261,7 @@ log.info("makeProductModelList " + productList.size());
 		productData.setProductType("setProductType"+strNo);
 		productData.setUnitType("setUnitType"+strNo);
 		productData.setRemarks("setRemarks"+strNo);
-		productData.setUnitTypeList(makeÙnitTypeList());
+		productData.setUnitTypeList(makeUnitTypeList());
 		productData.setProductTypeList(makeProductTypeList());
 		productData.setProductMasterList(makeProductMasterList());
 
@@ -289,6 +289,12 @@ log.info("makeProductModelList " + productList.size());
 
 	@Override
 	public StockViewModel deliveryDestChange(StockViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public StockViewModel detail(StockViewModel inModel) {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}

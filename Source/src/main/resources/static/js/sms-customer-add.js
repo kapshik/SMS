@@ -63,32 +63,18 @@ sms.vm.customer = function() {
 	};
 
 	self.doGetAddress = function( param ) {
-		var u = 'customer/search_address?zipcode=' + $('#zipcode').val();
+		var u = 'common/search_address?zipcode=' + $('#zipcode').val();
 		$.ajax({
 			type: 'get',
 			url: u,
 		}).done(function(response) {
 //            var obj = JSON.parse(response);
 //		    $('#address1').val(obj.results[0].address1+obj.results[0].address2+obj.results[0].address3);
-		    $('#address1').val(response.address1+response.address2+response.address3);
+//		    $('#address1').val(response.address1+response.address2+response.address3);
+		    self.dataModel.customerModel.address(response.address1+response.address2+response.address3);
 		}).fail(function(xhr, exception){
 		});
 	};
-
-    self.doCustomerChange = function() {
-        var u = '/customer/customerChange';
-        $.ajax({
-            type: 'post',
-            url: u,
-            data: toJSON(self.dataModel)
-          }).done(function(response) {
-            //TODO 時間がかかる場合は個別に実施
-            ko.mapping.fromJS(response, self.dataModel);
-          }).fail(function(xhr, exception){
-            self.messages.removeAll();
-            self.handler.handle(xhr, exception);
-        });
-    };
 
     self.doSearch = function() {
         var u = '/customer/search';

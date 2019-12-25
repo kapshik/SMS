@@ -43,6 +43,17 @@ sms.vm.branch = function() {
 		});
 	};
 
+	self.doGetAddress = function( param ) {
+		var u = 'common/search_address?zipcode=' + $('#zipcode').val();
+		$.ajax({
+			type: 'get',
+			url: u,
+		}).done(function(response) {
+		    self.dataModel.branchModel.address(response.address1+response.address2+response.address3);
+		}).fail(function(xhr, exception){
+		});
+	};
+
     self.doSearch = function() {
         var u = '/branch/search';
         $.ajax({

@@ -120,7 +120,7 @@ public class SmsService {
         return makeReferenceList(SmsConst.REF_PRODUCT_TYPE);
     }
 
-	protected List<KeyValue> makeÙnitTypeList() {
+	protected List<KeyValue> makeUnitTypeList() {
         return makeReferenceList(SmsConst.REF_UNIT_TYPE);
     }
 
@@ -140,5 +140,19 @@ public class SmsService {
 		
         return kvList;
     }
+
+//	protected String getListValue(String inKey) {
+//        String outValue = inKey;
+//		
+//		if( paymentTermsList.contains(inKey) ) {
+//	        outValue = paymentTermsList.stream().filter(s->inKey.equals(s)).findFirst();
+//		} else if( productTypeList.contains(inKey) ) {
+//	        outValue = productTypeList.stream().filter(s->inKey.equals(s)).findFirst();
+//		} else if( unitTypeList.contains(inKey) ) {
+//	        outValue = unitTypeList.stream().filter(s->inKey.equals(s)).findFirst();
+//		}
+//			
+//        return outValue;
+//    }
 
 }

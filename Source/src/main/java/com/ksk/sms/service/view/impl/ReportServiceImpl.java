@@ -68,4 +68,10 @@ log.info("init");
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
+
+	@Override
+	public ReportViewModel detail(ReportViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
 }

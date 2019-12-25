@@ -21,14 +21,12 @@ public class SmsCommonServiceImpl extends SmsService implements SmsViewService<S
 		outModel.setRole(getRole());
     	
 		outModel.setCustomerList(makeCustomerList());
-    	outModel.setPaymentTermsList(makePaymentTermsList());
-
     	outModel.setBranchList(makeBranchList(""));
 		outModel.setDeliveryDestList(makeDeliveryDestList(""));
 
-    	outModel.setProductMasterList(makeProductMasterList());
+    	outModel.setPaymentTermsList(makePaymentTermsList());
 		outModel.setProductTypeList(makeProductTypeList());
-		outModel.setUnitTypeList(makeÙnitTypeList());
+		outModel.setUnitTypeList(makeUnitTypeList());
     	
     	log.info("SmsCommonServiceImpl init");
     	return outModel;
@@ -78,6 +76,12 @@ public class SmsCommonServiceImpl extends SmsService implements SmsViewService<S
 
 	@Override
 	public SmsViewModel deliveryDestChange(SmsViewModel inModel) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public SmsViewModel detail(SmsViewModel inModel) {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
