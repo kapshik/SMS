@@ -166,3 +166,13 @@ function doCheckedTableRow() {
         $('.with-table-row').addClass("disabled");
     }
 };
+
+function doSelectTableRow(targetObj) {
+    if( $(targetObj).hasClass('selected') ) {
+        $(targetObj).removeClass('selected');
+        $('.with-table-row').addClass("disabled");
+    } else {
+        $(targetObj).addClass('selected').siblings().removeClass('selected');
+        $('.with-table-row').removeClass("disabled");
+    }
+};

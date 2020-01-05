@@ -49,22 +49,22 @@
       <div class="row">
         <div class="col-lg-3">
           <div class="form-group">
-            <button type="button" data-bind="click:$root.doSearch" class="btn btn-primary btn-block btn-sm">顧客検索</button>
+            <button data-bind="click:$root.doSearch" class="btn btn-primary btn-block btn-sm">顧客検索</button>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <a class="btn btn-primary btn-block btn-sm disabled with-table-row" href="sms-customer-detail.html" role="button">顧客詳細</a>
+            <button data-bind="click:$root.doDetail" class="btn btn-primary btn-block btn-sm disabled with-table-row">顧客詳細</button>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <a class="btn btn-primary btn-block btn-sm disabled with-table-row" href="sms-customer-update.html" role="button">顧客変更</a>
+            <button data-bind="click:$root.doUpdate" class="btn btn-primary btn-block btn-sm disabled with-table-row">顧客変更</button>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <button disabled data-bind="click:$root.doDelete" type="button" class="btn btn-primary btn-block btn-sm with-table-row">顧客削除</button>
+            <button data-bind="click:$root.doDelete" class="btn btn-primary btn-block btn-sm disabled with-table-row">顧客削除</button>
           </div>
         </div>
       </div>

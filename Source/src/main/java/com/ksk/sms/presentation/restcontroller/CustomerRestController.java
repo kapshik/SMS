@@ -1,5 +1,9 @@
 package com.ksk.sms.presentation.restcontroller;
 
+import java.util.Objects;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +23,8 @@ import lombok.extern.log4j.Log4j2;
 public class CustomerRestController {
 
 	@Autowired
+	HttpSession session;  
+	@Autowired
 	private SmsViewService<CustomerViewModel> service;
 	@Autowired
 	private SmsAddressService smsAddressService;
@@ -30,10 +36,17 @@ public class CustomerRestController {
 		return outModel;
 	}
 	
+	@GetMapping("customer/init_detail")
+	public CustomerViewModel init_detail() {
+		CustomerViewModel outModel = service.detail((CustomerViewModel)session.getAttribute("customerViewModel"));
+		
+		return outModel;
+	}
+	
 	@PostMapping("customer/search")
 	public CustomerViewModel search(@RequestBody CustomerViewModel inModel) {
 		CustomerViewModel outModel = service.search(inModel);
-		
+
 		return outModel;
 	}
 	
@@ -51,9 +64,17 @@ public class CustomerRestController {
 		return outModel;
 	}
 	
+	@PostMapping("customer/detail")
+	public CustomerViewModel detail(@RequestBody CustomerViewModel inModel) {
+        CustomerViewModel outModel = Objects.requireNonNull(inModel);
+		session.setAttribute("customerViewModel", outModel);
+
+		return outModel;
+	}
+	
 	@PostMapping("customer/delete")
 	public CustomerViewModel delete(@RequestBody CustomerViewModel inModel) {
-		CustomerViewModel outModel = service.search(inModel);
+		CustomerViewModel outModel = service.detail(inModel);
 		
 		return outModel;
 	}

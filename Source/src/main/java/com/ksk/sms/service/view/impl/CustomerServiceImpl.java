@@ -51,6 +51,7 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
     	
     	//登録・詳細・更新画面用
 		outModel.setCustomerModel(new CustomerModel());
+		outModel.setDetail(new CustomerModel());
 		//outModel.setPaymentTermsList(makePaymentTermsList());
     	//TODO リスト無しで確定したら削除
 		outModel.setBranchModel(new BranchModel());
@@ -132,8 +133,52 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
 
 	@Override
 	public CustomerViewModel detail(CustomerViewModel inModel) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+        CustomerViewModel outModel = Objects.requireNonNull(inModel);
+
+		Customer criteria = new Customer();
+    	SmsBeanUtilsBean.copyProperties(criteria, inModel.getDetail());
+
+log.info("criteria.getCustomerNo : ", criteria.getCustomerNo());
+        Customer customer = customerMapper.findOne(criteria);
+		CustomerModel customerModel = new CustomerModel();
+    	SmsBeanUtilsBean.copyProperties(customerModel, customer);
+		outModel.setCustomerModel(customerModel);
+
+    	Branch branchCriteria = new Branch();
+    	SmsBeanUtilsBean.copyProperties(branchCriteria, criteria);
+		List<Branch> branchList = branchMapper.findList(branchCriteria);
+	log.info("branchList.size() : {}", branchList.size());
+		if( branchList.size() > 0 ) {
+			List<BranchModel> branchModelList = new ArrayList<BranchModel>();
+	        for(Branch item : branchList){
+				BranchModel branchModel = new BranchModel();
+
+		    	SmsBeanUtilsBean.copyProperties(branchModel, item);
+
+				branchModelList.add(branchModel);
+			}
+	log.info("branchModelList.size() : {}", branchModelList.size());
+			outModel.setBranchModelList(branchModelList);
+		}
+		
+    	Product productCriteria = new Product();
+    	SmsBeanUtilsBean.copyProperties(productCriteria, criteria);
+		List<Product> productList = productMapper.findList(productCriteria);
+	log.info("productList.size() : {}", productList.size());
+		if( productList.size() > 0 ) {
+			List<ProductModel> productModelList = new ArrayList<ProductModel>();
+	        for(Product item : productList){
+				ProductModel productModel = new ProductModel();
+
+		    	SmsBeanUtilsBean.copyProperties(productModel, item);
+
+				productModelList.add(productModel);
+			}
+	log.info("productModelList.size() : {}", productModelList.size());
+			outModel.setProductModelList(productModelList);
+		}
+
+		return outModel;
 	}
 
 	@Override

@@ -34,17 +34,17 @@
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <a class="btn btn-primary btn-block btn-sm disabled with-table-row" href="sms-branch-detail.html" role="button">支店詳細</a>
+            <button data-bind="click:$root.doDetail" class="btn btn-primary btn-block btn-sm disabled with-table-row">支店詳細</button>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <a class="btn btn-primary btn-block btn-sm disabled with-table-row" href="sms-branch-update.html" role="button">支店変更</a>
+            <button data-bind="click:$root.doUpdate" class="btn btn-primary btn-block btn-sm disabled with-table-row">支店変更</button>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <button disabled data-bind="click:$root.doDelete" type="button" class="btn btn-primary btn-block btn-sm with-table-row">支店削除</button>
+            <button data-bind="click:$root.doDelete" class="btn btn-primary btn-block btn-sm with-table-row">支店削除</button>
           </div>
         </div>
       </div>

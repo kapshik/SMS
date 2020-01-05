@@ -28,7 +28,7 @@ sms.vm.customer = function() {
 	self.handler = new sms.vm.ErrorViewModel();
 
 	self.doInit = function( param ) {
-		var u = '/customer/init';
+		var u = '/customer/init_detail';
 		$.ajax({
 			type: 'get',
 			url: u,

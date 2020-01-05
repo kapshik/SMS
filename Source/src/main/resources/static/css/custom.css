@@ -23,3 +23,12 @@ div.loading{
   width: 200px;
   height: 200px;
 }
+
+tr.selected {
+    background-color: #2b90d9;
+    color: #FFFFFF;
+}
+
+thead {
+    background-color: #ffffe6;
+}

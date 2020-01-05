@@ -79,7 +79,45 @@ sms.vm.customer = function() {
         });
     };
 
+    self.doDetail = function() {
+        var selectedRow = $("#id_customer_list tr.selected td:first").text();
+        self.dataModel.detail.customerNo(selectedRow);
+        
+        var u = '/customer/detail';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+            window.location.href = '/sms-customer-detail.html';
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
+    self.doUpdate = function() {
+        alert($("#id_customer_list tr.selected td:first").html());
+        return;
+        
+        var u = '/customer/update';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
     self.doDelete = function() {
+        alert($("#id_customer_list tr.selected td:first").html());
+        return;
+        
         var u = '/customer/delete';
         $.ajax({
             type: 'post',
@@ -97,4 +135,3 @@ sms.vm.customer = function() {
 		ko.applyBindings(this);
 	};
 };
-

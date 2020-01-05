@@ -35,6 +35,15 @@ public class CustomerController extends SmsController  {
 		return "sms-customer-add";
 	}
 
+//	顧客登録画面
+	@RequestMapping("/sms-customer-add_WithList.html")	
+	public String addWithListForm(Model model) {
+        model.addAttribute("isListNeedBtn", true);
+
+        log.info(model);
+		return "sms-customer-add_WithList";
+	}
+
 //	顧客検索画面
 	@RequestMapping("/sms-customer-search.html")	
 	public String searchForm(Model model) {
