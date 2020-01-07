@@ -79,6 +79,21 @@ sms.vm.customer = function() {
         });
     };
 
+    self.doCreate = function() {
+        var u = '/customer/create';
+        $.ajax({
+            type: 'post',
+            url: u,
+            data: toJSON(self.dataModel)
+          }).done(function(response) {
+            ko.mapping.fromJS(response, self.dataModel);
+            $('#id_modal_customer_add').modal('hide');
+          }).fail(function(xhr, exception){
+            self.messages.removeAll();
+            self.handler.handle(xhr, exception);
+        });
+    };
+
     self.doDetail = function() {
         var selectedRow = $("#id_customer_list tr.selected td:first").text();
         self.dataModel.detail.customerNo(selectedRow);
@@ -98,7 +113,7 @@ sms.vm.customer = function() {
     };
 
     self.doUpdate = function() {
-        alert($("#id_customer_list tr.selected td:first").html());
+        alert($("#id_customer_list tr.selected td:nth-of-type(5)").html());
         return;
         
         var u = '/customer/update';
@@ -115,7 +130,7 @@ sms.vm.customer = function() {
     };
 
     self.doDelete = function() {
-        alert($("#id_customer_list tr.selected td:first").html());
+        alert($("#id_customer_list tr.selected td:nth-child(3)").html());
         return;
         
         var u = '/customer/delete';
@@ -130,6 +145,17 @@ sms.vm.customer = function() {
             self.handler.handle(xhr, exception);
         });
     };
+
+	self.doGetAddress = function( param ) {
+		var u = 'common/search_address?zipcode=' + $('#zipcode').val();
+		$.ajax({
+			type: 'get',
+			url: u,
+		}).done(function(response) {
+		    self.dataModel.customerModel.address(response.address1+response.address2+response.address3);
+		}).fail(function(xhr, exception){
+		});
+	};
 
 	self.bind = function() {
 		ko.applyBindings(this);

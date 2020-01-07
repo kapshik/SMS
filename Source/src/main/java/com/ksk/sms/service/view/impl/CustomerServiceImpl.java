@@ -78,6 +78,9 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
 		customer.setCustomerNo(SmsConst.CUSTOMER_PREFIX + newNo);
 
 		int iCreated = customerMapper.create(customer);
+		if( iCreated > 0 ) {
+			outModel.setCustomerModel(new CustomerModel());
+		}
 
     	//TODO リスト無しで確定したら削除
 		if( inModel.getBranchModelList().size() > 0 ) {
@@ -105,7 +108,8 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
 			}
 			iCreated = productMapper.createAll(productList);
 		}
-        return outModel;
+		
+		return outModel;
 	}
 
 	@Override

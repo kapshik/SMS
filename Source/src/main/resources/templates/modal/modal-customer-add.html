@@ -24,7 +24,7 @@
           <div class="col-lg-6">
             <div class="form-group">
               <label>郵便番号</label>
-              <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.zipcode" placeholder="101-0061">
+              <input id="zipcode" type="text" class="form-control form-control-sm" data-bind="value:customerModel.zipcode, event:{focusout: $root.doGetAddress}" placeholder="101-0061">
             </div>
           </div>
           <div class="col-lg-6">
@@ -66,8 +66,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-block btn-sm">登録</button>
-        <button type="button" class="btn btn-secondary btn-block btn-sm" data-dismiss="modal">キャンセル</button>
+        <button class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doCreate">登録</button>
+        <button class="btn btn-secondary btn-block btn-sm" data-dismiss="modal">キャンセル</button>
       </div>
     </div>
   </div>
