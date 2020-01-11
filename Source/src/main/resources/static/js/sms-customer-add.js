@@ -24,14 +24,16 @@ $(function () {
     var viewModel = new sms.vm.customer();
     viewModel.doInit({
         success : function() {
-        viewModel.bind();
-    },
-    failed : function() {
-        viewModel.bind();
+            viewModel.bind();
+        },
+        failed : function() {
+            viewModel.bind();
         }
     });
 	$('#id_customer_menu').collapse('show');
 	$('#id_customer_menu_4').addClass('active');
+	var validationViewModel = new sms.validation.ViewModel();
+	validationViewModel.init(null);
     setTimeout( function(){
             $('.loading').addClass('hidden');
     }, LOADING_TIMEOUT);

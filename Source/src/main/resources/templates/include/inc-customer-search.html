@@ -1,13 +1,19 @@
 <section data-bind="with: dataModel.criteria">
   <div class="card">
+    <form>
     <div class="card-header">
       <div class="row">
         <div class="col-lg-2">
           <h4>検索条件</h4>
         </div>
-        <div class="col-lg-2 offset-lg-8">
+        <div class="col-lg-2 offset-lg-6">
           <div class="form-group">
-            <button data-bind="click:$root.doSearch" class="btn btn-primary btn-block btn-sm">顧客検索</button>
+            <button type="button" data-bind="click:$root.doSearch" class="btn btn-primary btn-block btn-sm">顧客検索</button>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="form-group">
+            <button type="reset" class="btn btn-primary btn-block btn-sm">リセット</button>
           </div>
         </div>
       </div>
@@ -54,26 +60,27 @@
         </div>
       </div>
     </div>
+    </form>
     <div class="card-footer text-center">
       <div class="row">
         <div class="col-lg-3">
           <div class="form-group">
-            <button class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#id_modal_customer_add">顧客追加</button>
+            <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#id_modal_customer_add">顧客追加</button>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <button data-bind="click:$root.doDetail" class="btn btn-primary btn-block btn-sm disabled with-table-row">顧客詳細</button>
+            <button type="button" data-bind="click:$root.doDetail" class="btn btn-primary btn-block btn-sm disabled with-table-row">顧客詳細</button>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <button data-bind="click:$root.doUpdate" class="btn btn-primary btn-block btn-sm disabled with-table-row">顧客変更</button>
+            <button type="button" data-bind="click:$root.doUpdate" class="btn btn-primary btn-block btn-sm disabled with-table-row">顧客変更</button>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <button data-bind="click:$root.doDelete" class="btn btn-primary btn-block btn-sm disabled with-table-row">顧客削除</button>
+            <button type="button" data-bind="click:$root.doDelete" class="btn btn-primary btn-block btn-sm disabled with-table-row">顧客削除</button>
           </div>
         </div>
       </div>
