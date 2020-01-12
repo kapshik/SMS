@@ -17,12 +17,11 @@ import com.ksk.sms.dao.domain.Product;
 import com.ksk.sms.dao.mapper.BranchMapper;
 import com.ksk.sms.dao.mapper.CustomerMapper;
 import com.ksk.sms.dao.mapper.ProductMapper;
-import com.ksk.sms.model.AddressModel;
 import com.ksk.sms.model.BranchModel;
 import com.ksk.sms.model.CustomerModel;
 import com.ksk.sms.model.CustomerViewModel;
-import com.ksk.sms.model.DeliveryDestModel;
 import com.ksk.sms.model.ProductModel;
+import com.ksk.sms.model.ValidationErrorModel;
 import com.ksk.sms.service.common.SmsAddressService;
 import com.ksk.sms.service.common.SmsService;
 import com.ksk.sms.service.view.SmsViewService;
@@ -58,6 +57,7 @@ public class CustomerServiceImpl extends SmsService implements SmsViewService<Cu
     	outModel.setBranchModelList(new ArrayList<BranchModel>());
 		outModel.setProductModel(new ProductModel());
 		outModel.setProductModelList(new ArrayList<ProductModel>());
+		outModel.setValidationErrorList(new ArrayList<ValidationErrorModel>());
     	
     	//検索画面用
 		outModel.setCriteria(new CustomerModel());

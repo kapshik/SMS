@@ -21,4 +21,5 @@ public class CustomerViewModel extends SmsViewModel{
 	private List<BranchModel> branchModelList;
 	private List<ProductModel> productModelList;
 
+	private List<ValidationErrorModel> validationErrorList;
 }

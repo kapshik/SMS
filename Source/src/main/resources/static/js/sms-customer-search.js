@@ -34,6 +34,7 @@ sms.vm.customer = function() {
 
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
+	self.validationViewModel = new sms.validation.ViewModel();
 
 	self.doInit = function( param ) {
 		var u = '/customer/init';
@@ -43,6 +44,7 @@ sms.vm.customer = function() {
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
 			self.dataModel.title("顧客検索");
+	        self.validationViewModel.init(null);
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -147,6 +149,10 @@ sms.vm.customer = function() {
     };
 
 	self.doGetAddress = function( param ) {
+	    if(!$('#zipcode').get(0).checkValidity()) {
+	        return;
+	    }
+
 		var u = 'common/search_address?zipcode=' + $('#zipcode').val();
 		$.ajax({
 			type: 'get',

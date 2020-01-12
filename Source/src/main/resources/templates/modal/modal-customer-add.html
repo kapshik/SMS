@@ -25,7 +25,7 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>郵便番号</label>
-                <input id="zipcode" type="text" class="form-control form-control-sm" data-bind="value:customerModel.zipcode, event:{focusout: $root.doGetAddress}" placeholder="101-0061" required>
+                <input id="zipcode" type="text" class="form-control form-control-sm" data-bind="value:customerModel.zipcode, event:{focusout: $root.doGetAddress}" name="sms.validation.pattern.ZIP" required>
               </div>
             </div>
             <div class="col-lg-6">
@@ -45,7 +45,7 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>電話番号</label>
-                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.telNo" placeholder="090-1324-5678" required>
+                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.telNo" name="sms.validation.pattern.TEL" required>
               </div>
             </div>
           </div>
@@ -53,7 +53,7 @@
             <div class="col-lg-6">
               <div class="form-group">       
                 <label>ファックス</label>
-                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.faxNo" placeholder="03-1324-5678" required>
+                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.faxNo" name="sms.validation.pattern.TEL" required>
               </div>
             </div>
             <div class="col-lg-6">

@@ -32,8 +32,6 @@ $(function () {
     });
 	$('#id_customer_menu').collapse('show');
 	$('#id_customer_menu_4').addClass('active');
-	var validationViewModel = new sms.validation.ViewModel();
-	validationViewModel.init(null);
     setTimeout( function(){
             $('.loading').addClass('hidden');
     }, LOADING_TIMEOUT);
@@ -47,6 +45,7 @@ sms.vm.customer = function() {
 
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
+	self.validationViewModel = new sms.validation.ViewModel();
 
 	self.doInit = function( param ) {
 		var u = '/customer/init';
@@ -56,6 +55,7 @@ sms.vm.customer = function() {
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
 			self.dataModel.title("顧客登録");
+	        self.validationViewModel.init(null);
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -65,6 +65,10 @@ sms.vm.customer = function() {
 	};
 
 	self.doGetAddress = function( param ) {
+	    if(!$('#zipcode').get(0).checkValidity()) {
+	        return;
+	    }
+
 		var u = 'common/search_address?zipcode=' + $('#zipcode').val();
 		$.ajax({
 			type: 'get',
@@ -93,6 +97,9 @@ sms.vm.customer = function() {
     };
 
     self.doCreate = function() {
+        if(!self.validationViewModel.validateAll()) {
+        }
+        
         var u = '/customer/create';
         $.ajax({
             type: 'post',
@@ -100,6 +107,19 @@ sms.vm.customer = function() {
             data: toJSON(self.dataModel)
           }).done(function(response) {
             ko.mapping.fromJS(response, self.dataModel);
+//            console.log( self.dataModel.validationErrorList.length );
+            console.log( response.validationErrorList.length );
+            if(response.validationErrorList.length > 0) {
+                //self.validationViewModel.validationErrorList.removeAll();
+                self.validationViewModel.validationErrorList = response.validationErrorList;
+                /*
+                for( const item of response.validationErrorList ) {
+                    //console.log( item.id + " : " + item.message );
+                    self.validationViewModel.validationErrorList.push(item);
+                    //console.log( response.validationErrorList.find((value) => value.id === item.id).message );
+                }
+                */
+            }
           }).fail(function(xhr, exception){
             self.messages.removeAll();
             self.handler.handle(xhr, exception);

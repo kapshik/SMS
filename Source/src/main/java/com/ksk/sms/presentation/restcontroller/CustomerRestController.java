@@ -1,10 +1,19 @@
 package com.ksk.sms.presentation.restcontroller;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.groups.Default;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ReflectionUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.SmartValidator;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ksk.sms.model.AddressModel;
+import com.ksk.sms.model.CustomerModel;
 import com.ksk.sms.model.CustomerViewModel;
+import com.ksk.sms.model.ValidationErrorModel;
 import com.ksk.sms.service.common.SmsAddressService;
 import com.ksk.sms.service.view.SmsViewService;
 
@@ -28,6 +39,8 @@ public class CustomerRestController {
 	private SmsViewService<CustomerViewModel> service;
 	@Autowired
 	private SmsAddressService smsAddressService;
+	@Autowired
+	SmartValidator validator;
 	
 	@GetMapping("customer/init")
 	public CustomerViewModel init() {
@@ -58,8 +71,40 @@ public class CustomerRestController {
 	}
 	
 	@PostMapping("customer/create")
-	public CustomerViewModel create(@RequestBody CustomerViewModel inModel) {
-		CustomerViewModel outModel = service.create(inModel);
+	public CustomerViewModel create(@RequestBody CustomerViewModel inModel, BindingResult result) {
+		CustomerViewModel outModel = inModel;
+		
+		Class<?> validationGroup = Default.class;
+		validator.validate(inModel.getCustomerModel(), result, validationGroup);
+	    if (result.hasErrors()) {
+	    	CustomerModel cm = new CustomerModel();
+	    	for( ObjectError error : result.getAllErrors() ) {
+log.info("{} : {}", error.getObjectName(), error.getDefaultMessage());
+	    		Field field = ReflectionUtils.findField( CustomerModel.class, error.getObjectName() );
+	    		if( !Objects.isNull(field) && !Objects.isNull(error.getDefaultMessage()) ) {
+		    		ReflectionUtils.makeAccessible(field);
+		            ReflectionUtils.setField(field, cm, error.getDefaultMessage());
+	    		}
+	    	}
+	    	
+	    	List<ValidationErrorModel> validationErrorList = new ArrayList<ValidationErrorModel>();
+	    	for( FieldError error : result.getFieldErrors() ) {
+log.info("{} : {}", error.getField(), error.getDefaultMessage());
+	    		Field field = ReflectionUtils.findField( CustomerModel.class, error.getField() );
+	    		if( !Objects.isNull(field) && !Objects.isNull(error.getDefaultMessage()) ) {
+		    		ReflectionUtils.makeAccessible(field);
+		    		if( field.getType().isInstance(new String()) ) {
+		    			ReflectionUtils.setField(field, cm, error.getDefaultMessage());
+		    		}
+	    			ValidationErrorModel validationErrorModel = new ValidationErrorModel(error.getField(), error.getDefaultMessage());
+	    			validationErrorList.add(validationErrorModel);
+	    		}
+	    	}
+//			outModel.setCustomerModel(cm);
+			outModel.setValidationErrorList(validationErrorList);
+	    } else {
+			outModel = service.create(inModel);
+	    }
 		
 		return outModel;
 	}

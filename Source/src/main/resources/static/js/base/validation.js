@@ -36,12 +36,17 @@ sms.validation.pattern = {
     TEL : {
         id    : "TEL",
         name  : "電話番号",
-        regexp: "[0-9]{2,4}-[0-9]{3,4}-[0-9]{3,4}"
+        regexp: "0[0-9]{1,4}-[0-9]{3,4}-[0-9]{4}"
     },
     IP : {
         id    : "IP",
         name  : "IPアドレス",
         regexp: "[0-9]{1,3}(\.[0-9]{1,3}){3}$"
+    },
+    EMAIL : {
+        id    : "EMAIL",
+        name  : "EMAILアドレス",
+        regexp: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
     },
     DECIMAL : {
         id    : "DECIMAL",
@@ -75,6 +80,7 @@ sms.validation.pattern.getRegexp = function(patternId) {
 
 sms.validation.ViewModel = function() {
     var self = this;
+    self.validationErrorList = [];
     
     self.init = function(consistencyCheck) {
         //ボタンの制御
@@ -95,7 +101,7 @@ sms.validation.ViewModel = function() {
         $('input, textarea').each( function(index, element) {
             self.addCommonListener(element);
             $(element).on('change', function(event) {
-                sms.validation.setValidationResult(element, SINGLE_MODE);
+                sms.validation.setValidationResult(element, SINGLE_MODE, self.getValidationErrorMessage(element.id));
             });
         });
         //イベントリスナ登録
@@ -104,7 +110,7 @@ sms.validation.ViewModel = function() {
             $(element).on('change', function(event) {
                 $(element).hide(0);
                 $(element).get(0).checkValidity();
-                sms.validation.setValidationResult(element, SINGLE_MODE);
+                sms.validation.setValidationResult(element, SINGLE_MODE, self.getValidationErrorMessage(element.id));
                 $(element).show(0).focus();
             });
         });
@@ -127,11 +133,11 @@ sms.validation.ViewModel = function() {
             }
         });
         $(element).on('focus mouseenter', function(event) {
-            sms.validation.setValidationResult(element, SINGLE_MODE);
+            sms.validation.setValidationResult(element, SINGLE_MODE, self.getValidationErrorMessage(element.id));
         });
         $(element).on('keyup', function(event) {
             $(element).siblings('label.help-block').remove();
-            sms.validation.setValidationResult(element, SINGLE_MODE);
+            sms.validation.setValidationResult(element, SINGLE_MODE, self.getValidationErrorMessage(element.id));
         });
     }
 
@@ -140,7 +146,7 @@ sms.validation.ViewModel = function() {
     }
     
     self.preventExecute = function(mode) {
-        $("div[id='id_main_pannel'] button").each( function(index, element) {
+        $("div[id='id_main'] button").each( function(index, element) {
             element.disabled = mode;
         });
     }
@@ -151,19 +157,31 @@ sms.validation.ViewModel = function() {
         $('input, select, textarea').each( function(index, element) {
             if(element.willValidate) {
                 var checkResult = element.checkValidity(); 
-                sms.validation.setValidationResult(element, MULTIPLE_MODE);
+                sms.validation.setValidationResult(element, MULTIPLE_MODE, self.getValidationErrorMessage(element.id));
                 result = result && checkResult;
             }
         });
         return result;
     }
+
+    self.getValidationErrorMessage = function(inId) {
+        console.log("self.validationErrorList.length : " + self.validationErrorList.length);
+        if( self.validationErrorList.length > 0 ) {
+            var result = self.validationErrorList.find((value) => value.id === inId);
+            if(result !== undefined) {
+                return result.message;
+            }
+        }
+        return null;
+    }
 }
 
-sms.validation.setValidationResult = function(element, isSingleMode) {
+sms.validation.setValidationResult = function(element, isSingleMode, inMessage) {
     if(!element.willValidate) {
         return;
     }
-    if(element.validity.valid) {
+    console.log(element.id + ":" + inMessage);
+    if(inMessage == null && element.validity.valid) {
         element.setCustomValidity('');
         $(element).parent('div').parent('div').removeClass('has-error');
         $(element).parent('div').parent('div').addClass('has-success');
@@ -174,96 +192,14 @@ sms.validation.setValidationResult = function(element, isSingleMode) {
         $(element).parent('div').parent('div').removeClass('has-success');
         $(element).parent('div').parent('div').addClass('has-error');
         if(isSingleMode && $(element).siblings('label.help-block').length == 0) {
-            $(element).after('<label class="help-block show" for"' + element.id +'">' + element.validationMessage + '</lavel>');
+            if( inMessage == null ) {
+                $(element).after('<label class="help-block show text-danger" for="' + element.id +'">' + element.validationMessage + '</lavel>');
+            } else {
+                $(element).after('<label class="help-block show text-danger" for="' + element.id +'">' + inMessage + '</lavel>');
+            }
         }
     }
     if(element.pattern === undefined || element.pattern.length <= 0 ) {
         element.setAttribute('title', element.validationMessage);
     }
-};
-
-sms.model.data.Message = function(msg) {
-  var self = this;
-  self.code = msg.code;
-  self.message = ko.observable(msg.message);
-};
-
-sms.model.data.ValidationMessage = function(validation) {
-  var self = this;
-  self.path = validation.path;
-  self.message = validation.message;
-  self.fullMessage = ko.computed(function() {
-    var key = self.path.substring(self.path.lastIndexOf(".") + 1);
-    var p = $('label[for="'+ key +'"]').text();
-    return p + ":" + self.message;
-  });
-};
-
-sms.model.data.ErrorMessage = function(error) {
-  var self = this;
-  self.code = error.code;
-  self.id = error.id;
-  self.message = error.message;
-  self.status = error.status;
-};
-
-sms.vm.ErrorViewModel = function() {
-  var self = this;
-  self.validations = ko.observableArray([]).extend({ arrayExtensions: true });
-  self.errors = ko.observableArray([]).extend({ arrayExtensions: true });
-  self.handle = function(xhr, exception) {
-    var statusCode = xhr.status;
-    switch(statusCode) {
-    case 400:
-      self.validations.removeAll();
-      var error = JSON.parse(xhr.responseText);
-      if (error.validationMessages) {
-        ko.utils.arrayForEach(error.validationMessages, function(v){
-          self.validations.push(new sms.model.data.ValidationMessage(v));
-        });
-      } else {
-        sms.model.ErrorModel.goToSystemError();
-      }
-      break;
-    case 401:
-      sms.model.ErrorModel.goToVerifyFound();
-      break;
-    case 404:
-      sms.model.ErrorModel.goToPageNotFound();
-      break;
-    default:
-      sms.model.ErrorModel.goToSystemError();
-    }
-  };
-  self.removeValidationMessage = function() {
-    self.validations.removeAll();
-  };
-  self.removeMessage = function() {
-    self.errors.removeAll();
-  };
-  self.addMessage = function(msg) {
-    this.removeMessage();
-    self.errors.push(new sms.model.data.ErrorMessage({
-      code: "",
-      message: msg,
-      id: "",
-      status: -1
-    }));
-  };
-  self.addError = function(response) {
-    var error = JSON.parse(response.responseText);
-    self.validations.push(new sms.model.data.ErrorMessage(error));
-  };
-};
-
-sms.model.ErrorModel = {
-  goToVerifyFound : function() {
-    window.location = "/error.html"; //401
-  },
-  goToPageNotFound : function() {
-    window.location = "/error.html"; //404
-  },
-  goToSystemError : function() {
-    window.location = "/error.html"; //
-  }
 };
