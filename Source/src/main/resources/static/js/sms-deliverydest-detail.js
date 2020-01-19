@@ -2,7 +2,7 @@ $(function () {
     // ------------------------------------------------------- //
     // Initialize Page By Server Data
     // ------------------------------------------------------ //
-    var viewModel = new sms.vm.branch();
+    var viewModel = new sms.vm.deliverydest();
     viewModel.doInit({
         success : function() {
         viewModel.bind();
@@ -11,8 +11,8 @@ $(function () {
         viewModel.bind();
         }
     });
-	$('#id_branch_menu').collapse('show');
-	$('#id_branch_menu_4').addClass('active');
+	$('#id_deliverydest_menu').collapse('show');
+	$('#id_deliverydest_menu_7').addClass('active');
     setTimeout( function(){
             $('.loading').addClass('hidden');
     }, LOADING_TIMEOUT);
@@ -21,22 +21,20 @@ $(function () {
 // ------------------------------------------------------- //
 // ViewModel
 // ------------------------------------------------------ //
-sms.vm.branch = function() {
+sms.vm.deliverydest = function() {
 	var self = this;
 
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
-	self.validationViewModel = new sms.validation.ViewModel();
 
 	self.doInit = function( param ) {
-		var u = '/branch/init';
+		var u = '/deliverydest/init_detail';
 		$.ajax({
 			type: 'get',
 			url: u,
 		}).done(function(response) {
-			self.dataModel = ko.mapping.fromJS(ko.toJS(response));
-			self.dataModel.title("支店登録");
-	        self.validationViewModel.init(null);
+			self.dataModel = ko.mapping.fromJS(response);
+			self.dataModel.title("納品先詳細");
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -55,13 +53,13 @@ sms.vm.branch = function() {
 			type: 'get',
 			url: u,
 		}).done(function(response) {
-		    self.dataModel.branchModel.address(response.address1+response.address2+response.address3);
+		    self.dataModel.deliveryDestModel.address(response.address1+response.address2+response.address3);
 		}).fail(function(xhr, exception){
 		});
 	};
 
-    self.doSearch = function() {
-        var u = '/branch/search';
+    self.doCustomerChange = function() {
+        var u = '/deliverydest/customerChange';
         $.ajax({
             type: 'post',
             url: u,
@@ -72,28 +70,6 @@ sms.vm.branch = function() {
             self.messages.removeAll();
             self.handler.handle(xhr, exception);
         });
-    };
-
-    self.doCreate = function() {
-        if(!self.validationViewModel.validateAll()) {
-            return;
-        }
-        var u = '/branch/create';
-        $.ajax({
-            type: 'post',
-            url: u,
-            data: toJSON(self.dataModel)
-          }).done(function(response) {
-            ko.mapping.fromJS(response, self.dataModel);
-          }).fail(function(xhr, exception){
-            self.messages.removeAll();
-            self.handler.handle(xhr, exception);
-        });
-    };
-
-    self.doDeliveryDestListAdd = function() {
-        var deliveryDest = $.extend({}, ko.mapping.toJS(self.dataModel.deliveryDestModel));
-        self.dataModel.deliveryDestModelList.push(deliveryDest);
     };
 
     self.doDeleteItem = function() {

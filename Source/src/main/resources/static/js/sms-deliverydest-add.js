@@ -26,6 +26,7 @@ sms.vm.deliverydest = function() {
 
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
+	self.validationViewModel = new sms.validation.ViewModel();
 
 	self.doInit = function( param ) {
 		var u = '/deliverydest/init';
@@ -35,6 +36,7 @@ sms.vm.deliverydest = function() {
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
 			self.dataModel.title("納品先登録");
+	        self.validationViewModel.init(null);
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -44,6 +46,10 @@ sms.vm.deliverydest = function() {
 	};
 
 	self.doGetAddress = function( param ) {
+	    if(!$('#zipcode').get(0).checkValidity()) {
+	        return;
+	    }
+
 		var u = 'common/search_address?zipcode=' + $('#zipcode').val();
 		$.ajax({
 			type: 'get',
@@ -56,20 +62,6 @@ sms.vm.deliverydest = function() {
 
     self.doCustomerChange = function() {
         var u = '/deliverydest/customerChange';
-        $.ajax({
-            type: 'post',
-            url: u,
-            data: toJSON(self.dataModel)
-          }).done(function(response) {
-            ko.mapping.fromJS(response, self.dataModel);
-          }).fail(function(xhr, exception){
-            self.messages.removeAll();
-            self.handler.handle(xhr, exception);
-        });
-    };
-
-    self.doSearch = function() {
-        var u = '/deliverydest/search';
         $.ajax({
             type: 'post',
             url: u,
@@ -95,7 +87,6 @@ sms.vm.deliverydest = function() {
             self.handler.handle(xhr, exception);
         });
     };
-
 
     self.doDeleteItem = function() {
         self.dataModel.deliveryDestModelList.pop();

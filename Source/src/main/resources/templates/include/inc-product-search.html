@@ -1,7 +1,22 @@
 <section data-bind="with: dataModel.criteria">
+</form>
   <div class="card">
     <div class="card-header">
-      <h4>検索条件</h4>
+      <div class="row">
+        <div class="col-lg-2">
+          <h4>検索条件</h4>
+        </div>
+        <div class="col-lg-2 offset-lg-6">
+          <div class="form-group">
+            <button type="button" data-bind="click:$root.doSearch" class="btn btn-primary btn-block btn-sm">商品検索</button>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="form-group">
+            <button type="reset" class="btn btn-primary btn-block btn-sm">リセット</button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="card-body">
       <div class="row">
@@ -35,11 +50,27 @@
     </div>
     <div class="card-footer text-center">
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-lg-3">
           <div class="form-group">
-            <button  id="id_btn_order_search" type="button" data-bind="click:$root.doSearch" class="btn btn-primary btn-block btn-sm">商品検索</button>
+            <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#id_modal_product_add">商品追加</button>
           </div>
         </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <button type="button" data-bind="click:$root.doDetail" class="btn btn-primary btn-block btn-sm disabled with-table-row">商品詳細</button>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <button type="button" data-bind="click:$root.doUpdate" class="btn btn-primary btn-block btn-sm disabled with-table-row">商品変更</button>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <button type="button" data-bind="click:$root.doDelete" class="btn btn-primary btn-block btn-sm disabled with-table-row">商品削除</button>
+          </div>
+        </div>
+<!--        
         <div class="col-sm-2 offset-sm-1">
           <div class="form-group">
             <button id="id_btn_order_detail" type="button" data-toggle="modal" data-target="#id_modal_product_add" class="btn btn-primary btn-block btn-sm">商品追加</button>
@@ -60,9 +91,11 @@
             <button disabled data-bind="click:$root.doDelete" type="button" class="btn btn-primary btn-block btn-sm with-table-row">商品削除</button>
           </div>
         </div>
+-->
       </div>
     </div>
   </div>
+</form>
 </section>
 
 <div th:insert="include/inc-product-list">

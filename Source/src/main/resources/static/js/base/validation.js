@@ -165,7 +165,7 @@ sms.validation.ViewModel = function() {
     }
 
     self.getValidationErrorMessage = function(inId) {
-        console.log("self.validationErrorList.length : " + self.validationErrorList.length);
+//        console.log("self.validationErrorList.length : " + self.validationErrorList.length);
         if( self.validationErrorList.length > 0 ) {
             var result = self.validationErrorList.find((value) => value.id === inId);
             if(result !== undefined) {
@@ -180,7 +180,7 @@ sms.validation.setValidationResult = function(element, isSingleMode, inMessage) 
     if(!element.willValidate) {
         return;
     }
-    console.log(element.id + ":" + inMessage);
+//    console.log(element.id + ":" + inMessage);
     if(inMessage == null && element.validity.valid) {
         element.setCustomValidity('');
         $(element).parent('div').parent('div').removeClass('has-error');

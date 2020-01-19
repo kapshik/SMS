@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <!-- Bootstrap Select CSS-->
     <link rel="stylesheet" href="vendor/bootstrap-select/css/bootstrap-select.min.css">
+    <!-- Bootstrap Datepicker CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css">
     <!-- Custom Scrollbar-->
     <link rel="stylesheet" href="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
     <!-- theme stylesheet-->
@@ -42,7 +44,7 @@
       <!-- navbar-->
       <header class="header" th:insert="include/inc-header">
       </header>
-      <div class="container-fluid" th:insert="include/inc-branch-search">
+      <div class="container-fluid" th:insert="include/inc-customer-add_WithList">
       </div>
       <footer class="main-footer" th:insert="include/inc-footer">
       </footer>
@@ -56,6 +58,8 @@
     <script src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- Bootstrap Select-->
     <script src="vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <!-- Bootstrap DatePicker-->
+    <script src="vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
     <!-- Knockout-->
     <script src="vendor/knockout/knockout-3.5.1.js"></script>
     <script src="vendor/knockout/knockout.mapping-latest.js"></script>
@@ -63,7 +67,7 @@
     <script src="js/base/namespace.js"></script>
     <script src="js/base/error-handler.js"></script>
     <script src="js/base/validation.js"></script>
-    <script src="js/sms-branch-search.js"></script>
+    <script src="js/sms-customer-add.js"></script>
     <!-- Main File-->
     <script src="js/sms-front.js"></script>
   </body>

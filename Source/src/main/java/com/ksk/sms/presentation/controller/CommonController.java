@@ -26,7 +26,7 @@ public class CommonController extends SmsController {
 	@RequestMapping("/sms-home.html")	
 	public String homeForm(Model model) {
 
-        log.info(model);
+//        log.info(model);
 		return "sms-home";
 	}
 

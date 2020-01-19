@@ -61,7 +61,7 @@ public class SmsService {
         Branch criteria = new Branch();
         criteria.setCustomerNo(inCustomerNo);
         
-		log.info("inCustomerNo:{}", inCustomerNo);
+//		log.info("inCustomerNo:{}", inCustomerNo);
 		List<Branch> selectedList = branchMapper.findList(criteria);
 		
         for(Branch item : selectedList){
@@ -81,7 +81,7 @@ public class SmsService {
         DeliveryDest criteria = new DeliveryDest();
         criteria.setBranchNo(inBranchNo);
         
-		log.info("inBranchNo:{}", inBranchNo);
+//		log.info("inBranchNo:{}", inBranchNo);
 		List<DeliveryDest> selectedList = deliveryDestMapper.findList(criteria);
 		
         for(DeliveryDest item : selectedList){

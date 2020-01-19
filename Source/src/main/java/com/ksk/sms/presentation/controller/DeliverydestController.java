@@ -26,4 +26,21 @@ public class DeliverydestController extends SmsController {
 		return "sms-deliverydest-search";
 	}
 
+//	納品先変更画面
+	@RequestMapping("/sms-deliverydest-update.html")	
+	public String updateForm(Model model) {
+		model.addAttribute("isListNeedBtn", true);
+
+        log.info(model);
+		return "sms-deliverydest-update";
+	}
+
+//	納品先詳細画面
+	@RequestMapping("/sms-deliverydest-detail.html")	
+	public String detailForm(Model model) {
+
+        log.info(model);
+		return "sms-deliverydest-detail";
+	}
+
 }

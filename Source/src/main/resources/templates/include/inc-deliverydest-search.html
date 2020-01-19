@@ -1,7 +1,22 @@
+<form>
 <section data-bind="with:dataModel.criteria">
   <div class="card">
     <div class="card-header">
-      <h4>検索条件</h4>
+      <div class="row">
+        <div class="col-lg-2">
+          <h4>検索条件</h4>
+        </div>
+        <div class="col-lg-2 offset-lg-6">
+          <div class="form-group">
+            <button type="button" data-bind="click:$root.doSearch" class="btn btn-primary btn-block btn-sm">納品先検索</button>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="form-group">
+            <button type="reset" class="btn btn-primary btn-block btn-sm">リセット</button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="card-body">
       <div class="row">
@@ -29,33 +44,36 @@
       <div class="row">
         <div class="col-lg-3">
           <div class="form-group">
-            <button type="button" data-bind="click:$root.doSearch" class="btn btn-primary btn-block btn-sm">納品先検索</button>
+            <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#id_modal_deliverydest_add">納品先追加</button>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <a class="btn btn-primary btn-block btn-sm disabled with-table-row" href="sms-deliverydest-detail.html" role="button">納品先詳細</a>
+            <button data-bind="click:$root.doDetail" class="btn btn-primary btn-block btn-sm disabled with-table-row">納品先詳細</button>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <a class="btn btn-primary btn-block btn-sm disabled with-table-row" href="sms-deliverydest-update.html" role="button">納品先変更</a>
+            <button data-bind="click:$root.doUpdate" class="btn btn-primary btn-block btn-sm disabled with-table-row">納品先変更</button>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <button disabled data-bind="click:$root.doDelete" type="button" class="btn btn-primary btn-block btn-sm with-table-row">納品先削除</button>
+            <button data-bind="click:$root.doDelete" class="btn btn-primary btn-block btn-sm with-table-row">納品先削除</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+</form>
 
 <div th:insert="include/inc-deliverydest-list">
 </div>
 
 <!-- Modal-->
+<div th:insert="modal/modal-deliverydest-add">
+</div>
 <div th:insert="modal/modal-error">
 </div>
 <!-- Modal-->

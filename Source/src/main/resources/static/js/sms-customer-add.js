@@ -98,6 +98,7 @@ sms.vm.customer = function() {
 
     self.doCreate = function() {
         if(!self.validationViewModel.validateAll()) {
+            return;
         }
         
         var u = '/customer/create';

@@ -20,10 +20,11 @@
       </div>
     </div>
     <div class="card-body" data-bind="visible : branchModelList().length > 0">
-      <div class="table-responsive">
-        <table id="id_product_list" class="table table-sm" style="width: 100%;">
+      <div class="table-responsive border">
+        <table id="id_branch_list" class="table table-sm" style="width: 100%;">
           <thead>
             <tr>
+              <th class="d-none">#</th>
               <th class="d-none">#</th>
               <th width="10%">支店名</th>
               <th width="10%">郵便番号</th>
@@ -35,6 +36,7 @@
           </thead>
           <tbody data-bind="foreach: branchModelList">
             <tr onClick="doSelectTableRow(this)">
+              <td data-bind="text: customerNo" class="d-none"></td>
               <td data-bind="text: branchNo" class="d-none"></td>
               <td data-bind="text: branchName"></td>
               <td data-bind="text: zipcode"></td>

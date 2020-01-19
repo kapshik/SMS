@@ -1,6 +1,7 @@
 package com.ksk.sms.service.common.impl;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -79,7 +80,10 @@ public class SmsAddressServiceImpl implements SmsAddressService {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		AddressModel addressModel = zipCloudModel.getResults().get(0); 
+		AddressModel addressModel = new AddressModel();
+		if(Objects.nonNull(zipCloudModel)) {
+			addressModel = zipCloudModel.getResults().get(0);
+		}
 		log.info(addressModel.getAddress1()+addressModel.getAddress2()+addressModel.getAddress3());
 
 		return addressModel;

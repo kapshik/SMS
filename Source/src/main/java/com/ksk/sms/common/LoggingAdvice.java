@@ -30,7 +30,7 @@ public class LoggingAdvice {
     @Around("execution(* com.ksk.sms..*.*(..))")
     public Object  aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable {
     	this.logger = LogManager.getLogger(joinPoint.getTarget().getClass());
-    	outputLog(joinPoint);
+//    	outputLog(joinPoint);
         try {
             return joinPoint.proceed();
         } catch (Throwable e) {

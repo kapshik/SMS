@@ -19,12 +19,14 @@
           </div>
       </div>
       <div class="card-body" data-bind="visible : deliveryDestModelList().length > 0">
-        <div class="table-responsive">
-          <table id="id_customer_list" class="table table-striped table-hover table-sm table-bordered" style="width: 100%;">
+        <div class="table-responsive border">
+          <table id="id_deliverydest_list" class="table table-sm" style="width: 100%;">
             <thead>
               <tr>
-                <th width="2%">#</th>
-                <th width="10%">納品先名</th>
+                <th class="d-none">#</th>
+                <th class="d-none">#</th>
+                <th class="d-none">#</th>
+                <th width="20%">納品先名</th>
                 <th width="10%">郵便番号</th>
                 <th width="20%">住所１</th>
                 <th>住所２</th>
@@ -33,12 +35,10 @@
               </tr>
             </thead>
             <tbody data-bind="foreach: deliveryDestModelList">
-              <tr class="clickable-row">
-                <th scope="row">
-                  <div class="form-check-inline">
-                    <input type="radio" class="form-check-input" name="table_radio" data-bind="value: deliveryDestNo" onClick="doCheckedTableRow()">
-                  </div>
-                </th>
+              <tr onClick="doSelectTableRow(this)">
+                <td data-bind="text: customerNo" class="d-none"></td>
+                <td data-bind="text: branchNo" class="d-none"></td>
+                <td data-bind="text: deliveryDestNo" class="d-none"></td>
                 <td><span data-bind="text: deliveryDestName"></span></td>
                 <td><span data-bind="text: zipcode"></span></td>
                 <td><span data-bind="text: address"></span></td>

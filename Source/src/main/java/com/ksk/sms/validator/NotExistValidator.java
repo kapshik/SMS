@@ -10,7 +10,7 @@ import com.ksk.sms.dao.mapper.ValidationMapper;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-public class UniqueNameValidator implements ConstraintValidator<UniqueName, String> {
+public class NotExistValidator implements ConstraintValidator<NotExist, String> {
 
     @Autowired
     private ValidationMapper validationMapper;
@@ -19,7 +19,7 @@ public class UniqueNameValidator implements ConstraintValidator<UniqueName, Stri
     private String columnName;
 
 	@Override
-	public void initialize(UniqueName annotation) {
+	public void initialize(NotExist annotation) {
 		tableName = annotation.tableName();
 		columnName = annotation.columnName();
 	}

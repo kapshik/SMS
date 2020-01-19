@@ -36,6 +36,7 @@ public class DeliveryDestServiceImpl extends SmsService implements SmsViewServic
     	
     	//登録・詳細・更新画面用
 		outModel.setDeliveryDestModel(new DeliveryDestModel());
+		outModel.setDetail(new DeliveryDestModel());
 		//outModel.setCustomerList(makeCustomerList());
 		//outModel.setBranchList(makeBranchList(""));
 
@@ -85,8 +86,17 @@ public class DeliveryDestServiceImpl extends SmsService implements SmsViewServic
 
 	@Override
 	public DeliveryDestViewModel detail(DeliveryDestViewModel inModel) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		DeliveryDestViewModel outModel = Objects.requireNonNull(inModel);
+
+		DeliveryDest criteria = new DeliveryDest();
+    	SmsBeanUtilsBean.copyProperties(criteria, inModel.getDetail());
+
+		DeliveryDest deliveryDest = deliveryDestMapper.findOne(criteria);
+		DeliveryDestModel deliveryDestModel = new DeliveryDestModel();
+    	SmsBeanUtilsBean.copyProperties(deliveryDestModel, deliveryDest);
+		outModel.setDeliveryDestModel(deliveryDestModel);
+
+		return outModel;
 	}
 
 	@Override

@@ -1,5 +1,9 @@
 package com.ksk.sms.presentation.restcontroller;
 
+import java.util.Objects;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,9 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ksk.sms.model.DeliveryDestViewModel;
 import com.ksk.sms.service.view.SmsViewService;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @RestController
 public class DeliveryDestRestController {
 
+	@Autowired
+	HttpSession session;  
 	@Autowired
 	private SmsViewService<DeliveryDestViewModel> service;
 	
@@ -19,6 +28,13 @@ public class DeliveryDestRestController {
 	public DeliveryDestViewModel init() {
 		DeliveryDestViewModel outModel = service.init();
 		
+		return outModel;
+	}
+	
+	@GetMapping("deliverydest/init_detail")
+	public DeliveryDestViewModel init_detail() {
+		DeliveryDestViewModel outModel = service.detail((DeliveryDestViewModel)session.getAttribute("deliveryDestViewModel"));
+log.info("deliverydest/init_detail");
 		return outModel;
 	}
 	
@@ -40,6 +56,14 @@ public class DeliveryDestRestController {
 	public DeliveryDestViewModel update(@RequestBody DeliveryDestViewModel inModel) {
 		DeliveryDestViewModel outModel = service.update(inModel);
 		
+		return outModel;
+	}
+	
+	@PostMapping("deliverydest/detail")
+	public DeliveryDestViewModel detail(@RequestBody DeliveryDestViewModel inModel) {
+		DeliveryDestViewModel outModel = Objects.requireNonNull(inModel);
+		session.setAttribute("deliveryDestViewModel", outModel);
+
 		return outModel;
 	}
 	

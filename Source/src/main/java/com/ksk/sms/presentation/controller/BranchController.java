@@ -35,7 +35,16 @@ public class BranchController extends SmsController {
 		return "sms-branch-add";
 	}
 	
-//	支店検索画面
+//	支店登録画面
+	@RequestMapping("/sms-branch-add_WithList.html")	
+	public String add_WithListForm(Model model) {
+		model.addAttribute("isListNeedBtn", true);
+
+        log.info(model);
+		return "sms-branch-add_WithList";
+	}
+
+	//	支店検索画面
 	@RequestMapping("/sms-branch-search.html")	
 	public String searchForm(Model model) {
 
@@ -50,6 +59,14 @@ public class BranchController extends SmsController {
 
         log.info(model);
 		return "sms-branch-update";
+	}
+
+//	支店詳細画面
+	@RequestMapping("/sms-branch-detail.html")	
+	public String detailForm(Model model) {
+
+        log.info(model);
+		return "sms-branch-detail";
 	}
 
 }

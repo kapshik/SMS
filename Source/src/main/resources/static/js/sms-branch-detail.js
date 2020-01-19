@@ -28,7 +28,8 @@ sms.vm.branch = function() {
 	self.handler = new sms.vm.ErrorViewModel();
 
 	self.doInit = function( param ) {
-		var u = '/branch/init';
+console.log("init_detail");
+		var u = '/branch/init_detail';
 		$.ajax({
 			type: 'get',
 			url: u,
@@ -70,21 +71,6 @@ sms.vm.branch = function() {
             self.messages.removeAll();
             self.handler.handle(xhr, exception);
         });
-    };
-
-    self.doAddItem = function() {
-        var deliveryDestModel = { 
-                "customerNo":"C003",
-                "branchNo":"B003",
-                "deliveryDestNo":"D003",
-                "deliveryDestName":"納品先",
-                "zipcode":"101-0015",
-                "address":"東京都千代田区水道橋",
-                "addressDetail":"尾道ラーメン3階",
-                "telNo":"03-1234-5678",
-                "faxNo":"03-9876-5432"
-        };
-        self.dataModel.deliveryDestModelList.push(deliveryDestModel);
     };
 
     self.doDeleteItem = function() {

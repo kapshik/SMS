@@ -20,7 +20,7 @@ public class SmsHandlerInterceptor implements HandlerInterceptor {
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		log.info(modelAndView);
+//		log.info(modelAndView);
 	}
 
 	@Override

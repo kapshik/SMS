@@ -39,7 +39,7 @@ public class SmsControllerAdvice {
         model.addAttribute("smsViewModel", service.init());
         model.addAttribute("isListNeedBtn", false);
         
-        log.info(model);
+//        log.info(model);
 	}
 
 	@ExceptionHandler

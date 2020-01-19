@@ -12,8 +12,8 @@ import javax.validation.Payload;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = {UniqueNameValidator.class})
-public @interface UniqueName {
+@Constraint(validatedBy = {NotExistValidator.class})
+public @interface NotExist {
 
 	String message() default "同じのデータが既に存在します。";
 	Class<?>[] groups() default {};
@@ -26,7 +26,7 @@ public @interface UniqueName {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Documented
 	@interface List {
-		UniqueName[] value();
+		NotExist[] value();
 	}
 
 }

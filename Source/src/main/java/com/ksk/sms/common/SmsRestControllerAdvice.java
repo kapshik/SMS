@@ -21,7 +21,7 @@ public class SmsRestControllerAdvice {
 
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
-		log.debug("initBinder : {}", dataBinder);
+//		log.debug("initBinder : {}", dataBinder);
 		dataBinder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 	}
 
@@ -30,14 +30,14 @@ public class SmsRestControllerAdvice {
 //		model.addAttribute("username", SmsUserInfoUtil.getUsername());
 //      model.addAttribute("isAdmin", SmsUserInfoUtil.getRole().equals("ROLE_ADMIN") );
 
-        log.info(model);
+//        log.info(model);
 	}
 
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public String handleSystemException(Exception e) {
 		log.error("System Error occurred.", e);
-		return "error";
+		return "sms-home";
 	}
 
 }

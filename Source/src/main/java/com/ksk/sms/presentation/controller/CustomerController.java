@@ -37,7 +37,7 @@ public class CustomerController extends SmsController  {
 
 //	顧客登録画面
 	@RequestMapping("/sms-customer-add_WithList.html")	
-	public String addWithListForm(Model model) {
+	public String add_WithListForm(Model model) {
         model.addAttribute("isListNeedBtn", true);
 
         log.info(model);

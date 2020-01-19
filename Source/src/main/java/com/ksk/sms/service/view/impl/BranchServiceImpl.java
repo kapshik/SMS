@@ -41,6 +41,7 @@ public class BranchServiceImpl extends SmsService implements SmsViewService<Bran
     	
     	//登録・詳細・更新画面用
 		outModel.setBranchModel(new BranchModel());
+		outModel.setDetail(new BranchModel());
 		//outModel.setCustomerList(makeCustomerList());
     	//TODO リスト無しで確定したら削除
 		outModel.setDeliveryDestModel(new DeliveryDestModel());
@@ -96,7 +97,7 @@ public class BranchServiceImpl extends SmsService implements SmsViewService<Bran
 
     		SmsBeanUtilsBean.copyProperties(branchModel, item);
 
-			log.info(branchModel.toString());
+//			log.info(branchModel.toString());
 			branchModelList.add(branchModel);
 		}
 		outModel.setBranchModelList(branchModelList);
@@ -106,8 +107,35 @@ public class BranchServiceImpl extends SmsService implements SmsViewService<Bran
 
 	@Override
 	public BranchViewModel detail(BranchViewModel inModel) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+        BranchViewModel outModel = Objects.requireNonNull(inModel);
+
+		Branch criteria = new Branch();
+    	SmsBeanUtilsBean.copyProperties(criteria, inModel.getDetail());
+
+log.info("criteria.getCustomerNo : ", criteria.getCustomerNo());
+        Branch branch = branchMapper.findOne(criteria);
+		BranchModel branchModel = new BranchModel();
+    	SmsBeanUtilsBean.copyProperties(branchModel, branch);
+		outModel.setBranchModel(branchModel);
+
+    	DeliveryDest deliveryDestCriteria = new DeliveryDest();
+    	SmsBeanUtilsBean.copyProperties(deliveryDestCriteria, criteria);
+		List<DeliveryDest> deliveryDestList = deliveryDestMapper.findList(deliveryDestCriteria);
+	log.info("deliveryDestList.size() : {}", deliveryDestList.size());
+		if( deliveryDestList.size() > 0 ) {
+			List<DeliveryDestModel> deliveryDestModelList = new ArrayList<DeliveryDestModel>();
+	        for(DeliveryDest item : deliveryDestList){
+				DeliveryDestModel deliveryDestModel = new DeliveryDestModel();
+
+		    	SmsBeanUtilsBean.copyProperties(deliveryDestModel, item);
+
+				deliveryDestModelList.add(deliveryDestModel);
+			}
+	log.info("deliveryDestModelList.size() : {}", deliveryDestModelList.size());
+			outModel.setDeliveryDestModelList(deliveryDestModelList);
+		}
+		
+		return outModel;
 	}
 
 	@Override

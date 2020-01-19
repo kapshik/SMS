@@ -1,4 +1,5 @@
 <div id="id_modal_customer_add" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true" class="modal fade text-left">
+<form>
   <div role="document" class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -6,85 +7,70 @@
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body" data-bind="with: dataModel">
-        <form>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group">
-                <label>顧客名</label>
-                <input type="text" class="form-control form-control-sm" placeholder="顧客名" data-bind="value: customerModel.customerName" required>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="form-group">       
-                <label>開始日</label>
-                <input type="text" placeholder="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: customerModel.startDate" required>
-              </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>顧客名</label>
+              <input type="text" class="form-control form-control-sm" placeholder="顧客名" data-bind="value: customerModel.customerName" required>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group">
-                <label>郵便番号</label>
-                <input id="zipcode" type="text" class="form-control form-control-sm" data-bind="value:customerModel.zipcode, event:{focusout: $root.doGetAddress}" name="sms.validation.pattern.ZIP" required>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="form-group">       
-                <label>住所１</label>
-                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.address" placeholder="住所１" required>
-              </div>
+          <div class="col-lg-6">
+            <div class="form-group">       
+              <label>開始日</label>
+              <input type="text" placeholder="2019/11/22" class="form-control input-datepicker-autoclose form-control-sm" data-bind="value: customerModel.startDate" required>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group">
-                <label>住所２</label>
-                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.addressDetail" placeholder="住所２" required>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="form-group">
-                <label>電話番号</label>
-                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.telNo" name="sms.validation.pattern.TEL" required>
-              </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>郵便番号</label>
+              <input id="zipcode" type="text" class="form-control form-control-sm" data-bind="value:customerModel.zipcode, event:{focusout: $root.doGetAddress}" name="sms.validation.pattern.ZIP" required>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group">       
-                <label>ファックス</label>
-                <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.faxNo" name="sms.validation.pattern.TEL" required>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="form-group">
-                <label class="form-control-label">支払条件</label>
-                <select class="form-control form-control-sm" data-bind="value:customerModel.paymentTerms">
-                  <option th:each="keyValue : ${smsViewModel.paymentTermsList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
-                </select>
-              </div>
+          <div class="col-lg-6">
+            <div class="form-group">       
+              <label>住所１</label>
+              <input disabled type="text" class="form-control form-control-sm" data-bind="value: customerModel.address" placeholder="住所１" required>
             </div>
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="form-group">
-                <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doCreate">登録</button>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="form-group">
-                <button type="reset" class="btn btn-primary btn-block btn-sm">リセット</button>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="form-group">
-                <button type="button" class="btn btn-secondary btn-block btn-sm" data-dismiss="modal">キャンセル</button>
-              </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>住所２</label>
+              <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.addressDetail" placeholder="住所２" required>
             </div>
           </div>
-        </form>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>電話番号</label>
+              <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.telNo" name="sms.validation.pattern.TEL" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">       
+              <label>ファックス</label>
+              <input type="text" class="form-control form-control-sm" data-bind="value: customerModel.faxNo" name="sms.validation.pattern.TEL" required>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">支払条件</label>
+              <select class="form-control form-control-sm" data-bind="value:customerModel.paymentTerms">
+                <option th:each="keyValue : ${smsViewModel.paymentTermsList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doCreate">登録</button>
+        <button type="reset" class="btn btn-primary btn-block btn-sm">リセット</button>
+        <button type="button" class="btn btn-secondary btn-block btn-sm" data-dismiss="modal">キャンセル</button>
       </div>
     </div>
   </div>
+</form>
 </div>

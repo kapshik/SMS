@@ -97,8 +97,7 @@ sms.vm.customer = function() {
     };
 
     self.doDetail = function() {
-        var selectedRow = $("#id_customer_list tr.selected td:first").text();
-        self.dataModel.detail.customerNo(selectedRow);
+        self.dataModel.detail.customerNo($("#id_customer_list tr.selected td:first").text());
         
         var u = '/customer/detail';
         $.ajax({
