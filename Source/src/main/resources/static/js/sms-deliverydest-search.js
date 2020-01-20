@@ -60,6 +60,11 @@ sms.vm.deliverydest = function() {
     };
 
     self.doCreate = function() {
+        if(!self.validationViewModel.validateAll()) {
+            alert("Validation Error!!");
+            return;
+        }
+
         var u = '/deliverydest/create';
         $.ajax({
             type: 'post',
@@ -67,7 +72,8 @@ sms.vm.deliverydest = function() {
             data: toJSON(self.dataModel)
           }).done(function(response) {
             ko.mapping.fromJS(response, self.dataModel);
-            $('#id_modal_branch_add').modal('hide');
+            alert("登録しました!!");
+            $('#id_modal_deliverydest_add').modal('hide');
           }).fail(function(xhr, exception){
             self.messages.removeAll();
             self.handler.handle(xhr, exception);
@@ -107,6 +113,21 @@ console.log("To sms-branch-detail.html");
             self.handler.handle(xhr, exception);
         });
     };
+
+	self.doGetAddress = function( param ) {
+	    if(!$('#zipcode').get(0).checkValidity()) {
+	        return;
+	    }
+
+		var u = 'common/search_address?zipcode=' + $('#zipcode').val();
+		$.ajax({
+			type: 'get',
+			url: u,
+		}).done(function(response) {
+		    self.dataModel.deliveryDestModel.address(response.address1+response.address2+response.address3);
+		}).fail(function(xhr, exception){
+		});
+	};
 
 	self.bind = function() {
 		ko.applyBindings(this);

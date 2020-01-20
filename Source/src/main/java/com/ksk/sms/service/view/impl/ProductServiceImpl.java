@@ -12,10 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ksk.sms.common.SmsBeanUtilsBean;
 import com.ksk.sms.dao.domain.Product;
 import com.ksk.sms.dao.mapper.ProductMapper;
-import com.ksk.sms.model.BranchModel;
-import com.ksk.sms.model.CustomerModel;
-import com.ksk.sms.model.DeliveryDestModel;
-import com.ksk.sms.model.OrderModel;
 import com.ksk.sms.model.ProductModel;
 import com.ksk.sms.model.ProductViewModel;
 import com.ksk.sms.service.common.SmsService;
@@ -39,6 +35,7 @@ public class ProductServiceImpl extends SmsService implements SmsViewService<Pro
     	
     	//登録・詳細・更新画面用
 		outModel.setProductModel(new ProductModel());
+		outModel.setDetail(new ProductModel());
 
     	//検索画面用
 		outModel.setCriteria(new ProductModel());
@@ -83,8 +80,17 @@ public class ProductServiceImpl extends SmsService implements SmsViewService<Pro
 
 	@Override
 	public ProductViewModel detail(ProductViewModel inModel) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		ProductViewModel outModel = Objects.requireNonNull(inModel);
+
+		Product criteria = new Product();
+    	SmsBeanUtilsBean.copyProperties(criteria, inModel.getDetail());
+
+    	Product product = productMapper.findOne(criteria);
+    	ProductModel productModel = new ProductModel();
+    	SmsBeanUtilsBean.copyProperties(productModel, product);
+		outModel.setProductModel(productModel);
+
+		return outModel;
 	}
 
 	@Override

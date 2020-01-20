@@ -43,39 +43,6 @@ sms.vm.deliverydest = function() {
 		});
 	};
 
-	self.doGetAddress = function( param ) {
-	    if(!$('#zipcode').get(0).checkValidity()) {
-	        return;
-	    }
-
-		var u = 'common/search_address?zipcode=' + $('#zipcode').val();
-		$.ajax({
-			type: 'get',
-			url: u,
-		}).done(function(response) {
-		    self.dataModel.deliveryDestModel.address(response.address1+response.address2+response.address3);
-		}).fail(function(xhr, exception){
-		});
-	};
-
-    self.doCustomerChange = function() {
-        var u = '/deliverydest/customerChange';
-        $.ajax({
-            type: 'post',
-            url: u,
-            data: toJSON(self.dataModel)
-          }).done(function(response) {
-            ko.mapping.fromJS(response, self.dataModel);
-          }).fail(function(xhr, exception){
-            self.messages.removeAll();
-            self.handler.handle(xhr, exception);
-        });
-    };
-
-    self.doDeleteItem = function() {
-        self.dataModel.deliveryDestModelList.pop();
-    };
-
 	self.bind = function() {
 		ko.applyBindings(this);
 	};

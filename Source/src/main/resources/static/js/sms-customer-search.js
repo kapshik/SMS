@@ -82,6 +82,11 @@ sms.vm.customer = function() {
     };
 
     self.doCreate = function() {
+        if(!self.validationViewModel.validateAll()) {
+            alert("Validation Error!!");
+            return;
+        }
+
         var u = '/customer/create';
         $.ajax({
             type: 'post',
@@ -89,6 +94,7 @@ sms.vm.customer = function() {
             data: toJSON(self.dataModel)
           }).done(function(response) {
             ko.mapping.fromJS(response, self.dataModel);
+            alert("登録しました!!");
             $('#id_modal_customer_add').modal('hide');
           }).fail(function(xhr, exception){
             self.messages.removeAll();

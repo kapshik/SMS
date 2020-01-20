@@ -53,3 +53,22 @@
     </div>
   </div>
 </section>
+
+<section data-bind="with: dataModel">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <a class="btn btn-primary btn-block btn-sm" href="sms-product-update.html" role="button">商品変更</a>
+          </div>
+        </div>
+        <div class="col-sm-3 offset-sm-6">
+          <div class="form-group">
+            <button type="button" class="btn btn-secondary btn-block btn-sm" data-bind="click: $root.doCancel">キャンセル</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

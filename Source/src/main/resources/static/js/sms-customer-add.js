@@ -98,9 +98,10 @@ sms.vm.customer = function() {
 
     self.doCreate = function() {
         if(!self.validationViewModel.validateAll()) {
+            alert("Validation Error!!");
             return;
         }
-        
+
         var u = '/customer/create';
         $.ajax({
             type: 'post',

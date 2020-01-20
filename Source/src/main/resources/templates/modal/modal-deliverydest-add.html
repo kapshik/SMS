@@ -1,52 +1,41 @@
 <div id="id_modal_deliverydest_add" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true" class="modal fade text-left">
+<form>
   <div role="document" class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">納品先登録</h5>
         <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
       </div>
-      <div class="modal-body" data-bind="with: dataModel">
+      <div class="modal-body" data-bind="with: dataModel.deliveryDestModel">
         <div class="row">
-          <div class="col-lg-4">
+          <div class="col-lg-6">
             <div class="form-group">
               <label>顧客名</label>
-              <select class="form-control form-control-sm" data-bind="value:deliveryDestModel.customerNo, event:{change: $root.doCustomerChange}">
+              <select class="form-control form-control-sm" data-bind="value:customerNo, event:{change: $root.doCustomerChange}">
                 <option th:each="keyValue : ${smsViewModel.customerList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
               </select>
             </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-6">
             <div class="form-group">
               <label>支店名</label>
-              <select class="form-control form-control-sm" data-bind="value:deliveryDestModel.branchNo">
+              <select class="form-control form-control-sm" data-bind="value:branchNo">
                 <option th:each="keyValue : ${smsViewModel.branchList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
               </select>
             </div>
           </div>
-          <div class="col-lg-4">
-            <div class="form-group">       
-              <label>納品先名</label>
-              <input type="text" class="form-control form-control-sm" placeholder="支店名" data-bind="value: deliveryDestModel.deliveryDestName">
-            </div>
-          </div>
         </div>
         <div class="row">
-          <div class="col-lg-4">
+          <div class="col-lg-6">
+            <div class="form-group">       
+              <label>納品先名</label>
+              <input type="text" class="form-control form-control-sm" placeholder="納品先名" data-bind="value: deliveryDestName" required>
+            </div>
+          </div>
+          <div class="col-lg-6">
             <div class="form-group">
               <label>郵便番号</label>
-              <input type="text" class="form-control form-control-sm" data-bind="value: deliveryDestModel.zipcode" placeholder="101-0061">
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="form-group">
-              <label>電話番号</label>
-              <input type="text" class="form-control form-control-sm" data-bind="value: deliveryDestModel.telNo" placeholder="090-1324-5678">
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="form-group">       
-              <label>ファックス</label>
-              <input type="text" class="form-control form-control-sm" data-bind="value: deliveryDestModel.faxNo" placeholder="03-1324-5678">
+              <input id="zipcode" type="text" class="form-control form-control-sm" data-bind="value:zipcode, event:{focusout: $root.doGetAddress}" name="sms.validation.pattern.ZIP" required>
             </div>
           </div>
         </div>
@@ -54,21 +43,37 @@
           <div class="col-lg-6">
             <div class="form-group">       
               <label>住所１</label>
-              <input type="text" class="form-control form-control-sm" data-bind="value: deliveryDestModel.address" placeholder="住所１">
+              <input disabled type="text" class="form-control form-control-sm" data-bind="value: address" placeholder="住所１" required>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="form-group">
               <label>住所２</label>
-              <input type="text" class="form-control form-control-sm" data-bind="value: deliveryDestModel.addressDetail" placeholder="住所２">
+              <input type="text" class="form-control form-control-sm" data-bind="value: addressDetail" placeholder="住所２" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>電話番号</label>
+              <input type="text" class="form-control form-control-sm" data-bind="value: telNo" name="sms.validation.pattern.TEL" required>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">       
+              <label>ファックス</label>
+              <input type="text" class="form-control form-control-sm" data-bind="value: faxNo" name="sms.validation.pattern.TEL" required>
             </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doDeliveryDestListAdd">追加</button>
+        <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doCreate">登録</button>
+        <button type="reset" class="btn btn-primary btn-block btn-sm">リセット</button>
         <button type="button" class="btn btn-secondary btn-block btn-sm" data-dismiss="modal">終了</button>
       </div>
     </div>
   </div>
+</form>
 </div>

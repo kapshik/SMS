@@ -10,22 +10,6 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 public class ProductController extends SmsController {
 
-//	商品メイン画面
-	@RequestMapping("/sms-product.html")	
-	public String mainForm(Model model) {
-
-        log.info(model);
-		return "sms-product";
-	}
-
-//	商品状況画面
-	@RequestMapping("/sms-product-status.html")	
-	public String statusForm(Model model) {
-
-        log.info(model);
-		return "sms-product-status";
-	}
-
 //	商品登録画面
 	@RequestMapping("/sms-product-add.html")	
 	public String addForm(Model model) {

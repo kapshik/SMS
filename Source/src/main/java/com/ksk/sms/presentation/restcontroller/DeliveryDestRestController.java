@@ -52,13 +52,6 @@ log.info("deliverydest/init_detail");
 		return outModel;
 	}
 	
-	@PostMapping("deliverydest/add")
-	public DeliveryDestViewModel update(@RequestBody DeliveryDestViewModel inModel) {
-		DeliveryDestViewModel outModel = service.update(inModel);
-		
-		return outModel;
-	}
-	
 	@PostMapping("deliverydest/detail")
 	public DeliveryDestViewModel detail(@RequestBody DeliveryDestViewModel inModel) {
 		DeliveryDestViewModel outModel = Objects.requireNonNull(inModel);

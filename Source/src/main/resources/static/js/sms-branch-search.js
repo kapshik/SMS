@@ -74,6 +74,11 @@ sms.vm.branch = function() {
     };
 
     self.doCreate = function() {
+        if(!self.validationViewModel.validateAll()) {
+            alert("Validation Error!!");
+            return;
+        }
+
         var u = '/branch/create';
         $.ajax({
             type: 'post',
@@ -81,6 +86,7 @@ sms.vm.branch = function() {
             data: toJSON(self.dataModel)
           }).done(function(response) {
             ko.mapping.fromJS(response, self.dataModel);
+            alert("登録しました!!");
             $('#id_modal_branch_add').modal('hide');
           }).fail(function(xhr, exception){
             self.messages.removeAll();
