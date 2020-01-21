@@ -75,6 +75,11 @@ sms.vm.deliverydest = function() {
     };
 
     self.doCreate = function() {
+        if(!self.validationViewModel.validateAll()) {
+            alert("Validation Error!!");
+            return;
+        }
+
         var u = '/deliverydest/create';
         $.ajax({
             type: 'post',
@@ -82,14 +87,12 @@ sms.vm.deliverydest = function() {
             data: toJSON(self.dataModel)
           }).done(function(response) {
             ko.mapping.fromJS(response, self.dataModel);
+            alert("登録しました!!");
+            $('form').get(0).reset();
           }).fail(function(xhr, exception){
             self.messages.removeAll();
             self.handler.handle(xhr, exception);
         });
-    };
-
-    self.doDeleteItem = function() {
-        self.dataModel.deliveryDestModelList.pop();
     };
 
 	self.bind = function() {

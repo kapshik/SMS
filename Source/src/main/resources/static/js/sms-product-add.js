@@ -34,6 +34,7 @@ sms.vm.product = function() {
 
 	self.messages = ko.observableArray();
 	self.handler = new sms.vm.ErrorViewModel();
+	self.validationViewModel = new sms.validation.ViewModel();
 
 	self.doInit = function( param ) {
 		var u = '/product/init';
@@ -43,6 +44,7 @@ sms.vm.product = function() {
 		}).done(function(response) {
 			self.dataModel = ko.mapping.fromJS(response);
 			self.dataModel.title("商品登録");
+	        self.validationViewModel.init(null);
 			param.success();
 		}).fail(function(xhr, exception){
 			self.messages.removeAll();
@@ -51,35 +53,12 @@ sms.vm.product = function() {
 		});
 	};
 
-    self.doCustomerChange = function() {
-        var u = '/product/customerChange';
-        $.ajax({
-            type: 'post',
-            url: u,
-            data: toJSON(self.dataModel)
-          }).done(function(response) {
-            ko.mapping.fromJS(response, self.dataModel);
-          }).fail(function(xhr, exception){
-            self.messages.removeAll();
-            self.handler.handle(xhr, exception);
-        });
-    };
-
-    self.doSearch = function() {
-        var u = '/product/search';
-        $.ajax({
-            type: 'post',
-            url: u,
-            data: toJSON(self.dataModel)
-          }).done(function(response) {
-            ko.mapping.fromJS(response, self.dataModel);
-          }).fail(function(xhr, exception){
-            self.messages.removeAll();
-            self.handler.handle(xhr, exception);
-        });
-    };
-
     self.doCreate = function() {
+        if(!self.validationViewModel.validateAll()) {
+            alert("Validation Error!!");
+            return;
+        }
+
         var u = '/product/create';
         $.ajax({
             type: 'post',
@@ -87,19 +66,15 @@ sms.vm.product = function() {
             data: toJSON(self.dataModel)
           }).done(function(response) {
             ko.mapping.fromJS(response, self.dataModel);
+            alert("登録しました!!");
+            $('form').get(0).reset();
           }).fail(function(xhr, exception){
             self.messages.removeAll();
             self.handler.handle(xhr, exception);
         });
     };
 
-    self.doBranchListAdd = function() {
-        var branch = $.extend({}, ko.mapping.toJS(self.dataModel.branchModel));
-        self.dataModel.branchModelList.push(branch);
-    };
-
 	self.bind = function() {
 		ko.applyBindings(this);
 	};
 };
-

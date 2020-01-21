@@ -1,4 +1,5 @@
 <div id="id_modal_product_add" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true" class="modal fade text-left">
+<form id="id_modal_form">
   <div role="document" class="modal-dialog modal-xl">
     <div class="modal-content" data-bind="with: dataModel.productModel">
       <div class="modal-header">
@@ -10,32 +11,24 @@
           <div class="col-lg-6">
             <div class="form-group">
               <label>商品名</label>
-              <input type="text" class="form-control form-control-sm"  data-bind="value: productName">
+              <input type="text" class="form-control form-control-sm" placeholder="商品名" data-bind="value: productName" required>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="form-group">       
               <label>商品コード</label>
-              <input type="text" class="form-control form-control-sm"  data-bind="value: productCode">
+              <input type="text" class="form-control form-control-sm" placeholder="商品コード" data-bind="value: productCode" required>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-6">
-            <div class="form-group">
-              <label>入り数</label>
-              <input type="text" class="form-control form-control-sm" data-bind="value: quantity">
-            </div>
-          </div>
-          <div class="col-lg-6">
+          <div class="col-lg-4">
             <div class="form-group">       
-              <label>金額</label>
-              <input type="text" class="form-control form-control-sm" data-bind="value: amount">
+              <label>単価</label>
+              <input type="number" class="form-control form-control-sm" placeholder="100" data-bind="value: unitPrice" min="100" max="10000" required>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-4">
             <div class="form-group">
               <label>商品区分</label>
               <select class="form-control form-control-sm" data-bind="value: productType">
@@ -43,7 +36,7 @@
               </select>
             </div>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-4">
             <div class="form-group">       
               <label>単位</label>
               <select class="form-control form-control-sm" data-bind="value: unitType">
@@ -52,11 +45,21 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group">       
+              <label>備考</label>
+              <textarea class="form-control form-control-sm" rows="3" data-bind="value:remarks"></textarea>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doProductListAdd">追加</button>
+        <button type="button" class="btn btn-primary btn-block btn-sm" data-bind="click: $root.doCreate">追加</button>
+        <button type="reset" class="btn btn-primary btn-block btn-sm">リセット</button>
         <button type="button" class="btn btn-secondary btn-block btn-sm" data-dismiss="modal">終了</button>
       </div>
     </div>
   </div>
+</form>
 </div>

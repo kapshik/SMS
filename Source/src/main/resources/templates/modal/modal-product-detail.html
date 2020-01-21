@@ -10,9 +10,12 @@
           <div class="col-lg-6">
             <div class="form-group">
               <label>商品名</label>
+              <input type="text" disabled class="form-control form-control-sm" placeholder="商品名" data-bind="value: productName" required>
+<!--
               <select class="form-control form-control-sm" data-bind="value: productName">
                 <option th:each="keyValue : ${smsViewModel.productMasterList}" th:value="${keyValue.key}" th:inline="text">[[${keyValue.value}]]</option>
               </select>
+-->
             </div>
           </div>
           <div class="col-lg-6">

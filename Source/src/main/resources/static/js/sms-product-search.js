@@ -72,6 +72,8 @@ sms.vm.product = function() {
             data: toJSON(self.dataModel)
           }).done(function(response) {
             ko.mapping.fromJS(response, self.dataModel);
+            alert("登録しました!!");
+            $('#id_modal_form').get(0).reset();
             $('#id_modal_product_add').modal('hide');
           }).fail(function(xhr, exception){
             self.messages.removeAll();
@@ -111,9 +113,7 @@ sms.vm.product = function() {
         });
     };
 
-
 	self.bind = function() {
 		ko.applyBindings(this);
 	};
 };
-

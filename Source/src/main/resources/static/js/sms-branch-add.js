@@ -60,20 +60,6 @@ sms.vm.branch = function() {
 		});
 	};
 
-    self.doSearch = function() {
-        var u = '/branch/search';
-        $.ajax({
-            type: 'post',
-            url: u,
-            data: toJSON(self.dataModel)
-          }).done(function(response) {
-            ko.mapping.fromJS(response, self.dataModel);
-          }).fail(function(xhr, exception){
-            self.messages.removeAll();
-            self.handler.handle(xhr, exception);
-        });
-    };
-
     self.doCreate = function() {
         if(!self.validationViewModel.validateAll()) {
             return;
@@ -85,6 +71,8 @@ sms.vm.branch = function() {
             data: toJSON(self.dataModel)
           }).done(function(response) {
             ko.mapping.fromJS(response, self.dataModel);
+            alert("登録しました!!");
+            $('form').get(0).reset();
           }).fail(function(xhr, exception){
             self.messages.removeAll();
             self.handler.handle(xhr, exception);

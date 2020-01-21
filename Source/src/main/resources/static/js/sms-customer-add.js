@@ -74,27 +74,10 @@ sms.vm.customer = function() {
 			type: 'get',
 			url: u,
 		}).done(function(response) {
-//            var obj = JSON.parse(response);
-//		    $('#address1').val(obj.results[0].address1+obj.results[0].address2+obj.results[0].address3);
-//		    $('#address1').val(response.address1+response.address2+response.address3);
 		    self.dataModel.customerModel.address(response.address1+response.address2+response.address3);
 		}).fail(function(xhr, exception){
 		});
 	};
-
-    self.doSearch = function() {
-        var u = '/customer/search';
-        $.ajax({
-            type: 'post',
-            url: u,
-            data: toJSON(self.dataModel)
-          }).done(function(response) {
-            ko.mapping.fromJS(response, self.dataModel);
-          }).fail(function(xhr, exception){
-            self.messages.removeAll();
-            self.handler.handle(xhr, exception);
-        });
-    };
 
     self.doCreate = function() {
         if(!self.validationViewModel.validateAll()) {
@@ -109,8 +92,6 @@ sms.vm.customer = function() {
             data: toJSON(self.dataModel)
           }).done(function(response) {
             ko.mapping.fromJS(response, self.dataModel);
-//            console.log( self.dataModel.validationErrorList.length );
-            console.log( response.validationErrorList.length );
             if(response.validationErrorList.length > 0) {
                 //self.validationViewModel.validationErrorList.removeAll();
                 self.validationViewModel.validationErrorList = response.validationErrorList;
@@ -121,6 +102,9 @@ sms.vm.customer = function() {
                     //console.log( response.validationErrorList.find((value) => value.id === item.id).message );
                 }
                 */
+            } else {
+                alert("登録しました!!");
+                $('form').get(0).reset();
             }
           }).fail(function(xhr, exception){
             self.messages.removeAll();
