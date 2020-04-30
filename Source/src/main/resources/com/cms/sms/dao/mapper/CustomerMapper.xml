@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cms.sms.dao.mapper.CustomerMapper">
+
+	<sql id="whereStatements">
+		<where>
+			<if test="customerNo != null and customerNo != ''">
+				AND customerNo = #{customerNo}
+			</if>
+			<if test="customerName != null and customerName != ''">
+				AND customerName LIKE CONCAT('%', #{customerName}, '%')
+			</if>
+			<if test="zipcode != null and zipcode != ''">
+				AND zipcode LIKE CONCAT('%', #{zipcode}, '%')
+			</if>
+			<if test="address != null and address != ''">
+				AND address LIKE CONCAT('%', #{address}, '%')
+			</if>
+			<if test="addressDetail != null and addressDetail != ''">
+				AND addressDetail LIKE CONCAT('%', #{addressDetail}, '%')
+			</if>
+			<if test="telNo != null and telNo != ''">
+				AND telNo = #{telNo}
+			</if>
+			<if test="faxNo != null and faxNo != ''">
+				AND faxNo = #{faxNo}
+			</if>
+			<if test="startDate != null and startDate != ''">
+				AND startDate = #{startDate}
+			</if>
+			<if test="paymentTerms != null and paymentTerms != ''">
+				AND paymentTerms = #{paymentTerms}
+			</if>
+		</where>
+	</sql>
+
+    <select id="findOne" parameterType="com.cms.sms.dao.domain.Customer" resultType="com.cms.sms.dao.domain.Customer">
+		SELECT
+		    customerNo,
+		    customerName,
+		    zipcode,
+		    address,
+		    addressDetail,
+		    telNo,
+		    faxNo,
+		    startDate,
+		    paymentTerms,
+		    (SELECT name FROM tbl_reference WHERE type = 'PAYMENT_TERMS' AND code = paymentTerms) paymentTermsName
+		FROM
+			tbl_customer
+		WHERE
+			customerNo =  #{customerNo}
+    </select>
+
+    <select id="findList" parameterType="com.cms.sms.dao.domain.Customer" resultType="com.cms.sms.dao.domain.Customer">
+		SELECT
+		    customerNo,
+		    customerName,
+		    zipcode,
+		    address,
+		    addressDetail,
+		    telNo,
+		    faxNo,
+		    startDate,
+		    paymentTerms,
+		    (SELECT name FROM tbl_reference WHERE type = 'PAYMENT_TERMS' AND code = paymentTerms) paymentTermsName
+		FROM
+			tbl_customer
+		<include refid="whereStatements" />
+		ORDER BY
+			customerNo
+    </select>
+
+    <select id="count" parameterType="com.cms.sms.dao.domain.Customer" resultType="_long">
+		SELECT
+			COUNT(*)
+		FROM
+			tbl_customer
+		<include refid="whereStatements" />
+    </select>
+
+    <select id="nextNo" parameterType="com.cms.sms.dao.domain.Customer" resultType="String">
+		SELECT
+			LPAD( IFNULL( MAX( SUBSTRING(customerNo,2) ), "0" ) + 1, 4, "0" )
+		FROM
+			tbl_customer
+    </select>
+
+    <insert id="create" parameterType="com.cms.sms.dao.domain.Customer" useGeneratedKeys="true"  keyProperty="customerNo">
+		INSERT INTO
+			tbl_customer
+		(
+		    customerNo,
+		    customerName,
+		    zipcode,
+		    address,
+		    addressDetail,
+		    telNo,
+		    faxNo,
+		    startDate,
+		    paymentTerms
+		)
+		VALUES
+		(
+			#{customerNo},
+			#{customerName},
+			#{zipcode},
+			#{address},
+			#{addressDetail},
+			#{telNo},
+			#{faxNo},
+			#{startDate},
+			#{paymentTerms}
+		)
+    </insert>
+
+    <insert id="createAll" parameterType="java.util.List">
+		INSERT INTO
+			tbl_customer
+		(
+		    customerNo,
+		    zipcode,
+		    address,
+		    addressDetail,
+		    telNo,
+		    faxNo,
+		    startDate,
+		    paymentTerms
+		)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+		(
+			#{item.customerNo},
+			#{item.customerName},
+			#{item.zipcode},
+			#{item.address},
+			#{item.addressDetail},
+			#{item.telNo},
+			#{item.faxNo},
+			#{item.startDate},
+			#{item.paymentTerms}
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.cms.sms.dao.domain.Customer">
+		UPDATE
+			tbl_customer
+		<set>
+			<if test="customerName != null">customerName = #{customerName}, </if>
+			<if test="zipcode != null">zipcode = #{zipcode}, </if>
+			<if test="address != null">address = #{address}, </if>
+			<if test="addressDetail != null">addressDetail = #{addressDetail}, </if>
+			<if test="telNo != null">telNo = #{telNo}, </if>
+			<if test="faxNo != null">faxNo = #{faxNo}, </if>
+			<if test="startDate != null">startDate = #{startDate}, </if>
+			<if test="paymentTerms != null">paymentTerms = #{paymentTerms}, </if>
+		</set>
+		WHERE
+			customerNo =  #{customerNo}
+	</update>
+
+	<delete id="delete" parameterType="com.cms.sms.dao.domain.Customer">
+		DELETE FROM
+				tbl_customer
+		WHERE
+			customerNo =  #{customerNo}
+	</delete>
+
+</mapper>

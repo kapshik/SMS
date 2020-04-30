@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cms.sms.dao.mapper.OrderMapper">
+
+	<sql id="whereStatements">
+		<where>
+			<if test="customerNo != null and customerNo != ''">
+				AND customerNo = #{customerNo}
+			</if>
+			<if test="branchNo != null and branchNo != ''">
+				AND branchNo = #{branchNo}
+			</if>
+			<if test="deliveryDestNo != null and deliveryDestNo != ''">
+				AND deliveryDestNo = #{deliveryDestNo}
+			</if>
+			<if test="orderNo != null and orderNo != ''">
+				AND orderNo LIKE CONCAT('%', #{orderNo}, '%')
+			</if>
+			<if test="shippingLabelNo != null and shippingLabelNo != ''">
+				AND shippingLabelNo LIKE CONCAT('%', #{shippingLabelNo}, '%')
+			</if>
+			<if test="estimationNo != null and estimationNo != ''">
+				AND estimationNo LIKE CONCAT('%', #{estimationNo}, '%')
+			</if>
+			<if test="memo != null and memo != ''">
+				AND memo LIKE CONCAT('%', #{memo}, '%')
+			</if>
+			<if test="estimationDate != null and estimationDate != ''">
+				AND estimationDate = #{estimationDate}
+			</if>
+			<if test="orderDate != null and orderDate != ''">
+				AND orderDate = #{orderDate}
+			</if>
+			<if test="registrationDate != null and registrationDate != ''">
+				AND registrationDate = #{registrationDate}
+			</if>
+			<if test="shippingDate != null and shippingDate != ''">
+				AND shippingDate = #{shippingDate}
+			</if>
+			<if test="deliveryDate != null and deliveryDate != ''">
+				AND deliveryDate = #{deliveryDate}
+			</if>
+			<if test="invoiceDate != null and invoiceDate != ''">
+				AND invoiceDate = #{invoiceDate}
+			</if>
+			<if test="requiredDate != null and requiredDate != ''">
+				AND requiredDate = #{requiredDate}
+			</if>
+			<if test="status != null and status != ''">
+				AND status = #{status}
+			</if>
+		</where>
+	</sql>
+
+    <select id="findOne" parameterType="com.cms.sms.dao.domain.Order" resultType="com.cms.sms.dao.domain.Order">
+		SELECT
+			*
+		FROM
+			tbl_order
+		WHERE
+			customerNo =  #{customerNo}
+			AND orderNo =  #{orderNo}
+    </select>
+
+    <select id="findList" parameterType="com.cms.sms.dao.domain.Order" resultType="com.cms.sms.dao.domain.Order">
+		SELECT
+		    customer.customerName AS customerName,
+		    branch.branchName AS branchName,
+		    deliverydest.deliveryDestName AS deliveryDestName,
+		    ord.orderNo AS orderNo,
+		    ord.shippingLabelNo AS shippingLabelNo,
+		    ord.estimationNo AS estimationNo,
+		    ord.memo AS memo,
+		    ord.estimationDate AS estimationDate,
+		    ord.orderDate AS orderDate,
+		    ord.registrationDate AS registrationDate,
+		    ord.shippingDate AS shippingDate,
+		    ord.deliveryDate AS deliveryDate,
+		    ord.invoiceDate AS invoiceDate,
+		    ord.requiredDate AS requiredDate,
+		    ord.status AS status
+		FROM
+			tbl_order ord,
+			tbl_branch branch,
+			tbl_customer customer,
+			tbl_deliverydest deliverydest
+		WHERE
+			ord.customerNo = customer.customerNo
+			AND ord.branchNo = branch.branchNo
+			AND ord.deliveryDestNo = deliverydest.deliveryDestNo
+		ORDER BY
+			customerNo, orderNo
+    </select>
+
+    <select id="count" parameterType="com.cms.sms.dao.domain.Order" resultType="_long">
+		SELECT
+			COUNT(*)
+		FROM
+			tbl_order
+		<include refid="whereStatements" />
+    </select>
+
+    <insert id="create" parameterType="com.cms.sms.dao.domain.Order">
+		INSERT INTO
+			tbl_order
+		(
+		    customerNo,
+		    branchNo,
+		    deliveryDestNo,
+		    orderNo,
+		    shippingLabelNo,
+		    estimationNo,
+		    memo,
+		    estimationDate,
+		    orderDate,
+		    registrationDate,
+		    shippingDate,
+		    deliveryDate,
+		    invoiceDate,
+		    requiredDate,
+		    status
+		)
+		VALUES
+		(
+			#{customerNo},
+			#{branchNo},
+			#{deliveryDestNo},
+			#{orderNo},
+			#{shippingLabelNo},
+			#{estimationNo},
+			#{memo},
+			#{estimationDate},
+			#{orderDate},
+			#{registrationDate},
+			#{shippingDate},
+			#{deliveryDate},
+			#{invoiceDate},
+			#{requiredDate},
+			#{status}
+		)
+    </insert>
+
+    <insert id="createAll" parameterType="java.util.List">
+		INSERT INTO
+			tbl_order
+		(
+		    customerNo,
+		    branchNo,
+		    deliveryDestNo,
+		    orderNo,
+		    shippingLabelNo,
+		    estimationNo,
+		    memo,
+		    estimationDate,
+		    orderDate,
+		    registrationDate,
+		    shippingDate,
+		    deliveryDate,
+		    invoiceDate,
+		    requiredDate,
+		    status
+		)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+		(
+			#{item.customerNo},
+			#{item.branchNo},
+			#{item.deliveryDestNo},
+			#{item.orderNo},
+			#{item.shippingLabelNo},
+			#{item.estimationNo},
+			#{item.memo},
+			#{item.estimationDate},
+			#{item.orderDate},
+			#{item.registrationDate},
+			#{item.shippingDate},
+			#{item.deliveryDate},
+			#{item.invoiceDate},
+			#{item.requiredDate},
+			#{item.status}
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.cms.sms.dao.domain.Order">
+		UPDATE
+			tbl_order
+		<set>
+			<if test="branchNo != null">branchNo = #{branchNo}, </if>
+			<if test="deliveryDestNo != null">deliveryDestNo = #{deliveryDestNo}, </if>
+			<if test="shippingLabelNo != null">shippingLabelNo = #{shippingLabelNo}, </if>
+			<if test="estimationNo != null">estimationNo = #{estimationNo}, </if>
+			<if test="memo != null">memo = #{memo}, </if>
+			<if test="estimationDate != null">estimationDate = #{estimationDate}, </if>
+			<if test="orderDate != null">orderDate = #{orderDate}, </if>
+			<if test="registrationDate != null">registrationDate = #{registrationDate}, </if>
+			<if test="shippingDate != null">shippingDate = #{shippingDate}, </if>
+			<if test="deliveryDate != null">deliveryDate = #{deliveryDate}, </if>
+			<if test="invoiceDate != null">invoiceDate = #{invoiceDate}, </if>
+			<if test="requiredDate != null">requiredDate = #{requiredDate}, </if>
+			<if test="status != null">status = #{status}, </if>
+		</set>
+		WHERE
+			customerNo =  #{customerNo}
+			AND orderNo =  #{orderNo}
+	</update>
+
+	<delete id="delete" parameterType="com.cms.sms.dao.domain.Order">
+		DELETE FROM
+				tbl_order
+		WHERE
+			customerNo =  #{customerNo}
+			AND orderNo =  #{orderNo}
+	</delete>
+
+</mapper>

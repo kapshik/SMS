@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cms.sms.dao.mapper.ProductMapper">
+
+	<sql id="whereStatements">
+		<where>
+			<if test="productCode != null and productCode != ''">
+				AND productCode LIKE CONCAT('%', #{productCode}, '%')
+			</if>
+			<if test="productName != null and productName != ''">
+				AND productName LIKE CONCAT('%', #{productName}, '%')
+			</if>
+			<if test="unitPrice != null and unitPrice != ''">
+				AND unitPrice = #{unitPrice}
+			</if>
+			<if test="productType != null and productType != ''">
+				AND productType = #{productType}
+			</if>
+			<if test="unitType != null and unitType != ''">
+				AND unitType = #{unitType}
+			</if>
+			<if test="remarks != null and remarks != ''">
+				AND remarks LIKE CONCAT('%', #{remarks}, '%')
+			</if>
+		</where>
+	</sql>
+
+    <select id="findOne" parameterType="com.cms.sms.dao.domain.Product" resultType="com.cms.sms.dao.domain.Product">
+		SELECT
+		    productCode,
+		    productName,
+		    unitPrice,
+		    productType,
+		    (SELECT name FROM tbl_reference WHERE type = 'PRODUCT_TYPE' AND code = productType) productTypeName,
+		    unitType,
+		    (SELECT name FROM tbl_reference WHERE type = 'UNIT_TYPE' AND code = unitType) unitTypeName,
+		    remarks
+		FROM
+			tbl_product
+		WHERE
+			productCode =  #{productCode}
+    </select>
+
+    <select id="findList" parameterType="com.cms.sms.dao.domain.Product" resultType="com.cms.sms.dao.domain.Product">
+		SELECT
+		    productCode,
+		    productName,
+		    unitPrice,
+		    productType,
+		    (SELECT name FROM tbl_reference WHERE type = 'PRODUCT_TYPE' AND code = productType) productTypeName,
+		    unitType,
+		    (SELECT name FROM tbl_reference WHERE type = 'UNIT_TYPE' AND code = unitType) unitTypeName,
+		    remarks
+		FROM
+			tbl_product
+		<include refid="whereStatements" />
+		ORDER BY
+			productCode
+    </select>
+
+    <select id="count" parameterType="com.cms.sms.dao.domain.Product" resultType="_long">
+		SELECT
+			COUNT(*)
+		FROM
+			tbl_product
+		<include refid="whereStatements" />
+    </select>
+
+    <insert id="create" parameterType="com.cms.sms.dao.domain.Product">
+		INSERT INTO
+			tbl_product
+		(
+		    productCode,
+		    productName,
+		    unitPrice,
+		    productType,
+		    unitType,
+		    remarks
+		)
+		VALUES
+		(
+			#{productCode},
+			#{productName},
+			#{unitPrice},
+			#{productType},
+			#{unitType},
+			#{remarks}
+		)
+    </insert>
+
+    <insert id="createAll" parameterType="java.util.List">
+		INSERT INTO
+			tbl_product
+		(
+		    productCode,
+		    productName,
+		    unitPrice,
+		    productType,
+		    unitType,
+		    remarks
+		)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+		(
+			#{item.productCode},
+			#{item.productName},
+			#{item.unitPrice},
+			#{item.productType},
+			#{item.unitType},
+			#{item.remarks}
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.cms.sms.dao.domain.Product">
+		UPDATE
+			tbl_product
+		<set>
+			<if test="productName != null">productName = #{productName}, </if>
+			<if test="unitPrice != null">unitPrice = #{unitPrice}, </if>
+			<if test="productType != null">productType = #{productType}, </if>
+			<if test="unitType != null">unitType = #{unitType}, </if>
+			<if test="remarks != null">remarks = #{remarks}, </if>
+		</set>
+		WHERE
+			productCode =  #{productCode}
+	</update>
+
+	<delete id="delete" parameterType="com.cms.sms.dao.domain.Product">
+		DELETE FROM
+				tbl_product
+		WHERE
+			productCode =  #{productCode}
+	</delete>
+
+</mapper>

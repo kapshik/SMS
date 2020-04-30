@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cms.sms.dao.mapper.DeliveryDestMapper">
+
+	<sql id="whereStatements">
+		<where>
+			<if test="customerNo != null and customerNo != ''">
+				AND customerNo = #{customerNo}
+			</if>
+			<if test="branchNo != null and branchNo != ''">
+				AND branchNo = #{branchNo}
+			</if>
+			<if test="deliveryDestNo != null and deliveryDestNo != ''">
+				AND deliveryDestNo = #{deliveryDestNo}
+			</if>
+			<if test="deliveryDestName != null and deliveryDestName != ''">
+				AND deliveryDestName = #{deliveryDestName}
+			</if>
+			<if test="zipcode != null and zipcode != ''">
+				AND zipcode = #{zipcode}
+			</if>
+			<if test="address != null and address != ''">
+				AND address = #{address}
+			</if>
+			<if test="addressDetail != null and addressDetail != ''">
+				AND addressDetail = #{addressDetail}
+			</if>
+			<if test="telNo != null and telNo != ''">
+				AND telNo = #{telNo}
+			</if>
+			<if test="faxNo != null and faxNo != ''">
+				AND faxNo = #{faxNo}
+			</if>
+		</where>
+	</sql>
+
+    <select id="findOne" parameterType="com.cms.sms.dao.domain.DeliveryDest" resultType="com.cms.sms.dao.domain.DeliveryDest">
+		SELECT
+			*
+		FROM
+			tbl_deliverydest
+		WHERE
+			customerNo =  #{customerNo}
+			AND branchNo =  #{branchNo}
+			AND deliveryDestNo =  #{deliveryDestNo}
+    </select>
+
+    <select id="findList" parameterType="com.cms.sms.dao.domain.DeliveryDest" resultType="com.cms.sms.dao.domain.DeliveryDest">
+		SELECT
+			* 
+		FROM
+			tbl_deliverydest
+		<include refid="whereStatements" />
+		ORDER BY
+			customerNo, branchNo, deliveryDestNo
+    </select>
+
+    <select id="count" parameterType="com.cms.sms.dao.domain.DeliveryDest" resultType="_long">
+		SELECT
+			COUNT(*)
+		FROM
+			tbl_deliverydest
+		<include refid="whereStatements" />
+    </select>
+
+    <select id="nextNo" parameterType="com.cms.sms.dao.domain.DeliveryDest" resultType="String">
+		SELECT
+			LPAD( IFNULL( MAX( SUBSTRING(deliveryDestNo,2) ), "0" ) + 1, 4, "0" )
+		FROM
+			tbl_deliverydest
+		WHERE
+			customerNo =  #{customerNo}
+			AND branchNo =  #{branchNo}
+    </select>
+
+    <insert id="create" parameterType="com.cms.sms.dao.domain.DeliveryDest" useGeneratedKeys="true"  keyProperty="deliveryDestNo">
+		INSERT INTO
+			tbl_deliverydest
+		(
+		    customerNo,
+		    branchNo,
+		    deliveryDestNo,
+		    deliveryDestName,
+		    zipcode,
+		    address,
+		    addressDetail,
+		    telNo,
+		    faxNo
+		)
+		VALUES
+		(
+			#{customerNo},
+			#{branchNo},
+			#{deliveryDestNo},
+			#{deliveryDestName},
+			#{zipcode},
+			#{address},
+			#{addressDetail},
+			#{telNo},
+			#{faxNo}
+		)
+    </insert>
+
+    <insert id="createAll" parameterType="list">
+		INSERT INTO
+			tbl_deliverydest
+		(
+		    customerNo,
+		    branchNo,
+		    deliveryDestNo,
+		    deliveryDestName,
+		    zipcode,
+		    address,
+		    addressDetail,
+		    telNo,
+		    faxNo
+		)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+		(
+			#{item.customerNo},
+			#{item.branchNo},
+			#{item.deliveryDestNo},
+			#{item.deliveryDestName},
+			#{item.zipcode},
+			#{item.address},
+			#{item.addressDetail},
+			#{item.telNo},
+			#{item.faxNo}
+		)
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.cms.sms.dao.domain.DeliveryDest">
+		UPDATE
+			tbl_deliverydest
+		<set>
+			<if test="deliveryDestName != null">deliveryDestName = #{deliveryDestName}, </if>
+			<if test="zipcode != null">zipcode = #{zipcode}, </if>
+			<if test="address != null">address = #{address}, </if>
+			<if test="addressDetail != null">addressDetail = #{addressDetail}, </if>
+			<if test="telNo != null">telNo = #{telNo}, </if>
+			<if test="faxNo != null">faxNo = #{faxNo}, </if>
+		</set>
+		WHERE
+			customerNo =  #{customerNo}
+			AND branchNo =  #{branchNo}
+			AND deliveryDestNo =  #{deliveryDestNo}
+	</update>
+
+	<delete id="delete" parameterType="com.cms.sms.dao.domain.DeliveryDest">
+		DELETE FROM
+				tbl_deliverydest
+		WHERE
+			customerNo =  #{customerNo}
+			AND branchNo =  #{branchNo}
+			AND deliveryDestNo =  #{deliveryDestNo}
+	</delete>
+
+</mapper>
